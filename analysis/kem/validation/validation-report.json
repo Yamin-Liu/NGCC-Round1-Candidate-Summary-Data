@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-21T08:29:53.991527+00:00",
+  "generated_at": "2026-09-21T08:54:58.408235+00:00",
   "expected_algorithm_count": 41,
   "file_count": 41,
   "parsed_record_count": 41,
@@ -338,23 +338,9 @@
     {
       "algorithm_id": "cheetahkem",
       "severity": "missing",
-      "code": "submitter_affiliation_unreadable",
-      "message": "Scanned basic-information form did not yield extractable affiliation text.",
-      "field": "affiliations"
-    },
-    {
-      "algorithm_id": "cheetahkem",
-      "severity": "missing",
       "code": "quantum_bits_not_tabulated",
       "message": "Per-profile claimed quantum security bits were not located in the principal parameter table.",
       "field": "parameter_sets[*].claimed_quantum_security_bits"
-    },
-    {
-      "algorithm_id": "ctl",
-      "severity": "missing",
-      "code": "submitter_details_unreadable",
-      "message": "Basic-information PDFs are scanned; English names, affiliations and contact role were not safely recoverable.",
-      "field": "submitters, affiliations"
     },
     {
       "algorithm_id": "dkem",
@@ -364,25 +350,11 @@
       "field": "parameter_sets[*].claimed_quantum_security_bits"
     },
     {
-      "algorithm_id": "flit",
-      "severity": "missing",
-      "code": "affiliations_unreadable",
-      "message": "Affiliations were not recoverable from the scanned basic-information form.",
-      "field": "affiliations"
-    },
-    {
       "algorithm_id": "hep-qc",
       "severity": "missing",
       "code": "quantum_security_bits_not_stated",
       "message": "Per-profile quantum bit estimates were not stated in the main parameter table.",
       "field": "parameter_sets[*].claimed_quantum_security_bits"
-    },
-    {
-      "algorithm_id": "loongkem",
-      "severity": "missing",
-      "code": "submitter_affiliation_unreadable",
-      "message": "Scanned basic-information form did not yield affiliation text.",
-      "field": "affiliations"
     },
     {
       "algorithm_id": "loongkem",

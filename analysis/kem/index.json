@@ -121,7 +121,7 @@
       "subcategory": "ntru_based",
       "parameter_set_count": 3,
       "extraction_status": "partial",
-      "confidence": "medium"
+      "confidence": "high"
     },
     {
       "algorithm_id": "dkem",

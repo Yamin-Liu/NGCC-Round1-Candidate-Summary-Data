@@ -67,20 +67,28 @@
     "context_support": null,
     "batch_verification": null
   },
-  "affiliations": [],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Communication University of China", "name_zh": "中国传媒大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-2", "name_en": "Tsinghua University", "name_zh": "清华大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-3", "name_en": "Huawei Technologies", "name_zh": "华为技术有限公司", "country_or_region": "China"},
+    {"affiliation_id": "aff-4", "name_en": "Shandong University", "name_zh": "山东大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-5", "name_en": "ChinaBond Finance and Information Technology Co.", "name_zh": null, "country_or_region": "China"},
+    {"affiliation_id": "aff-6", "name_en": "Xingtang Communication Technology Co., Ltd.", "name_zh": "兴唐通信科技有限公司", "country_or_region": "China"}
+  ],
   "submitters": [
     {
       "name_en": "Zhongxiang Zheng",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
-        "author"
+        "author",
+        "contact"
       ]
     },
     {
       "name_en": "Anyu Wang",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-2"],
       "roles": [
         "author"
       ]
@@ -88,7 +96,7 @@
     {
       "name_en": "Chunhuan Zhao",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-3"],
       "roles": [
         "author"
       ]
@@ -96,7 +104,7 @@
     {
       "name_en": "Guangwu Xu",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-4"],
       "roles": [
         "author"
       ]
@@ -104,7 +112,7 @@
     {
       "name_en": "Sibo Feng",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
         "author"
       ]
@@ -112,7 +120,7 @@
     {
       "name_en": "Zhichen Yan",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
         "author"
       ]
@@ -120,7 +128,7 @@
     {
       "name_en": "Yuhang Sun",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
         "author"
       ]
@@ -128,7 +136,7 @@
     {
       "name_en": "Zhengtao Jiang",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
         "author"
       ]
@@ -136,7 +144,7 @@
     {
       "name_en": "Congming Wei",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-1"],
       "roles": [
         "author"
       ]
@@ -144,7 +152,7 @@
     {
       "name_en": "Shuang Sun",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-5"],
       "roles": [
         "author"
       ]
@@ -152,7 +160,7 @@
     {
       "name_en": "Chen Jia",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-5"],
       "roles": [
         "author"
       ]
@@ -160,7 +168,7 @@
     {
       "name_en": "Shuaigang Li",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-6"],
       "roles": [
         "author"
       ]
@@ -484,6 +492,14 @@
   ],
   "evidence": [
     {
+      "field": "submitters, affiliations",
+      "source_id": "rhyme-basic",
+      "locator": "pp. 1-3",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "OCR and visual review recovered all twelve affiliation links and the contact role."
+    },
+    {
       "field": "overview_classification",
       "source_id": "rhyme-spec",
       "locator": "pp. 1-4",
@@ -524,12 +540,11 @@
     ],
     "cross_reviewed": false,
     "issues": [
-      "Author affiliations were not reliably recoverable from the scanned basic-information form; affiliation links are left empty.",
       "Reported signature sizes are estimates using experimental rANS compression rates; exact minima/maxima were not stated."
     ],
     "conflicts": [
       "Package filenames for the basic-information form and specification appear swapped relative to their contents."
     ],
-    "last_updated": "2026-09-20"
+    "last_updated": "2026-09-21"
   }
 }

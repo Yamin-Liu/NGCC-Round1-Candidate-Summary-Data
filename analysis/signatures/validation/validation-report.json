@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_on": "2026-09-20",
+  "generated_on": "2026-09-21",
   "schema": "schema/signature-algorithm.schema.json",
   "expected_algorithm_count": 34,
   "parsed_algorithm_count": 34,
@@ -154,12 +154,6 @@
     },
     {
       "kind": "record_issue",
-      "message": "Author affiliations were not reliably recoverable from the scanned basic-information form; affiliation links are left empty.",
-      "algorithm_id": "rhyme",
-      "field": "review.issues"
-    },
-    {
-      "kind": "record_issue",
       "message": "Reported signature sizes are estimates using experimental rANS compression rates; exact minima/maxima were not stated.",
       "algorithm_id": "rhyme",
       "field": "review.issues"
@@ -228,12 +222,6 @@
       "kind": "record_issue",
       "message": "KB was converted using 1024 bytes per KB; source does not explicitly define KB convention.",
       "algorithm_id": "vdoo",
-      "field": "review.issues"
-    },
-    {
-      "kind": "record_issue",
-      "message": "Affiliations and Chinese author names were not reliably recoverable from the scanned basic-information form.",
-      "algorithm_id": "yuanyang-dsa",
       "field": "review.issues"
     }
   ],

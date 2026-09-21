@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-20T13:36:26.952547+00:00",
+  "generated_at": "2026-09-21T08:54:58.375592+00:00",
   "scope": "Nine NICCS R1 KeyExchange candidates",
   "expected_algorithm_count": 9,
   "observed_algorithm_count": 9,
@@ -8,7 +8,7 @@
     "schema_passed": 9,
     "schema_failed": 0,
     "errors": 0,
-    "warnings": 53,
+    "warnings": 51,
     "info": 8,
     "missing_items": 20,
     "source_conflicts": 9
@@ -40,12 +40,6 @@
     {
       "severity": "warning",
       "check": "record_issue",
-      "message": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support.",
-      "path": "submitters[Jian Weng].affiliation_ids"
-    },
-    {
-      "severity": "warning",
-      "check": "record_issue",
       "message": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null.",
       "path": "parameter_sets.ngcc_level"
     },
@@ -57,7 +51,7 @@
     {
       "severity": "warning",
       "check": "source_conflict",
-      "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+      "message": "The title-page author list includes Jian Weng, while the basic-information submitter table does not; his affiliation is therefore supported by an official university profile rather than the submission form."
     },
     {
       "severity": "warning",
@@ -304,12 +298,6 @@
     {
       "severity": "warning",
       "check": "record_issue",
-      "message": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred.",
-      "path": "submitters.affiliation_ids"
-    },
-    {
-      "severity": "warning",
-      "check": "record_issue",
       "message": "The specification names 128/256/384/512-bit instances but does not explicitly assign NGCC level integers; all values are null rather than inferred from project convention.",
       "path": "ngcc_level"
     }
@@ -425,7 +413,7 @@
     {
       "severity": "warning",
       "check": "source_conflict",
-      "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+      "message": "The title-page author list includes Jian Weng, while the basic-information submitter table does not; his affiliation is therefore supported by an official university profile rather than the submission form."
     },
     {
       "severity": "warning",
@@ -498,12 +486,6 @@
         {
           "severity": "warning",
           "check": "record_issue",
-          "message": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support.",
-          "path": "submitters[Jian Weng].affiliation_ids"
-        },
-        {
-          "severity": "warning",
-          "check": "record_issue",
           "message": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null.",
           "path": "parameter_sets.ngcc_level"
         },
@@ -527,7 +509,7 @@
         {
           "severity": "warning",
           "check": "source_conflict",
-          "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+          "message": "The title-page author list includes Jian Weng, while the basic-information submitter table does not; his affiliation is therefore supported by an official university profile rather than the submission form."
         }
       ]
     },
@@ -850,12 +832,6 @@
       "algorithm_id": "triq-kex",
       "schema_valid": true,
       "findings": [
-        {
-          "severity": "warning",
-          "check": "record_issue",
-          "message": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred.",
-          "path": "submitters.affiliation_ids"
-        },
         {
           "severity": "warning",
           "check": "record_issue",

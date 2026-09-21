@@ -163,41 +163,44 @@
     {
       "name_en": "Lan Luo",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-ieu"],
       "is_contact": true
     },
     {
       "name_en": "Chaofeng Guan",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-ieu"],
       "is_contact": false
     },
     {
       "name_en": "Yunlei Zhao",
       "name_zh": "赵运磊",
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-fudan"],
       "is_contact": false
     },
     {
       "name_en": "Hong Wang",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-ieu"],
       "is_contact": false
     },
     {
       "name_en": "Jianhua Hou",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-ieu"],
       "is_contact": false
     },
     {
       "name_en": "Tong Yu",
       "name_zh": null,
-      "affiliation_ids": [],
+      "affiliation_ids": ["aff-ieu"],
       "is_contact": false
     }
   ],
-  "affiliations": [],
+  "affiliations": [
+    {"affiliation_id": "aff-ieu", "name_en": "Information Engineering University", "name_zh": "信息工程大学"},
+    {"affiliation_id": "aff-fudan", "name_en": "Fudan University", "name_zh": "复旦大学"}
+  ],
   "common_parameters": {
     "underlying_primitive": "TriQ-PKE/TriQ-KEM",
     "static_kem_security": "IND-CCA2 with kappa-min-entropy",
@@ -540,7 +543,7 @@
       "type": "basic_information",
       "path": "KeyExchange/TriQ-KEX.zip::TriQ-KEX/Basic information/Basic information.pdf",
       "priority": 1,
-      "notes": "Scanned/empty text extraction; affiliations unavailable."
+      "notes": "Scanned form; affiliations recovered by OCR and visual review."
     },
     {
       "source_id": "triq-spec",
@@ -558,6 +561,13 @@
     }
   ],
   "evidence": [
+    {
+      "field": "identity_and_submitters",
+      "source_id": "triq-basic",
+      "locator": "PDF pp. 1-2",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
     {
       "field": "identity_and_submitters",
       "source_id": "triq-spec",
@@ -628,11 +638,6 @@
     "conflicts": []
   },
   "issues": [
-    {
-      "field": "submitters.affiliation_ids",
-      "severity": "warning",
-      "description": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred."
-    },
     {
       "field": "ngcc_level",
       "severity": "warning",

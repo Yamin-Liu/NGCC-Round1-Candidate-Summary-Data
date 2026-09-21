@@ -59,7 +59,7 @@
     {"name_en": "Biming Zhou", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
     {"name_en": "Zhixiang Zhao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
     {"name_en": "Chaofeng Guan", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
-    {"name_en": "Jian Weng", "name_zh": null, "affiliation_ids": [], "is_contact": false},
+    {"name_en": "Jian Weng", "name_zh": null, "affiliation_ids": ["aff-3"], "is_contact": false},
     {"name_en": "Songlin Li", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
     {"name_en": "Yifan Dong", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
     {"name_en": "Boyue Fang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
@@ -74,7 +74,8 @@
   ],
   "affiliations": [
     {"affiliation_id": "aff-1", "name_en": "Fudan University (including College of Computer Science and Artificial Intelligence)", "name_zh": "复旦大学（含计算机科学技术学院/人工智能相关学院）"},
-    {"affiliation_id": "aff-2", "name_en": "Information Engineering University", "name_zh": "信息工程大学"}
+    {"affiliation_id": "aff-2", "name_en": "Information Engineering University", "name_zh": "信息工程大学"},
+    {"affiliation_id": "aff-3", "name_en": "Jinan University", "name_zh": "暨南大学"}
   ],
   "common_parameters": {
     "primary_protocol": "pMAKE-BW",
@@ -152,10 +153,12 @@
   "sources": [
     {"source_id": "afs-basic", "type": "basic_information", "path": "KeyExchange/AFS-KEX.zip::Basic information/Basic Algorithm Information-AFS-KEX.pdf", "priority": 1, "notes": "Text-extracted; private contact details intentionally excluded."},
     {"source_id": "afs-spec", "type": "algorithm_specification", "path": "KeyExchange/AFS-KEX.zip::Algorithm specifications/Algorithm specifications-AFS-KEX.pdf", "priority": 2, "notes": "Primary protocol, parameter, correctness, security and benchmark source."},
-    {"source_id": "afs-code", "type": "implementation", "path": "KeyExchange/AFS-KEX.zip::Implementations and Test_Vectors/Implementations/**/KEX_AlgorithmInstance.c", "priority": 3, "notes": "Used to cross-check NGCC pass semantics, state capacities, key sizes and byte formulas."}
+    {"source_id": "afs-code", "type": "implementation", "path": "KeyExchange/AFS-KEX.zip::Implementations and Test_Vectors/Implementations/**/KEX_AlgorithmInstance.c", "priority": 3, "notes": "Used to cross-check NGCC pass semantics, state capacities, key sizes and byte formulas."},
+    {"source_id": "jnu-jian-weng", "type": "other", "path": "https://cybsec.jnu.edu.cn/2023/1120/c39591a781821/page.htm", "priority": 4, "notes": "Official Jinan University faculty profile used only to resolve Jian Weng's affiliation; he appears on the specification title page but not in the basic-information submitter table."}
   ],
   "evidence": [
     {"field": "identity_and_submitters", "source_id": "afs-basic", "locator": "pp.1-3", "confidence": "high", "extraction_status": "verified"},
+    {"field": "submitters[Jian Weng].affiliation_ids", "source_id": "jnu-jian-weng", "locator": "official faculty profile", "confidence": "high", "extraction_status": "verified"},
     {"field": "overview_classification", "source_id": "afs-spec", "locator": "pp.4-8, 16-18", "confidence": "high", "extraction_status": "verified"},
     {"field": "protocol_flow_and_key_schedule", "source_id": "afs-spec", "locator": "Figs.3-4 and Sections 2.2-2.3, pp.10-12; implementation profile pp.26-27", "confidence": "high", "extraction_status": "verified"},
     {"field": "parameter_sets_and_sizes", "source_id": "afs-spec", "locator": "Tables 1-2, p.17; Table 6, p.27", "confidence": "high", "extraction_status": "verified"},
@@ -167,12 +170,11 @@
   "review": {
     "status": "cross_checked",
     "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness relation"],
-    "review_notes": ["Each NGCC total was recomputed as m1+m2+m3+m4: 1568, 2944 and 6016 bytes.", "Parameter and failure values were checked against Table 1; interface sizes and pass semantics were checked against implementation getters/comments.", "Primary pMAKE-BW and secondary pUAKE-BW were kept distinct; the top-level classification and sizes follow the evaluated primary pMAKE-BW profile.", "Independent cross-review by group_3 corrected long-term key sizes to the composite NGCC interface values in Table 6 and kex_get_*_len_bytes()."],
-    "conflicts": ["The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online.", "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."]
+    "review_notes": ["Each NGCC total was recomputed as m1+m2+m3+m4: 1568, 2944 and 6016 bytes.", "Parameter and failure values were checked against Table 1; interface sizes and pass semantics were checked against implementation getters/comments.", "Primary pMAKE-BW and secondary pUAKE-BW were kept distinct; the top-level classification and sizes follow the evaluated primary pMAKE-BW profile.", "Independent cross-review by group_3 corrected long-term key sizes to the composite NGCC interface values in Table 6 and kex_get_*_len_bytes().", "Jian Weng's affiliation was resolved from his official Jinan University faculty profile because the AFS-KEX basic-information table omits him."],
+    "conflicts": ["The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online.", "The title-page author list includes Jian Weng, while the basic-information submitter table does not; his affiliation is therefore supported by an official university profile rather than the submission form."]
   },
   "issues": [
     {"field": "submitters.name_zh", "severity": "warning", "description": "Chinese author names were not provided in the extracted official materials; stored as null rather than transliterated or guessed."},
-    {"field": "submitters[Jian Weng].affiliation_ids", "severity": "warning", "description": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support."},
     {"field": "parameter_sets.ngcc_level", "severity": "warning", "description": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null."},
     {"field": "parameter_sets.sizes_bytes", "severity": "info", "description": "Long-term key sizes use the doubled NGCC interface buffers (combined key plus certified static key), as reported by Table 6 and the kex_get_pk/sk_len_bytes getters; underlying single BW-KEM object sizes remain in core_parameters."},
     {"field": "protocol_flow", "severity": "info", "description": "Top-level flow follows the byte-accounted NGCC evaluated profile; generic post-ID pMAKE message differences are explicitly documented in flow semantics and review conflicts."}
