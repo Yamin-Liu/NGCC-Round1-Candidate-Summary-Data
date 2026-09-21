@@ -1,0 +1,601 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-20T13:22:20.497085+00:00",
+  "expected_algorithm_count": 41,
+  "file_count": 41,
+  "parsed_record_count": 41,
+  "overall_status": "pass_with_warnings",
+  "schema_validation": {
+    "validator": "jsonschema Draft202012Validator",
+    "passed_count": 41,
+    "error_count": 0,
+    "errors": []
+  },
+  "integrity": {
+    "parse_errors": [],
+    "duplicate_algorithm_ids": [],
+    "duplicate_names": [],
+    "filename_mismatches": [],
+    "missing_algorithms": [],
+    "unexpected_algorithms": [],
+    "relationship_errors": [],
+    "size_unit": "byte",
+    "zero_as_unknown_violations": []
+  },
+  "passed_algorithms": [
+    "aigis-enc-plus",
+    "amoeba",
+    "bag-loong",
+    "bag-piglet",
+    "bike-mlthre",
+    "bra",
+    "brqc",
+    "bw-kem",
+    "c-multi-ur-ag",
+    "cheetahkem",
+    "compass-kem",
+    "ctl",
+    "dkem",
+    "dtru",
+    "flit",
+    "hare",
+    "hep-qc",
+    "loongkem",
+    "lore",
+    "mamba-frost",
+    "mamba-viper",
+    "mithril",
+    "mito",
+    "morning-scabbard",
+    "nev",
+    "nss-hqc",
+    "ntre",
+    "oaep-ntru",
+    "polar-kem",
+    "polarlac",
+    "qctm",
+    "qimen-pike",
+    "qube",
+    "rudraksh2",
+    "scloud-plus",
+    "trike",
+    "triq-kem",
+    "uvw-kem",
+    "weaver",
+    "yuanyang-kem",
+    "zen"
+  ],
+  "warnings": [
+    {
+      "algorithm_id": "bag-loong",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "bag-piglet",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "severity": "warning",
+      "code": "candidate_512_profile",
+      "message": "The 512-bit profile is listed but the specification says final parameters/model must be independently specified.",
+      "field": "parameter_sets[2]"
+    },
+    {
+      "algorithm_id": "bra",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "brqc",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "severity": "warning",
+      "code": "strengthened_variants_not_instantiated",
+      "message": "Table 2 lists four strengthened '-s' variants, but no matching implementation directories were found; their secret-key sizes remain null.",
+      "field": "parameter_sets[4:8].sizes.secret_key"
+    },
+    {
+      "algorithm_id": "c-multi-ur-ag",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "compass-kem",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "ctl",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "dkem",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "dtru",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "flit",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "lore",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "mamba-frost",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "mithril",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "mito",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "morning-scabbard",
+      "severity": "warning",
+      "code": "eta_notation_difference",
+      "message": "Specification eta=2 and implementation SCABBARD_ETA=4 use different conventions (distribution parameter versus sampled bit count).",
+      "field": "common_parameters.noise_or_error_distribution"
+    },
+    {
+      "algorithm_id": "nev",
+      "severity": "warning",
+      "code": "uncompressed_variants_not_separate_formal_rows",
+      "message": "Specification discusses NEV-C1/C2/C3 uncompressed variants, but Table 2 formally tabulates the nine C*/R/D rows; JSON records those nine rows and keeps implementation aliases.",
+      "field": "parameter_sets"
+    },
+    {
+      "algorithm_id": "nss-hqc",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "ntre",
+      "severity": "warning",
+      "code": "unresolved_implementation_parameter",
+      "message": "NTRE_D values 3/4 lack an explicit semantic definition in reviewed material.",
+      "field": "parameter_sets[*].core_parameters.implementation_D"
+    },
+    {
+      "algorithm_id": "oaep-ntru",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "polarlac",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "qctm",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "qctm",
+      "severity": "warning",
+      "code": "ocr_identity_uncertainty",
+      "message": "Basic-information PDF is scanned; Fuwei Li and Huan Sun affiliation/name spellings are OCR-normalized and should be manually checked.",
+      "field": "submitters"
+    },
+    {
+      "algorithm_id": "qube",
+      "severity": "warning",
+      "code": "placeholder_symmetric_primitives",
+      "message": "Specification marks several primitive instantiations with [*] as not meeting corresponding security requirements.",
+      "field": "common_parameters.symmetric_primitives"
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "scloud-plus",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "trike",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "triq-kem",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "uvw-kem",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "weaver",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    },
+    {
+      "algorithm_id": "yuanyang-kem",
+      "code": "not_cross_reviewed",
+      "message": "Record not selected for explicit within-group cross-review."
+    }
+  ],
+  "missing": [
+    {
+      "algorithm_id": "amoeba",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was located in prioritized material.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "bag-loong",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "bag-piglet",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "severity": "missing",
+      "code": "chinese_names_unavailable",
+      "message": "Chinese names for Yongbin Liu and Haichang Gao were not legibly available in prioritized textual material.",
+      "field": "submitters"
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "bra",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "brqc",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "field": "parameter_sets/BW-KEM-c384/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "field": "parameter_sets/BW-KEM-c128-s/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "field": "parameter_sets/BW-KEM-c256-s/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "field": "parameter_sets/BW-KEM-c384-s/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "field": "parameter_sets/BW-KEM-c512-s/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "severity": "missing",
+      "code": "c384_implementation_missing",
+      "message": "BW-KEM-c384 appears in Table 2 but no c384 implementation/API header was found, so secret-key bytes remain null.",
+      "field": "parameter_sets[2].sizes.secret_key"
+    },
+    {
+      "algorithm_id": "c-multi-ur-ag",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "cheetahkem",
+      "severity": "missing",
+      "code": "submitter_affiliation_unreadable",
+      "message": "Scanned basic-information form did not yield extractable affiliation text.",
+      "field": "affiliations"
+    },
+    {
+      "algorithm_id": "cheetahkem",
+      "severity": "missing",
+      "code": "quantum_bits_not_tabulated",
+      "message": "Per-profile claimed quantum security bits were not located in the principal parameter table.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "algorithm_id": "ctl",
+      "severity": "missing",
+      "code": "submitter_details_unreadable",
+      "message": "Basic-information PDFs are scanned; English names, affiliations and contact role were not safely recoverable.",
+      "field": "submitters, affiliations"
+    },
+    {
+      "algorithm_id": "dkem",
+      "severity": "missing",
+      "code": "quantum_security_bits_not_tabulated",
+      "message": "Per-profile quantum security estimates were not presented in the main parameter table.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "algorithm_id": "flit",
+      "severity": "missing",
+      "code": "affiliations_unreadable",
+      "message": "Affiliations were not recoverable from the scanned basic-information form.",
+      "field": "affiliations"
+    },
+    {
+      "algorithm_id": "hep-qc",
+      "severity": "missing",
+      "code": "quantum_security_bits_not_stated",
+      "message": "Per-profile quantum bit estimates were not stated in the main parameter table.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "algorithm_id": "loongkem",
+      "severity": "missing",
+      "code": "submitter_affiliation_unreadable",
+      "message": "Scanned basic-information form did not yield affiliation text.",
+      "field": "affiliations"
+    },
+    {
+      "algorithm_id": "loongkem",
+      "severity": "missing",
+      "code": "quantum_bits_not_tabulated",
+      "message": "Per-profile quantum security bits were not located in the principal tables.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "algorithm_id": "lore",
+      "severity": "missing",
+      "code": "affiliations_unreadable",
+      "message": "Author affiliations were not recoverable from the scanned basic-information PDF.",
+      "field": "affiliations"
+    },
+    {
+      "algorithm_id": "mamba-viper",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was located.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "mithril",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was found in prioritized material.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "mito",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "nss-hqc",
+      "severity": "missing",
+      "code": "compact_dfr_value_not_tabulated",
+      "message": "A per-profile scalar DFR string was not located in the principal parameter and final-size tables; retained as null.",
+      "field": "parameter_sets[*].decapsulation_failure_probability"
+    },
+    {
+      "algorithm_id": "nss-hqc",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "ntre",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit algorithm version string was located in prioritized material.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "polarlac",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "qctm",
+      "severity": "missing",
+      "code": "quantum_security_not_stated",
+      "message": "A claimed quantum-bit estimate was not located; retained as null.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "algorithm_id": "qctm",
+      "severity": "missing",
+      "code": "dfr_not_stated",
+      "message": "No nonzero DFR value was located; decoder failure leads to implicit rejection but probability is left null.",
+      "field": "parameter_sets[*].decapsulation_failure_probability"
+    },
+    {
+      "algorithm_id": "qctm",
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was found.",
+      "field": "version"
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-128-II/sizes/public_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-128-II/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-128-II/sizes/ciphertext",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-256-II/sizes/public_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-256-II/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-256-II/sizes/ciphertext",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-512-II/sizes/public_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-512-II/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "field": "parameter_sets/Rudraksh2-512-II/sizes/ciphertext",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "severity": "missing",
+      "code": "variant_ii_sizes_missing",
+      "message": "Serialized pk/sk/ct sizes for Rudraksh2-II rows were not stated in the reviewed size table.",
+      "field": "parameter_sets"
+    },
+    {
+      "algorithm_id": "zen",
+      "field": "parameter_sets/ZEN-light/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "zen",
+      "field": "parameter_sets/ZEN-256-backup/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "zen",
+      "field": "parameter_sets/ZEN-512-backup/sizes/secret_key",
+      "message": "Byte size unresolved."
+    },
+    {
+      "algorithm_id": "zen",
+      "severity": "missing",
+      "code": "alternative_row_sk_sizes",
+      "message": "Secret-key sizes for ZEN-light and backup rows were not located in submitted API implementations.",
+      "field": "parameter_sets"
+    }
+  ],
+  "conflicts": [
+    {
+      "algorithm_id": "aigis-enc-plus",
+      "severity": "conflict",
+      "code": "stray_scheme_name_in_spec",
+      "message": "Feature paragraph refers to NEV while the surrounding document and size table describe Aigis-Enc+; treated as an editorial error.",
+      "field": "submission_claims.claimed_advantages"
+    },
+    {
+      "algorithm_id": "bag-loong",
+      "severity": "conflict",
+      "code": "table5_row_labels",
+      "message": "BAG-Loong security Table 5 labels the 256/384/512 rows as BAG-Piglet despite BAG-Loong caption and context.",
+      "field": "parameter_sets[*].decapsulation_failure_probability"
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "severity": "conflict",
+      "code": "threshold_256_mismatch",
+      "message": "Specification Table 2 and reference defs.h define different baseline threshold functions for the 256-bit category.",
+      "field": "parameter_sets[1].core_parameters.reference_threshold"
+    },
+    {
+      "algorithm_id": "dtru",
+      "severity": "conflict",
+      "code": "author_list_mismatch",
+      "message": "Specification title page includes Jian Weng while the basic-information submitter list instead includes Weizhi Ao; record follows higher-priority basic information and flags the discrepancy.",
+      "field": "submitters"
+    },
+    {
+      "algorithm_id": "nev",
+      "severity": "conflict",
+      "code": "implementation_param_selection",
+      "message": "Several submitted reference Makefiles appear to compile with -DPARAMS=1 irrespective of directory name; profile selection should be rechecked before reproducible builds.",
+      "field": "implementations"
+    },
+    {
+      "algorithm_id": "polar-kem",
+      "severity": "conflict",
+      "code": "placeholder_authors_in_spec",
+      "message": "Specification author page contains placeholders; signed basic-information form is used for submitter identities.",
+      "field": "submitters"
+    },
+    {
+      "algorithm_id": "qctm",
+      "severity": "conflict",
+      "code": "size_tables_conflict",
+      "message": "Section 3.2 lists smaller public/private-key lengths than final API Table 8.2; final API sizes are recorded because they match the submitted serialization contract.",
+      "field": "parameter_sets[*].sizes"
+    }
+  ],
+  "review_summary": {
+    "cross_reviewed_count": 15,
+    "not_started_independent_assessment_count": 41
+  }
+}

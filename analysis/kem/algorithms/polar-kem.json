@@ -1,0 +1,380 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "polar-kem",
+  "name": "Polar-KEM",
+  "full_name": "Polar-KEM: A Lattice-Based KEM Using Polar-Code-Defined Lattices",
+  "version": "1.0 Draft",
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Polar-KEM",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "other_lattice",
+    "subcategory_label_zh": "其他格结构",
+    "subcategory_report_label": "其他格密码"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Polar Lattice Isomorphism Problem (polar-LIP)",
+        "role": "primary",
+        "notes": "Submission-specific LIP over polar-code-defined Construction-D lattices."
+      },
+      {
+        "name": "Bounded Distance Decoding (BDD)",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "Construction-D polar lattices disguised by an orthogonal transformation",
+    "underlying_pke": "LIP-based core encryption/KEM blueprint",
+    "kem_construction": "Fujisaki-Okamoto transform with re-encryption and implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-imperial",
+      "name_en": "Imperial College London",
+      "name_zh": "帝国理工学院"
+    },
+    {
+      "affiliation_id": "aff-jnu",
+      "name_en": "Jinan University",
+      "name_zh": "暨南大学"
+    },
+    {
+      "affiliation_id": "aff-xidian-gz",
+      "name_en": "Guangzhou Institute of Technology, Xidian University",
+      "name_zh": "西安电子科技大学广州研究院"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Hao Yan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-imperial"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Shanxiang Lyu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-jnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ling Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian-gz"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": null,
+    "code_structure": "nested polar codes defining a Construction-D lattice",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "bounded error with B=1",
+    "modulus": "12289 or 18433",
+    "dimensions": {
+      "N": "512,1024,2048",
+      "levels": "5,5,6"
+    },
+    "weights": null,
+    "error_correction": "successive-cancellation decoding / bounded-distance decoding",
+    "symmetric_primitives": [
+      "hash/extractor used by FO transform"
+    ],
+    "representation": "public disguised lattice basis; secret orthogonal transformation; quantized ciphertext vector",
+    "other": {
+      "assumption": "polar-LIP"
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "PolarKEM-128",
+      "implementation_aliases": [
+        "PolarKEM-128"
+      ],
+      "submission_security_label": "NIST level 1",
+      "claimed_classical_security_bits": 150,
+      "claimed_quantum_security_bits": 134,
+      "core_parameters": {
+        "N": 512,
+        "q": 12289,
+        "L": 5,
+        "B": 1,
+        "decoding_radius": 15
+      },
+      "decapsulation_failure_probability": "<2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 1024,
+          "raw": "1024 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "secret_key": {
+          "bytes": 2048,
+          "raw": "2048 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "ciphertext": {
+          "bytes": 768,
+          "raw": "768 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Tables 1 and 6"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarKEM-256",
+      "implementation_aliases": [
+        "PolarKEM-256"
+      ],
+      "submission_security_label": "NIST level 3",
+      "claimed_classical_security_bits": 296,
+      "claimed_quantum_security_bits": 269,
+      "core_parameters": {
+        "N": 1024,
+        "q": 12289,
+        "L": 5,
+        "B": 1,
+        "decoding_radius": 31
+      },
+      "decapsulation_failure_probability": "<2^-256",
+      "sizes": {
+        "public_key": {
+          "bytes": 2048,
+          "raw": "2048 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "secret_key": {
+          "bytes": 4096,
+          "raw": "4096 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "ciphertext": {
+          "bytes": 1280,
+          "raw": "1280 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Tables 1 and 6"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarKEM-512",
+      "implementation_aliases": [
+        "PolarKEM-512"
+      ],
+      "submission_security_label": "NIST level 5",
+      "claimed_classical_security_bits": 618,
+      "claimed_quantum_security_bits": 561,
+      "core_parameters": {
+        "N": 2048,
+        "q": 18433,
+        "L": 6,
+        "B": 1,
+        "decoding_radius": 63
+      },
+      "decapsulation_failure_probability": "<2^-512",
+      "sizes": {
+        "public_key": {
+          "bytes": 4096,
+          "raw": "4096 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "secret_key": {
+          "bytes": 8192,
+          "raw": "8192 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "ciphertext": {
+          "bytes": 2304,
+          "raw": "2304 bytes",
+          "basis": "specification Tables 1 and 6"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 1 and 6"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Submission claims a distinct security foundation in polar-LIP.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "performance",
+        "summary": "Polar SC decoding is claimed efficient and regular.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "compactness",
+        "summary": "Submission describes key and ciphertext sizes as competitive.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Other lattice KEMs, without a complete common benchmark",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_caveat",
+        "summary": "Structural security rests on a new polar-LIP assumption and a stated heuristic conjecture that structure offers no advantage over generic lattice reduction.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "All profiles have nonzero bounded decryption-failure probability.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_implementation_description",
+        "summary": "Specification labels itself Draft and contains placeholder author/institution text inconsistent with the signed basic-information form.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/Polar-KEM/Submission_Package/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C",
+      "platform": "optimized desktop",
+      "path": "KeyEncapsulation/Polar-KEM/Submission_Package/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Polar-KEM/Submission_Package/Basic information/PolarKEM_01_Basic_Algorithm_Information.pdf",
+      "priority": 1,
+      "notes": null
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Polar-KEM/Submission_Package/Algorithm_Text/polarkem-spec.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/Polar-KEM/Submission_Package/Implementations/Reference_Implementation/PolarKEM-128/polarkem_params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF p.1",
+      "summary": "Three named submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.2,6-18",
+      "summary": "polar-LIP, Construction D, decoding and FO transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.10,20, Tables 1 and 6",
+      "summary": "Three profiles, security, DFR and sizes.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Cross-checked specification parameter tables against submitted reference headers/API sizes."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "conflict",
+      "code": "placeholder_authors_in_spec",
+      "message": "Specification author page contains placeholders; signed basic-information form is used for submitter identities.",
+      "field": "submitters"
+    }
+  ]
+}

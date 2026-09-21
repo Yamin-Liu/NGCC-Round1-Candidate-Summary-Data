@@ -1,0 +1,431 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "tsuov",
+  "name": "TSUOV",
+  "full_name": "Tensor Unbalanced Oil and Vinegar",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/TSUOV",
+  "aliases": [
+    "Tensor UOV"
+  ],
+  "overview_classification": {
+    "family": "multivariate_based",
+    "subcategory": "oil_vinegar_based",
+    "family_label_en": "Multivariate",
+    "family_label_zh": "多变量密码",
+    "subcategory_label_en": "Oil-and-vinegar signature",
+    "subcategory_label_zh": "油醋型签名",
+    "summary_label_zh": "多变量密码 / 油醋型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "trapdoor_signature",
+      "hash_and_sign"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Multivariate Quadratic (MQ)",
+        "role": "generic forgery hardness",
+        "details": null
+      },
+      {
+        "name": "MinRank",
+        "role": "structural key-recovery analysis",
+        "details": null
+      },
+      {
+        "name": "Oil-and-Vinegar problem",
+        "role": "trapdoor/key-recovery hardness",
+        "details": null
+      }
+    ],
+    "mathematical_structures": [
+      "multivariate quadratic maps",
+      "oil-and-vinegar central map",
+      "tensor/Kronecker products",
+      "finite extension fields"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": false,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Beijing Institute of Mathematical Sciences and Applications",
+      "name_zh": "北京雁栖湖应用数学研究院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "Tsinghua University",
+      "name_zh": "清华大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "China Construction Bank Corporation",
+      "name_zh": "中国建设银行股份有限公司",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Peigen Li",
+      "name_zh": "李培根",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Hao Guo",
+      "name_zh": "郭浩",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yi Jin",
+      "name_zh": "金易",
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yuansheng Pan",
+      "name_zh": "潘源盛",
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Boru Gong",
+      "name_zh": "巩博儒",
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "q": 31,
+    "extension_degree_l": 2,
+    "field": "F_31 and extension-field/tensor representations",
+    "central_map": "tensor-generalized UOV",
+    "hash_xof_prg": [
+      "hash-to-target with salt"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "TSUOV-128",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": null,
+        "category": null
+      },
+      "parameters": {
+        "q": 31,
+        "l": 2,
+        "n": 64,
+        "o": 4,
+        "m1": 61,
+        "k": 11,
+        "m2": 88
+      },
+      "sizes": {
+        "public_key": {
+          "value": 778,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 896,
+          "minimum": 896,
+          "maximum": 896,
+          "average": 896,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TSUOV-256",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": null,
+        "category": null
+      },
+      "parameters": {
+        "q": 31,
+        "l": 2,
+        "n": 119,
+        "o": 5,
+        "m1": 114,
+        "k": 16,
+        "m2": 160
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2170,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 2412,
+          "minimum": 2412,
+          "maximum": 2412,
+          "average": 2412,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TSUOV-512",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": null,
+        "category": null
+      },
+      "parameters": {
+        "q": 31,
+        "l": 2,
+        "n": 230,
+        "o": 12,
+        "m1": 218,
+        "k": 10,
+        "m2": 240
+      },
+      "sizes": {
+        "public_key": {
+          "value": 21319,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 2939,
+          "minimum": 2939,
+          "maximum": 2939,
+          "average": 2939,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": false,
+    "expected_repetitions": null,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Signing samples vinegar variables/linear systems; no normative finite retry bound or failure probability was located."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission reduces EUF-CMA to a key-only notion and analyzes MQ/UOV/MinRank-family attacks in the ROM.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims substantially reduced public keys relative to other UOV variants.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "performance",
+        "summary": "Uses finite-field linear algebra and provides AVX2 optimization.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "flexibility",
+        "summary": "Tensor framework unifies QR-UOV, MAYO and SNOVA-style design choices.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "signature_size",
+        "summary": "Submission states signatures are moderately larger than some alternatives.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "implementation_complexity",
+        "summary": "Tensor and extension-field arithmetic require specialist implementation expertise and constant-time care.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_dependency",
+        "summary": "Platforms without SIMD may see reduced performance.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "public_key_size",
+        "summary": "TSUOV-512 public key is 21,319 bytes.",
+        "basis": "derived_from_parameters"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C99",
+      "platform": "x86/portable",
+      "path": "DigitalSignature/TSUOV/Implementations/Digital_Signature-TSUOV-x86-Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/AVX2",
+      "platform": "x86 AVX2",
+      "path": "DigitalSignature/TSUOV/Implementations/Digital_Signature-TSUOV-x86-Performance_Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "tsuov-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/TSUOV/Basic information.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "tsuov-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/TSUOV/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "tsuov-ref",
+      "type": "self_assessment",
+      "path": "DigitalSignature/TSUOV/Implementations/Digital_Signature-TSUOV-x86-Reference_Implementation/self_assessment_report_ref.pdf",
+      "extraction_method": "text",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters",
+      "source_id": "tsuov-basic",
+      "locator": "pp. 1-2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "tsuov-spec",
+      "locator": "pp. 21-22, Table 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "overview_classification",
+      "source_id": "tsuov-spec",
+      "locator": "pp. 3-4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "tsuov-spec",
+      "locator": "pp. 37-38",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Specification does not state quantum-bit targets for TSUOV parameter sets; quantum_bits is null."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

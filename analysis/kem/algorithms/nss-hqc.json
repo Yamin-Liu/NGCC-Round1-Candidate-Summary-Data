@@ -1,0 +1,533 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "nss-hqc",
+  "name": "NSS-HQC",
+  "full_name": "NSS-HQC Key Encapsulation Mechanism",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/NSS-HQC",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Decisional Quasi-Cyclic Syndrome Decoding (DQCSD)",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Quasi-Cyclic Syndrome Decoding (QCSD)",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "binary quasi-cyclic ring with HQC-style sparse vectors and concatenated code",
+    "underlying_pke": "NSS-HQC-PKE",
+    "kem_construction": "Fujisaki-Okamoto transform with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-xidian",
+      "name_en": "Xidian University",
+      "name_zh": "西安电子科技大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yulong Shen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Xutong Mu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Shuaiping Dong",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zidong Zhou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ahmat Bahadir",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Junbo Ni",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Haoyu Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jinxuan Cui",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ke Cheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Anxiao Song",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zhenxing Niu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Lele Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F2",
+    "code_structure": "Hamming quasi-cyclic code; duplicated Reed-Muller inner code and shortened Reed-Solomon outer code",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "fixed-weight sparse binary vectors with asymmetric ephemeral weights",
+    "modulus": 4,
+    "dimensions": {
+      "n": "29443,54493,122579,217901"
+    },
+    "weights": {
+      "w_sk": "73,117,175,233",
+      "w_r1_w_r2": "66,106,159,213",
+      "w_e": "117,187,279,372"
+    },
+    "error_correction": {
+      "inner": "duplicated Reed-Muller",
+      "outer": "shortened Reed-Solomon",
+      "decoder": "reliability-based erasure decoding"
+    },
+    "symmetric_primitives": [
+      "SHAKE-based hashing/XOF through submitted API"
+    ],
+    "representation": "packed binary u plus dither-quantized v and salt",
+    "other": {
+      "ciphertext_quantization_Q": 4,
+      "bits_per_symbol": 2
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "NSS-HQC-128",
+      "implementation_aliases": [
+        "HQC-128"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 29443,
+        "w_sk": 73,
+        "w_r1": 66,
+        "w_r2": 66,
+        "w_e": 117,
+        "n1": 46,
+        "k1": 16,
+        "mult": 5,
+        "Q": 4,
+        "b": 2,
+        "tau": 0.3
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 3713,
+          "raw": "3713 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "secret_key": {
+          "bytes": 3777,
+          "raw": "3777 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "ciphertext": {
+          "bytes": 5185,
+          "raw": "5185 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Tables 1,4,15"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NSS-HQC-256",
+      "implementation_aliases": [
+        "HQC-256"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 54493,
+        "w_sk": 117,
+        "w_r1": 106,
+        "w_r2": 106,
+        "w_e": 187,
+        "n1": 70,
+        "k1": 32,
+        "mult": 5,
+        "Q": 4,
+        "b": 2,
+        "tau": 0.28
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 6844,
+          "raw": "6844 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "secret_key": {
+          "bytes": 6908,
+          "raw": "6908 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "ciphertext": {
+          "bytes": 9084,
+          "raw": "9084 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Tables 1,4,15"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NSS-HQC-384",
+      "implementation_aliases": [
+        "HQC-384"
+      ],
+      "submission_security_label": "384 classical / 192 quantum",
+      "claimed_classical_security_bits": 384,
+      "claimed_quantum_security_bits": 192,
+      "core_parameters": {
+        "n": 122579,
+        "w_sk": 175,
+        "w_r1": 159,
+        "w_r2": 159,
+        "w_e": 279,
+        "n1": 100,
+        "k1": 48,
+        "mult": 5,
+        "Q": 4,
+        "b": 2,
+        "tau": 0.26
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 15371,
+          "raw": "15371 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "secret_key": {
+          "bytes": 15467,
+          "raw": "15467 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "ciphertext": {
+          "bytes": 18571,
+          "raw": "18571 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "shared_secret": {
+          "bytes": 48,
+          "raw": "48 bytes",
+          "basis": "specification Tables 1,4,15"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NSS-HQC-512",
+      "implementation_aliases": [
+        "HQC-512"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 217901,
+        "w_sk": 233,
+        "w_r1": 213,
+        "w_r2": 213,
+        "w_e": 372,
+        "n1": 130,
+        "k1": 64,
+        "mult": 5,
+        "Q": 4,
+        "b": 2,
+        "tau": 0.25
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 27302,
+          "raw": "27302 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "secret_key": {
+          "bytes": 27430,
+          "raw": "27430 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "ciphertext": {
+          "bytes": 31462,
+          "raw": "31462 bytes",
+          "basis": "specification Tables 1,4,15"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 1,4,15"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Joint quantization and asymmetric weight rebalancing is claimed to reduce ciphertext bodies by 16-30%.",
+        "claim_strength": "quantified",
+        "comparison_scope": "Compared with the unquantized NSS-HQC baseline at identical parameters",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "The public-key format and HQC algebra are preserved while the submission supplies a unified DFR analysis.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "Four profiles cover classical strengths from 128 to 512 bits.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Correctness is probabilistic; the submission derives DFR bounds but does not tabulate a single compact DFR value alongside Table 1.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_implementation_description",
+        "summary": "Ciphertext-size comparisons distinguish the PKE body from the full KEM ciphertext with appended salt.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/NSS-HQC/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C",
+      "platform": "optimized desktop",
+      "path": "KeyEncapsulation/NSS-HQC/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/NSS-HQC/Basic information/附录A-算法基本信息-英文版.pdf",
+      "priority": 1,
+      "notes": "Scanned; OCR used."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/NSS-HQC/Algorithm specifications/NSS-HQC算法文本.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/NSS-HQC/Implementations and Test_Vectors/Implementations/Reference_Implementation/HQC-128/params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-7 (OCR)",
+      "summary": "Twelve submitters, all at Xidian University.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.1,6-9,29-34",
+      "summary": "HQC-style QCSD assumptions and FO security.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.25-26 and 44, Tables 1,4,15",
+      "summary": "Four profiles and final API sizes.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "high",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "compact_dfr_value_not_tabulated",
+      "message": "A per-profile scalar DFR string was not located in the principal parameter and final-size tables; retained as null.",
+      "field": "parameter_sets[*].decapsulation_failure_probability"
+    },
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    }
+  ]
+}

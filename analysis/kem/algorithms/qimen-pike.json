@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "qimen-pike",
+  "name": "QIMEN-PIKE",
+  "full_name": "QIMEN-PIKE",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/QIMEN-PIKE",
+  "overview_classification": {
+    "family": "isogeny_based",
+    "family_label_zh": "同源密码",
+    "family_report_label": "同源密码",
+    "subcategory": "supersingular_isogeny",
+    "subcategory_label_zh": "基于超奇异同源",
+    "subcategory_report_label": "超奇异同源"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "masked supersingular isogeny path problem with torsion-point information",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "endomorphism ring problem",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "supersingular elliptic curves, isogenies, torsion bases, pairings and quaternion/KLPT computations",
+    "underlying_pke": "QIMEN-PIKE.PKE (PIKE-derived ElGamal-type PKE)",
+    "kem_construction": "Okamoto/FO-style transform with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "sjtu",
+      "name_en": "Shanghai Jiao Tong University",
+      "name_zh": "上海交通大学"
+    },
+    {
+      "affiliation_id": "kuleuven",
+      "name_en": "COSIC, KU Leuven",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "csu",
+      "name_en": "Central South University",
+      "name_zh": "中南大学"
+    },
+    {
+      "affiliation_id": "ulb",
+      "name_en": "Université Libre de Bruxelles",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "fudan",
+      "name_en": "Fudan University",
+      "name_zh": "复旦大学"
+    },
+    {
+      "affiliation_id": "bham",
+      "name_en": "University of Birmingham",
+      "name_zh": null
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yu Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sjtu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Wouter Castryck",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Mingjie Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Arthur Herlédan Le Merdy",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zhi Hu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "csu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zhuo Huang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sjtu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Riccardo Invernizzi",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yi-Fu Lai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sjtu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Dania Lazzarini",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ulb"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Kaizhan Lin",
+      "name_zh": null,
+      "affiliation_ids": [
+        "fudan"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Xuzhe Liu",
+      "name_zh": "刘旭哲",
+      "affiliation_ids": [
+        "csu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Luciano Maino",
+      "name_zh": null,
+      "affiliation_ids": [
+        "bham"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Krijn Reijnders",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Fréderik Vercauteren",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yunqi Wen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "csu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "Fp2",
+    "code_structure": null,
+    "isogeny_structure": "supersingular isogeny paths with torsion-point information and endomorphism-ring data",
+    "noise_or_error_distribution": null,
+    "modulus": "three parameter-specific primes p",
+    "dimensions": {
+      "lambda": [
+        160,
+        256,
+        512
+      ]
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "SHAKE or ICCS SM3 pseudo-XOF backend"
+    ],
+    "representation": "compressed PIKE public-key/ciphertext serialization",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "NGCC-1",
+      "implementation_aliases": [
+        "NGCC-1"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "lambda": 160,
+        "log2_p": 479,
+        "a": 162,
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "<2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 405,
+          "raw": "405 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 488,
+          "raw": "488 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 602,
+          "raw": "602 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NGCC-2",
+      "implementation_aliases": [
+        "NGCC-2"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "lambda": 256,
+        "log2_p": 765,
+        "a": 260,
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "<2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 595,
+          "raw": "595 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 737,
+          "raw": "737 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 882,
+          "raw": "882 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NGCC-3",
+      "implementation_aliases": [
+        "NGCC-3"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "lambda": 512,
+        "log2_p": 1534,
+        "a": 514,
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "<2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 1201,
+          "raw": "1201 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 1500,
+          "raw": "1500 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1746,
+          "raw": "1746 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Compressed PIKE representation is claimed to reduce isogeny public keys and ciphertexts.",
+        "claim_strength": "quantified",
+        "comparison_scope": "Uncompressed versus compressed Table 7.1",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Submission claims IND-CCA2 security in ROM and QROM.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Benchmarks are limited to WSL x86-64 Intel Core Ultra 9 275HX and require GMP.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Overall failure probability is bounded above by 2^-128, rather than zero.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/QIMEN-PIKE/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/QIMEN-PIKE/Basic information/1-算法基本信息.pdf",
+      "priority": 1,
+      "notes": "Private contact fields were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/QIMEN-PIKE/Algorithm specifications/2-算法文本(英文) .pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "high",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

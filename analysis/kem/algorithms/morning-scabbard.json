@@ -1,0 +1,516 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "morning-scabbard",
+  "name": "MORNING-Scabbard",
+  "full_name": "MORNING-Scabbard Key Encapsulation Mechanism",
+  "version": "1.0",
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/MORNING-Scabbard",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Module Learning With Rounding (MLWR)",
+        "role": "primary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "Module over power-of-two polynomial rings with n in {64,128,256}",
+    "underlying_pke": "Scabbard.PKE",
+    "kem_construction": "Modified Fujisaki-Okamoto transform with re-encryption and implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-iitk",
+      "name_en": "Indian Institute of Technology Kanpur",
+      "name_zh": "印度理工学院坎普尔分校"
+    },
+    {
+      "affiliation_id": "aff-kuleuven",
+      "name_en": "COSIC, KU Leuven",
+      "name_zh": "鲁汶大学 COSIC"
+    },
+    {
+      "affiliation_id": "aff-iisc",
+      "name_en": "Indian Institute of Science Bangalore",
+      "name_zh": "印度科学理工学院"
+    },
+    {
+      "affiliation_id": "aff-surrey",
+      "name_en": "University of Surrey",
+      "name_zh": "萨里大学"
+    },
+    {
+      "affiliation_id": "aff-qryptshield",
+      "name_en": "Qryptshield Technologies Private Limited",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-usp",
+      "name_en": "Universidade de Sao Paulo",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-lnmiit",
+      "name_en": "The LNM Institute of Information Technology",
+      "name_zh": null
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Supriya Adhikary",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Songqiao Cui",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Debayan Das",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Abhinava De",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Anindya Ganguly",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Harry Hart",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-surrey"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Angshuman Karmakar",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iitk",
+        "aff-qryptshield"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Suparna Kundu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Chaoyun Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-surrey"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Prajna Mahadev",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Puja Mondal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Quinten Norga",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-kuleuven"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Thales B. Paiva",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-usp"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Debranjan Pal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-lnmiit"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "power-of-two quotient polynomial rings used for MLWR",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "centered binomial distribution, implementation SCABBARD_ETA=4 bits corresponds to specification eta=2 convention",
+    "modulus": "q,p,t are powers of two",
+    "dimensions": {
+      "module_rank_l": "9,9,8",
+      "polynomial_degree_n": "64,128,256"
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "ICCS hash/XOF API"
+    ],
+    "representation": "packed coefficients; 2 shared-secret payload bits per coefficient",
+    "other": {
+      "message_encoding": "2D Minal B2 encoding"
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "Scabbard-128",
+      "implementation_aliases": [
+        "scabbard128"
+      ],
+      "submission_security_label": ">=128 classical / >=80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "l": 9,
+        "n": 64,
+        "q": 16384,
+        "p": 1024,
+        "t": 8,
+        "eta": 2,
+        "B": 2,
+        "beta": 1030
+      },
+      "decapsulation_failure_probability": "2^-99",
+      "sizes": {
+        "public_key": {
+          "bytes": 736,
+          "raw": "736 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "secret_key": {
+          "bytes": 1056,
+          "raw": "1056 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "ciphertext": {
+          "bytes": 760,
+          "raw": "760 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Tables 1,2,7"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scabbard-256",
+      "implementation_aliases": [
+        "scabbard256"
+      ],
+      "submission_security_label": ">=256 classical / >=128 quantum",
+      "claimed_classical_security_bits": 266,
+      "claimed_quantum_security_bits": 241,
+      "core_parameters": {
+        "l": 9,
+        "n": 128,
+        "q": 8192,
+        "p": 2048,
+        "t": 4,
+        "eta": 2,
+        "B": 2,
+        "beta": 0
+      },
+      "decapsulation_failure_probability": "2^-125",
+      "sizes": {
+        "public_key": {
+          "bytes": 1616,
+          "raw": "1616 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "secret_key": {
+          "bytes": 2256,
+          "raw": "2256 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "ciphertext": {
+          "bytes": 1648,
+          "raw": "1648 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Tables 1,2,7"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scabbard-512",
+      "implementation_aliases": [
+        "scabbard512"
+      ],
+      "submission_security_label": ">=512 classical / >=256 quantum",
+      "claimed_classical_security_bits": 514,
+      "claimed_quantum_security_bits": 466,
+      "core_parameters": {
+        "l": 8,
+        "n": 256,
+        "q": 8192,
+        "p": 2048,
+        "t": 64,
+        "eta": 2,
+        "B": 2,
+        "beta": 550
+      },
+      "decapsulation_failure_probability": "2^-125",
+      "sizes": {
+        "public_key": {
+          "bytes": 2880,
+          "raw": "2880 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "secret_key": {
+          "bytes": 4032,
+          "raw": "4032 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "ciphertext": {
+          "bytes": 3072,
+          "raw": "3072 bytes",
+          "basis": "specification Tables 1,2,7"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 1,2,7"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "implementation",
+        "summary": "Design targets extreme parallelism and minimal memory footprint on embedded devices.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "simplicity",
+        "summary": "Power-of-two moduli eliminate explicit modular reduction and rejection sampling.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "compactness",
+        "summary": "Two payload bits per coefficient are claimed to reduce key/ciphertext sizes.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Equivalent-security LWR/LWE constructions",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Decryption is not perfectly correct; stated DFP values are 2^-99, 2^-125 and 2^-125.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "The submission evaluates DFR attacks under a stated 2^64 decapsulation-query bound.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C and assembly",
+      "platform": "x86 AVX2",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Implementations/Optimized_Implementation"
+    },
+    {
+      "name": "Cortex_M4",
+      "language": "C and assembly",
+      "platform": "ARM Cortex-M4",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Implementations/Additional_Implementations/Cortex_M4"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Basic information/basic_information.pdf",
+      "priority": 1,
+      "notes": "Scanned form; OCR used for submitter pages."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Algorithm specifications/scabbard.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/MORNING-Scabbard/Implementations/Reference_Implementation/scabbard128/params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.2-17 (OCR)",
+      "summary": "Fourteen submitters and two contacts.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.12,16,19, Tables 1,2,7",
+      "summary": "Core parameters, sizes, security and DFP.",
+      "confidence": "high"
+    },
+    {
+      "field": "technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.6-12,19-22",
+      "summary": "MLWR PKE and modified FO KEM with ROM/QROM claims.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "high",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Cross-checked specification parameter tables against submitted reference headers/API sizes."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "eta_notation_difference",
+      "message": "Specification eta=2 and implementation SCABBARD_ETA=4 use different conventions (distribution parameter versus sampled bit count).",
+      "field": "common_parameters.noise_or_error_distribution"
+    }
+  ]
+}

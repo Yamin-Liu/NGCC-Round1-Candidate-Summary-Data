@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "qingluan",
+  "name": "QingLuan",
+  "full_name": "Qingluan Post-Quantum Digital Signature Algorithm",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/QingLuan",
+  "aliases": [
+    "Qing Luan",
+    "Qingluan"
+  ],
+  "overview_classification": {
+    "family": "code_based",
+    "subcategory": "syndrome_decoding_based",
+    "family_label_en": "Code-based",
+    "family_label_zh": "编码密码",
+    "subcategory_label_en": "Syndrome-decoding signature",
+    "subcategory_label_zh": "综合译码型签名",
+    "summary_label_zh": "编码密码 / 综合译码型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "R-SDP",
+        "role": "witness/key recovery",
+        "details": "Restricted Syndrome Decoding over multiplicative subgroup E=<2> in F_127"
+      },
+      {
+        "name": "fixed-weight Fiat-Shamir forgery",
+        "role": "protocol soundness",
+        "details": "CROSS Proposition 6/7 and Kales-Zaverucha style attacks"
+      }
+    ],
+    "mathematical_structures": [
+      "linear codes over F_127",
+      "systematic parity-check matrix H=[V|I]",
+      "restricted multiplicative subgroup E of order 7",
+      "CROSS-RSDP 5-pass Sigma protocol"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": false,
+    "prehash_mode": "salted SM3-based message digest",
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Jiangxi University of Science and Technology",
+      "name_zh": "江西理工大学",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Guangfu Wu",
+      "name_zh": "吴光福",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Lei Liu",
+      "name_zh": "刘磊",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Rui Wu",
+      "name_zh": "吴瑞",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Lulu Liu",
+      "name_zh": "刘璐璐",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Kangjun Li",
+      "name_zh": "李康军",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_127",
+    "restricted_set": "E=<2>={1,2,4,8,16,32,64}",
+    "parity_check_matrix": "H=[V|I], V expanded from Seed_pk",
+    "challenge_space": "t parallel rounds with fixed-weight binary second challenge",
+    "hash_xof_prg": [
+      "SM3",
+      "SM3 counter-mode XOF",
+      "SM3 Hash-DRBG (GM/T 0005)"
+    ],
+    "encoding": "7-bit F_127 packing and 3-bit exponent packing",
+    "signature_components": [
+      "Salt",
+      "commitment digests",
+      "seed path",
+      "revealed seeds and hashes",
+      "type-0 responses"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "QingLuan-128",
+      "implementation_aliases": [
+        "QingLuan-128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 64,
+        "category": null
+      },
+      "parameters": {
+        "p": 127,
+        "g": 2,
+        "z": 7,
+        "n": 127,
+        "k": 76,
+        "r": 51,
+        "t": 256,
+        "w": 212,
+        "lambda": 128,
+        "hash_bytes": 32,
+        "salt_bytes": 32,
+        "binding_classical_bits": 129,
+        "binding_quantum_bits": 64
+      },
+      "sizes": {
+        "public_key": {
+          "value": 77,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 18720,
+          "minimum": 18720,
+          "maximum": 18720,
+          "average": 18720,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "QingLuan-256",
+      "implementation_aliases": [
+        "QingLuan-256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 129,
+        "category": null
+      },
+      "parameters": {
+        "p": 127,
+        "g": 2,
+        "z": 7,
+        "n": 251,
+        "k": 150,
+        "r": 101,
+        "t": 512,
+        "w": 424,
+        "lambda": 256,
+        "hash_bytes": 64,
+        "salt_bytes": 64,
+        "binding_classical_bits": 257,
+        "binding_quantum_bits": 129
+      },
+      "sizes": {
+        "public_key": {
+          "value": 153,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 74248,
+          "minimum": 74248,
+          "maximum": 74248,
+          "average": 74248,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "QingLuan-384",
+      "implementation_aliases": [
+        "QingLuan-384"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "p": 127,
+        "g": 2,
+        "z": 7,
+        "n": 370,
+        "k": 221,
+        "r": 149,
+        "t": 763,
+        "w": 631,
+        "lambda": 384,
+        "hash_bytes": 96,
+        "salt_bytes": 96,
+        "binding_classical_bits": 384,
+        "binding_quantum_bits": 192
+      },
+      "sizes": {
+        "public_key": {
+          "value": 227,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 96,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 164940,
+          "minimum": 164940,
+          "maximum": 164940,
+          "average": 164940,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "QingLuan-512",
+      "implementation_aliases": [
+        "QingLuan-512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "p": 127,
+        "g": 2,
+        "z": 7,
+        "n": 491,
+        "k": 293,
+        "r": 198,
+        "t": 1018,
+        "w": 842,
+        "lambda": 512,
+        "hash_bytes": 128,
+        "salt_bytes": 128,
+        "binding_classical_bits": 512,
+        "binding_quantum_bits": 256
+      },
+      "sizes": {
+        "public_key": {
+          "value": 302,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 292816,
+          "minimum": 292816,
+          "maximum": 292816,
+          "average": 292816,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": false,
+    "expected_repetitions": 1,
+    "signing_failure_probability": 0,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Rejection is used only to sample unbiased field/subgroup elements from XOF bytes; it never rejects a whole signature."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "EUF-CMA in ROM from R-SDP hardness and fixed-weight Fiat-Shamir soundness.",
+      "estimates": [
+        {
+          "parameter_set": "QingLuan-128",
+          "binding_classical_bits": 129,
+          "binding_quantum_bits": 64
+        },
+        {
+          "parameter_set": "QingLuan-256",
+          "binding_classical_bits": 257,
+          "binding_quantum_bits": 129
+        },
+        {
+          "parameter_set": "QingLuan-384",
+          "binding_classical_bits": 384,
+          "binding_quantum_bits": 192
+        },
+        {
+          "parameter_set": "QingLuan-512",
+          "binding_classical_bits": 512,
+          "binding_quantum_bits": 256
+        }
+      ]
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "Submission gives a conservative QROM discussion using universal Fiat-Shamir results and full-Grover estimates; the exact tightness is not instantiated.",
+      "estimates": [
+        {
+          "parameter_set": "QingLuan-128",
+          "binding_quantum_bits": 64
+        },
+        {
+          "parameter_set": "QingLuan-256",
+          "binding_quantum_bits": 129
+        },
+        {
+          "parameter_set": "QingLuan-384",
+          "binding_quantum_bits": 192
+        },
+        {
+          "parameter_set": "QingLuan-512",
+          "binding_quantum_bits": 256
+        }
+      ]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims very small seed-compressed public keys of 77-302 bytes.",
+        "claim_strength": "quantitative",
+        "comparison_scope": "submitted family and comparison table"
+      },
+      {
+        "category": "implementation",
+        "summary": "Uses only SM3-family national-cryptography primitives with strict domain separation and C11 portability.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted implementation"
+      },
+      {
+        "category": "security",
+        "summary": "Claims ROM EUF-CMA from R-SDP and conservative QROM estimates.",
+        "claim_strength": "formal",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "large_signature",
+        "summary": "Signatures range from 18,720 to 292,816 bytes; the specification identifies signature size as the primary tradeoff.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "parameter_extrapolation",
+        "summary": "The 384/512 R-SDP key-recovery estimates are linear extrapolations from CROSS anchors and the submission says official-estimator review is required before standardization.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "qrom_tightness",
+        "summary": "The exact QROM tightness bound is not instantiated; the submission uses conservative classical/2 estimates.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "side_channel_scope",
+        "summary": "Constant-time software measures are described, but electromagnetic and power analysis require additional hardware protections.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Reference timings are from the stated single-threaded Windows/MinGW setup.",
+        "basis": "derived_from_test_setup"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C11",
+      "platform": "portable/Windows x86-64",
+      "path": "DigitalSignature/QingLuan/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "x86-64",
+      "path": "DigitalSignature/QingLuan/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "ql-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/QingLuan/Basic Algorithm Information.pdf",
+      "extraction_method": "ocr",
+      "notes": "Single-page scanned form; names verified against specification title page."
+    },
+    {
+      "source_id": "ql-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/QingLuan/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": "25 pages"
+    },
+    {
+      "source_id": "ql-params-md",
+      "type": "implementation",
+      "path": "DigitalSignature/QingLuan/Implementations and Test_Vectors/Supporting_Documentation/parameters.md",
+      "extraction_method": "text",
+      "notes": "Documents estimator methodology, exact sizes and explicit caveats."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "ql-spec",
+      "locator": "Abstract and Section 1.1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "ql-spec",
+      "locator": "title page",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "ql-spec",
+      "locator": "Sections 1.11-1.12, pp. 9-10",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "ql-spec",
+      "locator": "Section 3.1",
+      "confidence": "medium",
+      "extraction_status": "conflict",
+      "note": "128-bit set reports 64 raw quantum binding bits while separately invoking NIST Category 1 to justify an 80-bit target."
+    },
+    {
+      "field": "submission_claims.limitations_and_constraints",
+      "source_id": "ql-params-md",
+      "locator": "Sections 4, 8",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "384/512 extrapolation and 128-bit quantum caveats are explicit."
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "data_quality": "C",
+    "reviewers": [
+      "sig-group-2-agent",
+      "primary-agent"
+    ],
+    "cross_reviewed": true,
+    "issues": [
+      "Cross-review confirmed that QingLuan-128 has 64 raw quantum binding bits under full Grover while the submission argues NIST Category 1 equivalence for the 80-bit requirement.",
+      "384/512 key-recovery estimates are extrapolated rather than independently reproduced with the official CROSS estimator."
+    ],
+    "conflicts": [
+      "QingLuan-128 reports binding_quantum_bits=64 under full Grover, below the stated 80-bit target, but separately claims Category 1 compliance under finite-depth Grover assumptions."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

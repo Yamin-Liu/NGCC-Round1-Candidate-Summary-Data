@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "qube",
+  "name": "QUBE",
+  "full_name": "Quasi-Cyclic with Unbalanced & Multi-Block Errors",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/QUBE",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "unbalanced blockwise (3,1)-QCSD",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "unbalanced blockwise (4,1)-QCSD",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "binary quasi-cyclic codes with unbalanced multi-block errors",
+    "underlying_pke": "QUBE PKE",
+    "kem_construction": "FO-style conversion with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "iie",
+      "name_en": "Institute of Information Engineering, Chinese Academy of Sciences",
+      "name_zh": "中国科学院信息工程研究所"
+    },
+    {
+      "affiliation_id": "huawei",
+      "name_en": "Huawei Technologies Co., Ltd.",
+      "name_zh": "华为技术有限公司"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Li-Ping Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yi Tang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "huawei"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Haofei Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Peiying Xu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F2 / GF(256) coding layer",
+    "code_structure": "QC code with shortened Reed-Solomon and duplicated Reed-Muller concatenated code",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": null,
+    "modulus": null,
+    "dimensions": {
+      "block_count": "multi-block"
+    },
+    "weights": {
+      "errors": "unbalanced per block"
+    },
+    "error_correction": "shortened RS + duplicated RM decoding",
+    "symmetric_primitives": [
+      "SHA3/SHAKE family",
+      "SM3 family"
+    ],
+    "representation": "seeded QC matrices and packed binary vectors",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "QUBE-128",
+      "implementation_aliases": [
+        "QUBE-128"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 13109,
+        "outer_RS_length_n1": 34,
+        "inner_RM_length_n2": 384
+      },
+      "decapsulation_failure_probability": "approximately <2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 3294,
+          "raw": "3294 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 3326,
+          "raw": "3326 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 3287,
+          "raw": "3287 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QUBE-192",
+      "implementation_aliases": [
+        "QUBE-192"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 192,
+      "claimed_quantum_security_bits": 96,
+      "core_parameters": {
+        "n": 25357,
+        "outer_RS_length_n1": 66,
+        "inner_RM_length_n2": 384
+      },
+      "decapsulation_failure_probability": "approximately <2^-192",
+      "sizes": {
+        "public_key": {
+          "bytes": 6364,
+          "raw": "6364 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 6412,
+          "raw": "6412 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 6362,
+          "raw": "6362 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 24,
+          "raw": "24 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QUBE-256",
+      "implementation_aliases": [
+        "QUBE-256"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 41651,
+        "outer_RS_length_n1": 108,
+        "inner_RM_length_n2": 384
+      },
+      "decapsulation_failure_probability": "approximately <2^-256",
+      "sizes": {
+        "public_key": {
+          "bytes": 10446,
+          "raw": "10446 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 10510,
+          "raw": "10510 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 10423,
+          "raw": "10423 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QUBE-384",
+      "implementation_aliases": [
+        "QUBE-384"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 384,
+      "claimed_quantum_security_bits": 192,
+      "core_parameters": {
+        "n": 82757,
+        "outer_RS_length_n1": 128,
+        "inner_RM_length_n2": 640
+      },
+      "decapsulation_failure_probability": "approximately <2^-384",
+      "sizes": {
+        "public_key": {
+          "bytes": 20738,
+          "raw": "20738 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 20834,
+          "raw": "20834 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 20633,
+          "raw": "20633 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 48,
+          "raw": "48 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QUBE-512",
+      "implementation_aliases": [
+        "QUBE-512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 135851,
+        "outer_RS_length_n1": 150,
+        "inner_RM_length_n2": 896
+      },
+      "decapsulation_failure_probability": "approximately <2^-512",
+      "sizes": {
+        "public_key": {
+          "bytes": 34028,
+          "raw": "34028 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 34156,
+          "raw": "34156 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 33846,
+          "raw": "33846 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Submission claims a combinatorial gap from unbalanced multi-block errors and competitive bandwidth.",
+        "claim_strength": "comparative",
+        "comparison_scope": "HQC table",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "Five security tiers are specified.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_caveat",
+        "summary": "Several high-security SHAKE/SM3 entries are explicitly marked placeholder primitives that do not meet the stated security requirement.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "QUBE-192 is marked with an asterisk as a non-primary/placeholder row.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/QUBE/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/QUBE/Basic information/Basic information.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/QUBE/Algorithm specifications/Algorithm specifications.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "medium",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "code": "placeholder_symmetric_primitives",
+      "message": "Specification marks several primitive instantiations with [*] as not meeting corresponding security requirements.",
+      "field": "common_parameters.symmetric_primitives"
+    }
+  ]
+}

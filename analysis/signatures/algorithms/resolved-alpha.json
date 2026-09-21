@@ -1,0 +1,721 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "resolved-alpha",
+  "name": "ReSolveD-alpha",
+  "full_name": "ReSolveD-alpha: A Digital Signature Scheme from Regular Syndrome Decoding and VOLE-in-the-Head",
+  "version": "1.1",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/ReSolveD-alpha",
+  "aliases": [
+    "ReSolveD-α"
+  ],
+  "overview_classification": {
+    "family": "code_based",
+    "subcategory": "syndrome_decoding_based",
+    "family_label_en": "Code-based",
+    "family_label_zh": "编码密码",
+    "subcategory_label_en": "Syndrome-decoding signature",
+    "subcategory_label_zh": "综合译码型签名",
+    "summary_label_zh": "编码密码 / 综合译码型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Regular Syndrome Decoding (RSD)",
+        "role": "one-way-function/key-recovery hardness",
+        "details": "Binary regular syndrome decoding over F_2"
+      }
+    ],
+    "mathematical_structures": [
+      "binary linear codes",
+      "VOLE-in-the-Head",
+      "QuickSilver",
+      "batch all-but-one vector commitments"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM",
+      "ideal_cipher_model"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "configurable",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Shanghai Jiao Tong University",
+      "name_zh": "上海交通大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "State Key Laboratory of Cryptology",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "Shanghai Qi Zhi Institute",
+      "name_zh": "上海期智研究院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "Shandong University",
+      "name_zh": "山东大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-5",
+      "name_en": "China Telecom Quantum Group Ltd.",
+      "name_zh": "中电信量子信息科技集团有限公司",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-6",
+      "name_en": "East China Normal University",
+      "name_zh": "华东师范大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-7",
+      "name_en": "State Key Laboratory of Cryptography and Digital Economy Security",
+      "name_zh": null,
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yu Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1",
+        "aff-6"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Kang Yang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiaojie Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Hongrui Cui",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Chun Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4",
+        "aff-7"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Di Yan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yituo He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Lizheng Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jiangxia Ge",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-5"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_2",
+    "block_size": 6,
+    "hash_xof_prg": [
+      "AES",
+      "Rijndael",
+      "SHACAL-2",
+      "SHA2",
+      "SHA3/Keccak",
+      "SM3 pseudoXOF"
+    ],
+    "signature_components": [
+      "VOLE corrections",
+      "compressed VOLE value",
+      "masked witness",
+      "QuickSilver value",
+      "BAVC opening",
+      "challenge",
+      "IV",
+      "counter"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "ReSolveD-alpha-160s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "m": 1860,
+        "k": 1056,
+        "w": 310,
+        "block_size": 6,
+        "tau": 14,
+        "w_grind": 6,
+        "T_open": 129
+      },
+      "sizes": {
+        "public_key": {
+          "value": 121,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 40,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5307,
+          "minimum": 5307,
+          "maximum": 5307,
+          "average": 5307,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-160f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "m": 1860,
+        "k": 1056,
+        "w": 310,
+        "block_size": 6,
+        "tau": 21,
+        "w_grind": 8,
+        "T_open": 139
+      },
+      "sizes": {
+        "public_key": {
+          "value": 121,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 40,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 6851,
+          "minimum": 6851,
+          "maximum": 6851,
+          "average": 6851,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-256s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "m": 2988,
+        "k": 1698,
+        "w": 498,
+        "block_size": 6,
+        "tau": 22,
+        "w_grind": 12,
+        "T_open": 224
+      },
+      "sizes": {
+        "public_key": {
+          "value": 194,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 13973,
+          "minimum": 13973,
+          "maximum": 13973,
+          "average": 13973,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-256f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "m": 2988,
+        "k": 1698,
+        "w": 498,
+        "block_size": 6,
+        "tau": 35,
+        "w_grind": 8,
+        "T_open": 223
+      },
+      "sizes": {
+        "public_key": {
+          "value": 194,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 17932,
+          "minimum": 17932,
+          "maximum": 17932,
+          "average": 17932,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-384s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "m": 4452,
+        "k": 2532,
+        "w": 742,
+        "block_size": 6,
+        "tau": 34,
+        "w_grind": 10,
+        "T_open": 332
+      },
+      "sizes": {
+        "public_key": {
+          "value": 288,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 96,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 31575,
+          "minimum": 31575,
+          "maximum": 31575,
+          "average": 31575,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-384f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "m": 4452,
+        "k": 2532,
+        "w": 742,
+        "block_size": 6,
+        "tau": 53,
+        "w_grind": 9,
+        "T_open": 336
+      },
+      "sizes": {
+        "public_key": {
+          "value": 288,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 96,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 40469,
+          "minimum": 40469,
+          "maximum": 40469,
+          "average": 40469,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-512s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "m": 5940,
+        "k": 3378,
+        "w": 990,
+        "block_size": 6,
+        "tau": 46,
+        "w_grind": 6,
+        "T_open": 439
+      },
+      "sizes": {
+        "public_key": {
+          "value": 385,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 56239,
+          "minimum": 56239,
+          "maximum": 56239,
+          "average": 56239,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ReSolveD-alpha-512f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "m": 5940,
+        "k": 3378,
+        "w": 990,
+        "block_size": 6,
+        "tau": 72,
+        "w_grind": 8,
+        "T_open": 447
+      },
+      "sizes": {
+        "public_key": {
+          "value": 385,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 72611,
+          "minimum": 72611,
+          "maximum": 72611,
+          "average": 72611,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {
+      "ReSolveD-alpha-160s": null,
+      "ReSolveD-alpha-160f": null,
+      "ReSolveD-alpha-256s": null,
+      "ReSolveD-alpha-256f": null,
+      "ReSolveD-alpha-384s": null,
+      "ReSolveD-alpha-384f": null,
+      "ReSolveD-alpha-512s": null,
+      "ReSolveD-alpha-512f": null
+    },
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Counter loop repeats until grinding and bounded BAVC-opening conditions hold; deterministic signing is available by setting rho to zero."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "Submission proves EUF-CMA from RSD in the QROM together with a quantum ideal-cipher treatment of symmetric components.",
+      "estimates": []
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "A classical ROM/ideal-cipher-model proof is also provided.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Relies on binary RSD and gives a claimed QROM/QICM EUF-CMA proof.",
+        "claim_strength": "formal",
+        "comparison_scope": null
+      },
+      {
+        "category": "performance",
+        "summary": "Fast variants trade larger signatures for substantially faster signing and verification.",
+        "claim_strength": "quantitative",
+        "comparison_scope": "submission x86 AVX benchmarks"
+      },
+      {
+        "category": "flexibility",
+        "summary": "Provides small and fast variants at four security levels.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_sampling",
+        "summary": "Signing performs proof-of-work grinding and rejects BAVC openings above T_open.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "signature_size",
+        "summary": "Signatures range from 5,307 to 72,611 bytes across submitted variants.",
+        "basis": "derived_from_parameters"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Headline timings use an optimized x86 implementation with platform-specific instruction sets.",
+        "basis": "derived_from_test_setup"
+      },
+      {
+        "category": "assumption_specificity",
+        "summary": "The specification notes that the exact concrete relation between RSD and SD remains unclear.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/ReSolveD-alpha/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C++",
+      "platform": "x86 AVX/AES-NI/SHA-NI",
+      "path": "DigitalSignature/ReSolveD-alpha/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "rsd-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/ReSolveD-alpha/Algorithm specifications/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "rsd-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/ReSolveD-alpha/Basic information.PDF",
+      "extraction_method": "ocr",
+      "notes": "Scanned; title-page authors and affiliations were used."
+    },
+    {
+      "source_id": "rsd-impl",
+      "type": "implementation",
+      "path": "DigitalSignature/ReSolveD-alpha/Implementations/Reference_Implementation",
+      "extraction_method": "code_inspection",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "rsd-spec",
+      "locator": "pp. 5-7",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "rsd-spec",
+      "locator": "p. 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "rsd-spec",
+      "locator": "pp. 53 and 56, Tables 3-4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "rsd-spec",
+      "locator": "Sections 7-8",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Basic-information PDF is scanned; Chinese personal names were not reliably recoverable."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

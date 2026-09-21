@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0.0",
+  "generated_on": "2026-09-20",
+  "schema": "schema/signature-algorithm.schema.json",
+  "expected_algorithm_count": 34,
+  "parsed_algorithm_count": 34,
+  "schema_valid_count": 34,
+  "overall_status": "pass",
+  "errors": [],
+  "warnings": [
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned basic-information form and are therefore null.",
+      "algorithm_id": "aigis-sig-plus",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned form and are null.",
+      "algorithm_id": "bit",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Secret-key sizes for the optional 80/192/384-bit sets were not located and are null.",
+      "algorithm_id": "bit",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names in parentheses were not reliably recoverable by OCR and are null.",
+      "algorithm_id": "chinith",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Expected BAVC retry counts were not tabulated uniformly, so expected_repetitions is null.",
+      "algorithm_id": "chinith",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned basic-information form and are null.",
+      "algorithm_id": "compass-sig",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "The specification title page lists two organizations collectively; the OCR form was used to assign Jihong Li to Shanghai Zhixun Crypto and the other authors to Shanghai Jiao Tong University.",
+      "algorithm_id": "compass-sig",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned form and are null.",
+      "algorithm_id": "cs",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from OCR and are null.",
+      "algorithm_id": "darts",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "The taxonomy has no dedicated cubic-factorisation multivariate subcategory, so other_multivariate_based is used and the exact construction is recorded technically.",
+      "algorithm_id": "facto-dsa",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "The specification analyzes security through inherited SPHINCS+ reductions but does not consistently restate the formal notion in every section; EUF-CMA/ROM is recorded from that reduction context.",
+      "algorithm_id": "flextree",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned form and are null.",
+      "algorithm_id": "galas-signature",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recoverable from the scanned basic-information form and are null.",
+      "algorithm_id": "greatwall",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names are null because the scanned signatures were not reliably machine-readable.",
+      "algorithm_id": "lynxer",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "No Chinese personal names are present in the English specification; name_zh is null.",
+      "algorithm_id": "morning-atlas",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "No Chinese personal names are printed in the English author list; name_zh is null.",
+      "algorithm_id": "octarine",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "No Chinese personal-name field was reliably recoverable from the English basic-information form; name_zh is null.",
+      "algorithm_id": "ops-digital-signature-algorithm",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were handwritten in the scanned form and are left null where not reliably legible.",
+      "algorithm_id": "origami",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Cross-review confirmed that the specification/benchmark and implementation SPX_BYTES figures are not consistently aligned; unresolved profile-specific differences remain in conflicts.",
+      "algorithm_id": "phoenix",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Minimum variable signature lengths are not explicitly tabulated and remain null.",
+      "algorithm_id": "phoenix",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Two less-legible handwritten Chinese names remain null.",
+      "algorithm_id": "phoenix",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Cross-review confirmed that QingLuan-128 has 64 raw quantum binding bits under full Grover while the submission argues NIST Category 1 equivalence for the 80-bit requirement.",
+      "algorithm_id": "qingluan",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "384/512 key-recovery estimates are extrapolated rather than independently reproduced with the official CROSS estimator.",
+      "algorithm_id": "qingluan",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Basic-information PDF is scanned; Chinese personal names were not reliably recoverable.",
+      "algorithm_id": "resolved-alpha",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Author affiliations were not reliably recoverable from the scanned basic-information form; affiliation links are left empty.",
+      "algorithm_id": "rhyme",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Reported signature sizes are estimates using experimental rANS compression rates; exact minima/maxima were not stated.",
+      "algorithm_id": "rhyme",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Chinese personal names were not reliably recovered from the scanned basic-information form.",
+      "algorithm_id": "shuttle",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Signature byte counts are marked approximate/sample in the specification and need API-level cross-review.",
+      "algorithm_id": "sigurd",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Most Chinese personal-name spellings were not safely recoverable from the form signatures and remain null.",
+      "algorithm_id": "sqisign2d-push12",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "The supplementary note withdraws Level-1 from evaluation; it is retained only to preserve all documented parameter sets.",
+      "algorithm_id": "sqisign2d-push12",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Structured sizes record the compressed mode; uncompressed sizes remain available in source Table 6.1.",
+      "algorithm_id": "sqisign2d2",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "The source implementation tree also contains unused API directories for non-submitted intermediate levels; structured records follow Table 9 and the parameter-set note.",
+      "algorithm_id": "sqisigntriangle",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Basic-information form is scanned; Chinese personal names were not reliably recoverable.",
+      "algorithm_id": "sydo",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Quantum-bit estimates are not separately stated in the extracted parameter table.",
+      "algorithm_id": "tins",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Overview taxonomy has no tensor-isomorphism-specific category; combinatorial_based is used and should be cross-reviewed.",
+      "algorithm_id": "trine",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Specification does not state quantum-bit targets for TSUOV parameter sets; quantum_bits is null.",
+      "algorithm_id": "tsuov",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "KB was converted using 1024 bytes per KB; source does not explicitly define KB convention.",
+      "algorithm_id": "vdoo",
+      "field": "review.issues"
+    },
+    {
+      "kind": "record_issue",
+      "message": "Affiliations and Chinese author names were not reliably recoverable from the scanned basic-information form.",
+      "algorithm_id": "yuanyang-dsa",
+      "field": "review.issues"
+    }
+  ],
+  "missing": [],
+  "conflicts": [
+    {
+      "kind": "record_conflict",
+      "message": "Specification narrative gives a 2014-byte example while Table 2 and implementation maximum give 2015 bytes; the structured reported/max value follows Table 2 and params.h, with the narrative discrepancy retained here.",
+      "algorithm_id": "aigis-sig-plus",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "The security discussion says the 128-bit profile is chosen for at least 160 classical bits before Grover, while the parameter-set label and call category are 128-bit classical; both scopes are retained.",
+      "algorithm_id": "dove",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "The specification labels S/F as size/performance schedules, but the included single-run smoke benchmark does not uniformly make every F variant faster; claims are retained as design intent and benchmark caveat.",
+      "algorithm_id": "galas-signature",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "The clarification assigns GreatWall-192/256/512 to evaluation Levels 1/2/3 and treats GreatWall-128 as additional, while the main specification Table 3 labels NGCC levels differently; target bit strengths follow the cryptographic table.",
+      "algorithm_id": "greatwall",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Specification covers three instances but states the repository reference implementation currently realizes only Level-1.",
+      "algorithm_id": "ops-digital-signature-algorithm",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "The scheme calls the key compact relative to a dense explicit MQ key, but the serialized public key is still 2,996-35,924 bytes; this is retained as a qualified submitter claim and a parameter-derived constraint.",
+      "algorithm_id": "origami",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Phoenix-SHAKE-192s implementation macros give a 13,332-byte maximum while the SM3 parameter table reports 13,356 bytes and the SHAKE benchmark reports 13,290 bytes; these are preserved as maximum/reporting differences.",
+      "algorithm_id": "phoenix",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Several SHAKE benchmark sizes exceed the corresponding shared-profile implementation maxima (notably 256s/256f), suggesting backend/profile or reporting inconsistencies requiring cross-review.",
+      "algorithm_id": "phoenix",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "QingLuan-128 reports binding_quantum_bits=64 under full Grover, below the stated 80-bit target, but separately claims Category 1 compliance under finite-depth Grover assumptions.",
+      "algorithm_id": "qingluan",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Package filenames for the basic-information form and specification appear swapped relative to their contents.",
+      "algorithm_id": "rhyme",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Abstract calls the iterative sampler rejection-free, while key generation rejects by norm and signing can restart on rANS overflow; both scopes are preserved.",
+      "algorithm_id": "shuttle",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "The main specification describes Level2 as 160/80-bit, while the supplementary statement maps Level2 to the required 128/80-bit NGCC category; target_security follows the supplementary mapping.",
+      "algorithm_id": "sqisign2d2",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Theoretical Table 1 sizes and actual serialized Table 3 sizes differ; structured sizes use actual API storage.",
+      "algorithm_id": "uvw-signature",
+      "field": "review.conflicts"
+    },
+    {
+      "kind": "record_conflict",
+      "message": "Narrative states 96-byte and 85-byte level-one signatures in different passages; Table 1 and structured value use 85 bytes.",
+      "algorithm_id": "vdoo",
+      "field": "review.conflicts"
+    }
+  ],
+  "summary": {
+    "family_counts": {
+      "code_based": 5,
+      "hash_based": 4,
+      "isogeny_based": 3,
+      "lattice_based": 11,
+      "mpc_in_the_head_based": 5,
+      "multivariate_based": 5,
+      "other": 1
+    },
+    "data_quality_counts": {
+      "A": 7,
+      "B": 26,
+      "C": 1
+    },
+    "review_status_counts": {
+      "extracted": 28,
+      "reviewed": 6
+    },
+    "total_parameter_set_count": 189,
+    "cross_reviewed_algorithm_count": 8
+  },
+  "checks": {
+    "json_parse": true,
+    "json_schema": true,
+    "algorithm_count_34": true,
+    "unique_algorithm_id": true,
+    "filename_matches_algorithm_id": true,
+    "unique_submission_path": true,
+    "all_expected_submissions_present": true,
+    "byte_units": true,
+    "affiliation_references": true,
+    "evidence_source_references": true,
+    "source_files_exist": true,
+    "signature_length_consistency": true,
+    "submission_claims_separated_from_independent_assessment": true
+  },
+  "notes": [
+    "Warnings and conflicts are retained data-quality disclosures and do not make schema validation fail.",
+    "Unknown values are represented as null; no value is inferred solely from an algorithm name."
+  ]
+}

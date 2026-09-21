@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "sydo",
+  "name": "SYDO",
+  "full_name": "SYDO",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/SYDO",
+  "aliases": [],
+  "overview_classification": {
+    "family": "code_based",
+    "subcategory": "syndrome_decoding_based",
+    "family_label_en": "Code-based",
+    "family_label_zh": "编码密码",
+    "subcategory_label_en": "Syndrome-decoding signature",
+    "subcategory_label_zh": "综合译码型签名",
+    "summary_label_zh": "编码密码 / 综合译码型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Syndrome Decoding (SD)",
+        "role": "underlying hardness assumption",
+        "details": "Unstructured binary SD"
+      },
+      {
+        "name": "Regular Syndrome Decoding (RSD)",
+        "role": "modeling representation",
+        "details": "Used through a reduction to SD, not claimed as the base assumption"
+      }
+    ],
+    "mathematical_structures": [
+      "binary linear codes",
+      "VOLE-in-the-Head",
+      "elementary-vector encoding",
+      "polynomial constraints"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "School of Cyber Science and Technology, Beihang University",
+      "name_zh": "北京航空航天大学网络空间安全学院",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Zongyang Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Boyuan Gao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Pengce Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zihe Gao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Siyuan Qin",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiao Kou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiang Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jianwei Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Ying Gao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Hua Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yanqing Yao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_2",
+    "RSD_block_length": 279,
+    "hash_xof_prg": [
+      "block ciphers",
+      "hash functions",
+      "XOF"
+    ],
+    "proof_degree": 4,
+    "VOLE_hash_B": 16
+  },
+  "parameter_sets": [
+    {
+      "name": "SYDO-160s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 16461,
+        "n_minus_k": 480,
+        "w": 59,
+        "tau": 14,
+        "w_grind": 8,
+        "T_open": 132
+      },
+      "sizes": {
+        "public_key": {
+          "value": 80,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 174,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5428,
+          "minimum": 5428,
+          "maximum": 5428,
+          "average": 5428,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "SYDO-160f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 16461,
+        "n_minus_k": 480,
+        "w": 59,
+        "tau": 20,
+        "w_grind": 2,
+        "T_open": 138
+      },
+      "sizes": {
+        "public_key": {
+          "value": 80,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 174,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 6724,
+          "minimum": 6724,
+          "maximum": 6724,
+          "average": 6724,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "SYDO-256s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 26226,
+        "n_minus_k": 768,
+        "w": 94,
+        "tau": 23,
+        "w_grind": 5,
+        "T_open": 225
+      },
+      "sizes": {
+        "public_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 278,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 14444,
+          "minimum": 14444,
+          "maximum": 14444,
+          "average": 14444,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "SYDO-256f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 26226,
+        "n_minus_k": 768,
+        "w": 94,
+        "tau": 32,
+        "w_grind": 2,
+        "T_open": 236
+      },
+      "sizes": {
+        "public_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 278,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 17604,
+          "minimum": 17604,
+          "maximum": 17604,
+          "average": 17604,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "SYDO-512s",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 49941,
+        "n_minus_k": 1456,
+        "w": 179,
+        "tau": 46,
+        "w_grind": 8,
+        "T_open": 445
+      },
+      "sizes": {
+        "public_key": {
+          "value": 246,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 534,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 56672,
+          "minimum": 56672,
+          "maximum": 56672,
+          "average": 56672,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "SYDO-512f",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 49941,
+        "n_minus_k": 1456,
+        "w": 179,
+        "tau": 64,
+        "w_grind": 2,
+        "T_open": 446
+      },
+      "sizes": {
+        "public_key": {
+          "value": 246,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 534,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 67716,
+          "minimum": 67716,
+          "maximum": 67716,
+          "average": 67716,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {
+      "SYDO-160s": 8290,
+      "SYDO-160f": 20.9,
+      "SYDO-256s": 302,
+      "SYDO-256f": 4.54,
+      "SYDO-512s": 17400,
+      "SYDO-512f": 26.0
+    },
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Counter succeeds only when grinding and BAVC-opening bounds both pass; table values give expected counters."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission proves EUF-CMA via a reduction from forgery to SD through the RSD modeling relation.",
+      "estimates": []
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "Specification includes a QROM proof section for the selected construction.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Uses unstructured binary SD as the claimed base hardness assumption.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "compactness",
+        "summary": "Claims the smallest signatures among current SD-based signatures.",
+        "claim_strength": "comparative",
+        "comparison_scope": "submission comparison"
+      },
+      {
+        "category": "flexibility",
+        "summary": "Short and fast variants expose a signature-size versus signing-time tradeoff.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_sampling",
+        "summary": "Signing uses challenge grinding and bounded BAVC-opening rejection; expected counters reach about 17,400 for SYDO-512s.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "signature_size",
+        "summary": "Signatures range from 5,428 to 67,716 bytes.",
+        "basis": "derived_from_parameters"
+      },
+      {
+        "category": "proof_scope",
+        "summary": "Specification notes that one discussed proof variant remains for a future version; structured security claim follows the submitted selected construction.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/SYDO/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "x86",
+      "path": "DigitalSignature/SYDO/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "sydo-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/SYDO/Algorithm specifications/2-Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "sydo-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/SYDO/Basic Algorithm Information.pdf",
+      "extraction_method": "ocr",
+      "notes": "Scanned; specification title page used."
+    },
+    {
+      "source_id": "sydo-add",
+      "type": "other",
+      "path": "DigitalSignature/SYDO/Algorithm specifications/2-Algorithm specifications-Appendix-B.pdf",
+      "extraction_method": "text",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "sydo-spec",
+      "locator": "pp. 1-4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "sydo-spec",
+      "locator": "pp. 35-37, Tables 5.2-5.5",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "sydo-spec",
+      "locator": "Section 6",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Basic-information form is scanned; Chinese personal names were not reliably recoverable."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

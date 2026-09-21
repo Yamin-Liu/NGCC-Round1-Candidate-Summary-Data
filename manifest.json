@@ -1,0 +1,590 @@
+[
+  {
+    "cat": "DigitalSignature",
+    "file": "Aigis-Sig+.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Aigis-Sig%2B.zip",
+    "size": 17707823,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Aigis-Sig+"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "BiT.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/BiT.zip",
+    "size": 46217115,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/BiT"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "cedrus+c.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/cedrus%2Bc.zip",
+    "size": 18695378,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/cedrus+c"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "cedrus-α.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/cedrus-%CE%B1.zip",
+    "size": 18774773,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/cedrus-α"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Chinith.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Chinith.zip",
+    "size": 12927882,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Chinith"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "COMPASS-SIG.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/COMPASS-SIG.zip",
+    "size": 38075657,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/COMPASS-SIG"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "CS.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/CS.zip",
+    "size": 13640373,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/CS"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "DARTS.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/DARTS.zip",
+    "size": 13212635,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/DARTS"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "DOVE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/DOVE.zip",
+    "size": 594738942,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/DOVE"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Facto-DSA.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Facto-DSA.zip",
+    "size": 8545209,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Facto-DSA"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Flextree.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Flextree.zip",
+    "size": 100597177,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Flextree"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Galas Signature.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Galas%20Signature.zip",
+    "size": 41464713,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Galas Signature"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "GreatWall.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/GreatWall.zip",
+    "size": 21571838,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/GreatWall"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Lynxer.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Lynxer.zip",
+    "size": 17106428,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Lynxer"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "MORNING-ATLAS.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/MORNING-ATLAS.zip",
+    "size": 12010922,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/MORNING-ATLAS"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Octarine.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Octarine.zip",
+    "size": 13994983,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Octarine"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "OPS Digital Signature Algorithm.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/OPS%20Digital%20Signature%20Algorithm.zip",
+    "size": 4746912,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/OPS Digital Signature Algorithm"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Origami.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Origami.zip",
+    "size": 28360686,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Origami"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Phoenix.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Phoenix.zip",
+    "size": 23235965,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Phoenix"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "QingLuan.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/QingLuan.zip",
+    "size": 28035220,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/QingLuan"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "ReSolveD-alpha.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/ReSolveD-alpha.zip",
+    "size": 11061844,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/ReSolveD-alpha"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Rhyme.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Rhyme.zip",
+    "size": 15133161,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Rhyme"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "shuttle.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/shuttle.zip",
+    "size": 9327439,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/shuttle"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Sigurd.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Sigurd.zip",
+    "size": 17804763,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Sigurd"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "SQIsign2D2.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/SQIsign2D2.zip",
+    "size": 19195437,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/SQIsign2D2"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "SQIsign2D-push12.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/SQIsign2D-push12.zip",
+    "size": 15147408,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/SQIsign2D-push12"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "SQIsignTriangle.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/SQIsignTriangle.zip",
+    "size": 25366064,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/SQIsignTriangle"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "SYDO.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/SYDO.zip",
+    "size": 51062301,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/SYDO"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "Tins.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/Tins.zip",
+    "size": 6298272,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/Tins"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "TRINE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/TRINE.zip",
+    "size": 67794477,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/TRINE"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "TSUOV.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/TSUOV.zip",
+    "size": 4398417,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/TSUOV"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "UVW signature.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/UVW%20signature.zip",
+    "size": 1326858513,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/UVW signature"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "VDOO.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/VDOO.zip",
+    "size": 396850232,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/VDOO"
+  },
+  {
+    "cat": "DigitalSignature",
+    "file": "YuanYang.DSA.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Digital%20Signature/YuanYang.DSA.zip",
+    "size": 19879383,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/DigitalSignature/YuanYang.DSA"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Aigis-Enc+.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Aigis-Enc%2B.zip",
+    "size": 13910031,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Aigis-Enc+"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Amoeba.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Amoeba.zip",
+    "size": 4397050,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Amoeba"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BAG-Loong.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BAG-Loong.zip",
+    "size": 16321958,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BAG-Loong"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BAG-Piglet.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BAG-Piglet.zip",
+    "size": 10529983,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BAG-Piglet"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BIKE_MLThre.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BIKE_MLThre.zip",
+    "size": 38667045,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BIKE_MLThre"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BRA.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BRA.zip",
+    "size": 9361891,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BRA"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BRQC.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BRQC.zip",
+    "size": 9739992,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BRQC"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "BW-KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/BW-KEM.zip",
+    "size": 13851186,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/BW-KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "CheetahKEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/CheetahKEM.zip",
+    "size": 8357751,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/CheetahKEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "C-Multi-UR-AG.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/C-Multi-UR-AG.zip",
+    "size": 12265869,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/C-Multi-UR-AG"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "COMPASS-KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/COMPASS-KEM.zip",
+    "size": 50427183,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/COMPASS-KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "CTL.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/CTL.zip",
+    "size": 37952459,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/CTL"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "DKEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/DKEM.zip",
+    "size": 8992809,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/DKEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "DTRU.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/DTRU.zip",
+    "size": 20677386,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/DTRU"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "FLIT.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/FLIT.zip",
+    "size": 5802560,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/FLIT"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "HARE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/HARE.zip",
+    "size": 16015701,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/HARE"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "HEP-QC.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/HEP-QC.zip",
+    "size": 789966981,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/HEP-QC"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "LoongKEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/LoongKEM.zip",
+    "size": 8583603,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/LoongKEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Lore.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Lore.zip",
+    "size": 10424731,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Lore"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "MAMBA-Frost.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/MAMBA-Frost.zip",
+    "size": 23341608,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/MAMBA-Frost"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "MAMBA-Viper.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/MAMBA-Viper.zip",
+    "size": 11898713,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/MAMBA-Viper"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Mithril.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Mithril.zip",
+    "size": 13023595,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Mithril"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Mito.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Mito.zip",
+    "size": 20911711,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Mito"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "MORNING-Scabbard.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/MORNING-Scabbard.zip",
+    "size": 16810898,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/MORNING-Scabbard"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "NEV.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/NEV.zip",
+    "size": 13284152,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/NEV"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "NSS-HQC.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/NSS-HQC.zip",
+    "size": 7408070,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/NSS-HQC"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "NTRE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/NTRE.zip",
+    "size": 9622416,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/NTRE"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "OAEP-NTRU.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/OAEP-NTRU.zip",
+    "size": 6170350,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/OAEP-NTRU"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Polar-KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Polar-KEM.zip",
+    "size": 1081142,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Polar-KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "PolarLAC.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/PolarLAC.zip",
+    "size": 13109792,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/PolarLAC"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "QIMEN-PIKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/QIMEN-PIKE.zip",
+    "size": 35179832,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/QIMEN-PIKE"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "QCTM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/QCTM.zip",
+    "size": 87169850,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/QCTM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "QUBE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/QUBE.zip",
+    "size": 7113093,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/QUBE"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Rudraksh2.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Rudraksh2.zip",
+    "size": 19766493,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Rudraksh2"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Scloud+.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Scloud%2B.zip",
+    "size": 12578761,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Scloud+"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "TRIKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/TRIKE.zip",
+    "size": 6460305,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/TRIKE"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "TriQ-KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/TriQ-KEM.zip",
+    "size": 18591835,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/TriQ-KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "UVW-KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/UVW-KEM.zip",
+    "size": 75587362,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/UVW-KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "Weaver.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/Weaver.zip",
+    "size": 5743165,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/Weaver"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "YuanYang.KEM.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/YuanYang.KEM.zip",
+    "size": 18320042,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/YuanYang.KEM"
+  },
+  {
+    "cat": "KeyEncapsulation",
+    "file": "ZEN.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Encapsulation/ZEN.zip",
+    "size": 37391107,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyEncapsulation/ZEN"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "ADKEX.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/ADKEX.zip",
+    "size": 9144467,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/ADKEX"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "AFS-KEX.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/AFS-KEX.zip",
+    "size": 9752914,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/AFS-KEX"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "CreTAKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/CreTAKE.zip",
+    "size": 17998433,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/CreTAKE"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "DKEX.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/DKEX.zip",
+    "size": 11261599,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/DKEX"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "Loom.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/Loom.zip",
+    "size": 24191394,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/Loom"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "MAMBA-NIKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/MAMBA-NIKE.zip",
+    "size": 10286525,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/MAMBA-NIKE"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "NEV-AKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/NEV-AKE.zip",
+    "size": 12680002,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/NEV-AKE"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "NIIKE.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/NIIKE.zip",
+    "size": 18829414,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/NIIKE"
+  },
+  {
+    "cat": "KeyExchange",
+    "file": "TriQ-KEX.zip",
+    "url": "https://www.niccs.org.cn/niccs/Proposal/Public-Key%20Cryptographic%20Algorithms/Round%201%20candidates/Key%20Exchange/TriQ-KEX.zip",
+    "size": 26471558,
+    "dir": "/Users/demon/Desktop/NICCS-R1候选算法提案/KeyExchange/TriQ-KEX"
+  }
+]

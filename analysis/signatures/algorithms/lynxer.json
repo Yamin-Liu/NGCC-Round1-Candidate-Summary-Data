@@ -1,0 +1,797 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "lynxer",
+  "name": "Lynxer",
+  "full_name": "Lynxer: A VOLE-in-the-Head Signature Scheme based on Only Symmetric-key Primitives",
+  "version": "1.1",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Lynxer",
+  "aliases": [],
+  "overview_classification": {
+    "family": "mpc_in_the_head_based",
+    "subcategory": "symmetric_mpcit_h",
+    "family_label_en": "MPC-in-the-Head",
+    "family_label_zh": "头脑中多方计算",
+    "subcategory_label_en": "Symmetric-primitive MPC-in-the-Head",
+    "subcategory_label_zh": "对称原语MPC-in-the-Head签名",
+    "summary_label_zh": "头脑中多方计算 / 对称原语MPC-in-the-Head签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Lynx one-wayness",
+        "role": "ROM/ICM unforgeability",
+        "details": "Dedicated symmetric one-way function"
+      },
+      {
+        "name": "Lynx one-time pseudorandomness",
+        "role": "QROM/QICM unforgeability",
+        "details": "Required by the stated quantum proof technique"
+      },
+      {
+        "name": "VOLEitH proof soundness",
+        "role": "knowledge soundness",
+        "details": "QuickSilver-based proof system"
+      }
+    ],
+    "mathematical_structures": [
+      "VOLE-in-the-Head",
+      "binary extension fields",
+      "QuickSilver",
+      "GGM Half-Tree BAVC"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM",
+      "ideal_cipher_model"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "State Key Laboratory of Cryptology",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "Shanghai Jiao Tong University",
+      "name_zh": "上海交通大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "Shanghai Qi Zhi Institute",
+      "name_zh": "上海期智研究院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "Information Engineering University",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-5",
+      "name_en": "Shandong University",
+      "name_zh": "山东大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-6",
+      "name_en": "China Telecom Quantum Group Ltd.",
+      "name_zh": "中电信量子信息科技集团有限公司",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-7",
+      "name_en": "East China Normal University",
+      "name_zh": "华东师范大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-8",
+      "name_en": "State Key Laboratory of Cryptography and Digital Economy Security",
+      "name_zh": null,
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Kang Yang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yu Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2",
+        "aff-7"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Lin Jiao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Hongrui Cui",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiaojie Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Qunxiong Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jiang Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Hongsen Yang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yituo He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yonglin Hao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Chun Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-5",
+        "aff-8"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jiangxia Ge",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-6"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "one_way_function": "Lynx",
+    "proof_system": "VOLE-in-the-Head with QuickSilver",
+    "hash_xof_prg": [
+      "SM3 pseudoXOF",
+      "Keccak XOF",
+      "AES-192",
+      "AES-256",
+      "SHACAL-2"
+    ],
+    "signature_components": [
+      "salt",
+      "VOLE commitments and corrections",
+      "QuickSilver proof",
+      "BAVC opening",
+      "grinding counter"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "Lynxer-160s",
+      "implementation_aliases": [
+        "Lynxer-160s"
+      ],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 160,
+        "owf_input_bytes": 20,
+        "owf_output_bytes": 20,
+        "tau": 14,
+        "T_open": 129,
+        "w_grind": 6,
+        "reported_grover_bits": 102
+      },
+      "sizes": {
+        "public_key": {
+          "value": 40,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 20,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 4607,
+          "minimum": 4607,
+          "maximum": 4607,
+          "average": 4607,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-160f",
+      "implementation_aliases": [
+        "Lynxer-160f"
+      ],
+      "target_security": {
+        "classical_bits": 160,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 160,
+        "owf_input_bytes": 20,
+        "owf_output_bytes": 20,
+        "tau": 21,
+        "T_open": 139,
+        "w_grind": 8,
+        "reported_grover_bits": 102
+      },
+      "sizes": {
+        "public_key": {
+          "value": 40,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 20,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5801,
+          "minimum": 5801,
+          "maximum": 5801,
+          "average": 5801,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-256s",
+      "implementation_aliases": [
+        "Lynxer-256s"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 256,
+        "owf_input_bytes": 32,
+        "owf_output_bytes": 32,
+        "tau": 22,
+        "T_open": 224,
+        "w_grind": 12,
+        "reported_grover_bits": 151
+      },
+      "sizes": {
+        "public_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 12191,
+          "minimum": 12191,
+          "maximum": 12191,
+          "average": 12191,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-256f",
+      "implementation_aliases": [
+        "Lynxer-256f"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 256,
+        "owf_input_bytes": 32,
+        "owf_output_bytes": 32,
+        "tau": 35,
+        "T_open": 223,
+        "w_grind": 8,
+        "reported_grover_bits": 151
+      },
+      "sizes": {
+        "public_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 15097,
+          "minimum": 15097,
+          "maximum": 15097,
+          "average": 15097,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-384s",
+      "implementation_aliases": [
+        "Lynxer-384s"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 384,
+        "owf_input_bytes": 48,
+        "owf_output_bytes": 48,
+        "tau": 34,
+        "T_open": 332,
+        "w_grind": 10,
+        "reported_grover_bits": 216
+      },
+      "sizes": {
+        "public_key": {
+          "value": 96,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 48,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 27495,
+          "minimum": 27495,
+          "maximum": 27495,
+          "average": 27495,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-384f",
+      "implementation_aliases": [
+        "Lynxer-384f"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 384,
+        "owf_input_bytes": 48,
+        "owf_output_bytes": 48,
+        "tau": 53,
+        "T_open": 336,
+        "w_grind": 9,
+        "reported_grover_bits": 216
+      },
+      "sizes": {
+        "public_key": {
+          "value": 96,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 48,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 34109,
+          "minimum": 34109,
+          "maximum": 34109,
+          "average": 34109,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-512s",
+      "implementation_aliases": [
+        "Lynxer-512s"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 512,
+        "owf_input_bytes": 64,
+        "owf_output_bytes": 64,
+        "tau": 46,
+        "T_open": 439,
+        "w_grind": 6,
+        "reported_grover_bits": 281
+      },
+      "sizes": {
+        "public_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 48879,
+          "minimum": 48879,
+          "maximum": 48879,
+          "average": 48879,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Lynxer-512f",
+      "implementation_aliases": [
+        "Lynxer-512f"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "lambda": 512,
+        "owf_input_bytes": 64,
+        "owf_output_bytes": 64,
+        "tau": 72,
+        "T_open": 447,
+        "w_grind": 8,
+        "reported_grover_bits": 281
+      },
+      "sizes": {
+        "public_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "lambda/8-byte Lynx preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 61091,
+          "minimum": 61091,
+          "maximum": 61091,
+          "average": 61091,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": null,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Signer retries for w_grind proof-of-work and BAVC opening threshold; the specification analyzes the opening-size distribution."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "EUF-CMA in QROM/QICM assuming Lynx one-time pseudorandomness.",
+      "estimates": [
+        {
+          "parameter_set": "Lynxer-160s",
+          "reported_grover_bits": 102
+        },
+        {
+          "parameter_set": "Lynxer-160f",
+          "reported_grover_bits": 102
+        },
+        {
+          "parameter_set": "Lynxer-256s",
+          "reported_grover_bits": 151
+        },
+        {
+          "parameter_set": "Lynxer-256f",
+          "reported_grover_bits": 151
+        },
+        {
+          "parameter_set": "Lynxer-384s",
+          "reported_grover_bits": 216
+        },
+        {
+          "parameter_set": "Lynxer-384f",
+          "reported_grover_bits": 216
+        },
+        {
+          "parameter_set": "Lynxer-512s",
+          "reported_grover_bits": 281
+        },
+        {
+          "parameter_set": "Lynxer-512f",
+          "reported_grover_bits": 281
+        }
+      ]
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "EUF-CMA in ROM/ICM assuming Lynx is one-way.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims reduced public-key plus signature size versus FAEST and FAEST-EM at matched levels.",
+        "claim_strength": "comparative",
+        "comparison_scope": "submission comparisons at matched security"
+      },
+      {
+        "category": "performance",
+        "summary": "Claims competitive signing and verification from a low-degree, short-witness Lynx relation.",
+        "claim_strength": "comparative",
+        "comparison_scope": "optimized AVX implementation"
+      },
+      {
+        "category": "flexibility",
+        "summary": "Provides small and fast parameter profiles and supports additional tuning.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "VOLEitH parameter tradeoff"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_and_grinding",
+        "summary": "Signing retries depend on proof-of-work and BAVC opening-size thresholds.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "quantum_proof_assumption",
+        "summary": "The QROM/QICM proof additionally assumes one-time pseudorandomness of Lynx; the submission notes this may be a proof-technique artifact.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Performance figures are from the submitted optimized AVX implementation and stated platform.",
+        "basis": "derived_from_test_setup"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C/C++",
+      "platform": "portable/x86",
+      "path": "DigitalSignature/Lynxer/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/C++/assembly",
+      "platform": "AVX2",
+      "path": "DigitalSignature/Lynxer/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "lynxer-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Lynxer/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": "Version 1.1, 134 pages"
+    },
+    {
+      "source_id": "lynxer-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/Lynxer/Basic information.PDF",
+      "extraction_method": "ocr",
+      "notes": "Scanned form; affiliations cross-checked with specification title page."
+    },
+    {
+      "source_id": "lynxer-params",
+      "type": "implementation",
+      "path": "DigitalSignature/Lynxer/Implementations/Reference_Implementation/Lynxer-160s/parameters.h",
+      "extraction_method": "code_inspection",
+      "notes": "Shared header enumerates all eight profiles and exact signature sizes."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "lynxer-spec",
+      "locator": "pp. 5-8",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "lynxer-spec",
+      "locator": "title page",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "lynxer-spec",
+      "locator": "Table 1 and Section 6.4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets[*].sizes",
+      "source_id": "lynxer-params",
+      "locator": "LYNXER_*_SIG_SIZE macros",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Chinese personal names are null because the scanned signatures were not reliably machine-readable."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

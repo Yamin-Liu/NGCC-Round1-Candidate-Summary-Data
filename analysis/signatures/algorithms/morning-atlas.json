@@ -1,0 +1,617 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "morning-atlas",
+  "name": "MORNING-ATLAS",
+  "full_name": "MORNING-ATLAS: A Fast and Lightweight Digital Signature from Module Learning with Rounding",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/MORNING-ATLAS",
+  "aliases": [
+    "ATLAS"
+  ],
+  "overview_classification": {
+    "family": "lattice_based",
+    "subcategory": "other_lattice_based",
+    "family_label_en": "Lattice-based",
+    "family_label_zh": "格密码",
+    "subcategory_label_en": "Other lattice signature",
+    "subcategory_label_zh": "其他格签名",
+    "summary_label_zh": "格密码 / 其他格签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir_with_aborts"
+    ],
+    "hardness_problems": [
+      {
+        "name": "MLWR",
+        "role": "key security",
+        "details": "Module Learning With Rounding"
+      },
+      {
+        "name": "MSIS",
+        "role": "unforgeability",
+        "details": "Module Short Integer Solution"
+      },
+      {
+        "name": "SelfTargetMSIS",
+        "role": "QROM security reduction",
+        "details": null
+      }
+    ],
+    "mathematical_structures": [
+      "module lattice",
+      "R_q = Z_q[X]/(X^n+1)",
+      "power-of-two LWR moduli"
+    ],
+    "claimed_security_targets": [
+      "SUF-CMA",
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "QROM",
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Indian Institute of Technology Kanpur",
+      "name_zh": null,
+      "country_or_region": "India"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "Indian Institute of Science Bangalore",
+      "name_zh": null,
+      "country_or_region": "India"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "University of Surrey",
+      "name_zh": null,
+      "country_or_region": "United Kingdom"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "Qryptshield Technologies Private Limited",
+      "name_zh": null,
+      "country_or_region": "India"
+    },
+    {
+      "affiliation_id": "aff-5",
+      "name_en": "COSIC, KU Leuven",
+      "name_zh": null,
+      "country_or_region": "Belgium"
+    },
+    {
+      "affiliation_id": "aff-6",
+      "name_en": "The LNM Institute of Information Technology",
+      "name_zh": null,
+      "country_or_region": "India"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Supriya Adhikary",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Debayan Das",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Abhinava De",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Anindya Ganguly",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Harry Hart",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Angshuman Karmakar",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1",
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Suparna Kundu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-5"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Chaoyun Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Prajna Mahadev",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Puja Mondal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Quinten Norga",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-5"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Debranjan Pal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-6"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Karthick Srivatsan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n+1)",
+    "secret_distribution": "uniform bounded coefficients in [-eta,eta]",
+    "challenge_space": "sparse signed polynomials of Hamming weight kappa",
+    "hash_xof_prg": [
+      "pseudoXOF",
+      "SHA3/SHAKE-compatible backend"
+    ],
+    "encoding": "packed polynomial vectors and fixed-size hints",
+    "signature_components": [
+      "z",
+      "h",
+      "c"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "ATLAS-128",
+      "implementation_aliases": [
+        "lwrdsa128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 128,
+        "q": "2^23",
+        "p": "2^18",
+        "k": 9,
+        "l": 6,
+        "eta": 16,
+        "kappa": 31,
+        "beta1": 51,
+        "beta2": 8,
+        "gamma1": "2^19",
+        "gamma2": "2^18",
+        "gamma1_bar": "2^14",
+        "gamma2_bar": "2^13",
+        "pk_drop": 10,
+        "omega": 128
+      },
+      "sizes": {
+        "public_key": {
+          "value": 1328,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 2128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 2081,
+          "minimum": 2081,
+          "maximum": 2081,
+          "average": 2081,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ATLAS-192",
+      "implementation_aliases": [
+        "lwrdsa192"
+      ],
+      "target_security": {
+        "classical_bits": 192,
+        "quantum_bits": 96,
+        "category": null
+      },
+      "parameters": {
+        "n": 128,
+        "q": "2^23",
+        "p": "2^19",
+        "k": 13,
+        "l": 10,
+        "eta": 8,
+        "kappa": 69,
+        "beta1": 33,
+        "beta2": 12,
+        "gamma1": "2^19",
+        "gamma2": "2^18",
+        "gamma1_bar": "2^15",
+        "gamma2_bar": "2^14",
+        "pk_drop": 10,
+        "omega": 128
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2112,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 3152,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 3365,
+          "minimum": 3365,
+          "maximum": 3365,
+          "average": 3365,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ATLAS-256",
+      "implementation_aliases": [
+        "lwrdsa256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 256,
+        "q": "2^23",
+        "p": "2^20",
+        "k": 8,
+        "l": 7,
+        "eta": 4,
+        "kappa": 60,
+        "beta1": 73,
+        "beta2": 12,
+        "gamma1": "2^19",
+        "gamma2": "2^18",
+        "gamma1_bar": "2^16",
+        "gamma2_bar": "2^15",
+        "pk_drop": 10,
+        "omega": 128
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2848,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 4016,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 4656,
+          "minimum": 4656,
+          "maximum": 4656,
+          "average": 4656,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "ATLAS-512",
+      "implementation_aliases": [
+        "lwrdsa512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 512,
+        "q": "2^25",
+        "p": "2^22",
+        "k": 8,
+        "l": 7,
+        "eta": 4,
+        "kappa": 60,
+        "beta1": 73,
+        "beta2": 12,
+        "gamma1": "2^21",
+        "gamma2": "2^20",
+        "gamma1_bar": "2^18",
+        "gamma2_bar": "2^17",
+        "pk_drop": 10,
+        "omega": 128
+      },
+      "sizes": {
+        "public_key": {
+          "value": 6688,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 7920,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 10081,
+          "minimum": 10081,
+          "maximum": 10081,
+          "average": 10081,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": null,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Fiat-Shamir-with-aborts rejection loop; specification analyzes rejection and correctness failure probabilities."
+  },
+  "security_claims": [
+    {
+      "target": "SUF-CMA",
+      "model": "QROM",
+      "claim": "Theorem 3.1 claims SUF-CMA in QROM from MLWR, MSIS and SelfTargetMSIS.",
+      "estimates": []
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission describes EUF-CMA security under MLWR and MSIS.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims reduced secret-key storage by deterministic LWR rounding and omission of an independently stored noise vector.",
+        "claim_strength": "quantitative",
+        "comparison_scope": "comparison with Dilithium secret-key sizes"
+      },
+      {
+        "category": "performance",
+        "summary": "Claims fast polynomial arithmetic using strided Toom-Cook, Karatsuba and AVX2.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted implementations"
+      },
+      {
+        "category": "side_channel_protection",
+        "summary": "Includes a side-channel security discussion and bounded, integer-only arithmetic.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "design and implementation discussion"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_sampling",
+        "summary": "Signing uses Fiat-Shamir-with-aborts rejection sampling.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Optimized results depend on AVX2 and the documented benchmark platform.",
+        "basis": "derived_from_test_setup"
+      },
+      {
+        "category": "physical_side_channels",
+        "summary": "Physical resistance depends on implementation countermeasures beyond the algorithmic proof.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/MORNING-ATLAS/Implementation/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/intrinsics",
+      "platform": "AVX2",
+      "path": "DigitalSignature/MORNING-ATLAS/Implementation/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "atlas-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/MORNING-ATLAS/Basic_Information/basic_information.pdf",
+      "extraction_method": "text",
+      "notes": "Mixed text/scanned pages; author spellings and affiliations cross-checked against Appendix D."
+    },
+    {
+      "source_id": "atlas-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/MORNING-ATLAS/Algorithm_Specifications/DSA_ATLAS_Specification.pdf",
+      "extraction_method": "text",
+      "notes": "Version 1.0, 61 pages"
+    },
+    {
+      "source_id": "atlas-readme",
+      "type": "readme",
+      "path": "DigitalSignature/MORNING-ATLAS/README.md",
+      "extraction_method": "text",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "atlas-spec",
+      "locator": "pp. 5, 20-26",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "Explicit Module-LWR construction."
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "atlas-spec",
+      "locator": "Tables 1-2, pp. 5 and 22",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "atlas-spec",
+      "locator": "title page and Appendix D",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "atlas-spec",
+      "locator": "Section 3.2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "No Chinese personal names are present in the English specification; name_zh is null."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

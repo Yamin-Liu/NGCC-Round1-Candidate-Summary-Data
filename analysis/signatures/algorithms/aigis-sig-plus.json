@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "aigis-sig-plus",
+  "name": "Aigis-Sig+",
+  "full_name": "Aigis-Sig+",
+  "version": "1.1",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Aigis-Sig+",
+  "aliases": ["Aigis-Sig Plus"],
+  "overview_classification": {
+    "family": "lattice_based",
+    "subcategory": "mlwe_msis_based",
+    "family_label_en": "Lattice-based",
+    "family_label_zh": "格密码",
+    "subcategory_label_en": "MLWE/MSIS-type signature",
+    "subcategory_label_zh": "MLWE-MSIS型签名",
+    "summary_label_zh": "格密码 / MLWE-MSIS型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": ["identification_to_signature", "fiat_shamir_with_aborts"],
+    "hardness_problems": [
+      {"name": "AMLWE", "role": "secret-key security", "details": "Asymmetric Module-LWE"},
+      {"name": "AMSIS", "role": "unforgeability", "details": "Asymmetric Module-SIS"},
+      {"name": "SelfTargetAMSIS", "role": "security reduction", "details": "Self-target variant used in the reduction"}
+    ],
+    "mathematical_structures": ["module lattice", "R_q = Z_q[X]/(X^n+1)", "NTT-friendly polynomial ring"],
+    "claimed_security_targets": ["SUF-CMA", "UF-CMA"],
+    "claimed_security_models": ["ROM", "QROM"]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "variable",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "State Key Laboratory of Cryptology", "name_zh": null, "country_or_region": "China"},
+    {"affiliation_id": "aff-2", "name_en": "Shanghai Jiao Tong University", "name_zh": "上海交通大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-3", "name_en": "Wuhan University", "name_zh": "武汉大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-4", "name_en": "China Telecom Quantum Group Ltd.", "name_zh": "中电信量子信息科技集团有限公司", "country_or_region": "China"},
+    {"affiliation_id": "aff-5", "name_en": "East China Normal University", "name_zh": "华东师范大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-6", "name_en": "Shandong University", "name_zh": "山东大学", "country_or_region": "China"},
+    {"affiliation_id": "aff-7", "name_en": "Xidian University", "name_zh": "西安电子科技大学", "country_or_region": "China"}
+  ],
+  "submitters": [
+    {"name_en": "Jiang Zhang", "name_zh": null, "affiliation_ids": ["aff-1"], "roles": ["author"]},
+    {"name_en": "Yu Yu", "name_zh": null, "affiliation_ids": ["aff-2", "aff-5"], "roles": ["author"]},
+    {"name_en": "Shuqin Fan", "name_zh": null, "affiliation_ids": ["aff-1"], "roles": ["author"]},
+    {"name_en": "Kang Yang", "name_zh": null, "affiliation_ids": ["aff-1"], "roles": ["author"]},
+    {"name_en": "Debiao He", "name_zh": null, "affiliation_ids": ["aff-3"], "roles": ["author"]},
+    {"name_en": "Runqing Xu", "name_zh": null, "affiliation_ids": ["aff-3"], "roles": ["author"]},
+    {"name_en": "Jiangxia Ge", "name_zh": null, "affiliation_ids": ["aff-4"], "roles": ["author"]},
+    {"name_en": "Yuanmi Chen", "name_zh": null, "affiliation_ids": ["aff-5"], "roles": ["author"]},
+    {"name_en": "Weijia Wang", "name_zh": null, "affiliation_ids": ["aff-6"], "roles": ["author"]},
+    {"name_en": "Cong Peng", "name_zh": null, "affiliation_ids": ["aff-3"], "roles": ["author"]},
+    {"name_en": "Di Yan", "name_zh": null, "affiliation_ids": ["aff-1"], "roles": ["author"]},
+    {"name_en": "Hui Guo", "name_zh": null, "affiliation_ids": ["aff-1"], "roles": ["author"]},
+    {"name_en": "Hui Zhu", "name_zh": null, "affiliation_ids": ["aff-7"], "roles": ["author"]},
+    {"name_en": "Ruikang Liu", "name_zh": null, "affiliation_ids": ["aff-7"], "roles": ["author"]},
+    {"name_en": "Jing Pan", "name_zh": null, "affiliation_ids": ["aff-7"], "roles": ["author"]}
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n+1)",
+    "n": 512,
+    "q": 4171777,
+    "secret_distribution": "bounded small-coefficient distributions S_eta1 and S_eta2",
+    "challenge_space": "B_{64,15,omega}",
+    "hash_xof_prg": ["SHA3-256", "SHA3-512", "SHAKE256", "XOF-512/Keccak"],
+    "encoding": "packed polynomial vectors with variable-length HintPack",
+    "signature_components": ["z", "c", "h"]
+  },
+  "parameter_sets": [
+    {
+      "name": "PARAMS I", "implementation_aliases": ["Aigis-Sig+-I", "PARAMS=1"],
+      "target_security": {"classical_bits": 128, "quantum_bits": 80, "category": null},
+      "parameters": {"n": 512, "k": 2, "l": 2, "q": 4171777, "d": 15, "omega": 72, "eta1": 1, "eta2": 5, "tau": 24, "beta1": 24, "beta2": 120, "gamma1": 16384, "gamma2": 347648, "gamma3": 504000, "challenge_space": "B_{64,15,72}"},
+      "sizes": {"public_key": {"value": 928, "unit": "byte", "status": "reported", "notes": null}, "secret_key": {"value": 2800, "unit": "byte", "status": "derived", "notes": "Specification formula and params.h agree"}, "signature": {"encoding": "bounded_variable", "reported": 2015, "minimum": 1953, "maximum": 2015, "average": null, "unit": "byte", "notes": "Reported value is the implementation maximum"}}
+    },
+    {
+      "name": "PARAMS II", "implementation_aliases": ["Aigis-Sig+-II", "PARAMS=2"],
+      "target_security": {"classical_bits": 256, "quantum_bits": 128, "category": null},
+      "parameters": {"n": 512, "k": 4, "l": 4, "q": 4171777, "d": 15, "omega": 176, "eta1": 1, "eta2": 1, "tau": 44, "beta1": 44, "beta2": 44, "gamma1": 65536, "gamma2": 347648, "gamma3": 575000, "challenge_space": "B_{64,15,176}"},
+      "sizes": {"public_key": {"value": 1824, "unit": "byte", "status": "reported", "notes": null}, "secret_key": {"value": 4976, "unit": "byte", "status": "derived", "notes": "Specification formula and params.h agree"}, "signature": {"encoding": "bounded_variable", "reported": 4533, "minimum": 4385, "maximum": 4533, "average": null, "unit": "byte", "notes": "Reported value is the implementation maximum"}}
+    },
+    {
+      "name": "PARAMS III", "implementation_aliases": ["Aigis-Sig+-III", "PARAMS=3"],
+      "target_security": {"classical_bits": 512, "quantum_bits": 256, "category": null},
+      "parameters": {"n": 512, "k": 8, "l": 7, "q": 4171777, "d": 13, "omega": 102, "eta1": 1, "eta2": 1, "tau": 118, "beta1": 118, "beta2": 118, "gamma1": 524288, "gamma2": 521472, "gamma3": 612000, "challenge_space": "B_{64,15,102}"},
+      "sizes": {"public_key": {"value": 4672, "unit": "byte", "status": "reported", "notes": null}, "secret_key": {"value": 8800, "unit": "byte", "status": "derived", "notes": "Specification formula and params.h agree"}, "signature": {"encoding": "bounded_variable", "reported": 9134, "minimum": 9025, "maximum": 9134, "average": null, "unit": "byte", "notes": "Reported value is the implementation maximum"}}
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {"PARAMS I": 6.41, "PARAMS II": 5.16, "PARAMS III": 5.71},
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Several enhanced rejection conditions are used; no finite retry cap was identified."
+  },
+  "security_claims": [
+    {"target": "SUF-CMA", "model": "ROM", "claim": "Submission claims strong unforgeability under chosen-message attack in the random-oracle model.", "estimates": [{"parameter_set": "PARAMS I", "AMSIS_classical_bits": 129, "AMSIS_quantum_bits": 113}, {"parameter_set": "PARAMS II", "AMSIS_classical_bits": 274, "AMSIS_quantum_bits": 241}, {"parameter_set": "PARAMS III", "AMSIS_classical_bits": 551, "AMSIS_quantum_bits": 484}]},
+    {"target": "SUF-CMA", "model": "QROM", "claim": "Submission includes a SUF-CMA proof in the quantum random-oracle model.", "estimates": []},
+    {"target": "UF-CMA", "model": "ROM", "claim": "Submission reports AMSIS hardness estimates for ordinary unforgeability.", "estimates": [{"parameter_set": "PARAMS I", "classical_bits": 139, "quantum_bits": 122}, {"parameter_set": "PARAMS II", "classical_bits": 285, "quantum_bits": 250}, {"parameter_set": "PARAMS III", "classical_bits": 585, "quantum_bits": 514}]}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "security", "summary": "Enhanced rejection conditions support reductions from AMLWE and AMSIS in ROM and QROM.", "claim_strength": "formal", "comparison_scope": null},
+      {"category": "simplicity", "summary": "Uses a single NTT-friendly ring and avoids Gaussian or floating/fixed-point sampling.", "claim_strength": "qualitative", "comparison_scope": "implementation complexity"},
+      {"category": "compactness", "summary": "Claims the smallest combined public-key and signature size at 128-bit classical security among lattice signatures avoiding Gaussian and complex float/fixed-point arithmetic.", "claim_strength": "comparative", "comparison_scope": "qualified lattice-signature comparison stated by submitters"},
+      {"category": "performance", "summary": "Reports combined key generation, signing, and verification below 0.29 ms for reference and 0.07 ms for AVX at the first parameter set.", "claim_strength": "quantitative", "comparison_scope": "submission benchmark platforms"},
+      {"category": "side_channel_protection", "summary": "Claims integer-only arithmetic and uniform sampling facilitate timing- and power-analysis protection.", "claim_strength": "qualitative", "comparison_scope": "design-level implementation claim"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "rejection_sampling", "summary": "Signing uses multiple rejection conditions and requires an expected 5.16 to 6.41 iterations depending on the parameter set.", "basis": "explicit_in_submission"},
+      {"category": "variable_length_signature", "summary": "HintPack makes signatures variable-length within implementation-defined minima and maxima.", "basis": "derived_from_implementation_description"},
+      {"category": "platform_benchmark_scope", "summary": "Performance claims are based on the stated x86/ARM implementation and benchmark setup, not all platforms.", "basis": "derived_from_test_setup"},
+      {"category": "hash_dependency", "summary": "Implementations rely on SHA3/SHAKE/Keccak-based functions.", "basis": "derived_from_implementation_description"},
+      {"category": "physical_side_channels", "summary": "The design is intended to facilitate protections, but physical side-channel resistance still requires protected implementations and validation.", "basis": "explicit_caveat"},
+      {"category": "patent", "summary": "The specification discloses two relevant Chinese patent applications and accompanying free-use statements.", "basis": "explicit_in_submission"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [
+    {"type": "reference", "language": "C", "platform": "portable/x86", "path": "DigitalSignature/Aigis-Sig+/Implementations/Implementations/Reference_Implementation"},
+    {"type": "optimized", "language": "C/assembly", "platform": "AVX2", "path": "DigitalSignature/Aigis-Sig+/Implementations/Implementations/Additional_Implementation/avx2"},
+    {"type": "optimized", "language": "C/assembly", "platform": "AArch64", "path": "DigitalSignature/Aigis-Sig+/Implementations/Implementations/Additional_Implementation/aarch64"}
+  ],
+  "submission_completeness": {"basic_information": true, "algorithm_specification": true, "intellectual_property": true, "reference_implementation": true, "optimized_implementation": true, "test_vectors": true},
+  "sources": [
+    {"source_id": "aigis-spec", "type": "algorithm_specification", "path": "DigitalSignature/Aigis-Sig+/Algorithm specifications.pdf", "extraction_method": "text", "notes": "Version 1.1, 91 pages"},
+    {"source_id": "aigis-basic", "type": "basic_information", "path": "DigitalSignature/Aigis-Sig+/Basic information.pdf", "extraction_method": "ocr", "notes": "Scanned form; text layer empty, so author affiliations were taken from the specification title page."},
+    {"source_id": "aigis-params", "type": "implementation", "path": "DigitalSignature/Aigis-Sig+/Implementations/Implementations/Reference_Implementation/Aigis-Sig+-I/params.h", "extraction_method": "code_inspection", "notes": "The same parameter header is replicated for I/II/III and selected by PARAMS."},
+    {"source_id": "aigis-pack", "type": "implementation", "path": "DigitalSignature/Aigis-Sig+/Implementations/Implementations/Reference_Implementation/Aigis-Sig+-I/packing.c", "extraction_method": "code_inspection", "notes": "Confirms variable HintPack length."}
+  ],
+  "evidence": [
+    {"field": "overview_classification", "source_id": "aigis-spec", "locator": "pp. 1-2", "confidence": "high", "extraction_status": "verified", "note": "Explicitly based on asymmetric MLWE/MSIS."},
+    {"field": "submitters", "source_id": "aigis-spec", "locator": "title page", "confidence": "high", "extraction_status": "verified", "note": "Basic-information form is scanned and has no extractable text layer."},
+    {"field": "parameter_sets", "source_id": "aigis-spec", "locator": "pp. 14-15, Tables 1-2", "confidence": "high", "extraction_status": "verified", "note": null},
+    {"field": "parameter_sets[*].sizes.secret_key", "source_id": "aigis-params", "locator": "params.h:98-101", "confidence": "high", "extraction_status": "derived", "note": "Packed-size formula evaluates to 2800/4976/8800 bytes."},
+    {"field": "parameter_sets[*].sizes.signature", "source_id": "aigis-params", "locator": "params.h:100-101", "confidence": "high", "extraction_status": "derived", "note": "Min/max formulas evaluate to 1953-2015, 4385-4533, and 9025-9134 bytes."},
+    {"field": "security_claims", "source_id": "aigis-spec", "locator": "Sections 7 and Appendix B; Table 2", "confidence": "high", "extraction_status": "verified", "note": null},
+    {"field": "submission_claims", "source_id": "aigis-spec", "locator": "pp. 1-2, Section 1.1", "confidence": "high", "extraction_status": "verified", "note": "Recorded as submitter claims, not independent assessment."}
+  ],
+  "review": {
+    "status": "reviewed",
+    "data_quality": "A",
+    "reviewers": ["primary-agent", "sig-group-3-agent"],
+    "cross_reviewed": true,
+    "issues": ["Chinese personal names were not reliably recoverable from the scanned basic-information form and are therefore null."],
+    "conflicts": ["Specification narrative gives a 2014-byte example while Table 2 and implementation maximum give 2015 bytes; the structured reported/max value follows Table 2 and params.h, with the narrative discrepancy retained here."],
+    "last_updated": "2026-09-20"
+  }
+}

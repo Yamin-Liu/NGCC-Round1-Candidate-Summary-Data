@@ -1,0 +1,524 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "origami",
+  "name": "Origami",
+  "full_name": "Origami",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Origami",
+  "aliases": [],
+  "overview_classification": {
+    "family": "multivariate_based",
+    "subcategory": "oil_vinegar_based",
+    "family_label_en": "Multivariate",
+    "family_label_zh": "多变量密码",
+    "subcategory_label_en": "Oil-and-vinegar signature",
+    "subcategory_label_zh": "油醋型签名",
+    "summary_label_zh": "多变量密码 / 油醋型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "trapdoor_signature",
+      "hash_and_sign"
+    ],
+    "hardness_problems": [
+      {
+        "name": "HP-OV",
+        "role": "hidden-structure indistinguishability",
+        "details": "Distinguishing compact Origami public maps from the eligible-affine reference distribution"
+      },
+      {
+        "name": "MT-MQ inversion",
+        "role": "unforgeability",
+        "details": "Multi-target inversion of a public MQ map"
+      }
+    ],
+    "mathematical_structures": [
+      "multivariate quadratic maps over F_16",
+      "hidden local oil-and-vinegar algebras",
+      "dense input/output hiding",
+      "compact seed-plus-residual public key"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": false,
+    "prehash_mode": "fixed-length message digest before HashToFieldVector",
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Xidian University",
+      "name_zh": "西安电子科技大学",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yulong Shen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Ke Cheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Anxiao Song",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiangxi Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xianzhi Shi",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Junxian Wu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yangjing Wu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xutong Mu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Lele Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhenxing Niu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_16",
+    "central_map": "partitioned hidden Oil-and-Vinegar maps solved sequentially",
+    "public_map": "flattened ordinary MQ map regenerated from seed plus residual coefficients",
+    "hash_xof_prg": [
+      "extendable-output hash H"
+    ],
+    "encoding": "4-bit packed F_16 coordinates",
+    "signature_components": [
+      "public signature vector sigma",
+      "salt"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "Origami-128",
+      "implementation_aliases": [
+        "Origami-128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 64,
+        "category": null
+      },
+      "parameters": {
+        "q": 16,
+        "d": 3,
+        "k": 2,
+        "N": 200,
+        "M": 104,
+        "mu_red": 49,
+        "residual_positions": 5952,
+        "seed_bytes": 16,
+        "salt_bytes": 16
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2996,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 16,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 116,
+          "minimum": 116,
+          "maximum": 116,
+          "average": 116,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Origami-256",
+      "implementation_aliases": [
+        "Origami-256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "q": 16,
+        "d": 6,
+        "k": 5,
+        "N": 968,
+        "M": 488,
+        "mu_red": 81,
+        "residual_positions": 29864,
+        "seed_bytes": 32,
+        "salt_bytes": 32
+      },
+      "sizes": {
+        "public_key": {
+          "value": 14968,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 516,
+          "minimum": 516,
+          "maximum": 516,
+          "average": 516,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Origami-384",
+      "implementation_aliases": [
+        "Origami-384"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "q": 16,
+        "d": 8,
+        "k": 7,
+        "N": 1800,
+        "M": 904,
+        "mu_red": 114,
+        "residual_positions": 55776,
+        "seed_bytes": 48,
+        "salt_bytes": 48
+      },
+      "sizes": {
+        "public_key": {
+          "value": 27940,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 48,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 948,
+          "minimum": 948,
+          "maximum": 948,
+          "average": 948,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Origami-512",
+      "implementation_aliases": [
+        "Origami-512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "q": 16,
+        "d": 9,
+        "k": 8,
+        "N": 2312,
+        "M": 1160,
+        "mu_red": 146,
+        "residual_positions": 71712,
+        "seed_bytes": 64,
+        "salt_bytes": 64
+      },
+      "sizes": {
+        "public_key": {
+          "value": 35924,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 1220,
+          "minimum": 1220,
+          "maximum": 1220,
+          "average": 1220,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": false,
+    "expected_repetitions": null,
+    "signing_failure_probability": "reported restart-failure bounds below 2^-33482, 2^-34481, 2^-45245 and 2^-40581 for the four sets",
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Signing may restart when a local linear system lacks rank; this is treated as restart behavior, not distribution-hiding rejection sampling."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "EUF-CMA reduces to HP-OV hidden-structure indistinguishability and MT-MQ inversion, plus explicit loss and bad-set terms.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims compact seed-only secret keys and short signatures, with public keys compressed as seed plus residual coefficients.",
+        "claim_strength": "quantitative",
+        "comparison_scope": "submitted serialization"
+      },
+      {
+        "category": "security",
+        "summary": "Claims that flattening and dense mixing hide the local Oil-and-Vinegar structure from the public map.",
+        "claim_strength": "formal",
+        "comparison_scope": "HP-OV assumption"
+      },
+      {
+        "category": "flexibility",
+        "summary": "Provides four parameter sets over a common F_16 implementation structure.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted family"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "large_public_key",
+        "summary": "Public keys grow from 2,996 to 35,924 bytes and public-map expansion/evaluation is the stated scalability bottleneck.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "signing_restarts",
+        "summary": "Signing can restart when a sequential local linear system is rank deficient, although reported aggregate failure bounds are extremely small.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "qrom_gap",
+        "summary": "The specification states that a complete quantum treatment would require a dedicated QROM proof and quantum analyses of HP-OV and MT-MQ.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Performance is reported for the documented reference/optimized/AVX2 test environment.",
+        "basis": "derived_from_test_setup"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/Origami/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/intrinsics",
+      "platform": "AVX2",
+      "path": "DigitalSignature/Origami/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "orig-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Origami/Algorithm specifications/Origami Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": "56 pages"
+    },
+    {
+      "source_id": "orig-appendix",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Origami/Algorithm specifications/Origami Algorithm specifications Appendix.pdf",
+      "extraction_method": "text",
+      "notes": "One-page parameter appendix"
+    },
+    {
+      "source_id": "orig-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/Origami/Basic information.pdf",
+      "extraction_method": "ocr",
+      "notes": "Scanned form; English names and affiliation cross-checked with specification title page."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "orig-spec",
+      "locator": "Abstract and Sections 1-2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "orig-spec",
+      "locator": "Tables 2-4, pp. 31-33",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "orig-spec",
+      "locator": "title page",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "orig-spec",
+      "locator": "Section 4.2, Theorem 14",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Chinese personal names were handwritten in the scanned form and are left null where not reliably legible."
+    ],
+    "conflicts": [
+      "The scheme calls the key compact relative to a dense explicit MQ key, but the serialized public key is still 2,996-35,924 bytes; this is retained as a qualified submitter claim and a parameter-derived constraint."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

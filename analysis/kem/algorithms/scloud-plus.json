@@ -1,0 +1,472 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "scloud-plus",
+  "name": "Scloud+",
+  "full_name": "Scloud+",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Scloud+",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "unstructured_lattice",
+    "subcategory_label_zh": "基于无结构格",
+    "subcategory_report_label": "基于无结构格"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "plain LWE",
+        "role": "primary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "unstructured integer LWE matrices with lattice-code message encoding",
+    "underlying_pke": "Scloud+.PKE",
+    "kem_construction": "Fujisaki-Okamoto transform with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM/QROM claim in submission"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "thu",
+      "name_en": "Tsinghua University",
+      "name_zh": "清华大学"
+    },
+    {
+      "affiliation_id": "cuc",
+      "name_en": "Communication University of China",
+      "name_zh": "中国传媒大学"
+    },
+    {
+      "affiliation_id": "huawei",
+      "name_en": "Huawei Technologies",
+      "name_zh": "华为技术有限公司"
+    },
+    {
+      "affiliation_id": "sdib",
+      "name_en": "Shandong Institute of Blockchain",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "pbc",
+      "name_en": "Digital Currency Institute of the People's Bank of China",
+      "name_zh": "中国人民银行数字货币研究所"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Anyu Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "thu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Zhongxiang Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "cuc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Chunhuan Zhao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "huawei"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zhiyuan Qiu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sdib"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yi Tang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "huawei"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Changchun Mu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pbc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "Z_q",
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "bounded secret and error distributions with level-specific rho_s and rho_e",
+    "modulus": 1024,
+    "dimensions": {
+      "square_matrix_dimensions": [
+        608,
+        832,
+        1184,
+        1664,
+        2400
+      ]
+    },
+    "weights": null,
+    "error_correction": "Barnes-Wall or rotated Barnes-Wall lattice coding",
+    "symmetric_primitives": [
+      "AES family",
+      "SHAKE family",
+      "SM3 family"
+    ],
+    "representation": "10-bit packed matrix elements",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "Scloud+-128",
+      "implementation_aliases": [
+        "Scloud+-128"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "m": 608,
+        "n": 608,
+        "mbar": 8,
+        "q": 1024
+      },
+      "decapsulation_failure_probability": "<2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 6096,
+          "raw": "6096 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 7440,
+          "raw": "7440 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 6160,
+          "raw": "6160 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scloud+-192",
+      "implementation_aliases": [
+        "Scloud+-192"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 192,
+      "claimed_quantum_security_bits": 96,
+      "core_parameters": {
+        "m": 832,
+        "n": 832,
+        "mbar": 12,
+        "q": 1024
+      },
+      "decapsulation_failure_probability": "<2^-192",
+      "sizes": {
+        "public_key": {
+          "bytes": 11456,
+          "raw": "11456 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 13872,
+          "raw": "13872 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 12645,
+          "raw": "12645 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 24,
+          "raw": "24 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scloud+-256",
+      "implementation_aliases": [
+        "Scloud+-256"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "m": 1184,
+        "n": 1184,
+        "mbar": 12,
+        "q": 1024
+      },
+      "decapsulation_failure_probability": "<2^-256",
+      "sizes": {
+        "public_key": {
+          "bytes": 16296,
+          "raw": "16296 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 19680,
+          "raw": "19680 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 17925,
+          "raw": "17925 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scloud+-384",
+      "implementation_aliases": [
+        "Scloud+-384"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 384,
+      "claimed_quantum_security_bits": 192,
+      "core_parameters": {
+        "m": 1664,
+        "n": 1664,
+        "mbar": 16,
+        "q": 1024
+      },
+      "decapsulation_failure_probability": "<2^-384",
+      "sizes": {
+        "public_key": {
+          "bytes": 33296,
+          "raw": "33296 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 40144,
+          "raw": "40144 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 33600,
+          "raw": "33600 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 48,
+          "raw": "48 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Scloud+-512",
+      "implementation_aliases": [
+        "Scloud+-512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "m": 2400,
+        "n": 2400,
+        "mbar": 16,
+        "q": 1024
+      },
+      "decapsulation_failure_probability": "<2^-512",
+      "sizes": {
+        "public_key": {
+          "bytes": 48016,
+          "raw": "48016 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 57744,
+          "raw": "57744 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 48320,
+          "raw": "48320 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Submission claims substantially smaller keys/ciphertexts than FrodoKEM at compared levels.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Table 1 FrodoKEM comparison",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "performance",
+        "summary": "Structured lattice coding and small secret are claimed to improve runtime.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Every set has a nonzero failure probability bounded below its target 2^-lambda.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Performance claims depend on selected AES/SHAKE/SM3 family and x86-64 implementation.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/Scloud+/Implementations and Test_Vectors/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Scloud+/Basic information and Intellectual property/Scloud+算法基本信息、知识产权声明、参考实现和优化实现所有人声明.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Scloud+/Algorithm specifications/Scloud+算法文本.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

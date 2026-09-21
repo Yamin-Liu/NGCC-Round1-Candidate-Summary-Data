@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "classification_rule": "Mathematical family and protocol family are orthogonal and must both be recorded.",
+  "mathematical": {
+    "lattice_based": {"label_en": "Lattice-based", "label_zh": "格基", "subcategories": ["mlwe_based", "ntru_based", "ntru_and_rlwe_based", "unstructured_lattice", "module_lattice", "ring_lattice"]},
+    "code_based": {"label_en": "Code-based", "label_zh": "编码基", "subcategories": ["qc_mdpc", "qc_ldpc", "quasi_cyclic_code_based", "rank_metric", "other_code_based"]},
+    "isogeny_based": {"label_en": "Isogeny-based", "label_zh": "同源基", "subcategories": ["commutative_group_action", "oriented_class_group_action", "supersingular_isogeny", "other_isogeny_based"]},
+    "multivariate_based": {"label_en": "Multivariate-based", "label_zh": "多变量基", "subcategories": []},
+    "multi_family": {"label_en": "Multi-family suite", "label_zh": "多数学家族套件", "subcategories": ["heterogeneous_suite", "generic_primitive_framework"]},
+    "other": {"label_en": "Other", "label_zh": "其他", "subcategories": []},
+    "unknown": {"label_en": "Unknown", "label_zh": "未知", "subcategories": []}
+  },
+  "protocol": {
+    "unauthenticated_key_exchange": {"label_en": "Unauthenticated key exchange", "label_zh": "未认证密钥交换", "subcategories": ["ephemeral_key_exchange", "other"]},
+    "non_interactive_key_exchange": {"label_en": "Non-interactive key exchange", "label_zh": "非交互式密钥交换", "subcategories": ["nike", "public_value_publication", "static_public_value_nike"]},
+    "authenticated_key_exchange": {"label_en": "Authenticated key exchange", "label_zh": "认证密钥交换", "subcategories": ["kem_based_unilateral_ake", "kem_based_mutual_ake", "pke_kem_based_mutual_ake", "signature_authenticated_ake", "pre_shared_key_ake", "other_ake"]},
+    "unknown": {"label_en": "Unknown", "label_zh": "未知", "subcategories": []}
+  },
+  "authentication_type": ["none", "unilateral", "mutual"],
+  "forward_secrecy": ["none", "forward_secrecy", "weak_perfect_forward_secrecy", "perfect_forward_secrecy", "unknown"],
+  "claim_strength": ["stated", "argued", "formally_claimed", "measured"],
+  "limitation_provenance": ["explicit_in_submission", "explicit_caveat", "derived_from_parameters", "derived_from_test_setup", "derived_from_implementation_description"],
+  "units": {"sizes": "byte", "security_strength": "bit", "failure_probability": "exact expression or decimal/string bound"},
+  "message_counting": {"message_flows": "Number of one-way protocol messages.", "round_trips": "Number of request-response round trips; two one-way messages normally equal one round trip."},
+  "non_interactive_rule": "Use participant roles; set message_flows to 0 when no session message is sent, or accurately record a public-value publication mechanism without inventing initiator/responder flows."
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "families": {
+    "lattice_based": {"zh": "格密码", "report_label": "格密码"},
+    "code_based": {"zh": "编码密码", "report_label": "编码密码"},
+    "isogeny_based": {"zh": "同源密码", "report_label": "同源密码"},
+    "multivariate_based": {"zh": "多变量密码", "report_label": "多变量密码"},
+    "hybrid_composite": {"zh": "组合/混合密码", "report_label": "组合/其他"},
+    "other": {"zh": "其他", "report_label": "组合/其他"}
+  },
+  "subcategories": {
+    "unstructured_lattice": {"family": "lattice_based", "zh": "基于无结构格", "report_label": "基于无结构格"},
+    "lwe_rlwe_based": {"family": "lattice_based", "zh": "基于MLWE/RLWE", "report_label": "基于MLWE/RLWE"},
+    "ntru_based": {"family": "lattice_based", "zh": "基于NTRU", "report_label": "基于NTRU"},
+    "other_lattice": {"family": "lattice_based", "zh": "其他格结构", "report_label": "其他格密码"},
+    "rank_metric": {"family": "code_based", "zh": "基于秩距离", "report_label": "基于秩距离"},
+    "hamming_metric": {"family": "code_based", "zh": "基于汉明距离", "report_label": "基于汉明距离"},
+    "other_code": {"family": "code_based", "zh": "其他编码结构", "report_label": "其他编码密码"},
+    "supersingular_isogeny": {"family": "isogeny_based", "zh": "基于超奇异同源", "report_label": "超奇异同源"},
+    "other_isogeny": {"family": "isogeny_based", "zh": "其他同源结构", "report_label": "其他同源密码"},
+    "multivariate": {"family": "multivariate_based", "zh": "基于多变量方程", "report_label": "多变量"},
+    "hybrid": {"family": "hybrid_composite", "zh": "组合或混合构造", "report_label": "组合/混合"},
+    "other": {"family": "other", "zh": "其他", "report_label": "其他"}
+  },
+  "claim_categories": ["compactness", "performance", "security", "simplicity", "flexibility", "scalability", "implementation"],
+  "limitation_types": ["explicit_in_submission", "explicit_caveat", "derived_from_test_setup", "derived_from_implementation_description"],
+  "null_policy": "Unknown or inapplicable values are null; numeric zero must never stand for unknown.",
+  "source_priority": ["basic_information", "specification", "api_header", "readme", "self_assessment", "other"]
+}

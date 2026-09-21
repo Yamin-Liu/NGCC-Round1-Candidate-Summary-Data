@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "dkex",
+  "name": "DKEX",
+  "full_name": "Ding Key Exchange",
+  "version": "2026-06 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/DKEX.zip",
+  "aliases": [],
+  "overview_classification": {
+    "mathematical": {"family": "lattice_based", "subcategory": "mlwe_based", "label_en": "Module-LWE-based lattice", "label_zh": "基于 Module-LWE 的格密码"},
+    "protocol": {"family": "authenticated_key_exchange", "subcategory": "signature_authenticated_ake", "label_en": "Signature-authenticated key exchange", "label_zh": "签名认证密钥交换"},
+    "summary_label_zh": "Module-LWE 格基、签名型双向认证三消息 AKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "interactive",
+    "message_flows": 3,
+    "round_trips": 1.5,
+    "authentication": {"type": "mutual", "authenticated_roles": ["initiator", "responder"], "mechanism": "Both parties sign the role- and identity-bound transcript hash with pre-distributed long-term signature keys."},
+    "roles": [
+      {"role": "initiator", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a long-term signature key pair and creates the per-session DKE key pair (M1, sk_e)."},
+      {"role": "responder", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a long-term signature key pair and samples fresh DKE response randomness per session."}
+    ],
+    "pre_distributed_material": ["Certified initiator signature verification key pk_A", "Certified responder signature verification key pk_B"],
+    "forward_secrecy": {"level": "weak_perfect_forward_secrecy", "conditions": "Claimed in the CK model for fresh sessions; the tested session and matching session must not have their ephemeral state/session key revealed before completion."},
+    "key_confirmation": "No separate MAC-based key-confirmation value; the three-pass signed transcript provides mutual entity authentication, while the signatures do not directly cover the derived raw secret.",
+    "transcript_binding": "T = H(LABEL_A || LABEL_B || pk_A || pk_B || M1 || M2; N), and the final key is KDF(raw_ss || T).",
+    "identity_binding": "Both certified verification keys, role labels, and both DKE public messages are included in the signed transcript hash."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Three-pass signed ephemeral Ding-type key exchange: a CPA-secure reconciliation-based DKE is authenticated with two long-term signatures.",
+    "underlying_primitives": [
+      {"name": "DKE", "role": "Ephemeral two-pass CPA-secure reconciliation key exchange"},
+      {"name": "ML-DSA-44 / ML-DSA-87", "role": "Long-term mutual transcript authentication"},
+      {"name": "SM3-256 / SM3 pseudo-XOF-512", "role": "Transcript hash and final KDF"}
+    ],
+    "hard_problems": [
+      {"name": "Module Learning With Errors (MLWE)", "role": "Secrecy of the DKE layer and part of ML-DSA security"},
+      {"name": "Module Short Integer Solution (MSIS)", "role": "Unforgeability foundation of the ML-DSA authentication layer"}
+    ],
+    "mathematical_structures": ["Module lattice R_q^k", "seed-generated public matrix", "centered binomial secrets/errors", "fine-grained reconciliation"],
+    "security_models": ["Canetti-Krawczyk model with weak perfect forward secrecy", "EUF-CMA signatures", "CPA security of ephemeral DKE", "random-oracle treatment of transcript hash/KDF"]
+  },
+  "protocol_flow": [
+    {"flow": 1, "sender": "initiator", "receiver": "responder", "message_id": "m1", "components": [{"name": "M1", "semantics": "Fresh initiator ephemeral DKE public key."}], "semantics": "The initiator creates (M1, sk_e), sends m1 = M1, and retains sk_e, M1, and pk_A."},
+    {"flow": 2, "sender": "responder", "receiver": "initiator", "message_id": "m2", "components": [{"name": "M2", "semantics": "Responder DKE response containing compressed data and reconciliation signal."}, {"name": "sigma_B", "semantics": "Responder signature on transcript hash T."}], "semantics": "The responder computes the raw shared secret, transcript T, and sends m2 = M2 || sigma_B."},
+    {"flow": 3, "sender": "initiator", "receiver": "responder", "message_id": "m3", "components": [{"name": "sigma_A", "semantics": "Initiator signature on the same transcript hash T."}], "semantics": "After verifying sigma_B and deriving the DKE secret, the initiator sends sigma_A; the responder verifies it before accepting."}
+  ],
+  "key_schedule": {
+    "static_contributions": ["Long-term signing keys authenticate T but are not inputs to the DKE raw secret."],
+    "ephemeral_contributions": ["Raw ss from DKE.Response(M1, rho_2) / DKE.DeriveSecret(M2, sk_e)"],
+    "transcript_hash": "T = H(LABEL_A || LABEL_B || pk_A || pk_B || M1 || M2; N)",
+    "session_key_derivation": "session_key = KDF(ss || T; N) (the algorithms store state (ss,T) and apply KDF to that state).",
+    "domain_separation": "Role- and level-specific LABEL_A and LABEL_B strings (DKEX-KSIG-...-A/B); SM3-256 at 128/256 and SM3 pseudoXOF-512 at 512.",
+    "ephemeral_secret_erasure": "Initiator erases sk_e, M1, and pk_A from session state after deriving ss; the submission requires fresh single-use DKE secrets to prevent failure-reaction accumulation."
+  },
+  "submitters": [
+    {"name_en": "Liu Rui", "name_zh": "刘锐", "affiliation_ids": ["aff-1"], "is_contact": true},
+    {"name_en": "Kong Chen", "name_zh": "孔琛", "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zhang Wenbin", "name_zh": "张文彬", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Zeng Neng", "name_zh": "曾能", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Xia Han", "name_zh": "夏涵", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Manoj Gyawali", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Samuel José García", "name_zh": null, "affiliation_ids": ["aff-3", "aff-4"], "is_contact": false},
+    {"name_en": "Alba Hernández Costoya", "name_zh": null, "affiliation_ids": ["aff-3", "aff-4"], "is_contact": false},
+    {"name_en": "Xue Haiyang", "name_zh": "薛海洋", "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Huang Junhao", "name_zh": "黄军浩", "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Gong Boru", "name_zh": "巩博儒", "affiliation_ids": ["aff-6"], "is_contact": false},
+    {"name_en": "Jin Yi", "name_zh": "金易", "affiliation_ids": ["aff-6"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Suzhou LangKong Post-Quantum Technology Co., Ltd. (LK Quantum)", "name_zh": "苏州朗空量子科技有限公司"},
+    {"affiliation_id": "aff-2", "name_en": "Xi'an Jiaotong-Liverpool University", "name_zh": "西交利物浦大学"},
+    {"affiliation_id": "aff-3", "name_en": "Basque Center for Applied Mathematics", "name_zh": "巴斯克应用数学中心"},
+    {"affiliation_id": "aff-4", "name_en": "University of the Basque Country", "name_zh": "巴斯克大学"},
+    {"affiliation_id": "aff-5", "name_en": "Singapore Management University", "name_zh": "新加坡管理大学"},
+    {"affiliation_id": "aff-6", "name_en": "China Construction Bank Corporation", "name_zh": "中国建设银行股份有限公司"}
+  ],
+  "common_parameters": {"ring_or_module": "R_q^k", "public_matrix": "Seed-generated", "underlying_key_exchange": "DKE", "signature": "ML-DSA", "reconciliation": "Fine-grained signal processing", "hash_xof_kdf": "SM3-256 for DKEX-128/256; SM3-based pseudo-XOF-512 for DKEX-512", "secret_and_error_distribution": "Centered binomial chi_eta"},
+  "parameter_sets": [
+    {"name": "DKEX-128", "implementation_aliases": ["128"], "target_security": {"classical_bits": 128, "quantum_bits": null}, "ngcc_level": 1, "core_parameters": {"n": 256, "q": 3329, "k": 2, "eta": 3, "l": 4, "d": 10, "signature": "ML-DSA-44", "signature_public_key_bytes": 1312, "signature_secret_key_bytes": 2560, "signature_bytes": 2420}, "sizes_bytes": {"long_term_public_key": 1312, "long_term_secret_key": 2560, "ephemeral_public_key": 800, "ephemeral_secret_key": 768, "messages": [{"message_id": "m1", "bytes": 800}, {"message_id": "m2", "bytes": 3188}, {"message_id": "m3", "bytes": 2420}], "total_communication": 6408, "initiator_session_state": 2880, "responder_session_state": 1312, "shared_secret": 32, "randomness": {"signature_keygen_seed": null, "initiator_dke_seed": 32, "responder_dke_coins": 64}}, "failure_probability": "2^-132.7", "issues": []},
+    {"name": "DKEX-256", "implementation_aliases": ["256"], "target_security": {"classical_bits": 256, "quantum_bits": null}, "ngcc_level": 2, "core_parameters": {"n": 256, "q": 3329, "k": 4, "eta": 2, "l": 5, "d": 11, "signature": "ML-DSA-87", "signature_public_key_bytes": 2592, "signature_secret_key_bytes": 4896, "signature_bytes": 4627}, "sizes_bytes": {"long_term_public_key": 2592, "long_term_secret_key": 4896, "ephemeral_public_key": 1568, "ephemeral_secret_key": 1536, "messages": [{"message_id": "m1", "bytes": 1568}, {"message_id": "m2", "bytes": 6195}, {"message_id": "m3", "bytes": 4627}], "total_communication": 12390, "initiator_session_state": 5696, "responder_session_state": 2592, "shared_secret": 32, "randomness": {"signature_keygen_seed": null, "initiator_dke_seed": 32, "responder_dke_coins": 64}}, "failure_probability": "2^-181.2", "issues": []},
+    {"name": "DKEX-512", "implementation_aliases": ["512"], "target_security": {"classical_bits": 512, "quantum_bits": null}, "ngcc_level": 3, "core_parameters": {"n": 512, "q": 7681, "k": 4, "eta": 3, "l": 4, "d": 11, "signature": "ML-DSA-87 (provisional; authentication about 256 classical bits)", "signature_public_key_bytes": 2592, "signature_secret_key_bytes": 4896, "signature_bytes": 4627}, "sizes_bytes": {"long_term_public_key": 2592, "long_term_secret_key": 4896, "ephemeral_public_key": 3392, "ephemeral_secret_key": 3328, "messages": [{"message_id": "m1", "bytes": 3392}, {"message_id": "m2", "bytes": 7699}, {"message_id": "m3", "bytes": 4627}], "total_communication": 15718, "initiator_session_state": 9312, "responder_session_state": 2592, "shared_secret": 64, "randomness": {"signature_keygen_seed": null, "initiator_dke_seed": 64, "responder_dke_coins": 128}}, "failure_probability": "2^-167.0", "issues": ["The ML-DSA-87 authentication layer is explicitly limited to about 256 classical bits and does not meet the 512-bit confidentiality target."]}
+  ],
+  "correctness": {"underlying_failure_probability": {"DKEX-128": "2^-132.7", "DKEX-256": "2^-181.2", "DKEX-512": "2^-167.0"}, "session_failure_probability": {"DKEX-128": "2^-132.7", "DKEX-256": "2^-181.2", "DKEX-512": "2^-167.0"}, "relationship": "A DKEX session has one DKE reconciliation event, so its honest-session failure probability is the underlying DKE delta, not twice delta.", "basis": "Algorithm specification Section 3.3, pp. 21-22; one fresh single-use DKE execution per session."},
+  "security_claims": [
+    {"category": "authentication", "claim": "Mutual entity authentication follows from EUF-CMA security of both transcript signatures and collision resistance of the transcript hash.", "claim_strength": "formally_claimed", "comparison_scope": "Three-pass signed DKE"},
+    {"category": "ake_model", "claim": "Session-key security in the Canetti-Krawczyk model with weak perfect forward secrecy.", "claim_strength": "formally_claimed", "comparison_scope": "Subject to freshness/exposure conditions"},
+    {"category": "key_indistinguishability", "claim": "Key indistinguishability reduces to CPA security of ephemeral DKE, signature unforgeability, transcript hashing, and the KDF/random-oracle assumption.", "claim_strength": "formally_claimed", "comparison_scope": "Stated security theorem"},
+    {"category": "uks_replay", "claim": "Binding role labels, both certified verification keys, and both DKE messages in T is argued to prevent transcript misbinding and unknown-key-share patterns.", "claim_strength": "argued", "comparison_scope": "Authenticated completed sessions"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "security", "claim": "Provides mutually authenticated CK/wPFS security while using a fresh CPA-secure DKE directly.", "claim_strength": "formally_claimed", "comparison_scope": "Signature-authenticated AKE"},
+      {"category": "simplicity", "claim": "Separates the DKE arithmetic, signature authentication, transcript hashing, and KDF into modular components.", "claim_strength": "stated", "comparison_scope": "Protocol architecture"},
+      {"category": "compatibility", "claim": "Uses ML-KEM-like module-lattice arithmetic and standardized ML-DSA authentication for the first two target levels.", "claim_strength": "argued", "comparison_scope": "Module-lattice ecosystem"},
+      {"category": "implementation", "claim": "Reference, AVX2, ARMv8-A, and Cortex-M4 implementations preserve the same wire formats.", "claim_strength": "measured", "comparison_scope": "Submitted implementation set"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "pre_distribution", "description": "Both parties' certified long-term signature verification keys must be available to their peers.", "provenance": "explicit_in_submission"},
+      {"category": "correctness", "description": "The reconciliation-based DKE has a nonzero honest-session failure probability delta.", "provenance": "explicit_in_submission"},
+      {"category": "forward_secrecy", "description": "The claimed wPFS depends on CK freshness and non-exposure of target ephemeral/session state.", "provenance": "explicit_caveat"},
+      {"category": "authentication_strength", "description": "DKEX-512 uses provisional ML-DSA-87, limiting authentication to about 256 classical bits although the DKE confidentiality target is 512 bits.", "provenance": "explicit_caveat"},
+      {"category": "primitive_dependency", "description": "Security depends on CPA-secure DKE, EUF-CMA signatures, transcript-hash collision resistance, and the stated KDF/random-oracle assumptions.", "provenance": "explicit_in_submission"},
+      {"category": "test_scope", "description": "Reference benchmarks use one Intel Core i9-10885H under Ubuntu 24.04/WSL2 and average 128 exchanges.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [{"type": "reference", "language": "C", "platform": "portable scalar"}, {"type": "optimized", "language": "C/assembly", "platform": "x86-64 AVX2"}, {"type": "additional", "language": "C/assembly", "platform": "ARMv8-A"}, {"type": "additional", "language": "C/assembly", "platform": "ARM Cortex-M4"}],
+  "submission_completeness": {"status": "complete", "present_components": ["basic information", "algorithm specification", "reference implementation", "optimized implementation", "additional implementations", "test vectors", "security analysis"], "missing_components": []},
+  "sources": [
+    {"source_id": "dkex-basic", "type": "basic_information", "path": "KeyExchange/DKEX.zip::Basic information/DKEX-Appendix A - Basic Algorithm Information.pdf", "priority": 1, "notes": "Text-extracted; private contact details intentionally excluded."},
+    {"source_id": "dkex-spec", "type": "algorithm_specification", "path": "KeyExchange/DKEX.zip::Algorithm specifications/DKEX-Algorithm Specification.pdf", "priority": 2, "notes": "Primary technical source."},
+    {"source_id": "dkex-api", "type": "api_header", "path": "KeyExchange/DKEX.zip::Implementations/**/KEX_AlgorithmInstance.h", "priority": 3, "notes": "Used to cross-check sizes and implementation variants."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "dkex-basic", "locator": "pp. 1-4", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "dkex-spec", "locator": "pp. 3-5, 16-22", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "dkex-spec", "locator": "Algorithms 13-19 and Figure 1, pp. 16-20", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "dkex-spec", "locator": "Tables 1-2, pp. 21-22; Tables 4-5, p. 23", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "dkex-spec", "locator": "Section 3.3, p. 22", "confidence": "high", "extraction_status": "verified"},
+    {"field": "security_claims", "source_id": "dkex-spec", "locator": "Section 5.1, pp. 27-34", "confidence": "high", "extraction_status": "verified"},
+    {"field": "limitations_and_constraints", "source_id": "dkex-spec", "locator": "pp. 22-23 and security proof freshness conditions", "confidence": "high", "extraction_status": "derived"}
+  ],
+  "review": {"status": "cross_checked", "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness relation"], "review_notes": ["All message totals were recomputed as m1 + m2 + m3.", "Ephemeral secret-key sizes were cross-derived from State A = sk_e + M1 + pk_A and agree with the DKE serialized sizes.", "independent cross-review by group_3"], "conflicts": []},
+  "issues": [
+    {"field": "parameter_sets.target_security.quantum_bits", "severity": "warning", "description": "No explicit target quantum-bit values were found; stored as null."},
+    {"field": "parameter_sets[2].authentication_strength", "severity": "warning", "description": "The submission explicitly states that ML-DSA-87 gives only about 256 classical bits for DKEX-512 and is provisional."},
+    {"field": "parameter_sets.sizes_bytes.randomness.signature_keygen_seed", "severity": "info", "description": "The specification denotes signature key-generation randomness abstractly; byte counts are not fixed in the principal tables."}
+  ]
+}

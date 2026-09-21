@@ -1,0 +1,805 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "nev",
+  "name": "NEV",
+  "full_name": "NEV Encryption Family",
+  "version": "1.1",
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/NEV",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "ntru_based",
+    "subcategory_label_zh": "基于NTRU",
+    "subcategory_report_label": "基于NTRU"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "NTRU",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Ring-LWE / rounded Ring-LWE",
+        "role": "primary",
+        "notes": "Compact C* sets additionally rely on rounding-based hardness."
+      }
+    ],
+    "mathematical_structure": "Rq = Z_q[X]/(X^n+1) with NTRU public key h=g/f",
+    "underlying_pke": "NEV-PKE-OW",
+    "kem_construction": "NEV-KEM-CCA transform using deterministic re-encryption and implicit rejection",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-sklc",
+      "name_en": "State Key Laboratory of Cryptology",
+      "name_zh": "密码科学技术国家重点实验室"
+    },
+    {
+      "affiliation_id": "aff-whu",
+      "name_en": "Wuhan University",
+      "name_zh": "武汉大学"
+    },
+    {
+      "affiliation_id": "aff-sjtu",
+      "name_en": "Shanghai Jiao Tong University",
+      "name_zh": "上海交通大学"
+    },
+    {
+      "affiliation_id": "aff-ctqg",
+      "name_en": "China Telecom Quantum Group Ltd.",
+      "name_zh": "中电信量子信息科技集团有限公司"
+    },
+    {
+      "affiliation_id": "aff-ecnu",
+      "name_en": "East China Normal University",
+      "name_zh": "华东师范大学"
+    },
+    {
+      "affiliation_id": "aff-sdu",
+      "name_en": "Shandong University",
+      "name_zh": "山东大学"
+    },
+    {
+      "affiliation_id": "aff-xidian",
+      "name_en": "Xidian University",
+      "name_zh": "西安电子科技大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Jiang Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sklc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Di Yan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sklc"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Shuqin Fan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sklc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Debiao He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-whu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yu Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sjtu",
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Runqing Xu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-whu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jiangxia Ge",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ctqg"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yuanmi Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Weijia Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sdu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Cong Peng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-whu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Kang Yang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sklc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Hui Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sklc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Hui Zhu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ruikang Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jing Pan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "centered binomial and ternary distributions; compact sets use rounded T1/3*",
+    "modulus": "769, 1409 or 3329",
+    "dimensions": {
+      "n": "512,1024,2048"
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "ICCS SHA3/hash/KDF APIs"
+    ],
+    "representation": "packed single ring element; compact C* ciphertext rounded from modulus 769 to 256",
+    "other": {
+      "families": [
+        "compact C*",
+        "recommended R",
+        "DFR-oriented D"
+      ]
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "NEV-C1*",
+      "implementation_aliases": [
+        "NEV-C1-c"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 512,
+        "q": 769,
+        "key_distribution": "(B1,B2)",
+        "encryption_distribution": "(T1/3*,B2)",
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "2^-160",
+      "sizes": {
+        "public_key": {
+          "bytes": 615,
+          "raw": "615 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 1240,
+          "raw": "1240 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 512,
+          "raw": "512 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 10,
+          "raw": "10 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-R1",
+      "implementation_aliases": [
+        "NEV-R1"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 512,
+        "q": 1409,
+        "key_distribution": "(B3,B3)",
+        "encryption_distribution": "(B3,B3)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-133",
+      "sizes": {
+        "public_key": {
+          "bytes": 672,
+          "raw": "672 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 1354,
+          "raw": "1354 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 672,
+          "raw": "672 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 10,
+          "raw": "10 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-D1",
+      "implementation_aliases": [
+        "NEV-D1"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 512,
+        "q": 3329,
+        "key_distribution": "(B7,B7)",
+        "encryption_distribution": "(B7,B7)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-136",
+      "sizes": {
+        "public_key": {
+          "bytes": 768,
+          "raw": "768 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 1546,
+          "raw": "1546 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 768,
+          "raw": "768 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 10,
+          "raw": "10 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-C2*",
+      "implementation_aliases": [
+        "NEV-C2-c"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1024,
+        "q": 769,
+        "key_distribution": "(B1,T1/8)",
+        "encryption_distribution": "(T1/3*,B2)",
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "2^-162",
+      "sizes": {
+        "public_key": {
+          "bytes": 1229,
+          "raw": "1229 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 2474,
+          "raw": "2474 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 1024,
+          "raw": "1024 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-R2",
+      "implementation_aliases": [
+        "NEV-R2"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1024,
+        "q": 1409,
+        "key_distribution": "(B2,B2)",
+        "encryption_distribution": "(B2,B2)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-158",
+      "sizes": {
+        "public_key": {
+          "bytes": 1344,
+          "raw": "1344 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 2704,
+          "raw": "2704 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 1344,
+          "raw": "1344 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-D2",
+      "implementation_aliases": [
+        "NEV-D2"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1024,
+        "q": 3329,
+        "key_distribution": "(B4,B4)",
+        "encryption_distribution": "(B4,B4)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-217",
+      "sizes": {
+        "public_key": {
+          "bytes": 1536,
+          "raw": "1536 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 3088,
+          "raw": "3088 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 1536,
+          "raw": "1536 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-C3*",
+      "implementation_aliases": [
+        "NEV-C3-c"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2048,
+        "q": 769,
+        "key_distribution": "(T1/8,T1/8)",
+        "encryption_distribution": "(T1/3*,B1)",
+        "compressed": true
+      },
+      "decapsulation_failure_probability": "2^-163",
+      "sizes": {
+        "public_key": {
+          "bytes": 2458,
+          "raw": "2458 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 4948,
+          "raw": "4948 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 2048,
+          "raw": "2048 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-R3",
+      "implementation_aliases": [
+        "NEV-R3"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2048,
+        "q": 1409,
+        "key_distribution": "(T1/3,T1/3)",
+        "encryption_distribution": "(T1/3,B2)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-147",
+      "sizes": {
+        "public_key": {
+          "bytes": 2688,
+          "raw": "2688 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 5408,
+          "raw": "5408 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 2688,
+          "raw": "2688 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "NEV-D3",
+      "implementation_aliases": [
+        "NEV-D3"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2048,
+        "q": 3329,
+        "key_distribution": "(B2,B3)",
+        "encryption_distribution": "(B2,B3)",
+        "compressed": false
+      },
+      "decapsulation_failure_probability": "2^-301",
+      "sizes": {
+        "public_key": {
+          "bytes": 3072,
+          "raw": "3072 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "secret_key": {
+          "bytes": 6176,
+          "raw": "6176 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "ciphertext": {
+          "bytes": 3072,
+          "raw": "3072 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 2; secret-key formula in params.h"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Public key and ciphertext each use one ring element; C* profiles further round ciphertexts for about 16.7% reduction.",
+        "claim_strength": "quantified",
+        "comparison_scope": "C* compressed versus uncompressed C variants",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Randomized plaintext encoding is claimed to decouple worst-case decryption failure from the message.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "implementation",
+        "summary": "Power-of-two-friendly encoding and partial NTT implementations are provided for x86 and ARM.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Compact C* profiles rely on a heuristic independent rounding-error model and an additional rounding-based hardness assumption.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "All profiles have nonzero failure probability; recommended R profiles are chosen to hedge against possible NTRU attack improvements.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "Uncompressed C variants sacrifice the 16.7% ciphertext saving but avoid the compact-profile rounding assumption.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable x86",
+      "path": "KeyEncapsulation/NEV/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Additional_Implementation",
+      "language": "C and intrinsics",
+      "platform": "AArch64/NEON",
+      "path": "KeyEncapsulation/NEV/Implementations/Additional_Implementation/neon"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/NEV/Basic information/算法基本信息：NEV.PDF",
+      "priority": 1,
+      "notes": "Scanned; OCR used."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/NEV/Algorithm specifications/算法文本：NEV.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/NEV/Implementations/Reference_Implementation/NEV-R1/params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-8 (OCR)",
+      "summary": "Fifteen submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.1-18",
+      "summary": "NTRU/RLWE assumptions and NEV-KEM-CCA.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.18-19, Table 2",
+      "summary": "Nine principal profiles, distributions, sizes, DFR and security estimates.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets[*].sizes.secret_key",
+      "source_id": "params",
+      "locator": "KEM_CCA_SK_BYTES macro",
+      "summary": "Secret key is two packed ring elements plus one seed.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Cross-checked specification parameter tables against submitted reference headers/API sizes."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "conflict",
+      "code": "implementation_param_selection",
+      "message": "Several submitted reference Makefiles appear to compile with -DPARAMS=1 irrespective of directory name; profile selection should be rechecked before reproducible builds.",
+      "field": "implementations"
+    },
+    {
+      "severity": "warning",
+      "code": "uncompressed_variants_not_separate_formal_rows",
+      "message": "Specification discusses NEV-C1/C2/C3 uncompressed variants, but Table 2 formally tabulates the nine C*/R/D rows; JSON records those nine rows and keeps implementation aliases.",
+      "field": "parameter_sets"
+    }
+  ]
+}

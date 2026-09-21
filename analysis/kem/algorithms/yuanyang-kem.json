@@ -1,0 +1,428 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "yuanyang-kem",
+  "name": "YuanYang.KEM",
+  "full_name": "YuanYang.KEM",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/YuanYang.KEM",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "ntru_based",
+    "subcategory_label_zh": "基于NTRU",
+    "subcategory_report_label": "基于NTRU"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "NTRU",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Ring-LWE",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "NTRU encryption paradigm over a polynomial ring",
+    "underlying_pke": "YuanYang public-key encryption",
+    "kem_construction": "standard CPA-to-CCA transform with public-key binding",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "rennes",
+      "name_en": "Université de Rennes",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "pqshield",
+      "name_en": "PQShield",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "gzhu",
+      "name_en": "Guangzhou University",
+      "name_zh": "广州大学"
+    },
+    {
+      "affiliation_id": "thu",
+      "name_en": "Tsinghua University",
+      "name_zh": "清华大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Daniel De Almeida Braga",
+      "name_zh": null,
+      "affiliation_ids": [
+        "rennes"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Thomas Espitau",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pqshield"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Pierre-Alain Fouque",
+      "name_zh": null,
+      "affiliation_ids": [
+        "rennes"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Huiwen Jia",
+      "name_zh": null,
+      "affiliation_ids": [
+        "gzhu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Paul Kirchner",
+      "name_zh": null,
+      "affiliation_ids": [
+        "thu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Bachir Lachguel",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pqshield"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Alexandre Wallet",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pqshield"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yang Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "thu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Shiduo Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "thu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "power-of-two cyclotomic polynomial ring",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "approximate Gaussian secret and encryption randomness via inverse CDT",
+    "modulus": "2689, 4481, or 7681",
+    "dimensions": {
+      "degree": [
+        512,
+        1024,
+        2048
+      ]
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "domain-separated XOF/hash interfaces"
+    ],
+    "representation": "batch-packed public key and rounded ciphertext",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "YuanYang.KEM-512",
+      "implementation_aliases": [
+        "YuanYang.KEM-512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "ring_degree_d": 512,
+        "q": 2689,
+        "rounding_k": 3,
+        "sigma_f": 1.69,
+        "sigma_s": 1.732,
+        "sigma_e": 1.581
+      },
+      "decapsulation_failure_probability": "2^-130.5",
+      "sizes": {
+        "public_key": {
+          "bytes": 736,
+          "raw": "736 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 1536,
+          "raw": "1536 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 656,
+          "raw": "656 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "YuanYang.KEM-1024",
+      "implementation_aliases": [
+        "YuanYang.KEM-1024"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "ring_degree_d": 1024,
+        "q": 4481,
+        "rounding_k": 4,
+        "sigma_f": 1.6,
+        "sigma_s": 1.414,
+        "sigma_e": 1.265
+      },
+      "decapsulation_failure_probability": "2^-270.2",
+      "sizes": {
+        "public_key": {
+          "bytes": 1568,
+          "raw": "1568 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 3168,
+          "raw": "3168 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1344,
+          "raw": "1344 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "YuanYang.KEM-2048",
+      "implementation_aliases": [
+        "YuanYang.KEM-2048"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "ring_degree_d": 2048,
+        "q": 7681,
+        "rounding_k": 4,
+        "sigma_f": 1.49,
+        "sigma_s": 1.414,
+        "sigma_e": 1.0
+      },
+      "decapsulation_failure_probability": "2^-531.5",
+      "sizes": {
+        "public_key": {
+          "bytes": 3328,
+          "raw": "3328 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 6528,
+          "raw": "6528 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 2880,
+          "raw": "2880 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Submission claims public keys and ciphertexts comparable to or smaller than Kyber at matched levels.",
+        "claim_strength": "comparative",
+        "comparison_scope": "performance section",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Parameters are claimed to meet conservative Core-SVP targets and very low DFR.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Benchmarks use one Intel i7-1360P performance core, GCC 15.2 and 10,000 repetitions.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Hashing and random sampling dominate measured encapsulation/decapsulation time.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Joint KEM/signature key reuse requires explicit domain separation.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/YuanYang.KEM/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/YuanYang.KEM/Basic information/YuanYang.KEM算法基本信息.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/YuanYang.KEM/Algorithm specifications/YuanYang.KEM算法文本.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

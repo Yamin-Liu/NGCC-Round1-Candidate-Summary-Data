@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "afs-kex",
+  "name": "AFS-KEX",
+  "full_name": "Authenticated Forward-Secure Key Exchange: pMAKE-BW and pUAKE-BW",
+  "version": "1.0 (2026-06-29)",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/AFS-KEX.zip",
+  "aliases": ["AFS-KEX-BW", "pMAKE-BW", "pUAKE-BW"],
+  "overview_classification": {
+    "mathematical": {"family": "lattice_based", "subcategory": "mlwe_based", "label_en": "Module-LWE lattice with Barnes-Wall lattice coding", "label_zh": "基于 Module-LWE 与 Barnes-Wall 格编码的格密码"},
+    "protocol": {"family": "authenticated_key_exchange", "subcategory": "kem_based_mutual_ake", "label_en": "KEM-based mutually authenticated key exchange (primary pMAKE-BW profile)", "label_zh": "基于 KEM 的双向认证密钥交换（主方案 pMAKE-BW）"},
+    "summary_label_zh": "MLWE/Barnes-Wall 格基、基于 KEM 的四消息双向认证 AKE（另含三消息单向认证变体）"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "interactive",
+    "message_flows": 4,
+    "round_trips": 2,
+    "authentication": {"type": "mutual", "authenticated_roles": ["initiator", "responder"], "mechanism": "Primary pMAKE-BW authenticates both parties by reconstructing each certified static BW-KEM public key from a session-specific combined key and an XOR-protected ephemeral seed, followed by CA verification; no online digital signature is used."},
+    "roles": [
+      {"role": "initiator", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a certified static BW-KEM key pair and creates fresh seed_A, ephemeral key material, and a combined key cpk_A/csk_A."},
+      {"role": "responder", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a certified static BW-KEM key pair and creates fresh seed_B, ephemeral key material, and a combined key cpk_B/csk_B."}
+    ],
+    "pre_distributed_material": ["CA trust anchor or equivalent authenticated public directory", "NGCC evaluation profile pre-provides each peer's static and combined public keys before the online four-pass exchange"],
+    "forward_secrecy": {"level": "perfect_forward_secrecy", "conditions": "Claimed in the post-eCK-PFS model for fresh completed sessions; later static-key compromise alone must not be combined with disallowed session-key or relevant ephemeral-state exposure."},
+    "key_confirmation": "Explicit authentication and key confirmation are claimed. In the NGCC implementation, pass 4 carries no payload and completes responder-side verification/confirmation.",
+    "transcript_binding": "The generic pMAKE session key derives from both AFS-KEM secrets and the protocol's certified-identity/public-key reconstruction; the security definition matches the KEM-related transcript (cpk_A, cpk_B, ct_A, ct_B). The implementation KDF consumes K_B || K_A after the interface has bound the supplied public keys and protected seeds.",
+    "identity_binding": "Each recovered static public key is checked against the claimed identity through CAVerf; the generic protocol sends identities during the handshake, whereas the NGCC profile assumes peer static/combined public keys are already supplied."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Signature-free post-specified-identity AKE built from an authenticated forward-secure KEM; the primary pMAKE composes two AFS-KEM contributions, while pUAKE uses one.",
+    "underlying_primitives": [
+      {"name": "AFS-KEM-BW", "role": "Combines certified static and fresh ephemeral BW-KEM keys into a session-specific encapsulation target"},
+      {"name": "BW-KEM", "role": "Native encapsulation/decapsulation primitive reused without changing its interface"},
+      {"name": "BW-PKE / FO_AFS", "role": "CPA encryption core and Fujisaki-Okamoto-style transform supporting the claimed CCA properties"},
+      {"name": "PRF/XOF and XOR seed protection", "role": "Derives the session key and two seed-protection keys from K_A and K_B"},
+      {"name": "SM3-based hash/XOF", "role": "NGCC implementation hashing and extendable-output backend"}
+    ],
+    "hard_problems": [{"name": "Module Learning With Errors (MLWE)", "role": "Security foundation of BW-KEM/AFS-KEM-BW and the AKE reductions"}],
+    "mathematical_structures": ["R_q = Z_q[x]/(x^N+1)", "module lattices of rank k", "centered binomial secrets/errors", "nested Barnes-Wall lattice codes BW8/BW32", "component-wise static/ephemeral key composition"],
+    "security_models": ["post-specified-identity post-eCK-PFS", "ROM", "QROM", "IND-ECPA", "IND-SCCA", "IND-LCK-SCCA", "explicit authentication", "match soundness"]
+  },
+  "protocol_flow": [
+    {"flow": 1, "sender": "initiator", "receiver": "responder", "message_id": "m1", "components": [{"name": "ct_B", "semantics": "BW-KEM ciphertext encapsulated to responder combined public key cpk_B."}], "semantics": "NGCC evaluated profile pass 1. The generic post-ID pMAKE specification instead sends cpk_A in round 1."},
+    {"flow": 2, "sender": "responder", "receiver": "initiator", "message_id": "m2", "components": [{"name": "ct_A", "semantics": "BW-KEM ciphertext encapsulated to initiator combined public key cpk_A."}, {"name": "c_seed_B", "semantics": "XOR protection K_ENC^B XOR seed_B used by the initiator to reconstruct and verify responder static key material."}], "semantics": "NGCC evaluated profile pass 2; responder derives K_A and decapsulates ct_B to obtain K_B."},
+    {"flow": 3, "sender": "initiator", "receiver": "responder", "message_id": "m3", "components": [{"name": "c_seed_A", "semantics": "XOR protection K_ENC^A XOR seed_A used by the responder to reconstruct and verify initiator static key material."}], "semantics": "Initiator decapsulates ct_A, derives the session and seed-protection keys, verifies responder key binding, and returns protected seed_A."},
+    {"flow": 4, "sender": "responder", "receiver": "initiator", "message_id": "m4", "components": [], "semantics": "Zero-byte final pass in the NGCC implementation: responder reconstructs the initiator ephemeral key, extracts and verifies the static public key, and completes key confirmation. The generic pMAKE specification represents the final responder-to-initiator identity/protected-seed message explicitly."}
+  ],
+  "key_schedule": {
+    "static_contributions": ["Certified static BW-KEM key components sk_A/pk_A and sk_B/pk_B are included in combined keys csk_U = sk_U + sk_Ue and cpk_U = pk_U + pk_Ue."],
+    "ephemeral_contributions": ["Fresh seed_A and seed_B deterministically generate ephemeral BW-KEM key components for each session.", "K_A and K_B are the two BW-KEM shared secrets encapsulated to cpk_A and cpk_B."],
+    "transcript_hash": "No separate transcript-hash formula is specified for the NGCC implementation; the formal analysis binds the KEM transcript (cpk_A, cpk_B, ct_A, ct_B) through the AFS-KEM construction and identity/key reconstruction.",
+    "session_key_derivation": "(K_SESSION, K_AENC, K_BENC) = PRF(K_A, K_B); implementation applies the configured XOF to the concatenation K_B || K_A and emits three security-parameter-length strings.",
+    "domain_separation": "BW-KEM random-oracle inputs use deterministic public-key identifiers ID(pk); no distinct textual AKE domain-separation label was found.",
+    "ephemeral_secret_erasure": "The security model assumes all protocol randomness/ephemeral state is securely erased when a session accepts or rejects; encapsulation randomness is erased after computation."
+  },
+  "submitters": [
+    {"name_en": "Yunlei Zhao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": true},
+    {"name_en": "Biming Zhou", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zhixiang Zhao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Chaofeng Guan", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Jian Weng", "name_zh": null, "affiliation_ids": [], "is_contact": false},
+    {"name_en": "Songlin Li", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Yifan Dong", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Boyue Fang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Hanyu Wei", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Wenqian Li", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Weizhi Ao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Xinsheng Zhang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Wenbo Guo", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Jieyu Zheng", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zhenhao Zhang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Xiao Li", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Fudan University (including College of Computer Science and Artificial Intelligence)", "name_zh": "复旦大学（含计算机科学技术学院/人工智能相关学院）"},
+    {"affiliation_id": "aff-2", "name_en": "Information Engineering University", "name_zh": "信息工程大学"}
+  ],
+  "common_parameters": {
+    "primary_protocol": "pMAKE-BW",
+    "secondary_protocol": "pUAKE-BW",
+    "ring": "R_q = Z_q[x]/(x^N+1)",
+    "q": 3329,
+    "base_parameter_sets": ["AFS-KEM-BW-C128", "AFS-KEM-BW-C256", "AFS-KEM-BW-C384", "AFS-KEM-BW-C512"],
+    "implemented_ngcc_parameter_sets": ["AFS-KEX-C128", "AFS-KEX-C256", "AFS-KEX-C512"],
+    "noise_distribution": "Centered binomial with eta_s, eta_e, eta_ct",
+    "coding": "Nested Barnes-Wall BW8 for C128 and BW32 for higher listed levels; tau=2",
+    "hash_xof_kdf": "SM3-based NGCC auxiliary hash/XOF; PRF/PRG modeled as random oracles in the proof",
+    "coordination_mechanism": "Encrypted ephemeral seeds enable the peer to reconstruct the ephemeral component and extract/verify the certified static public key"
+  },
+  "parameter_sets": [
+    {
+      "name": "AFS-KEX-C128", "implementation_aliases": ["AFS_KEX_C128", "AFS-KEM-BW-C128"],
+      "target_security": {"classical_bits": 131, "quantum_bits": 119}, "ngcc_level": null,
+      "core_parameters": {"N": 256, "q": 3329, "k": 2, "lambda_bits": 128, "eta_s": 6, "eta_e": 6, "eta_ct": 5, "d_u": 10, "d_v": 4, "coding_lattice": "BW8 (E8)", "coding_n": 8, "tau": 2, "mu_0": 4, "underlying_public_key_bytes": 784, "underlying_ciphertext_bytes": 768, "ngcc_interface_public_key_bytes": 1568, "ngcc_interface_secret_key_bytes": 3170},
+      "sizes_bytes": {"long_term_public_key": 1568, "long_term_secret_key": 3170, "ephemeral_public_key": 784, "ephemeral_secret_key": 768, "messages": [{"message_id": "m1", "bytes": 768}, {"message_id": "m2", "bytes": 784}, {"message_id": "m3", "bytes": 16}, {"message_id": "m4", "bytes": 0}], "total_communication": 1568, "initiator_session_state": 64, "responder_session_state": 64, "shared_secret": 16, "randomness": {"ephemeral_seed_per_party": 16, "implementation_state_capacity_per_party": 64}},
+      "failure_probability": "AFS-KEM composite-key delta_AFS = 2^-67.98 per encapsulation/decapsulation; session <= 2*delta_AFS by union bound", "issues": ["NGCC online communication excludes pre-provided public-key material, identity strings and certificates."]
+    },
+    {
+      "name": "AFS-KEX-C256", "implementation_aliases": ["AFS_KEX_C256", "AFS-KEM-BW-C256"],
+      "target_security": {"classical_bits": 267, "quantum_bits": 242}, "ngcc_level": null,
+      "core_parameters": {"N": 256, "q": 3329, "k": 4, "lambda_bits": 256, "eta_s": 3, "eta_e": 3, "eta_ct": 3, "d_u": 10, "d_v": 5, "coding_lattice": "BW32", "coding_n": 32, "tau": 2, "mu_0": 32, "underlying_public_key_bytes": 1568, "underlying_ciphertext_bytes": 1440, "ngcc_interface_public_key_bytes": 3136, "ngcc_interface_secret_key_bytes": 6338},
+      "sizes_bytes": {"long_term_public_key": 3136, "long_term_secret_key": 6338, "ephemeral_public_key": 1568, "ephemeral_secret_key": 1536, "messages": [{"message_id": "m1", "bytes": 1440}, {"message_id": "m2", "bytes": 1472}, {"message_id": "m3", "bytes": 32}, {"message_id": "m4", "bytes": 0}], "total_communication": 2944, "initiator_session_state": 128, "responder_session_state": 128, "shared_secret": 32, "randomness": {"ephemeral_seed_per_party": 32, "implementation_state_capacity_per_party": 128}},
+      "failure_probability": "AFS-KEM composite-key delta_AFS = 2^-122.24 per encapsulation/decapsulation; session <= 2*delta_AFS by union bound", "issues": ["NGCC online communication excludes pre-provided public-key material, identity strings and certificates."]
+    },
+    {
+      "name": "AFS-KEX-C512", "implementation_aliases": ["AFS_KEX_C512", "AFS-KEM-BW-C512"],
+      "target_security": {"classical_bits": 556, "quantum_bits": 504}, "ngcc_level": null,
+      "core_parameters": {"N": 512, "q": 3329, "k": 4, "lambda_bits": 512, "eta_s": 2, "eta_e": 2, "eta_ct": 2, "d_u": 10, "d_v": 6, "coding_lattice": "BW32", "coding_n": 32, "tau": 2, "mu_0": 32, "underlying_public_key_bytes": 3136, "underlying_ciphertext_bytes": 2944, "ngcc_interface_public_key_bytes": 6272, "ngcc_interface_secret_key_bytes": 12674},
+      "sizes_bytes": {"long_term_public_key": 6272, "long_term_secret_key": 12674, "ephemeral_public_key": 3136, "ephemeral_secret_key": 3072, "messages": [{"message_id": "m1", "bytes": 2944}, {"message_id": "m2", "bytes": 3008}, {"message_id": "m3", "bytes": 64}, {"message_id": "m4", "bytes": 0}], "total_communication": 6016, "initiator_session_state": 256, "responder_session_state": 256, "shared_secret": 64, "randomness": {"ephemeral_seed_per_party": 64, "implementation_state_capacity_per_party": 256}},
+      "failure_probability": "AFS-KEM composite-key delta_AFS = 2^-124.13 per encapsulation/decapsulation; session <= 2*delta_AFS by union bound", "issues": ["NGCC online communication excludes pre-provided public-key material, identity strings and certificates."]
+    }
+  ],
+  "correctness": {
+    "underlying_failure_probability": {"AFS-KEX-C128": "delta_AFS=2^-67.98 (underlying BW-KEM delta=2^-138.14)", "AFS-KEX-C256": "delta_AFS=2^-122.24 (underlying BW-KEM delta=2^-209.94)", "AFS-KEX-C512": "delta_AFS=2^-124.13 (underlying BW-KEM delta=2^-232.71)"},
+    "session_failure_probability": {"AFS-KEX-C128": "<=2^-66.98", "AFS-KEX-C256": "<=2^-121.24", "AFS-KEX-C512": "<=2^-123.13"},
+    "relationship": "Primary pMAKE-BW performs two correctness-relevant AFS-KEM decapsulations, so the honest-session failure probability is at most 2*delta_AFS by a union bound.",
+    "basis": "Specification Table 1 (p.17) and the two-AFS-KEM pMAKE flow (pp.10-11); session bounds are derived, not separately tabulated by the submitter."
+  },
+  "security_claims": [
+    {"category": "authentication", "claim": "Primary pMAKE-BW provides mutual explicit authentication and match soundness; secondary pUAKE-BW provides unilateral initiator authentication.", "claim_strength": "formally_claimed", "comparison_scope": "post-specified-identity setting"},
+    {"category": "ake_model", "claim": "Key secrecy is proved in the post-eCK-PFS model in both ROM and QROM.", "claim_strength": "formally_claimed", "comparison_scope": "Subject to the stated freshness predicate and primitive assumptions"},
+    {"category": "forward_secrecy", "claim": "Completed fresh sessions retain key secrecy after later long-term-key compromise.", "claim_strength": "formally_claimed", "comparison_scope": "PFS under post-eCK-PFS exposure restrictions"},
+    {"category": "primitive_security", "claim": "The proof uses AFS-KEM IND-ECPA, IND-SCCA and IND-LCK-SCCA properties reduced to MLWE through AFS-PKE-BW and FO_AFS.", "claim_strength": "formally_claimed", "comparison_scope": "ROM and QROM"},
+    {"category": "state_exposure", "claim": "pMAKE-BW claims secrecy as long as at least one of four static/ephemeral secret sources remains unexposed in the relevant matched-session cases.", "claim_strength": "argued", "comparison_scope": "Formal freshness cases described for pMAKE"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "communication", "claim": "The pMAKE-BW structure uses two standard KEM public keys, two standard KEM ciphertexts and two short protected seeds in the generic post-ID accounting, reducing the dominant KEM material relative to direct parallel-KEM baselines.", "claim_strength": "measured", "comparison_scope": "Table 4 KEM-based AKE baselines; identity lengths omitted"},
+      {"category": "security", "claim": "Provides PFS, explicit authentication, match soundness, and stronger resistance to reusable-key decryption-failure amplification.", "claim_strength": "formally_claimed", "comparison_scope": "post-eCK-PFS model and discussed DFA setting"},
+      {"category": "simplicity", "claim": "Online authentication is signature-free and reuses native BW-KEM encapsulation/decapsulation code.", "claim_strength": "stated", "comparison_scope": "Submitted BW-KEM instantiation"},
+      {"category": "performance", "claim": "AVX2 performance implementation accelerates a complete exchange by about 4.2x-6.3x over the portable reference implementation.", "claim_strength": "measured", "comparison_scope": "Single Intel Xeon Platinum 8575C test platform"},
+      {"category": "flexibility", "claim": "The generic AFS-KEM interface is described as compatible with suitable MLWE, LWE, and code-based KEM public-key structures.", "claim_strength": "argued", "comparison_scope": "Generic framework; submitted concrete suite uses BW-KEM"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "setup", "description": "Authentication requires a CA/PKI or authenticated public directory binding identities to static public keys.", "provenance": "explicit_in_submission"},
+      {"category": "profile_difference", "description": "The NGCC implementation pre-provides peer static and combined public keys and omits identity/certificate bytes from online communication; this differs from the generic post-ID message syntax.", "provenance": "explicit_caveat"},
+      {"category": "correctness", "description": "Composite-key AFS-KEM has nonzero decryption failure; the base submitted instances range from about 2^-67.98 to 2^-124.13 per AFS-KEM operation.", "provenance": "derived_from_parameters"},
+      {"category": "identity_privacy", "description": "Identity hiding is not a property of the base protocol and requires an optional CRS/common-matrix profile plus encrypted credential transmission.", "provenance": "explicit_caveat"},
+      {"category": "random_oracle", "description": "The claimed proofs model PRF/PRG and relevant hashes in ROM/QROM.", "provenance": "explicit_in_submission"},
+      {"category": "state_handling", "description": "Ephemeral randomness must be erased at completion, and offline retention of precomputed encapsulated keys should be avoided because it can enable a KCI-style state-leakage attack.", "provenance": "explicit_caveat"},
+      {"category": "test_scope", "description": "x86 benchmarks use one Xeon Platinum 8575C/Ubuntu 22.04 system; Cortex-M4 results use STM32F4DISCOVERY and 1,000 repetitions.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [
+    {"type": "reference", "language": "ISO C99", "platform": "portable scalar", "implemented_profile": "pMAKE-BW NGCC four-pass"},
+    {"type": "optimized", "language": "C/assembly", "platform": "x86-64 AVX2", "variants": ["performance-optimized", "resource-optimized"]},
+    {"type": "additional", "language": "C/assembly", "platform": "ARM Cortex-M4F / STM32F4DISCOVERY", "variants": ["speed", "stack"]}
+  ],
+  "submission_completeness": {"status": "complete", "present_components": ["basic information", "algorithm specification", "reference implementation", "AVX2 optimized implementation", "ARM Cortex-M4 additional implementation", "test vectors", "security analyses"], "missing_components": []},
+  "sources": [
+    {"source_id": "afs-basic", "type": "basic_information", "path": "KeyExchange/AFS-KEX.zip::Basic information/Basic Algorithm Information-AFS-KEX.pdf", "priority": 1, "notes": "Text-extracted; private contact details intentionally excluded."},
+    {"source_id": "afs-spec", "type": "algorithm_specification", "path": "KeyExchange/AFS-KEX.zip::Algorithm specifications/Algorithm specifications-AFS-KEX.pdf", "priority": 2, "notes": "Primary protocol, parameter, correctness, security and benchmark source."},
+    {"source_id": "afs-code", "type": "implementation", "path": "KeyExchange/AFS-KEX.zip::Implementations and Test_Vectors/Implementations/**/KEX_AlgorithmInstance.c", "priority": 3, "notes": "Used to cross-check NGCC pass semantics, state capacities, key sizes and byte formulas."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "afs-basic", "locator": "pp.1-3", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "afs-spec", "locator": "pp.4-8, 16-18", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "afs-spec", "locator": "Figs.3-4 and Sections 2.2-2.3, pp.10-12; implementation profile pp.26-27", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "afs-spec", "locator": "Tables 1-2, p.17; Table 6, p.27", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "afs-code", "locator": "KEX_AlgorithmInstance.c getters and pass-length assignments for C128/C256/C512", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "afs-spec", "locator": "Table 1, p.17; Section 3.2, p.25", "confidence": "high", "extraction_status": "derived"},
+    {"field": "security_claims", "source_id": "afs-spec", "locator": "Sections 1.2-1.3, pp.4-7; Sections 8-11, pp.55-104", "confidence": "high", "extraction_status": "verified"},
+    {"field": "claimed_advantages_and_limitations", "source_id": "afs-spec", "locator": "Section 2.7, pp.18-24; Section 3.2, p.25; Section 4, pp.26-28", "confidence": "high", "extraction_status": "derived"}
+  ],
+  "review": {
+    "status": "cross_checked",
+    "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness relation"],
+    "review_notes": ["Each NGCC total was recomputed as m1+m2+m3+m4: 1568, 2944 and 6016 bytes.", "Parameter and failure values were checked against Table 1; interface sizes and pass semantics were checked against implementation getters/comments.", "Primary pMAKE-BW and secondary pUAKE-BW were kept distinct; the top-level classification and sizes follow the evaluated primary pMAKE-BW profile.", "Independent cross-review by group_3 corrected long-term key sizes to the composite NGCC interface values in Table 6 and kex_get_*_len_bytes()."],
+    "conflicts": ["The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online.", "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."]
+  },
+  "issues": [
+    {"field": "submitters.name_zh", "severity": "warning", "description": "Chinese author names were not provided in the extracted official materials; stored as null rather than transliterated or guessed."},
+    {"field": "submitters[Jian Weng].affiliation_ids", "severity": "warning", "description": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support."},
+    {"field": "parameter_sets.ngcc_level", "severity": "warning", "description": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null."},
+    {"field": "parameter_sets.sizes_bytes", "severity": "info", "description": "Long-term key sizes use the doubled NGCC interface buffers (combined key plus certified static key), as reported by Table 6 and the kex_get_pk/sk_len_bytes getters; underlying single BW-KEM object sizes remain in core_parameters."},
+    {"field": "protocol_flow", "severity": "info", "description": "Top-level flow follows the byte-accounted NGCC evaluated profile; generic post-ID pMAKE message differences are explicitly documented in flow semantics and review conflicts."}
+  ]
+}

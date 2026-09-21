@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "bit",
+  "name": "BiT",
+  "full_name": "Bimodal Triangular distribution based lattice signatures",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/BiT",
+  "aliases": [],
+  "overview_classification": {"family":"lattice_based","subcategory":"mlwe_msis_based","family_label_en":"Lattice-based","family_label_zh":"格密码","subcategory_label_en":"MLWE/MSIS-type signature","subcategory_label_zh":"MLWE-MSIS型签名","summary_label_zh":"格密码 / MLWE-MSIS型签名"},
+  "technical_classification": {
+    "construction_paradigm": ["identification_to_signature", "fiat_shamir_with_aborts"],
+    "hardness_problems": [{"name":"MLWE","role":"key recovery","details":"Module Learning With Errors"},{"name":"MSIS","role":"forgery and strong unforgeability","details":"Module Short Integer Solution"}],
+    "mathematical_structures": ["module lattice", "R_q = Z_q[x]/(x^d+1)", "bimodal triangular-to-trapezoidal rejection sampling"],
+    "claimed_security_targets": ["SUF-CMA", "UF-CMA"],
+    "claimed_security_models": ["ROM"]
+  },
+  "signature_characteristics": {"statefulness":"stateless","signing_randomness":"randomized","signature_length":"fixed","message_recovery":false,"rejection_sampling":true,"prehash_mode":null,"context_support":null,"batch_verification":null},
+  "affiliations": [
+    {"affiliation_id":"aff-1","name_en":"State Key Laboratory of Cyberspace Security Defense, Institute of Information Engineering, Chinese Academy of Sciences","name_zh":null,"country_or_region":"China"},
+    {"affiliation_id":"aff-2","name_en":"University of Chinese Academy of Sciences","name_zh":"中国科学院大学","country_or_region":"China"},
+    {"affiliation_id":"aff-3","name_en":"Huawei Technologies","name_zh":"华为技术有限公司","country_or_region":"China"}
+  ],
+  "submitters": [
+    {"name_en":"Xianhui Lu","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author","submitter"]},
+    {"name_en":"Yongjian Yin","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Yijian Liu","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Dongshu Cai","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Dingding Jia","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Lei Bi","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Yamin Liu","name_zh":null,"affiliation_ids":["aff-3"],"roles":["author"]},
+    {"name_en":"Ya Shi","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author","implementer"]},
+    {"name_en":"Hang Zhang","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author","implementer"]},
+    {"name_en":"Ying Liu","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author","implementer","contact"]},
+    {"name_en":"Yu Zhang","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author","implementer"]},
+    {"name_en":"Bing Shi","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]},
+    {"name_en":"Jingnan He","name_zh":null,"affiliation_ids":["aff-1","aff-2"],"roles":["author"]}
+  ],
+  "common_parameters": {"ring":"Z_q[x]/(x^d+1)","secret_distribution":"ternary coefficients with eta=1","mask_distribution":"triangular distribution","target_distribution":"trapezoidal distribution","challenge_space":"fixed-weight sparse binary polynomial","hash_xof_prg":["SM3-based functions","FIPS 202/SHAKE"],"encoding":"compressed public key and fixed-size packed signature","signature_components":["z","c","h"]},
+  "parameter_sets": [
+    {"name":"BiT-80","implementation_aliases":[],"target_security":{"classical_bits":80,"quantum_bits":null,"category":null},"parameters":{"d":512,"q":3329,"n":1,"m":1,"tau":17,"gamma2":363,"acceptance_rate":0.24},"sizes":{"public_key":{"value":505,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":null,"unit":"byte","status":"unknown","notes":"Not listed in specification summary table."},"signature":{"encoding":"fixed","reported":1057,"minimum":1057,"maximum":1057,"average":1057,"unit":"byte","notes":null}}},
+    {"name":"BiT-128","implementation_aliases":[],"target_security":{"classical_bits":128,"quantum_bits":80,"category":null},"parameters":{"d":256,"q":26881,"n":3,"m":3,"tau":30,"gamma2":682,"acceptance_rate":0.18},"sizes":{"public_key":{"value":1048,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":1864,"unit":"byte","status":"reported","notes":null},"signature":{"encoding":"fixed","reported":1504,"minimum":1504,"maximum":1504,"average":1504,"unit":"byte","notes":null}}},
+    {"name":"BiT-192","implementation_aliases":[],"target_security":{"classical_bits":192,"quantum_bits":null,"category":null},"parameters":{"d":1024,"q":15361,"n":1,"m":1,"tau":31,"gamma2":1065,"acceptance_rate":0.18},"sizes":{"public_key":{"value":1293,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":null,"unit":"byte","status":"unknown","notes":"Not listed in specification summary table."},"signature":{"encoding":"fixed","reported":2242,"minimum":2242,"maximum":2242,"average":2242,"unit":"byte","notes":null}}},
+    {"name":"BiT-256","implementation_aliases":[],"target_security":{"classical_bits":256,"quantum_bits":128,"category":null},"parameters":{"d":512,"q":119297,"n":3,"m":3,"tau":58,"gamma2":5517,"acceptance_rate":0.53},"sizes":{"public_key":{"value":2144,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":4160,"unit":"byte","status":"reported","notes":null},"signature":{"encoding":"fixed","reported":3456,"minimum":3456,"maximum":3456,"average":3456,"unit":"byte","notes":null}}},
+    {"name":"BiT-384","implementation_aliases":[],"target_security":{"classical_bits":384,"quantum_bits":192,"category":null},"parameters":{"d":2048,"q":40961,"n":1,"m":1,"tau":60,"gamma2":4288,"acceptance_rate":0.31},"sizes":{"public_key":{"value":2435,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":null,"unit":"byte","status":"unknown","notes":"Not listed in specification summary table."},"signature":{"encoding":"fixed","reported":5251,"minimum":5251,"maximum":5251,"average":5251,"unit":"byte","notes":null}}},
+    {"name":"BiT-512","implementation_aliases":[],"target_security":{"classical_bits":512,"quantum_bits":256,"category":null},"parameters":{"d":1024,"q":520193,"n":3,"m":3,"tau":115,"gamma2":69481,"acceptance_rate":0.33},"sizes":{"public_key":{"value":5056,"unit":"byte","status":"reported","notes":null},"secret_key":{"value":9024,"unit":"byte","status":"reported","notes":null},"signature":{"encoding":"fixed","reported":6695,"minimum":6695,"maximum":6695,"average":6695,"unit":"byte","notes":null}}}
+  ],
+  "signing_behavior": {"rejection_sampling":true,"expected_repetitions":{"BiT-80":4.17,"BiT-128":5.56,"BiT-192":5.56,"BiT-256":1.89,"BiT-384":3.23,"BiT-512":3.03},"signing_failure_probability":null,"retry_limit":null,"state_update":null,"notes":"Expected repetitions are reciprocals of the reported acceptance rates."},
+  "security_claims": [{"target":"SUF-CMA","model":"ROM","claim":"Submission gives a programmable-random-oracle SUF-CMA reduction based on MLWE/MSIS-style problems.","estimates":[{"parameter_set":"BiT-128","classical_bits":128,"quantum_bits":116},{"parameter_set":"BiT-256","classical_bits":256,"quantum_bits":232},{"parameter_set":"BiT-512","classical_bits":512,"quantum_bits":464}]}],
+  "submission_claims": {"claimed_advantages":[{"category":"simplicity","summary":"Triangular sampling avoids Gaussian and floating-point arithmetic.","claim_strength":"qualitative","comparison_scope":"Fiat-Shamir-with-aborts lattice signatures"},{"category":"compactness","summary":"Claims compact combined public-key and signature sizes from compressed keys and hints.","claim_strength":"comparative","comparison_scope":"submission comparisons"},{"category":"side_channel_protection","summary":"Claims constant-time-friendly integer-only sampling and reduced intermediate-value leakage.","claim_strength":"qualitative","comparison_scope":"implementation design"}],"limitations_and_constraints":[{"category":"rejection_sampling","summary":"Signing uses bimodal rejection sampling; reported acceptance rates range from 18% to 53%.","basis":"explicit_in_submission"},{"category":"platform_benchmark_scope","summary":"Benchmarks are limited to the stated x86 platforms and SM3/FIPS-202 implementations.","basis":"derived_from_test_setup"},{"category":"hash_dependency","summary":"Implementations depend on SM3-based or FIPS-202 hash/XOF functions.","basis":"derived_from_implementation_description"}]},
+  "independent_assessment": {"status":"not_started","advantages":[],"limitations":[]},
+  "implementations": [{"type":"reference","language":"C","platform":"portable","path":"DigitalSignature/BiT/Implementations/Reference_Implementation"},{"type":"optimized","language":"C/assembly","platform":"AVX2","path":"DigitalSignature/BiT/Implementations/Optimized_Implementation"}],
+  "submission_completeness": {"basic_information":true,"algorithm_specification":true,"intellectual_property":true,"reference_implementation":true,"optimized_implementation":true,"test_vectors":true},
+  "sources": [{"source_id":"bit-spec","type":"algorithm_specification","path":"DigitalSignature/BiT/Algorithm specifications.pdf","extraction_method":"text","notes":"Main source for construction, parameters, sizes, claims and authors."},{"source_id":"bit-basic","type":"basic_information","path":"DigitalSignature/BiT/Basic information.pdf","extraction_method":"ocr","notes":"Scanned form; OCR used for submitter affiliations and roles."}],
+  "evidence": [{"field":"overview_classification","source_id":"bit-spec","locator":"p. 4, Introduction","confidence":"high","extraction_status":"verified","note":"Explicitly lattice based on MLWE and MSIS."},{"field":"submitters","source_id":"bit-basic","locator":"pp. 1-3","confidence":"medium","extraction_status":"extracted","note":"English names and affiliations OCR-checked against specification title page."},{"field":"parameter_sets","source_id":"bit-spec","locator":"pp. 33-34, Tables 9-10","confidence":"high","extraction_status":"verified","note":null},{"field":"parameter_sets[*].sizes","source_id":"bit-spec","locator":"pp. 32-34, Tables 7, 9, 10","confidence":"high","extraction_status":"verified","note":"Secret-key sizes were reported only for 128/256/512 in Table 7."}],
+  "review": {"status":"extracted","data_quality":"B","reviewers":["sig-group-1-agent"],"cross_reviewed":false,"issues":["Chinese personal names were not reliably recoverable from the scanned form and are null.","Secret-key sizes for the optional 80/192/384-bit sets were not located and are null."],"conflicts":[],"last_updated":"2026-09-20"}
+}

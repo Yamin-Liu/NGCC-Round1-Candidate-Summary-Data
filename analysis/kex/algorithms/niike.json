@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "niike",
+  "name": "NIIKE",
+  "full_name": "Non-Interactive Isogeny-based Key Exchange",
+  "version": "2026-06-30 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/NIIKE.zip",
+  "aliases": [],
+  "overview_classification": {
+    "mathematical": {"family": "isogeny_based", "subcategory": "commutative_group_action", "label_en": "Isogeny-based oriented class-group action", "label_zh": "基于定向椭圆曲线类群作用的同源密码"},
+    "protocol": {"family": "non_interactive_key_exchange", "subcategory": "nike", "label_en": "Static-public-value non-interactive key exchange", "label_zh": "静态公开值型非交互密钥交换"},
+    "summary_label_zh": "同源类群作用、静态公开值型非交互 NIKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "public_value_publication",
+    "message_flows": 0,
+    "round_trips": 0,
+    "authentication": {"type": "none", "authenticated_roles": [], "mechanism": "NIIKE itself is a passive-secure NIKE primitive; authenticated distribution or binding of participant public values is outside the submitted primitive."},
+    "roles": [
+      {"role": "participant", "long_term_key_required": true, "ephemeral_key_required": false, "key_details": "Each participant publishes a long-term full-kernel-representation public value and retains a secret action vector."}
+    ],
+    "pre_distributed_material": ["Common setup pp", "Counterparty long-term public value pk, published or distributed before key derivation"],
+    "forward_secrecy": {"level": "none", "conditions": "The submitted static NIKE construction does not claim forward secrecy for compromise of a participant's long-term secret; later protocols may use NIIKE as a component."},
+    "key_confirmation": "None in the NIKE primitive.",
+    "transcript_binding": null,
+    "identity_binding": "The security definition takes identities as inputs, but the concrete KeyAgr algorithm shown in the specification operates on the peer public value and local secret; authenticated public-key/identity binding is external."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Commutative non-interactive key exchange from an oriented ideal-class-group action on supersingular elliptic curves.",
+    "underlying_primitives": [
+      {"name": "Oriented ideal class-group action", "role": "Key generation and shared-curve derivation"},
+      {"name": "j-invariant", "role": "Serialized shared secret"},
+      {"name": "Random oracle H", "role": "Security-game digest/key derivation in the HKR-CKS-l proof"}
+    ],
+    "hard_problems": [
+      {"name": "Restricted Group Action Computational Diffie-Hellman", "role": "Computational assumption for NIKE shared-key security"},
+      {"name": "Group Action Inversion", "role": "Equivalent group-action problem used in the security discussion"},
+      {"name": "Supersingular isogeny path finding", "role": "Concrete-security constraint when distinct orientations may share a j-invariant"}
+    ],
+    "mathematical_structures": ["Supersingular elliptic curves over F_p^2", "Orders in quaternion algebras", "Ideal class group Cl(O)", "Full kernel representations of orientations"],
+    "security_models": ["HKR-CKS-l passive NIKE security", "Random-oracle model"]
+  },
+  "protocol_flow": [],
+  "key_schedule": {
+    "static_contributions": ["Participant A computes its class-group action with sk_A on pk_B; participant B computes its class-group action with sk_B on pk_A."],
+    "ephemeral_contributions": [],
+    "transcript_hash": null,
+    "session_key_derivation": "ss = j(E_AB) = j(E_BA), serialized as an element of F_p^2; the passive-security proof returns H(ss).",
+    "domain_separation": null,
+    "ephemeral_secret_erasure": null
+  },
+  "submitters": [
+    {"name_en": "Yunlei Zhao", "name_zh": "赵运磊", "affiliation_ids": ["aff-1"], "is_contact": true},
+    {"name_en": "Kaizhan Lin", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Weize Wang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Chutong Wang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Qifan Xue", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zhi Hu", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Zheng Tao", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Yijing Zhang", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Zhaohui Cheng", "name_zh": null, "affiliation_ids": ["aff-3"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Fudan University", "name_zh": "复旦大学"},
+    {"affiliation_id": "aff-2", "name_en": "Central South University", "name_zh": "中南大学"},
+    {"affiliation_id": "aff-3", "name_en": "Shenzhen Olym Information Security Technology Co., Ltd", "name_zh": "深圳奥联信息安全技术有限公司"}
+  ],
+  "common_parameters": {
+    "setup": "pp=(p,M,{l_i,e_i},r,iota,sigma,E_0,full-kernel origin,B)",
+    "base_curve": "E_0: y^2=x^3+x over F_p^2, j(E_0)=1728",
+    "secret_distribution": "Uniform vector (sk_i) in product_i [0,B e_i]",
+    "public_key_structure": "Full kernel representation {(E_j,P_j,Q_j):1<=j<=r}",
+    "shared_secret_structure": "j-invariant in F_p^2",
+    "coordination_mechanism": "Commutativity of the ideal class-group action",
+    "hash_xof_kdf": "Random oracle H appears in the passive-security definition/proof; raw implementation output is the serialized j-invariant"
+  },
+  "parameter_sets": [
+    {"name": "NIIKE-lv128", "implementation_aliases": ["NGCC-I", "lv128"], "target_security": {"classical_bits": 128, "quantum_bits": null}, "ngcc_level": 1, "core_parameters": {"lambda": 128, "log2_p": 248, "r": 13, "B": 35}, "sizes_bytes": {"long_term_public_key": 4030, "long_term_secret_key": 196, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [], "total_communication": 0, "initiator_session_state": null, "responder_session_state": null, "shared_secret": 62, "randomness": {}}, "failure_probability": 0, "issues": ["Per-session communication is zero because public values are published out of band.", "Specification Table 7.1 conflicts with encode_sizes.h (4030/196/62 versus 4160/196/64); higher-priority specification values are recorded."]},
+    {"name": "NIIKE-lv256", "implementation_aliases": ["NGCC-II", "lv256"], "target_security": {"classical_bits": 256, "quantum_bits": null}, "ngcc_level": 2, "core_parameters": {"lambda": 256, "log2_p": 511, "r": 14, "B": 70}, "sizes_bytes": {"long_term_public_key": 8943, "long_term_secret_key": 332, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [], "total_communication": 0, "initiator_session_state": null, "responder_session_state": null, "shared_secret": 128, "randomness": {}}, "failure_probability": 0, "issues": ["Per-session communication is zero because public values are published out of band.", "Specification Table 7.1 conflicts with encode_sizes.h (8943/332/128 versus 8960/336/128); higher-priority specification values are recorded."]},
+    {"name": "NIIKE-lv512", "implementation_aliases": ["NGCC-III", "lv512"], "target_security": {"classical_bits": 512, "quantum_bits": null}, "ngcc_level": 3, "core_parameters": {"lambda": 512, "log2_p": 16392, "r": 2, "B": 1, "modified_construction": true}, "sizes_bytes": {"long_term_public_key": 40980, "long_term_secret_key": 3032, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [], "total_communication": 0, "initiator_session_state": null, "responder_session_state": null, "shared_secret": 2049, "randomness": {}}, "failure_probability": 0, "issues": ["Per-session communication is zero because public values are published out of band.", "Specification Table 7.1 conflicts with encode_sizes.h (40980/3032/2049 versus 41000/3036/4100); higher-priority specification values are recorded."]}
+  ],
+  "correctness": {"underlying_failure_probability": 0, "session_failure_probability": 0, "relationship": "The deterministic commuting group actions yield isomorphic curves and identical j-invariants for honestly generated keys.", "basis": "Algorithm specification Definition 9.1.5 and Chapter 10."},
+  "security_claims": [
+    {"category": "key_indistinguishability", "claim": "HKR-CKS-l passive NIKE security in the random-oracle model reduces to Restricted Group Action Computational Diffie-Hellman hardness.", "claim_strength": "formally_claimed", "comparison_scope": "Two honestly registered participants; passive NIKE model"},
+    {"category": "side_channel", "claim": "The deterministic, dummy-free and constant-time group action is claimed to resist broad timing and related side-channel classes at the algorithmic level.", "claim_strength": "argued", "comparison_scope": "Submitted implementations and stated constant-time control flow"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "latency", "claim": "No online handshake round trip is required after public values have been published.", "claim_strength": "stated", "comparison_scope": "Interactive KEM-based key establishment"},
+      {"category": "simplicity", "claim": "Key generation and agreement reuse the same one-dimensional isogeny class-group-action machinery.", "claim_strength": "stated", "comparison_scope": "Isogeny implementations"},
+      {"category": "implementation", "claim": "The action is deterministic, dummy-free, constant-time and admits tuple-level parallelism and AVX-512 IFMA acceleration.", "claim_strength": "measured", "comparison_scope": "Reference, x64 and AVX-512 implementations"},
+      {"category": "flexibility", "claim": "The core construction supports parameter agility and possible extensions to multiparty/group settings.", "claim_strength": "argued", "comparison_scope": "DH-like protocol architectures"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "authentication", "description": "The submitted primitive does not itself authenticate published public values or participants.", "provenance": "explicit_in_submission"},
+      {"category": "forward_secrecy", "description": "Static public/secret values are used directly and no forward-secrecy claim for long-term compromise is given for NIIKE itself.", "provenance": "derived_from_parameters"},
+      {"category": "setup", "description": "The construction requires large, structured common public parameters including a distinguished oriented curve and full kernel representation.", "provenance": "explicit_in_submission"},
+      {"category": "high_security_efficiency", "description": "At NGCC-III the submission uses a much larger characteristic and a modified construction because finding a suitably small smooth p and generating the kernel representation are difficult.", "provenance": "explicit_caveat"},
+      {"category": "test_scope", "description": "Reported benchmarks use an Intel Core i7-11700F, Ubuntu 24.04, Clang 18.1.3, with hyperthreading/turbo disabled.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [
+    {"type": "reference", "language": "ISO C", "platform": "portable"},
+    {"type": "optimized", "language": "C/x86 assembly", "platform": "Intel Broadwell-class x86"},
+    {"type": "additional", "language": "C/intrinsics", "platform": "AVX-512 IFMA"}
+  ],
+  "submission_completeness": {"status": "complete", "present_components": ["basic information", "algorithm specification", "reference implementation", "optimized implementation", "additional AVX-512 implementation", "test vectors", "security and failure analyses"], "missing_components": []},
+  "sources": [
+    {"source_id": "niike-basic", "type": "basic_information", "path": "KeyExchange/NIIKE.zip::Basic information/Basic Algorithm Information.pdf", "priority": 1, "notes": "Scanned/empty text extraction; technical identity and submitter list were supplemented from the specification."},
+    {"source_id": "niike-spec", "type": "algorithm_specification", "path": "KeyExchange/NIIKE.zip::Algorithm specifications/Algorithm specifications.pdf", "priority": 2, "notes": "Primary technical source."},
+    {"source_id": "niike-header", "type": "parameter_header", "path": "KeyExchange/NIIKE.zip::Implementations and Test_Vectors/Implementations/Reference_Implementation/NIIKE-lv*/precomp/include/encode_sizes.h", "priority": 3, "notes": "Cross-check source; contains conflicts with specification Table 7.1."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "niike-spec", "locator": "PDF p. 1", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "niike-spec", "locator": "PDF pp. 4-7, 54-56", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "niike-spec", "locator": "PDF pp. 22-24, Algorithms 4-5", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets", "source_id": "niike-spec", "locator": "PDF pp. 35-38, Section 5.5", "confidence": "high", "extraction_status": "verified"},
+    {"field": "sizes", "source_id": "niike-spec", "locator": "PDF p. 40, Table 7.1", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "niike-spec", "locator": "PDF pp. 55 and 59, Definition 9.1.5 and Chapter 10", "confidence": "high", "extraction_status": "verified"},
+    {"field": "security_claims", "source_id": "niike-spec", "locator": "PDF pp. 54-58, Chapter 9", "confidence": "high", "extraction_status": "verified"},
+    {"field": "size_conflicts", "source_id": "niike-header", "locator": "NIIKE-lv*/precomp/include/encode_sizes.h:1-6", "confidence": "high", "extraction_status": "verified"}
+  ],
+  "review": {"status": "cross_checked", "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness"], "review_notes": ["Participant model used; no initiator/responder message flow was invented.", "Per-session communication is zero; long-term public-value publication is recorded separately.", "Specification/header size conflicts are preserved rather than silently reconciled.", "Independent review against Algorithms 4-5 and Table 7.1 confirmed the unauthenticated static-public-value NIKE classification, zero online message flow, and the specification-priority key sizes."], "conflicts": ["Table 7.1 sizes differ from encode_sizes.h for all three implementations, most materially for lv512 shared secret (2049 versus 4100 bytes)."]},
+  "issues": [
+    {"field": "basic_information", "severity": "warning", "description": "The basic-information PDF yielded no extractable text and appears scanned; names/affiliations were taken from the specification, with unavailable Chinese names left null."},
+    {"field": "parameter_sets.sizes_bytes", "severity": "warning", "description": "Specification Table 7.1 and implementation encode_sizes.h disagree; the higher-priority specification values are stored and the conflicts are listed per parameter set."},
+    {"field": "target_security.quantum_bits", "severity": "warning", "description": "No single explicit quantum-bit target was assigned to each named parameter set; stored as null."}
+  ]
+}

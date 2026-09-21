@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "families": {
+    "lattice_based": {"en": "Lattice-based", "zh": "格密码", "subcategories": {"mlwe_msis_based": {"en": "MLWE/MSIS-type signature", "zh": "MLWE-MSIS型签名"}, "ntru_lattice_based": {"en": "NTRU-lattice signature", "zh": "NTRU格签名"}, "module_lattice_trapdoor": {"en": "Module-lattice trapdoor signature", "zh": "模格陷门签名"}, "other_lattice_based": {"en": "Other lattice signature", "zh": "其他格签名"}}},
+    "multivariate_based": {"en": "Multivariate", "zh": "多变量密码", "subcategories": {"oil_vinegar_based": {"en": "Oil-and-vinegar signature", "zh": "油醋型签名"}, "rank_based_multivariate": {"en": "Rank-based multivariate signature", "zh": "秩型多变量签名"}, "other_multivariate_based": {"en": "Other multivariate signature", "zh": "其他多变量签名"}}},
+    "isogeny_based": {"en": "Isogeny-based", "zh": "同源密码", "subcategories": {"quaternion_isogeny_based": {"en": "Quaternion/isogeny signature", "zh": "四元数-同源签名"}, "supersingular_isogeny_based": {"en": "Supersingular-isogeny signature", "zh": "超奇异同源签名"}, "other_isogeny_based": {"en": "Other isogeny signature", "zh": "其他同源签名"}}},
+    "hash_based": {"en": "Hash-based", "zh": "哈希密码", "subcategories": {"merkle_tree_based": {"en": "Merkle-tree signature", "zh": "Merkle树签名"}, "one_time_signature_based": {"en": "One-time-signature composition", "zh": "一次性签名组合"}, "other_hash_based": {"en": "Other hash-based signature", "zh": "其他哈希签名"}}},
+    "mpc_in_the_head_based": {"en": "MPC-in-the-Head", "zh": "头脑中多方计算", "subcategories": {"symmetric_mpcit_h": {"en": "Symmetric-primitive MPC-in-the-Head", "zh": "对称原语MPC-in-the-Head签名"}, "other_mpcit_h": {"en": "Other MPC-in-the-Head", "zh": "其他MPC-in-the-Head签名"}}},
+    "code_based": {"en": "Code-based", "zh": "编码密码", "subcategories": {"syndrome_decoding_based": {"en": "Syndrome-decoding signature", "zh": "综合译码型签名"}, "rank_metric_code_based": {"en": "Rank-metric-code signature", "zh": "秩度量码签名"}, "other_code_based": {"en": "Other code-based signature", "zh": "其他编码签名"}}},
+    "symmetric_based": {"en": "Symmetric-primitive based", "zh": "对称原语密码", "subcategories": {"zero_knowledge_symmetric": {"en": "Zero-knowledge symmetric signature", "zh": "对称原语零知识签名"}, "other_symmetric_based": {"en": "Other symmetric signature", "zh": "其他对称原语签名"}}},
+    "group_based": {"en": "Group-based", "zh": "群困难问题密码", "subcategories": {"discrete_log_based": {"en": "Discrete-log signature", "zh": "离散对数型签名"}, "other_group_based": {"en": "Other group-based signature", "zh": "其他群型签名"}}},
+    "other": {"en": "Other", "zh": "其他", "subcategories": {"factorization_based": {"en": "Factorization-based signature", "zh": "整数分解型签名"}, "combinatorial_based": {"en": "Combinatorial signature", "zh": "组合结构签名"}, "hybrid_or_unclassified": {"en": "Hybrid or unclassified", "zh": "混合或待分类签名"}}}
+  },
+  "construction_paradigms": ["fiat_shamir_with_aborts", "hash_and_sign", "trapdoor_signature", "mpc_in_the_head", "identification_to_signature", "fiat_shamir", "merkle_tree_composition", "one_time_signature_composition", "full_domain_hash", "other"],
+  "security_targets": ["EUF-CMA", "SUF-CMA", "UF-CMA", "UF-NMA", "other"],
+  "security_models": ["ROM", "QROM", "standard_model", "ideal_cipher_model", "other"],
+  "null_policy": "Unknown facts are null, never inferred from the algorithm name.",
+  "classification_policy": "Use the construction and hardness assumptions stated in the submission. Keep overview labels stable; put nuance in technical_classification."
+}

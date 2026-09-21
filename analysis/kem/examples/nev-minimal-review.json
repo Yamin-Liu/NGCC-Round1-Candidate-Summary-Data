@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0.0-review-minimal",
+  "algorithm": {
+    "id": "nev",
+    "name": "NEV",
+    "full_name": "NEV Encryption Family",
+    "version": "1.1"
+  },
+  "classification": {
+    "family": "lattice_based",
+    "subcategory": "ntru_based"
+  },
+  "technical": {
+    "hardness_problems": [
+      "NTRU",
+      "Ring-LWE / rounded Ring-LWE"
+    ],
+    "mathematical_structure": "Rq = Z_q[X]/(X^n+1) with NTRU public key h=g/f",
+    "kem_construction": "NEV-KEM-CCA transform using deterministic re-encryption and implicit rejection",
+    "security_target": "IND-CCA",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "submitters": [
+    {"name": "Jiang Zhang", "affiliation": "State Key Laboratory of Cryptology", "role": "submitter"},
+    {"name": "Di Yan", "affiliation": "State Key Laboratory of Cryptology", "role": "submitter, contact"},
+    {"name": "Shuqin Fan", "affiliation": "State Key Laboratory of Cryptology", "role": "submitter"},
+    {"name": "Debiao He", "affiliation": "Wuhan University", "role": "submitter"},
+    {"name": "Yu Yu", "affiliation": "Shanghai Jiao Tong University; East China Normal University", "role": "submitter"},
+    {"name": "Runqing Xu", "affiliation": "Wuhan University", "role": "submitter"},
+    {"name": "Jiangxia Ge", "affiliation": "China Telecom Quantum Group Ltd.", "role": "submitter"},
+    {"name": "Yuanmi Chen", "affiliation": "East China Normal University", "role": "submitter"},
+    {"name": "Weijia Wang", "affiliation": "Shandong University", "role": "submitter"},
+    {"name": "Cong Peng", "affiliation": "Wuhan University", "role": "submitter"},
+    {"name": "Kang Yang", "affiliation": "State Key Laboratory of Cryptology", "role": "submitter"},
+    {"name": "Hui Guo", "affiliation": "State Key Laboratory of Cryptology", "role": "submitter"},
+    {"name": "Hui Zhu", "affiliation": "Xidian University", "role": "submitter"},
+    {"name": "Ruikang Liu", "affiliation": "Xidian University", "role": "submitter"},
+    {"name": "Jing Pan", "affiliation": "Xidian University", "role": "submitter"}
+  ],
+  "parameter_sets": [
+    {
+      "name": "NEV-C1*",
+      "security_label": "128 classical / 80 quantum",
+      "classical_security_bits": 128,
+      "quantum_security_bits": 80,
+      "core_parameters": {"n": 512, "q": 769, "key_distribution": "(B1,B2)", "encryption_distribution": "(T1/3*,B2)", "compressed": true},
+      "decapsulation_failure_probability": "2^-160",
+      "sizes_bytes": {"public_key": 615, "secret_key": 1240, "ciphertext": 512, "shared_secret": 10},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-R1",
+      "security_label": "128 classical / 80 quantum",
+      "classical_security_bits": 128,
+      "quantum_security_bits": 80,
+      "core_parameters": {"n": 512, "q": 1409, "key_distribution": "(B3,B3)", "encryption_distribution": "(B3,B3)", "compressed": false},
+      "decapsulation_failure_probability": "2^-133",
+      "sizes_bytes": {"public_key": 672, "secret_key": 1354, "ciphertext": 672, "shared_secret": 10},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-D1",
+      "security_label": "128 classical / 80 quantum",
+      "classical_security_bits": 128,
+      "quantum_security_bits": 80,
+      "core_parameters": {"n": 512, "q": 3329, "key_distribution": "(B7,B7)", "encryption_distribution": "(B7,B7)", "compressed": false},
+      "decapsulation_failure_probability": "2^-136",
+      "sizes_bytes": {"public_key": 768, "secret_key": 1546, "ciphertext": 768, "shared_secret": 10},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-C2*",
+      "security_label": "256 classical / 128 quantum",
+      "classical_security_bits": 256,
+      "quantum_security_bits": 128,
+      "core_parameters": {"n": 1024, "q": 769, "key_distribution": "(B1,T1/8)", "encryption_distribution": "(T1/3*,B2)", "compressed": true},
+      "decapsulation_failure_probability": "2^-162",
+      "sizes_bytes": {"public_key": 1229, "secret_key": 2474, "ciphertext": 1024, "shared_secret": 16},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-R2",
+      "security_label": "256 classical / 128 quantum",
+      "classical_security_bits": 256,
+      "quantum_security_bits": 128,
+      "core_parameters": {"n": 1024, "q": 1409, "key_distribution": "(B2,B2)", "encryption_distribution": "(B2,B2)", "compressed": false},
+      "decapsulation_failure_probability": "2^-158",
+      "sizes_bytes": {"public_key": 1344, "secret_key": 2704, "ciphertext": 1344, "shared_secret": 16},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-D2",
+      "security_label": "256 classical / 128 quantum",
+      "classical_security_bits": 256,
+      "quantum_security_bits": 128,
+      "core_parameters": {"n": 1024, "q": 3329, "key_distribution": "(B4,B4)", "encryption_distribution": "(B4,B4)", "compressed": false},
+      "decapsulation_failure_probability": "2^-217",
+      "sizes_bytes": {"public_key": 1536, "secret_key": 3088, "ciphertext": 1536, "shared_secret": 16},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-C3*",
+      "security_label": "512 classical / 256 quantum",
+      "classical_security_bits": 512,
+      "quantum_security_bits": 256,
+      "core_parameters": {"n": 2048, "q": 769, "key_distribution": "(T1/8,T1/8)", "encryption_distribution": "(T1/3*,B1)", "compressed": true},
+      "decapsulation_failure_probability": "2^-163",
+      "sizes_bytes": {"public_key": 2458, "secret_key": 4948, "ciphertext": 2048, "shared_secret": 32},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-R3",
+      "security_label": "512 classical / 256 quantum",
+      "classical_security_bits": 512,
+      "quantum_security_bits": 256,
+      "core_parameters": {"n": 2048, "q": 1409, "key_distribution": "(T1/3,T1/3)", "encryption_distribution": "(T1/3,B2)", "compressed": false},
+      "decapsulation_failure_probability": "2^-147",
+      "sizes_bytes": {"public_key": 2688, "secret_key": 5408, "ciphertext": 2688, "shared_secret": 32},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    },
+    {
+      "name": "NEV-D3",
+      "security_label": "512 classical / 256 quantum",
+      "classical_security_bits": 512,
+      "quantum_security_bits": 256,
+      "core_parameters": {"n": 2048, "q": 3329, "key_distribution": "(B2,B3)", "encryption_distribution": "(B2,B3)", "compressed": false},
+      "decapsulation_failure_probability": "2^-301",
+      "sizes_bytes": {"public_key": 3072, "secret_key": 6176, "ciphertext": 3072, "shared_secret": 32},
+      "source_refs": ["spec", "params"],
+      "evidence_locator": "specification PDF pp.18-19, Table 2; params.h KEM_CCA_SK_BYTES"
+    }
+  ],
+  "claims": {
+    "advantages": [
+      {"summary": "Public key and ciphertext each use one ring element; C* profiles further round ciphertexts for about 16.7% reduction.", "source_refs": ["spec"]},
+      {"summary": "Randomized plaintext encoding is claimed to decouple worst-case decryption failure from the message.", "source_refs": ["spec"]},
+      {"summary": "Power-of-two-friendly encoding and partial NTT implementations are provided for x86 and ARM.", "source_refs": ["spec"]}
+    ],
+    "limitations": [
+      {"summary": "Compact C* profiles rely on a heuristic independent rounding-error model and an additional rounding-based hardness assumption.", "source_refs": ["spec"]},
+      {"summary": "All profiles have nonzero failure probability; recommended R profiles hedge against possible NTRU attack improvements.", "source_refs": ["spec"]},
+      {"summary": "Uncompressed C variants avoid the compact-profile rounding assumption but sacrifice the 16.7% ciphertext saving.", "source_refs": ["spec"]}
+    ]
+  },
+  "sources": [
+    {"source_id": "basic", "type": "basic_information", "path": "KeyEncapsulation/NEV/Basic information/算法基本信息：NEV.PDF"},
+    {"source_id": "spec", "type": "specification", "path": "KeyEncapsulation/NEV/Algorithm specifications/算法文本：NEV.pdf"},
+    {"source_id": "params", "type": "api_header", "path": "KeyEncapsulation/NEV/Implementations/Reference_Implementation/NEV-R1/params.h"}
+  ]
+}

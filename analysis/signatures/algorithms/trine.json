@@ -1,0 +1,609 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "trine",
+  "name": "TRINE",
+  "full_name": "The TRINE Signature Scheme",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/TRINE",
+  "aliases": [],
+  "overview_classification": {
+    "family": "other",
+    "subcategory": "combinatorial_based",
+    "family_label_en": "Other",
+    "family_label_zh": "其他",
+    "subcategory_label_en": "Combinatorial signature",
+    "subcategory_label_zh": "组合结构签名",
+    "summary_label_zh": "其他 / 组合结构签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Trilinear Form Equivalence (TFE)",
+        "role": "key recovery and unforgeability",
+        "details": "Tensor-isomorphism/equivalence problem"
+      }
+    ],
+    "mathematical_structures": [
+      "trilinear forms over finite fields",
+      "GL(n,q)^3 group action",
+      "corank-one invariants",
+      "canonical forms"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": false,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Institute for Math & AI, Wuhan",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "School of Cyber Science and Engineering, Wuhan University",
+      "name_zh": "武汉大学网络空间安全学院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "School of Computer Science, Wuhan University",
+      "name_zh": "武汉大学计算机学院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "School of Artificial Intelligence, Wuhan University",
+      "name_zh": "武汉大学人工智能学院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-5",
+      "name_en": "Hubei Center for Applied Mathematics",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-6",
+      "name_en": "Hubei Key Laboratory of Computational Science",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-7",
+      "name_en": "School of Mathematics and Statistics, Wuhan University of Technology",
+      "name_zh": "武汉理工大学理学院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-8",
+      "name_en": "Nanjing University of Aeronautics and Astronautics",
+      "name_zh": "南京航空航天大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-9",
+      "name_en": "Beijing Certificate Authority Co. Ltd.",
+      "name_zh": "北京数字认证股份有限公司",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Gang Tang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1",
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Debiao He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yu Dai",
+      "name_zh": "代宇",
+      "affiliation_ids": [
+        "aff-7"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Cong Peng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Min Luo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yinan Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4",
+        "aff-5",
+        "aff-6"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xinyi Huang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-8"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Runqing Xu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zihao Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Bingbing Xia",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-9"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_q",
+    "q": 4093,
+    "challenge": "fixed-weight challenges with X non-base public forms",
+    "hash_xof_prg": [
+      "SHAKE/fips202"
+    ],
+    "signature_components": [
+      "corank-one points",
+      "seeds",
+      "challenge"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "TRINE-128-balanced",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 22,
+        "q": 4093,
+        "r": 138,
+        "K": 52,
+        "X": 1,
+        "mode": "balanced",
+        "quantum_attack_estimate_bits": 105
+      },
+      "sizes": {
+        "public_key": {
+          "value": 16004,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 3124,
+          "minimum": 3124,
+          "maximum": 3124,
+          "average": 3124,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TRINE-256-balanced",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 40,
+        "q": 4093,
+        "r": 271,
+        "K": 104,
+        "X": 1,
+        "mode": "balanced",
+        "quantum_attack_estimate_bits": 180
+      },
+      "sizes": {
+        "public_key": {
+          "value": 96064,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 11648,
+          "minimum": 11648,
+          "maximum": 11648,
+          "average": 11648,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TRINE-512-balanced",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 81,
+        "q": 4093,
+        "r": 534,
+        "K": 211,
+        "X": 1,
+        "mode": "balanced",
+        "quantum_attack_estimate_bits": 348
+      },
+      "sizes": {
+        "public_key": {
+          "value": 797290,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 46437,
+          "minimum": 46437,
+          "maximum": 46437,
+          "average": 46437,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TRINE-128-ShortSig",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 22,
+        "q": 4093,
+        "r": 61,
+        "K": 36,
+        "X": 4,
+        "mode": "short_signature",
+        "quantum_attack_estimate_bits": 105
+      },
+      "sizes": {
+        "public_key": {
+          "value": 63920,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 32,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 1620,
+          "minimum": 1620,
+          "maximum": 1620,
+          "average": 1620,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TRINE-256-ShortSig",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 40,
+        "q": 4093,
+        "r": 116,
+        "K": 76,
+        "X": 4,
+        "mode": "short_signature",
+        "quantum_attack_estimate_bits": 180
+      },
+      "sizes": {
+        "public_key": {
+          "value": 384064,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 64,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5904,
+          "minimum": 5904,
+          "maximum": 5904,
+          "average": 5904,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "TRINE-512-ShortSig",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 81,
+        "q": 4093,
+        "r": 232,
+        "K": 149,
+        "X": 4,
+        "mode": "short_signature",
+        "quantum_attack_estimate_bits": 348
+      },
+      "sizes": {
+        "public_key": {
+          "value": 3188774,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 23544,
+          "minimum": 23544,
+          "maximum": 23544,
+          "average": 23544,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": false,
+    "expected_repetitions": 1,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Signing samples Fiat-Shamir commitments; no rejection loop was identified in the specification."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission follows a GMW identification proof with Fiat-Shamir and claims EUF-CMA under TFE-related assumptions.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Corank-one vector responses replace matrix-valued responses.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "flexibility",
+        "summary": "Balanced and ShortSig modes trade public-key size for signature size and runtime.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "security",
+        "summary": "Uses a standard GMW-to-Fiat-Shamir structure over TFE.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "computation",
+        "summary": "Canonical-form computation costs roughly O(n^4) per round and dominates signing/verification.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "public_key_size",
+        "summary": "ShortSig public keys grow from 63,920 bytes to 3,188,774 bytes.",
+        "basis": "derived_from_parameters"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/TRINE/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "x86",
+      "path": "DigitalSignature/TRINE/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "trine-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/TRINE/Basic information.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "trine-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/TRINE/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters",
+      "source_id": "trine-spec",
+      "locator": "p. 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "trine-spec",
+      "locator": "pp. 14-15, Tables 1-2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "overview_classification",
+      "source_id": "trine-spec",
+      "locator": "pp. 3-5",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent",
+      "primary-agent"
+    ],
+    "cross_reviewed": true,
+    "issues": [
+      "Overview taxonomy has no tensor-isomorphism-specific category; combinatorial_based is used and should be cross-reviewed."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

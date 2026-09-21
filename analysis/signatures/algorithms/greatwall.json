@@ -1,0 +1,637 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "greatwall",
+  "name": "GreatWall",
+  "full_name": "The GreatWall Signature Scheme",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/GreatWall",
+  "aliases": [],
+  "overview_classification": {
+    "family": "mpc_in_the_head_based",
+    "subcategory": "symmetric_mpcit_h",
+    "family_label_en": "MPC-in-the-Head",
+    "family_label_zh": "头脑中多方计算",
+    "subcategory_label_en": "Symmetric-primitive MPC-in-the-Head",
+    "subcategory_label_zh": "对称原语MPC-in-the-Head签名",
+    "summary_label_zh": "头脑中多方计算 / 对称原语MPC-in-the-Head签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Pylon preimage resistance",
+        "role": "public-key one-wayness",
+        "details": "Dedicated symmetric one-way function over a binary extension field"
+      },
+      {
+        "name": "VOLEitH knowledge soundness",
+        "role": "signature unforgeability",
+        "details": "QuickSilver-style proof of knowledge"
+      }
+    ],
+    "mathematical_structures": [
+      "VOLE-in-the-Head",
+      "binary extension fields",
+      "GGM-tree batch all-but-one vector commitments",
+      "QuickSilver multiplication checks"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM",
+      "other"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Tsinghua University",
+      "name_zh": "清华大学",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Jiaqi Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Tianhao Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Shiqi Hou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Guoxiao Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xiaoyang Dong",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "GF(2^n)",
+    "one_way_function": "Pylon",
+    "hash_xof_prg": [
+      "SHAKE256",
+      "GGM-tree PRG"
+    ],
+    "proof_system": "VOLE-in-the-Head with QuickSilver",
+    "signature_components": [
+      "commitments",
+      "VOLE corrections",
+      "QuickSilver response",
+      "BAVC opening",
+      "grinding counter"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "GreatWall-128S",
+      "implementation_aliases": [
+        "GreatWall128S"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 68,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 137,
+        "tau": 11,
+        "w_grind": 7,
+        "T_open": 100,
+        "profile": "short"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 36,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 18,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 2758,
+          "minimum": 2758,
+          "maximum": 2758,
+          "average": 2758,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-128F",
+      "implementation_aliases": [
+        "GreatWall128F"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 68,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 137,
+        "tau": 16,
+        "w_grind": 8,
+        "T_open": 108,
+        "profile": "fast"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 36,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 18,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 3396,
+          "minimum": 3396,
+          "maximum": 3396,
+          "average": 3396,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-192S",
+      "implementation_aliases": [
+        "GreatWall192S"
+      ],
+      "target_security": {
+        "classical_bits": 192,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 197,
+        "tau": 16,
+        "w_grind": 8,
+        "T_open": 183,
+        "profile": "short"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 50,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 25,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 6804,
+          "minimum": 6804,
+          "maximum": 6804,
+          "average": 6804,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-192F",
+      "implementation_aliases": [
+        "GreatWall192F"
+      ],
+      "target_security": {
+        "classical_bits": 192,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 197,
+        "tau": 24,
+        "w_grind": 8,
+        "T_open": 184,
+        "profile": "fast"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 50,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 25,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 8012,
+          "minimum": 8012,
+          "maximum": 8012,
+          "average": 8012,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-256S",
+      "implementation_aliases": [
+        "GreatWall256S"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 263,
+        "tau": 22,
+        "w_grind": 6,
+        "T_open": 246,
+        "profile": "short"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 66,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 33,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 12236,
+          "minimum": 12236,
+          "maximum": 12236,
+          "average": 12236,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-256F",
+      "implementation_aliases": [
+        "GreatWall256F"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 263,
+        "tau": 32,
+        "w_grind": 7,
+        "T_open": 248,
+        "profile": "fast"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 66,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 33,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 14260,
+          "minimum": 14260,
+          "maximum": 14260,
+          "average": 14260,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-512S",
+      "implementation_aliases": [
+        "GreatWall512S"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 521,
+        "tau": 44,
+        "w_grind": 0,
+        "T_open": 512,
+        "profile": "short"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 132,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 66,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 50012,
+          "minimum": 50012,
+          "maximum": 50012,
+          "average": 50012,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "GreatWall-512F",
+      "implementation_aliases": [
+        "GreatWall512F"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "field": "GF(2^n)",
+        "n": 521,
+        "tau": 64,
+        "w_grind": 0,
+        "T_open": 512,
+        "profile": "fast"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 132,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 66,
+          "unit": "byte",
+          "status": "derived",
+          "notes": "ceil(n/8) bytes for the Pylon preimage"
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 57812,
+          "minimum": 57812,
+          "maximum": 57812,
+          "average": 57812,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": null,
+    "signing_failure_probability": "negligible apart from randomized procedures",
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Grinding repeats until the suffix condition and fixed BAVC opening threshold both pass."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "EUF-CMA reduces to Pylon preimage resistance and VOLEitH proof soundness.",
+      "estimates": []
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "Submission gives a post-quantum extension in the QROM.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Claims security from symmetric one-wayness and VOLEitH soundness without structured public-key assumptions.",
+        "claim_strength": "formal",
+        "comparison_scope": null
+      },
+      {
+        "category": "compactness",
+        "summary": "Claims compact keys and signature-size-oriented performance from a proof-cost-aware Pylon design.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "symmetric-primitive signatures"
+      },
+      {
+        "category": "scalability",
+        "summary": "Uses one architecture from 128-bit through 512-bit classical security.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted family"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_and_grinding",
+        "summary": "Signing may retry for proof-of-work grinding and when the BAVC opening exceeds T_open.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Benchmarks are limited to the stated Intel i9-14900HX, Ubuntu/GCC and AVX2 setup.",
+        "basis": "derived_from_test_setup"
+      },
+      {
+        "category": "physical_side_channels",
+        "summary": "Physical, side-channel, fault and randomness failures are explicitly outside the formal analysis.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable/x86",
+      "path": "DigitalSignature/GreatWall/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/assembly",
+      "platform": "AVX2",
+      "path": "DigitalSignature/GreatWall/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "gw-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/GreatWall/Algorithm specifications/The GreatWall Signature Scheme.pdf",
+      "extraction_method": "text",
+      "notes": "63 pages"
+    },
+    {
+      "source_id": "gw-clarification",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/GreatWall/Algorithm specifications/Clarification4GreatWall.pdf",
+      "extraction_method": "text",
+      "notes": "Clarifies variants versus S/F profiles"
+    },
+    {
+      "source_id": "gw-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/GreatWall/Basic information/GreatWall_NGCC ICCS_基本信息（中英签字版）.pdf",
+      "extraction_method": "ocr",
+      "notes": "Scanned; submitter spellings and affiliation were verified against the specification title page."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "gw-spec",
+      "locator": "pp. 4-5",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "Explicit VOLE-in-the-Head signature over dedicated symmetric OWF Pylon."
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "gw-spec",
+      "locator": "Tables 2-3 and 10-11",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "S/F are implementation profiles of four cryptographic variants."
+    },
+    {
+      "field": "submitters",
+      "source_id": "gw-spec",
+      "locator": "title page",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "gw-spec",
+      "locator": "Sections 3 and 6.6",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Chinese personal names were not reliably recoverable from the scanned basic-information form and are null."
+    ],
+    "conflicts": [
+      "The clarification assigns GreatWall-192/256/512 to evaluation Levels 1/2/3 and treats GreatWall-128 as additional, while the main specification Table 3 labels NGCC levels differently; target bit strengths follow the cryptographic table."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

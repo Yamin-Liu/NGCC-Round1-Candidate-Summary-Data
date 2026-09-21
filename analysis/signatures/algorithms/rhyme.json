@@ -1,0 +1,535 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "rhyme",
+  "name": "Rhyme",
+  "full_name": "Rhyme",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Rhyme",
+  "aliases": [
+    "RHYME"
+  ],
+  "overview_classification": {
+    "family": "lattice_based",
+    "subcategory": "mlwe_msis_based",
+    "family_label_en": "Lattice-based",
+    "family_label_zh": "格密码",
+    "subcategory_label_en": "MLWE/MSIS-type signature",
+    "subcategory_label_zh": "MLWE-MSIS型签名",
+    "summary_label_zh": "格密码 / MLWE-MSIS型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Gram-Aided Module-LWE (GA-MLWE)",
+        "role": "key indistinguishability and zero-knowledge simulation",
+        "details": "MLWE with partial Gram information"
+      },
+      {
+        "name": "Module-SIS",
+        "role": "forgery hardness",
+        "details": null
+      },
+      {
+        "name": "module-LIP",
+        "role": "hardness support for GA-MLWE",
+        "details": "Related small-module lattice isomorphism problem"
+      }
+    ],
+    "mathematical_structures": [
+      "module lattices",
+      "polynomial rings",
+      "unimodular matrices",
+      "Gram matrices",
+      "discrete Gaussian sampling"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA",
+      "SUF-CMA",
+      "UF-NMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "variable",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [],
+  "submitters": [
+    {
+      "name_en": "Zhongxiang Zheng",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Anyu Wang",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Chunhuan Zhao",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Guangwu Xu",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Sibo Feng",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhichen Yan",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yuhang Sun",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhengtao Jiang",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Congming Wei",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Shuang Sun",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Chen Jia",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Shuaigang Li",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "R_q polynomial module ring (exact quotient varies with parameter set)",
+    "sampling": "Convolution of Constant Count (3C) sampling",
+    "hash_xof_prg": [
+      "SHAKE",
+      "SM3"
+    ],
+    "encoding": "rANS entropy coding",
+    "signature_components": [
+      "challenge",
+      "rANS-encoded response"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "Rhyme-128",
+      "implementation_aliases": [
+        "Rhyme-SHAKE-128",
+        "Rhyme-SM3-128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "n": 256,
+        "q": 3329,
+        "k": 2,
+        "l": 3,
+        "D": 10,
+        "tau": 30,
+        "eta": 2,
+        "quantum_forgery_estimate_bits": 91.75
+      },
+      "sizes": {
+        "public_key": {
+          "value": 800,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 11072,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "variable",
+          "reported": 1483,
+          "minimum": null,
+          "maximum": null,
+          "average": null,
+          "unit": "byte",
+          "notes": "Specification reports a compressed signature size; rANS output is variable and implementation CRYPTO_BYTES is a padded cap."
+        }
+      }
+    },
+    {
+      "name": "Rhyme-256",
+      "implementation_aliases": [
+        "Rhyme-SHAKE-256",
+        "Rhyme-SM3-256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 512,
+        "q": 9473,
+        "k": 2,
+        "l": 3,
+        "D": 10,
+        "tau": 58,
+        "eta": 4,
+        "quantum_forgery_estimate_bits": 208.68
+      },
+      "sizes": {
+        "public_key": {
+          "value": 1824,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 22336,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "variable",
+          "reported": 3258,
+          "minimum": null,
+          "maximum": null,
+          "average": null,
+          "unit": "byte",
+          "notes": "Specification reports a compressed signature size; rANS output is variable and implementation CRYPTO_BYTES is a padded cap."
+        }
+      }
+    },
+    {
+      "name": "Rhyme-384",
+      "implementation_aliases": [
+        "Rhyme-SHAKE-384",
+        "Rhyme-SM3-384"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 192,
+        "category": null
+      },
+      "parameters": {
+        "n": 512,
+        "q": 11777,
+        "k": 3,
+        "l": 4,
+        "D": 14,
+        "tau": 113,
+        "eta": 5,
+        "quantum_forgery_estimate_bits": 324.59
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2720,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 45760,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "variable",
+          "reported": 4743,
+          "minimum": null,
+          "maximum": null,
+          "average": null,
+          "unit": "byte",
+          "notes": "Specification reports a compressed signature size; rANS output is variable and implementation CRYPTO_BYTES is a padded cap."
+        }
+      }
+    },
+    {
+      "name": "Rhyme-512",
+      "implementation_aliases": [
+        "Rhyme-SHAKE-512",
+        "Rhyme-SM3-512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 1024,
+        "q": 18433,
+        "k": 2,
+        "l": 3,
+        "D": 10,
+        "tau": 115,
+        "eta": 6,
+        "quantum_forgery_estimate_bits": 446.67
+      },
+      "sizes": {
+        "public_key": {
+          "value": 3872,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 44864,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "variable",
+          "reported": 7002,
+          "minimum": null,
+          "maximum": null,
+          "average": null,
+          "unit": "byte",
+          "notes": "Specification reports a compressed signature size; rANS output is variable and implementation CRYPTO_BYTES is a padded cap."
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {
+      "Rhyme-128": 2.73,
+      "Rhyme-256": 2.99,
+      "Rhyme-384": 2.95,
+      "Rhyme-512": 2.69
+    },
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Lightweight coefficient-wise rejection and whole-loop retries enforce infinity and L2 bounds."
+  },
+  "security_claims": [
+    {
+      "target": "SUF-CMA",
+      "model": "QROM",
+      "claim": "Submission claims strong EUF-CMA via computational unique responses and a QROM Fiat-Shamir analysis.",
+      "estimates": []
+    },
+    {
+      "target": "EUF-CMA",
+      "model": "QROM",
+      "claim": "Submission gives EU-CMA from EU-NMA under HVZK and commitment min-entropy conditions.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Claims 30%-40% smaller combined public-key and signature bandwidth than Dilithium at comparable levels.",
+        "claim_strength": "comparative",
+        "comparison_scope": "submission comparison"
+      },
+      {
+        "category": "simplicity",
+        "summary": "3C sampling uses a constant number of independent discrete Gaussian noises and integer arithmetic.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "implementation",
+        "summary": "Offers SHAKE and SM3 implementations with rANS compression.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "novel_assumption",
+        "summary": "Security relies on the new GA-MLWE assumption with published Gram information.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "rejection_sampling",
+        "summary": "Signing repeats about 2.69-2.99 times on average.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "variable_length_signature",
+        "summary": "rANS produces variable-length signatures while the API exposes a padded cap.",
+        "basis": "derived_from_implementation_description"
+      },
+      {
+        "category": "key_generation_performance",
+        "summary": "Specification reports key generation over 300 times slower than Dilithium in its comparison.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/Rhyme/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "x86",
+      "path": "DigitalSignature/Rhyme/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "rhyme-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Rhyme/Basic information.pdf",
+      "extraction_method": "text",
+      "notes": "Despite its filename, this 71-page file is the specification."
+    },
+    {
+      "source_id": "rhyme-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/Rhyme/Algorithm specifications.pdf",
+      "extraction_method": "ocr",
+      "notes": "Despite its filename, this 3-page file appears to be the scanned basic-information form."
+    },
+    {
+      "source_id": "rhyme-params",
+      "type": "implementation",
+      "path": "DigitalSignature/Rhyme/Implementations and Test_Vectors/Implementations/Reference_Implementation/Rhyme-SM3/Rhyme-SM3-128/include/params.h",
+      "extraction_method": "code_inspection",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "rhyme-spec",
+      "locator": "pp. 1-4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "rhyme-spec",
+      "locator": "pp. 50-53, Table 3",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "signature_characteristics.signature_length",
+      "source_id": "rhyme-params",
+      "locator": "params.h:98-99",
+      "confidence": "high",
+      "extraction_status": "derived",
+      "note": "rANS and total_len field indicate variable encoding."
+    },
+    {
+      "field": "security_claims",
+      "source_id": "rhyme-spec",
+      "locator": "Section 4",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Author affiliations were not reliably recoverable from the scanned basic-information form; affiliation links are left empty.",
+      "Reported signature sizes are estimates using experimental rANS compression rates; exact minima/maxima were not stated."
+    ],
+    "conflicts": [
+      "Package filenames for the basic-information form and specification appear swapped relative to their contents."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

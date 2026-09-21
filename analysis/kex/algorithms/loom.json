@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "loom",
+  "name": "Loom",
+  "full_name": "Loom: An Authenticated Key Exchange",
+  "version": "2026-06-30 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/Loom.zip",
+  "aliases": ["Loom-AKE"],
+  "overview_classification": {
+    "mathematical": {"family": "lattice_based", "subcategory": "module_lattice", "label_en": "Module-lattice (Shifted-MLWR/MSIS)", "label_zh": "基于 Shifted-MLWR/MSIS 的模块格密码"},
+    "protocol": {"family": "authenticated_key_exchange", "subcategory": "signature_authenticated_ake", "label_en": "Signature-and-MAC authenticated key exchange", "label_zh": "签名与 MAC 认证密钥交换"},
+    "summary_label_zh": "模块格基、Loom-KEM 与 Shuttle 签名/MAC 组合的双向认证四消息 AKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "interactive",
+    "message_flows": 4,
+    "round_trips": 2,
+    "authentication": {"type": "mutual", "authenticated_roles": ["initiator", "responder"], "mechanism": "Each party signs a role-separated KEM transcript with its long-term Shuttle key and authenticates its identity with a directional PRF-MAC."},
+    "roles": [
+      {"role": "initiator", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a Shuttle signing key and creates a fresh single-use Loom-KEM pair (ek,dk)."},
+      {"role": "responder", "long_term_key_required": true, "ephemeral_key_required": true, "key_details": "Holds a Shuttle signing key and generates fresh KEM encapsulation randomness and nonce per session."}
+    ],
+    "pre_distributed_material": ["Peer Shuttle verification keys or certificates supplied outside the four handshake messages"],
+    "forward_secrecy": {"level": "perfect_forward_secrecy", "conditions": "Claimed for fresh expired sessions in the post-specified-peer CK model, provided target session state/session keys were not revealed and all ephemeral KEM state was erased."},
+    "key_confirmation": "Explicit mutual confirmation through the two final directional MAC tags under mk_I and mk_R, together with role-separated signatures.",
+    "transcript_binding": "Signatures cover DTBS_I = 0 || sid || ek || ct_kem and DTBS_R = 1 || sid || ct_kem || ek; KDF+ uses K and nonce salt N_I || N_R.",
+    "identity_binding": "Directional MACs bind ID_I/ID_R to sid; signatures bind each role to sid and the ephemeral KEM transcript."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Four-message SIGMA-like Sign-and-MAC AKE using a strictly ephemeral rigid IND-CPAF Loom-KEM and long-term Shuttle signatures.",
+    "underlying_primitives": [
+      {"name": "Loom-KEM", "role": "Strictly single-use ephemeral KEM, analyzed under IND-CPAF with rigidity"},
+      {"name": "Shuttle", "role": "Long-term EUF-CMA signature for mutual transcript authentication"},
+      {"name": "KDF+ and PRF-MAC", "role": "Session key, directional MAC-key derivation, identity binding, and explicit confirmation"}
+    ],
+    "hard_problems": [
+      {"name": "Shifted Module Learning With Rounding (Shifted-MLWR)", "role": "Confidentiality foundation of Loom-KEM"},
+      {"name": "Module Short Integer Solution (MSIS)", "role": "Authentication foundation of Shuttle signatures"}
+    ],
+    "mathematical_structures": ["Polynomial ring R_q = Z_q[X]/(X^n+1)", "module lattice", "centered-binomial secrets", "rounded/compressed polynomial encodings", "rigidity tag"],
+    "security_models": ["Post-specified-peer Canetti-Krawczyk model", "IND-CPAF with one failure bit per ephemeral key", "epsilon-rigidity", "EUF-CMA signature security", "PRF security of KDF/MAC"]
+  },
+  "protocol_flow": [
+    {"flow": 1, "sender": "initiator", "receiver": "responder", "message_id": "msg_I_1", "components": [{"name": "SPI_I || 0", "semantics": "Half-open 8-byte session identifier."}, {"name": "ek", "semantics": "Fresh ephemeral Loom-KEM public key."}, {"name": "N_I", "semantics": "Initiator freshness nonce."}], "semantics": "Initiator creates a fresh single-use KEM key pair and sends the public key, SPI, and nonce."},
+    {"flow": 2, "sender": "responder", "receiver": "initiator", "message_id": "msg_R_1", "components": [{"name": "SPI_I || SPI_R", "semantics": "Completed 8-byte session identifier."}, {"name": "ct_kem", "semantics": "Loom-KEM ciphertext including the CPAF rigidity tag."}, {"name": "N_R", "semantics": "Responder freshness nonce."}], "semantics": "Responder encapsulates K to ek and returns the completed session identifier, ciphertext, and nonce."},
+    {"flow": 3, "sender": "initiator", "receiver": "responder", "message_id": "msg_I_2", "components": [{"name": "ID_I", "semantics": "Initiator identity with two-byte length prefix."}, {"name": "sigma_I", "semantics": "Shuttle signature on role-separated DTBS_I."}, {"name": "tau_I", "semantics": "MAC under directional key mk_I over role, sid, and ID_I."}], "semantics": "After rigid decapsulation and KDF+, the initiator authenticates its role, transcript, and identity."},
+    {"flow": 4, "sender": "responder", "receiver": "initiator", "message_id": "msg_R_2", "components": [{"name": "ID_R", "semantics": "Responder identity with two-byte length prefix."}, {"name": "sigma_R", "semantics": "Shuttle signature on role-separated DTBS_R."}, {"name": "tau_R", "semantics": "MAC under directional key mk_R over role, sid, and ID_R."}], "semantics": "Responder verifies the initiator, then returns its own signature and MAC; the initiator accepts only after verifying both."}
+  ],
+  "key_schedule": {
+    "static_contributions": ["Long-term Shuttle signing keys authenticate the transcript but do not contribute to K or SS."],
+    "ephemeral_contributions": ["K from Loom-KEM.Encap(ek) / Loom-KEM.Decap(dk,ct_kem)"],
+    "transcript_hash": "No single transcript hash in the KDF: transcript authentication is by DTBS_I = 0 || sid || ek || ct_kem and DTBS_R = 1 || sid || ct_kem || ek; the salt is N_I || N_R.",
+    "session_key_derivation": "KDF+ chains SS = KDF(K, salt || 0x01), mk_I = KDF(K, SS || salt || 0x02), mk_R = KDF(K, mk_I || salt || 0x03), where salt = N_I || N_R.",
+    "domain_separation": "Suffixes 0x01/0x02/0x03 separate SS, mk_I, and mk_R; role octets 0/1 separate initiator/responder signatures and MACs.",
+    "ephemeral_secret_erasure": "dk must be erased immediately after its single decapsulation attempt, success or failure; responder encapsulation randomness and raw K are erased after key derivation."
+  },
+  "submitters": [
+    {"name_en": "Long Chen", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zidi Zhuang", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Yuyang Xiao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Cong Zhang", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Si Gao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Jipeng Zhang", "name_zh": null, "affiliation_ids": ["aff-3"], "is_contact": false},
+    {"name_en": "Guofeng Tang", "name_zh": null, "affiliation_ids": ["aff-4"], "is_contact": false},
+    {"name_en": "Zihan Liu", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Yifan Ming", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Jianhua Hou", "name_zh": null, "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Ruiqi Mi", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Tanping Zhou", "name_zh": null, "affiliation_ids": ["aff-6"], "is_contact": false},
+    {"name_en": "Pengfei Chen", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Yutao Sun", "name_zh": null, "affiliation_ids": ["aff-7"], "is_contact": false},
+    {"name_en": "Shuo Chen", "name_zh": null, "affiliation_ids": ["aff-6"], "is_contact": false},
+    {"name_en": "Yingjie Hao", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Taiyu Wang", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Minxuan Mei", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Institute of Software, Chinese Academy of Sciences", "name_zh": "中国科学院软件研究所"},
+    {"affiliation_id": "aff-2", "name_en": "Zhejiang University", "name_zh": "浙江大学"},
+    {"affiliation_id": "aff-3", "name_en": "National University of Singapore", "name_zh": "新加坡国立大学"},
+    {"affiliation_id": "aff-4", "name_en": "Singapore Management University", "name_zh": "新加坡管理大学"},
+    {"affiliation_id": "aff-5", "name_en": "Information Engineering University", "name_zh": "信息工程大学"},
+    {"affiliation_id": "aff-6", "name_en": "Engineering University of PAP", "name_zh": "武警工程大学"},
+    {"affiliation_id": "aff-7", "name_en": "Beijing Electronic Science and Technology Institute", "name_zh": "北京电子科技学院"}
+  ],
+  "common_parameters": {"ring": "R_q = Z_q[X]/(X^n+1)", "kem": "Loom-KEM (IND-CPAF with rigidity)", "signature": "Shuttle", "kdf_mac": "KDF+ with directional PRF-MAC", "secret_distribution": "Centered binomial eta_1/eta_2", "compression": "(d_t,d_u,d_v)-bit polynomial compression", "session_identifier": "Two 32-bit SPIs", "nonces": "256 bits for 128/256; 512 bits for 512"},
+  "parameter_sets": [
+    {"name": "Loom-AKE-128", "implementation_aliases": ["Loom-128", "LoomKEX-128", "AKE-128"], "target_security": {"classical_bits": 128, "quantum_bits": 80}, "ngcc_level": 1, "core_parameters": {"kem": "Loom-KEM-128", "signature": "Shuttle-128", "n": 128, "q": 3329, "k": 5, "eta_1": 3, "eta_2": 2, "d_t": 9, "d_u": 8, "d_v": 4, "mu_bits": 128, "signature_bytes": 1183, "mac_tag_bytes": 16}, "sizes_bytes": {"long_term_public_key": 1264, "long_term_secret_key": 2288, "ephemeral_public_key": 752, "ephemeral_secret_key": 960, "messages": [{"message_id": "msg_I_1", "bytes": 792}, {"message_id": "msg_R_1", "bytes": 776}, {"message_id": "msg_I_2", "bytes": 1235}, {"message_id": "msg_R_2", "bytes": 1235}], "total_communication": 4038, "initiator_session_state": 2600, "responder_session_state": 2600, "shared_secret": 16, "randomness": {"initiator_nonce": 32, "responder_nonce": 32, "kem_keygen_seed": 32, "signature_keygen_seed": null}}, "failure_probability": "DFR = 2^-19.7", "issues": []},
+    {"name": "Loom-AKE-256", "implementation_aliases": ["Loom-256", "LoomKEX-256", "AKE-256"], "target_security": {"classical_bits": 256, "quantum_bits": 128}, "ngcc_level": 3, "core_parameters": {"kem": "Loom-KEM-256", "signature": "Shuttle-256", "n": 256, "q": 7681, "k": 4, "eta_1": 8, "eta_2": 4, "d_t": 10, "d_u": 9, "d_v": 4, "mu_bits": 256, "signature_bytes": 2417, "mac_tag_bytes": 32}, "sizes_bytes": {"long_term_public_key": 1952, "long_term_secret_key": 3680, "ephemeral_public_key": 1312, "ephemeral_secret_key": 1664, "messages": [{"message_id": "msg_I_1", "bytes": 1352}, {"message_id": "msg_R_1", "bytes": 1384}, {"message_id": "msg_I_2", "bytes": 2485}, {"message_id": "msg_R_2", "bytes": 2485}], "total_communication": 7706, "initiator_session_state": 4552, "responder_session_state": 4552, "shared_secret": 32, "randomness": {"initiator_nonce": 32, "responder_nonce": 32, "kem_keygen_seed": 32, "signature_keygen_seed": null}}, "failure_probability": "DFR = 2^-18.9", "issues": ["The two authentication messages exceed a standard 1500-byte MTU and require fragmentation or application-layer chunking in UDP deployments."]},
+    {"name": "Loom-AKE-512", "implementation_aliases": ["Loom-512", "LoomKEX-512", "AKE-512"], "target_security": {"classical_bits": 512, "quantum_bits": 256}, "ngcc_level": 5, "core_parameters": {"kem": "Loom-KEM-512", "signature": "Shuttle-512", "n": 512, "q": 7681, "k": 4, "eta_1": 10, "eta_2": 8, "d_t": 11, "d_u": 10, "d_v": 4, "mu_bits": 512, "signature_bytes": 5001, "mac_tag_bytes": 64}, "sizes_bytes": {"long_term_public_key": 3648, "long_term_secret_key": 7104, "ephemeral_public_key": 2880, "ephemeral_secret_key": 3328, "messages": [{"message_id": "msg_I_1", "bytes": 2952}, {"message_id": "msg_R_1", "bytes": 3016}, {"message_id": "msg_I_2", "bytes": 5101}, {"message_id": "msg_R_2", "bytes": 5101}], "total_communication": 16170, "initiator_session_state": 9608, "responder_session_state": 9608, "shared_secret": 64, "randomness": {"initiator_nonce": 64, "responder_nonce": 64, "kem_keygen_seed": 64, "signature_keygen_seed": null}}, "failure_probability": "DFR = 2^-24.8", "issues": ["All four messages exceed a standard 1500-byte MTU once ordinary transport overhead is included."]}
+  ],
+  "correctness": {"underlying_failure_probability": {"Loom-AKE-128": "2^-19.7", "Loom-AKE-256": "2^-18.9", "Loom-AKE-512": "2^-24.8"}, "session_failure_probability": {"Loom-AKE-128": "2^-19.7 plus negligible rigidity-tag error", "Loom-AKE-256": "2^-18.9 plus negligible rigidity-tag error", "Loom-AKE-512": "2^-24.8 plus negligible rigidity-tag error"}, "relationship": "Each session makes one strictly single-use KEM decapsulation; an honest KEM decryption error is explicitly detected and aborts the session, so the session failure rate is the Loom-KEM DFR plus the negligible rigidity-tag error.", "basis": "Algorithm specification Tables 4-5 and Section 3.3, pp. 16-20."},
+  "security_claims": [
+    {"category": "authentication", "claim": "Mutual authentication uses EUF-CMA signatures over role-separated KEM transcripts and directional PRF-MACs over identities.", "claim_strength": "formally_claimed", "comparison_scope": "Four-message Loom-AKE"},
+    {"category": "ake_model", "claim": "Session-key security in the post-specified-peer Canetti-Krawczyk model despite the controlled non-negligible DFR.", "claim_strength": "formally_claimed", "comparison_scope": "Under IND-CPAF, rigidity, signature, MAC, and KDF assumptions"},
+    {"category": "forward_secrecy", "claim": "Perfect forward secrecy for fresh expired sessions because long-term signature keys are isolated from KEM/KDF key material.", "claim_strength": "formally_claimed", "comparison_scope": "Subject to erasure and CK freshness conditions"},
+    {"category": "failure_oracle", "claim": "Single-use ephemeral decapsulation limits visible failure leakage to one accept/reject bit, modeled by IND-CPAF.", "claim_strength": "formally_claimed", "comparison_scope": "Only when each dk processes at most one ciphertext"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "communication", "claim": "Compact initial KEM flights are designed to avoid IP fragmentation and fragmentation-based DoS exposure at selected MTU targets.", "claim_strength": "measured", "comparison_scope": "Loom-AKE-128 under IPv6 minimum MTU; Loom-AKE-256 KEM flights under 1500-byte MTU"},
+      {"category": "performance", "claim": "Rigid IND-CPAF decapsulation avoids FO re-encryption and is reported to give about a fourfold decapsulation speedup.", "claim_strength": "measured", "comparison_scope": "Submitted Loom-KEM implementation"},
+      {"category": "compatibility", "claim": "Long-term signature authentication preserves compatibility with CA/X.509-style PKI and allows KEM/signature agility.", "claim_strength": "argued", "comparison_scope": "Compared with static-KEM credential designs"},
+      {"category": "security", "claim": "Key isolation provides PFS under the stated post-specified-peer CK model.", "claim_strength": "formally_claimed", "comparison_scope": "Fresh expired sessions"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "correctness", "description": "Loom deliberately permits non-negligible DFR (approximately 2^-18.9 to 2^-24.8); failures cause explicit session abort and may require bounded retry.", "provenance": "explicit_caveat"},
+      {"category": "strict_ephemeral_use", "description": "Each Loom-KEM key pair is single-use; reuse permits repeated failure-oracle observations and may enable key recovery.", "provenance": "explicit_caveat"},
+      {"category": "erasure", "description": "dk must be zeroized after the first decapsulation attempt whether it succeeds or fails.", "provenance": "explicit_in_submission"},
+      {"category": "communication", "description": "Loom-AKE-256 authentication messages and all Loom-AKE-512 messages exceed a standard 1500-byte MTU and require fragmentation or chunking in UDP deployments.", "provenance": "derived_from_parameters"},
+      {"category": "side_channel", "description": "Implementations without dedicated countermeasures are expected to remain vulnerable to power/EM leakage, and variable-latency microarchitectural effects require platform-specific review.", "provenance": "explicit_caveat"},
+      {"category": "test_scope", "description": "Reported x86-64 measurements come from one Intel Core i7-14700 under Ubuntu 24.04/WSL2; each algorithm was measured in one benchmark session.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [{"type": "reference", "language": "C99", "platform": "portable x86-64"}, {"type": "optimized", "language": "C/assembly", "platform": "x86-64 AVX2"}, {"type": "additional", "language": "C", "platform": "additional implementation supplied; platform details in repository README"}],
+  "submission_completeness": {"status": "partial", "present_components": ["algorithm specification", "reference implementation", "optimized implementation", "additional implementation", "test vectors", "security analysis"], "missing_components": ["Machine-readable text from the basic-information PDF was unavailable; submitter metadata was recovered from the specification title page."]},
+  "sources": [
+    {"source_id": "loom-basic", "type": "basic_information", "path": "KeyExchange/Loom.zip::Basic information/Basic Algorithm Information.pdf", "priority": 1, "notes": "Scanned/image-only in supplied extraction; OCR produced no usable form text."},
+    {"source_id": "loom-spec", "type": "algorithm_specification", "path": "KeyExchange/Loom.zip::Algorithm specifications/Algorithm Specification and Supporting Documentation.pdf", "priority": 2, "notes": "Primary technical and submitter source."},
+    {"source_id": "loom-api", "type": "api_header", "path": "KeyExchange/Loom.zip::Implementations and Test_Vectors/Implementations/**/loom/*.h", "priority": 3, "notes": "Cross-check of implementation aliases, sizes, and state layout."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "loom-spec", "locator": "title page, p. 1", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "loom-spec", "locator": "Abstract and Sections 2, 3.1, pp. 1, 5-6, 17", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "loom-spec", "locator": "Algorithms 1-6, pp. 7-9; key schedule, p. 33", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "loom-spec", "locator": "Tables 3-5, pp. 15-17; Tables 15-17, pp. 53-54", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "loom-spec", "locator": "Section 3.3, pp. 19-20", "confidence": "high", "extraction_status": "verified"},
+    {"field": "security_claims", "source_id": "loom-spec", "locator": "Sections 4.1.4-4.1.5 and 4.4, pp. 30-42, 47-48", "confidence": "high", "extraction_status": "verified"},
+    {"field": "limitations_and_constraints", "source_id": "loom-spec", "locator": "pp. 47-49, 53-54", "confidence": "high", "extraction_status": "verified"}
+  ],
+  "review": {"status": "cross_checked", "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness relation"], "review_notes": ["Table 15 message totals were recomputed from all four serialized messages.", "Table 15 supersedes the earlier primitive-payload totals in Table 2 because it includes SPI, nonces, length prefixes, identities, and MAC tags.", "KEM key sizes and active-session storage were cross-checked against Table 17 and implementation headers.", "independent cross-review by group_3"], "conflicts": ["Table 2 reports cryptographic-payload bandwidth 3870/7522/15986 bytes, while the later normative serialized-message Table 15 reports 4038/7706/16170 bytes; sizes_bytes uses Table 15."]},
+  "issues": [
+    {"field": "submitters.name_zh", "severity": "warning", "description": "Chinese author-name forms were not present in the specification and the scanned basic-information form yielded no usable OCR; name_zh is null."},
+    {"field": "submitters.is_contact", "severity": "warning", "description": "The contact designation could not be recovered from the scanned basic-information PDF; all is_contact values are conservatively false."},
+    {"field": "parameter_sets.sizes_bytes.randomness.signature_keygen_seed", "severity": "info", "description": "Shuttle key-generation randomness is specified abstractly as a lambda-bit seed; a fixed serialized byte count was not tabulated."}
+  ]
+}

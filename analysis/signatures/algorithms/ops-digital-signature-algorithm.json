@@ -1,0 +1,489 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "ops-digital-signature-algorithm",
+  "name": "OPS Digital Signature Algorithm",
+  "full_name": "OPS-SIG",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/OPS Digital Signature Algorithm",
+  "aliases": [
+    "OPS-SIG",
+    "OPSsig"
+  ],
+  "overview_classification": {
+    "family": "lattice_based",
+    "subcategory": "mlwe_msis_based",
+    "family_label_en": "Lattice-based",
+    "family_label_zh": "格密码",
+    "subcategory_label_en": "MLWE/MSIS-type signature",
+    "subcategory_label_zh": "MLWE-MSIS型签名",
+    "summary_label_zh": "格密码 / MLWE-MSIS型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir_with_aborts"
+    ],
+    "hardness_problems": [
+      {
+        "name": "MLWE",
+        "role": "key security",
+        "details": "Module Learning With Errors"
+      },
+      {
+        "name": "MSIS",
+        "role": "unforgeability",
+        "details": "Module Short Integer Solution"
+      },
+      {
+        "name": "SelfTargetMSIS",
+        "role": "QROM reduction",
+        "details": null
+      }
+    ],
+    "mathematical_structures": [
+      "module lattice",
+      "R_q = Z_q[X]/(X^n+1)",
+      "NTT arithmetic"
+    ],
+    "claimed_security_targets": [
+      "SUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": true,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Fudan University",
+      "name_zh": "复旦大学",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "Shenzhen Aolian Information Security Technology Company",
+      "name_zh": null,
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yunlei Zhao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Yixuan Song",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yifan Dong",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhaohui Cheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jieyu Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Han Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Shuaihao Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yu Wu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Wenbo Guo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n+1)",
+    "q": 67104769,
+    "secret_distribution": "bounded coefficients S_eta",
+    "challenge_space": "sparse signed polynomial B_tau",
+    "hash_xof_prg": [
+      "SHAKE/hash-XOF interfaces"
+    ],
+    "encoding": "packed keys, response and canonical hint indices",
+    "signature_components": [
+      "c_tilde",
+      "z",
+      "h"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "Level-1",
+      "implementation_aliases": [
+        "OPSsig-128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": "Level-1"
+      },
+      "parameters": {
+        "n": 512,
+        "q": 67104769,
+        "k": 3,
+        "l": 3,
+        "eta1": 2,
+        "eta2": 2,
+        "gamma1": "2^21",
+        "gamma2": "(q-1)/32",
+        "d": 13,
+        "tau": 39,
+        "omega": 80
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2560,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 3840,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 4349,
+          "minimum": 4349,
+          "maximum": 4349,
+          "average": 4349,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level-3",
+      "implementation_aliases": [
+        "OPSsig-256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": "Level-3"
+      },
+      "parameters": {
+        "n": 512,
+        "q": 67104769,
+        "k": 4,
+        "l": 4,
+        "eta1": 3,
+        "eta2": 3,
+        "gamma1": "2^20",
+        "gamma2": "(q-1)/96",
+        "d": 13,
+        "tau": 45,
+        "omega": 85
+      },
+      "sizes": {
+        "public_key": {
+          "value": 3392,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 5056,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5540,
+          "minimum": 5540,
+          "maximum": 5540,
+          "average": 5540,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level-5",
+      "implementation_aliases": [
+        "OPSsig-512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": "Level-5"
+      },
+      "parameters": {
+        "n": 1024,
+        "q": 67104769,
+        "k": 4,
+        "l": 4,
+        "eta1": 2,
+        "eta2": 2,
+        "gamma1": "2^22",
+        "gamma2": "(q-1)/48",
+        "d": 13,
+        "tau": 90,
+        "omega": 90
+      },
+      "sizes": {
+        "public_key": {
+          "value": 6720,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 9920,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 12021,
+          "minimum": 12021,
+          "maximum": 12021,
+          "average": 12021,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {
+      "Level-1": 1.12,
+      "Level-3": 1.93,
+      "Level-5": 2.02
+    },
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Expected repetitions are empirical values reported in Table 1."
+  },
+  "security_claims": [
+    {
+      "target": "SUF-CMA",
+      "model": "ROM",
+      "claim": "Theorem 2 claims SUF-CMA under MLWE and MSIS in ROM.",
+      "estimates": []
+    },
+    {
+      "target": "SUF-CMA",
+      "model": "QROM",
+      "claim": "Theorem 3 claims SUF-CMA under MLWE, SelfTargetMSIS and MSIS in QROM.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Claims SUF-CMA security in ROM and QROM from MLWE/MSIS-type assumptions.",
+        "claim_strength": "formal",
+        "comparison_scope": null
+      },
+      {
+        "category": "performance",
+        "summary": "Uses sparse-polynomial parallel multiplication and NTT arithmetic to reduce signing cost.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted implementation"
+      },
+      {
+        "category": "flexibility",
+        "summary": "Specification covers three security levels with message/context encoding.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "submitted parameter family"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_sampling",
+        "summary": "Signing uses rejection sampling with reported expected loop counts from 1.12 to 2.02.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "implementation_completeness",
+        "summary": "The specification states that the repository reference implementation currently realizes only the Level-1 instance.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Reference benchmark results are tied to the documented x86 platform and test setup.",
+        "basis": "derived_from_test_setup"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "x86",
+      "path": "DigitalSignature/OPS Digital Signature Algorithm/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/intrinsics",
+      "platform": "x86",
+      "path": "DigitalSignature/OPS Digital Signature Algorithm/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "ops-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/OPS Digital Signature Algorithm/Basic Algorithm Information.pdf",
+      "extraction_method": "text",
+      "notes": "2 pages"
+    },
+    {
+      "source_id": "ops-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/OPS Digital Signature Algorithm/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": "Version 1.0, 28 pages"
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters",
+      "source_id": "ops-basic",
+      "locator": "pp. 1-2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "overview_classification",
+      "source_id": "ops-spec",
+      "locator": "p. 2, Section 1.1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "ops-spec",
+      "locator": "p. 2, Table 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "ops-spec",
+      "locator": "Sections 5.4-5.5",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "No Chinese personal-name field was reliably recoverable from the English basic-information form; name_zh is null."
+    ],
+    "conflicts": [
+      "Specification covers three instances but states the repository reference implementation currently realizes only Level-1."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

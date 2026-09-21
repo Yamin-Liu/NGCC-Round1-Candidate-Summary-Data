@@ -1,0 +1,620 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "polarlac",
+  "name": "PolarLAC",
+  "full_name": "Polar code-enhanced Lattice-based Cryptosystem",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/PolarLAC",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Module-LWE with rejection sampling (Module-LWErej)",
+        "role": "primary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "module over negacyclic polynomial rings with k=2",
+    "underlying_pke": "PolarLAC.PKE.CPA",
+    "kem_construction": "FO-style CCA conversion with re-encryption and implicit rejection",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-iie-cas",
+      "name_en": "State Key Laboratory of Cyberspace Security Defense, Institute of Information Engineering, Chinese Academy of Sciences",
+      "name_zh": "中国科学院信息工程研究所网络空间安全防御全国重点实验室"
+    },
+    {
+      "affiliation_id": "aff-ucas",
+      "name_en": "University of Chinese Academy of Sciences",
+      "name_zh": "中国科学院大学"
+    },
+    {
+      "affiliation_id": "aff-huawei",
+      "name_en": "Huawei Technologies",
+      "name_zh": "华为技术有限公司"
+    },
+    {
+      "affiliation_id": "aff-icbc",
+      "name_en": "Industrial and Commercial Bank of China",
+      "name_zh": "中国工商银行"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Xianhui Lu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jiabo Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Dongshu Cai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ying Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ziyao Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Lei Bi",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yijian Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Dingding Jia",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yu Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jingnan He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas",
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yamin Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-huawei"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Bo Pang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-icbc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "negacyclic polynomial ring Rq with module rank 2",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "profile-specific centered binomial Psi fractions plus spectral rejection sampling",
+    "modulus": "257 or 769",
+    "dimensions": {
+      "k": 2,
+      "n": "256,512,1024"
+    },
+    "weights": null,
+    "error_correction": "polar code with successive-cancellation decoding",
+    "symmetric_primitives": [
+      "ICCS hash/XOF API"
+    ],
+    "representation": "compressed public key with zero-selector tail; packed ciphertext coefficients",
+    "other": {
+      "spectral_rejection": true
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "PolarLAC-Light",
+      "implementation_aliases": [
+        "POLARLAC-Light"
+      ],
+      "submission_security_label": "lightweight",
+      "claimed_classical_security_bits": 121.6,
+      "claimed_quantum_security_bits": 111.7,
+      "core_parameters": {
+        "k": 2,
+        "n": 256,
+        "q": 257,
+        "distribution": "Psi_1/4",
+        "R": "1/2",
+        "code_length": 256,
+        "d1": 8,
+        "d2": 3
+      },
+      "decapsulation_failure_probability": "2^-159",
+      "sizes": {
+        "public_key": {
+          "bytes": 530,
+          "raw": "530 bytes",
+          "basis": "specification Table 3"
+        },
+        "secret_key": {
+          "bytes": 1570,
+          "raw": "1570 bytes",
+          "basis": "specification Table 3"
+        },
+        "ciphertext": {
+          "bytes": 608,
+          "raw": "608 bytes",
+          "basis": "specification Table 3"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "MESSAGE_LEN_BYTES 16",
+          "basis": "reference params.h: SS_KEY_BYTES = MESSAGE_LEN_BYTES"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params-light"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarLAC-128",
+      "implementation_aliases": [
+        "POLARLAC-128"
+      ],
+      "submission_security_label": "128-bit",
+      "claimed_classical_security_bits": 132.5,
+      "claimed_quantum_security_bits": 122.6,
+      "core_parameters": {
+        "k": 2,
+        "n": 256,
+        "q": 257,
+        "distribution": "Psi_3/8",
+        "R": "1/2",
+        "code_length": 256,
+        "d1": 8,
+        "d2": 4
+      },
+      "decapsulation_failure_probability": "2^-146",
+      "sizes": {
+        "public_key": {
+          "bytes": 530,
+          "raw": "530 bytes",
+          "basis": "specification Table 3"
+        },
+        "secret_key": {
+          "bytes": 1570,
+          "raw": "1570 bytes",
+          "basis": "specification Table 3"
+        },
+        "ciphertext": {
+          "bytes": 640,
+          "raw": "640 bytes",
+          "basis": "specification Table 3"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "MESSAGE_LEN_BYTES 16",
+          "basis": "reference params.h: SS_KEY_BYTES = MESSAGE_LEN_BYTES"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarLAC-256",
+      "implementation_aliases": [
+        "POLARLAC-256"
+      ],
+      "submission_security_label": "256-bit",
+      "claimed_classical_security_bits": 261.6,
+      "claimed_quantum_security_bits": 240.8,
+      "core_parameters": {
+        "k": 2,
+        "n": 512,
+        "q": 257,
+        "distribution": "Psi_1/4",
+        "R": "1/2",
+        "code_length": 512,
+        "d1": 8,
+        "d2": 4
+      },
+      "decapsulation_failure_probability": "2^-265",
+      "sizes": {
+        "public_key": {
+          "bytes": 1060,
+          "raw": "1060 bytes",
+          "basis": "specification Table 3"
+        },
+        "secret_key": {
+          "bytes": 3140,
+          "raw": "3140 bytes",
+          "basis": "specification Table 3"
+        },
+        "ciphertext": {
+          "bytes": 1280,
+          "raw": "1280 bytes",
+          "basis": "specification Table 3"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "MESSAGE_LEN_BYTES 32",
+          "basis": "reference params.h: SS_KEY_BYTES = MESSAGE_LEN_BYTES"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params-256"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarLAC-512",
+      "implementation_aliases": [
+        "POLARLAC-512"
+      ],
+      "submission_security_label": "512-bit bounded-query profile",
+      "claimed_classical_security_bits": 512.1,
+      "claimed_quantum_security_bits": 482.5,
+      "core_parameters": {
+        "k": 2,
+        "n": 1024,
+        "q": 257,
+        "distribution": "Psi_11/64",
+        "R": "1/2",
+        "code_length": 1024,
+        "d1": 8,
+        "d2": 4
+      },
+      "decapsulation_failure_probability": "2^-324",
+      "sizes": {
+        "public_key": {
+          "bytes": 2116,
+          "raw": "2116 bytes",
+          "basis": "specification Table 3"
+        },
+        "secret_key": {
+          "bytes": 6276,
+          "raw": "6276 bytes",
+          "basis": "specification Table 3"
+        },
+        "ciphertext": {
+          "bytes": 2560,
+          "raw": "2560 bytes",
+          "basis": "specification Table 3"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "MESSAGE_LEN_BYTES 64",
+          "basis": "reference params.h: SS_KEY_BYTES = MESSAGE_LEN_BYTES"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params-512"
+      ],
+      "issues": []
+    },
+    {
+      "name": "PolarLAC-512*",
+      "implementation_aliases": [
+        "POLARLAC-512-Star"
+      ],
+      "submission_security_label": "512-bit unrestricted-query profile",
+      "claimed_classical_security_bits": 527.1,
+      "claimed_quantum_security_bits": 484.7,
+      "core_parameters": {
+        "k": 2,
+        "n": 1024,
+        "q": 769,
+        "distribution": "Psi_3/8",
+        "R": "1/2",
+        "code_length": 1024,
+        "d1": 9.6,
+        "d2": 4
+      },
+      "decapsulation_failure_probability": "2^-545",
+      "sizes": {
+        "public_key": {
+          "bytes": 2522,
+          "raw": "2522 bytes",
+          "basis": "specification Table 3"
+        },
+        "secret_key": {
+          "bytes": 6682,
+          "raw": "6682 bytes",
+          "basis": "specification Table 3"
+        },
+        "ciphertext": {
+          "bytes": 2970,
+          "raw": "2970 bytes",
+          "basis": "specification Table 3"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "MESSAGE_LEN_BYTES 64",
+          "basis": "reference params.h: SS_KEY_BYTES = MESSAGE_LEN_BYTES"
+        }
+      },
+      "source_refs": [
+        "spec",
+        "params-512-star"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Public-key zero selectors and coefficient compression are claimed to reduce communication.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Spectral rejection is claimed to control correlated-error DFR attacks.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "performance",
+        "summary": "Polar codes provide soft-information decoding with competitive failure rates.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "PolarLAC-Light is intended for refined-BKZ-based lightweight use rather than the strongest margin.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "PolarLAC-512 assumes bounded query counts; PolarLAC-512* is recommended for unrestricted queries at higher size/cost.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Sampling includes profile-dependent rejection rates and thresholds.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "x86",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C and intrinsics",
+      "platform": "x86 AVX2 and ARM",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/PolarLAC/Basic information/算法基本信息.pdf",
+      "priority": 1,
+      "notes": "Scanned; OCR used."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/PolarLAC/Algorithm specifications/算法文本.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86/POLARLAC-128/params.h",
+      "priority": 3,
+      "notes": null
+    },
+    {
+      "source_id": "params-light",
+      "type": "api_header",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86/POLARLAC-Light/params.h",
+      "priority": 3,
+      "notes": null
+    },
+    {
+      "source_id": "params-256",
+      "type": "api_header",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86/POLARLAC-256/params.h",
+      "priority": 3,
+      "notes": null
+    },
+    {
+      "source_id": "params-512",
+      "type": "api_header",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86/POLARLAC-512/params.h",
+      "priority": 3,
+      "notes": null
+    },
+    {
+      "source_id": "params-512-star",
+      "type": "api_header",
+      "path": "KeyEncapsulation/PolarLAC/Implementations/Reference_Implementation/x86/POLARLAC-512-Star/params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-7 (OCR)",
+      "summary": "Twelve submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.1-19,30-32",
+      "summary": "Module-LWErej, polar coding and CCA construction.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF p.19, Table 3",
+      "summary": "Five profiles with parameters, sizes, DFR and security estimates.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets[*].sizes.shared_secret",
+      "source_id": "params",
+      "locator": "SS_KEY_BYTES, MESSAGE_LEN_BYTES and KEM_SS_BYTES macros; corresponding sibling profile headers",
+      "summary": "Reference headers define shared-secret lengths as 16, 16, 32, 64 and 64 bytes for Light, 128, 256, 512 and 512-Star.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    }
+  ]
+}

@@ -1,0 +1,712 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "mito",
+  "name": "Mito",
+  "full_name": "Mito Code-Based Key Encapsulation Mechanism",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Mito",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Quasi-Dyadic Syndrome Decoding (QDSD)",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Quasi-Dyadic Code Distinguishing",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "2^l-adic quasi-dyadic algebra with concatenated Reed-Muller/Reed-Solomon codes",
+    "underlying_pke": "Mito.PKE",
+    "kem_construction": "SFO transform with re-encryption",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-bj-pqc",
+      "name_en": "Beijing Key Laboratory of Post-Quantum Cryptography",
+      "name_zh": "北京市后量子密码重点实验室"
+    },
+    {
+      "affiliation_id": "aff-xingtang",
+      "name_en": "Xingtang Telecommunications Technology Co., LTD.",
+      "name_zh": "兴唐通信科技有限公司"
+    },
+    {
+      "affiliation_id": "aff-ecnu",
+      "name_en": "East China Normal University",
+      "name_zh": "华东师范大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Changlun Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bj-pqc",
+        "aff-xingtang"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Chengju Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Liang Bai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bj-pqc",
+        "aff-xingtang"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Qiping Lin",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bj-pqc",
+        "aff-xingtang"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Tianrui Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yan Ding",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bj-pqc",
+        "aff-xingtang"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Chunyu Gan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Zhongyu Huang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ecnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F2 and 2^l-adic algebra",
+    "code_structure": "quasi-dyadic codes; concatenated duplicated Reed-Muller and shortened Reed-Solomon codes",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "fixed-weight binary secret and error vectors",
+    "modulus": null,
+    "dimensions": {
+      "adic_branching": "l=1 or 2",
+      "code_lengths": "parameter-set-specific"
+    },
+    "weights": {
+      "secret_and_error_weights": "parameter-set-specific tuples"
+    },
+    "error_correction": "RSRM concatenated decoding; optional distance-informed erasure decoding",
+    "symmetric_primitives": [
+      "hash/XOF through ICCS APIs"
+    ],
+    "representation": "seed-expanded public algebra elements and binary syndrome/ciphertext vectors",
+    "other": {
+      "seed_bytes": 64,
+      "salt_bytes": 32
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "Mito1-128",
+      "implementation_aliases": [
+        "Mito-1-128"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "l": 1,
+        "n": 15373,
+        "n_prime": 15360,
+        "n_in": 384,
+        "N_out": 40,
+        "w_e": 85,
+        "p_star": 0.3161
+      },
+      "decapsulation_failure_probability": "2^-173.34",
+      "sizes": {
+        "public_key": {
+          "bytes": 3908,
+          "raw": "3908 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 4052,
+          "raw": "4052 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 5796,
+          "raw": "5796 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito1-256",
+      "implementation_aliases": [
+        "Mito-1-256"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "l": 1,
+        "n": 33827,
+        "n_prime": 33792,
+        "n_in": 384,
+        "N_out": 88,
+        "w_e": 133,
+        "p_star": 0.3335
+      },
+      "decapsulation_failure_probability": "2^-272.79",
+      "sizes": {
+        "public_key": {
+          "bytes": 8522,
+          "raw": "8522 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 8682,
+          "raw": "8682 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 12714,
+          "raw": "12714 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito1-512",
+      "implementation_aliases": [
+        "Mito-1-512"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "l": 1,
+        "n": 106261,
+        "n_prime": 106240,
+        "n_in": 640,
+        "N_out": 166,
+        "w_e": 262,
+        "p_star": 0.3671
+      },
+      "decapsulation_failure_probability": "2^-516.22",
+      "sizes": {
+        "public_key": {
+          "bytes": 26630,
+          "raw": "26630 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 26822,
+          "raw": "26822 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 39878,
+          "raw": "39878 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.5 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito1-E-128",
+      "implementation_aliases": [
+        "Mito-1-E-128"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "l": 1,
+        "n": 14621,
+        "n_prime": 14592,
+        "n_in": 384,
+        "N_out": 38,
+        "w_e": 86,
+        "p_star": 0.3256
+      },
+      "decapsulation_failure_probability": "2^-167.99",
+      "sizes": {
+        "public_key": {
+          "bytes": 3720,
+          "raw": "3720 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 3864,
+          "raw": "3864 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 5512,
+          "raw": "5512 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito1-E-256",
+      "implementation_aliases": [
+        "Mito-1-E-256"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "l": 1,
+        "n": 32261,
+        "n_prime": 32256,
+        "n_in": 384,
+        "N_out": 84,
+        "w_e": 132,
+        "p_star": 0.342
+      },
+      "decapsulation_failure_probability": "2^-265.48",
+      "sizes": {
+        "public_key": {
+          "bytes": 8130,
+          "raw": "8130 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 8290,
+          "raw": "8290 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 12130,
+          "raw": "12130 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito1-E-512",
+      "implementation_aliases": [
+        "Mito-1-E-512"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "l": 1,
+        "n": 102437,
+        "n_prime": 102400,
+        "n_in": 640,
+        "N_out": 160,
+        "w_e": 261,
+        "p_star": 0.3735
+      },
+      "decapsulation_failure_probability": "2^-517.00",
+      "sizes": {
+        "public_key": {
+          "bytes": 25674,
+          "raw": "25674 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 25866,
+          "raw": "25866 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 38442,
+          "raw": "38442 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.6 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito2-E-128",
+      "implementation_aliases": [
+        "Mito-2-E-128"
+      ],
+      "submission_security_label": "128 classical / 80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "l": 2,
+        "n": 10253,
+        "n_prime": 10240,
+        "n_in": 256,
+        "N_out": 40,
+        "w_e": 39,
+        "p_star": 0.2907
+      },
+      "decapsulation_failure_probability": "2^-181.39",
+      "sizes": {
+        "public_key": {
+          "bytes": 5192,
+          "raw": "5192 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 5336,
+          "raw": "5336 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 6440,
+          "raw": "6440 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito2-E-256",
+      "implementation_aliases": [
+        "Mito-2-E-256"
+      ],
+      "submission_security_label": "256 classical / 128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "l": 2,
+        "n": 21523,
+        "n_prime": 21504,
+        "n_in": 256,
+        "N_out": 84,
+        "w_e": 68,
+        "p_star": 0.3079
+      },
+      "decapsulation_failure_probability": "2^-269.97",
+      "sizes": {
+        "public_key": {
+          "bytes": 10828,
+          "raw": "10828 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 10988,
+          "raw": "10988 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 13484,
+          "raw": "13484 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mito2-E-512",
+      "implementation_aliases": [
+        "Mito-2-E-512"
+      ],
+      "submission_security_label": "512 classical / 256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "l": 2,
+        "n": 65293,
+        "n_prime": 65280,
+        "n_in": 384,
+        "N_out": 170,
+        "w_e": 135,
+        "p_star": 0.3409
+      },
+      "decapsulation_failure_probability": "2^-547.37",
+      "sizes": {
+        "public_key": {
+          "bytes": 32712,
+          "raw": "32712 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "secret_key": {
+          "bytes": 32904,
+          "raw": "32904 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "ciphertext": {
+          "bytes": 40840,
+          "raw": "40840 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3.7 and 3.8"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Quasi-dyadic framework is claimed to compress public keys relative to conventional code-based systems.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "performance",
+        "summary": "Ciphertexts use strong concatenated error correction and are claimed small and fast to decapsulate.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "scalability",
+        "summary": "Mito2-E splits work across branches for multi-core parallelism.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Mito trades a larger public key and slower key generation for smaller ciphertexts and fast repeated use.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Each parameter set has a nonzero decoding failure rate.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Performance results are tied to the platforms and compilers listed in the specification.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/Mito/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C",
+      "platform": "optimized desktop",
+      "path": "KeyEncapsulation/Mito/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Mito/Basic information/Basic Algorithm Information.pdf",
+      "priority": 1,
+      "notes": "Scanned; OCR used."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Mito/Algorithm specifications/Algorithm Specification.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/Mito/Implementations/Reference_Implementation/Mito-1-128/parameters.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-3 (OCR)",
+      "summary": "Eight submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.2-3,35-51",
+      "summary": "Code assumptions, SFO transform and IND-CCA analysis.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.32-34, Tables 3.5-3.8",
+      "summary": "Nine parameter sets, DFRs and object sizes.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "high",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version was found.",
+      "field": "version"
+    }
+  ]
+}

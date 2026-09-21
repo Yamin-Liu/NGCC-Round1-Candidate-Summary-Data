@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "ntre",
+  "name": "NTRE",
+  "full_name": "NTRE Key Encapsulation Mechanism",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/NTRE",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "ntru_based",
+    "subcategory_label_zh": "基于NTRU",
+    "subcategory_report_label": "基于NTRU"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {"name": "R-NTRU_eta", "role": "primary", "notes": "文档以 eta=psi_1 实例化。"},
+      {"name": "R-LWE2_eta", "role": "primary", "notes": "文档以 eta=psi_1 实例化，并说明其具体困难度等同于相应 R-LWE_eta。"}
+    ],
+    "mathematical_structure": "Rq = Z_q[X]/(X^n - X^(n/2) + 1), n = 2^i 3^j",
+    "underlying_pke": "NTRE.CPAPKE",
+    "kem_construction": "FOAC' (FOAC prime) PKE-to-KEM transform with re-encryption check",
+    "claimed_security_target": "IND-CCA2 KEM; underlying PKE is OW-CPA",
+    "security_models": ["ROM", "QROM", "standard model for underlying PKE"]
+  },
+  "affiliations": [
+    {"affiliation_id": "aff-nudt", "name_en": "National University of Defense Technology", "name_zh": "国防科技大学"},
+    {"affiliation_id": "aff-nuaa", "name_en": "Nanjing University of Aeronautics and Astronautics", "name_zh": "南京航空航天大学"},
+    {"affiliation_id": "aff-nue", "name_en": "Naval University of Engineering", "name_zh": "海军工程大学"}
+  ],
+  "submitters": [
+    {"name_en": "Rongmao Chen", "name_zh": "陈荣茂", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Jinrong Chen", "name_zh": "陈锦榕", "affiliation_ids": ["aff-nudt"], "roles": ["submitter", "contact"]},
+    {"name_en": "Yi Wang", "name_zh": "王毅", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Xinyi Huang", "name_zh": "黄欣沂", "affiliation_ids": ["aff-nuaa"], "roles": ["submitter"]},
+    {"name_en": "Yutong Bian", "name_zh": "边雨桐", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Yumin Chen", "name_zh": "陈裕民", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Zhichao Yang", "name_zh": "杨智超", "affiliation_ids": ["aff-nue"], "roles": ["submitter"]},
+    {"name_en": "Kang Lin", "name_zh": "林康", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Jiang Tan", "name_zh": "谭疆", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]},
+    {"name_en": "Wei Yan", "name_zh": "严炜", "affiliation_ids": ["aff-nudt"], "roles": ["submitter"]}
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n - X^(n/2) + 1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "centered binomial distribution psi_1 = B_eta with eta=1; coefficients -1,0,1 with probabilities 1/4,1/2,1/4",
+    "modulus": "parameter-set-specific prime q",
+    "dimensions": {"degree_n": "parameter-set-specific; n=2^i 3^j"},
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": ["ICCS pseudoXOF based on KDF-SM3 for XOF/F/H with domain prefixes", "ICCS sm3hash based on SM3 for G"],
+    "representation": "public and secret keys stored in NTT-domain representation; polynomials packed at 12 bits per coefficient",
+    "other": {"plaintext_modulus_p": 2, "ntt_condition": "q ≡ 1 (mod n)"}
+  },
+  "parameter_sets": [
+    {
+      "name": "NTRE-2593-648",
+      "implementation_aliases": ["NTRE-128"],
+      "submission_security_label": "NGCC level 1 / implementation alias 128",
+      "claimed_classical_security_bits": 132,
+      "claimed_quantum_security_bits": 118,
+      "core_parameters": {"n": 648, "q": 2593, "p": 2, "eta": 1, "implementation_D": 3},
+      "decapsulation_failure_probability": "2^-549",
+      "sizes": {
+        "public_key": {"bytes": 972, "raw": "972 bytes", "basis": "specification Table 4 and params.h"},
+        "secret_key": {"bytes": 1976, "raw": "1976 bytes", "basis": "2*972+32"},
+        "ciphertext": {"bytes": 972, "raw": "972 bytes", "basis": "specification Table 4 and params.h"},
+        "shared_secret": {"bytes": 64, "raw": "NTRE_SSBYTES 64", "basis": "reference implementation params.h"}
+      },
+      "source_refs": ["spec", "params-128"],
+      "issues": ["NTRE_D=3 appears in implementation params.h, but its semantics are not explicitly documented; retained as an unresolved implementation parameter."]
+    },
+    {
+      "name": "NTRE-2917-1296",
+      "implementation_aliases": ["NTRE-256"],
+      "submission_security_label": "NGCC level 3 / implementation alias 256",
+      "claimed_classical_security_bits": 290,
+      "claimed_quantum_security_bits": 259,
+      "core_parameters": {"n": 1296, "q": 2917, "p": 2, "eta": 1, "implementation_D": 4},
+      "decapsulation_failure_probability": "2^-370",
+      "sizes": {
+        "public_key": {"bytes": 1944, "raw": "1944 bytes", "basis": "specification Table 4 and params.h"},
+        "secret_key": {"bytes": 3920, "raw": "3920 bytes", "basis": "2*1944+32"},
+        "ciphertext": {"bytes": 1944, "raw": "1944 bytes", "basis": "specification Table 4 and params.h"},
+        "shared_secret": {"bytes": 64, "raw": "NTRE_SSBYTES 64", "basis": "reference implementation params.h"}
+      },
+      "source_refs": ["spec", "params-256"],
+      "issues": ["NTRE_D=4 appears in implementation params.h, but its semantics are not explicitly documented; retained as an unresolved implementation parameter."]
+    },
+    {
+      "name": "NTRE-3457-2304",
+      "implementation_aliases": ["NTRE-512"],
+      "submission_security_label": "NGCC level 5 / implementation alias 512",
+      "claimed_classical_security_bits": 584,
+      "claimed_quantum_security_bits": 513,
+      "core_parameters": {"n": 2304, "q": 3457, "p": 2, "eta": 1, "implementation_D": 4},
+      "decapsulation_failure_probability": "2^-298",
+      "sizes": {
+        "public_key": {"bytes": 3456, "raw": "3456 bytes", "basis": "specification Table 4 and params.h"},
+        "secret_key": {"bytes": 6944, "raw": "6944 bytes", "basis": "2*3456+32"},
+        "ciphertext": {"bytes": 3456, "raw": "3456 bytes", "basis": "specification Table 4 and params.h"},
+        "shared_secret": {"bytes": 64, "raw": "NTRE_SSBYTES 64", "basis": "reference implementation params.h"}
+      },
+      "source_refs": ["spec", "params-512"],
+      "issues": ["NTRE_D=4 appears in implementation params.h, but its semantics are not explicitly documented; retained as an unresolved implementation parameter."]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "compactness", "summary": "Submission claims smaller keys and ciphertexts from p=2 and an average-case-failure-friendly transform.", "claim_strength": "comparative", "comparison_scope": "Compared in Table 5 with selected NTRU+ and ML-KEM parameter sets", "source_refs": ["spec"]},
+      {"category": "performance", "summary": "AVX2 implementation is claimed to reduce operation cycle counts by about 1.3x to 2.7x.", "claim_strength": "quantified", "comparison_scope": "Reference C versus submitted AVX2 implementation on the stated Intel platform", "source_refs": ["spec"]},
+      {"category": "security", "summary": "FOAC' retains re-encryption checking and is claimed IND-CCA2 secure in ROM and QROM from the underlying assumptions.", "claim_strength": "qualitative", "comparison_scope": "Submission security reductions", "source_refs": ["spec"]},
+      {"category": "flexibility", "summary": "Parameter design is claimed tunable across security levels while balancing communication and computation.", "claim_strength": "qualitative", "comparison_scope": null, "source_refs": ["spec"]}
+    ],
+    "limitations_and_constraints": [
+      {"type": "explicit_in_submission", "summary": "Valid-ciphertext decapsulation has nonzero, parameter-dependent failure probability (2^-549, 2^-370, 2^-298).", "source_refs": ["spec"]},
+      {"type": "derived_from_test_setup", "summary": "Reported benchmarks use one core of an Intel Core Ultra 9 275HX under WSL 2 Ubuntu 26.04 with GCC 15.2.0; generalization to other platforms is untested in the cited table.", "source_refs": ["spec"]},
+      {"type": "explicit_caveat", "summary": "Submission states ICCS symmetric-primitive APIs are slower than mainstream primitives such as SHA-3, so cycle counts mainly measure submitted optimization speedup rather than absolute scheme performance.", "source_refs": ["spec"]},
+      {"type": "derived_from_implementation_description", "summary": "Optimized implementation depends on AVX2, AVX-VNNI, FMA3 and SHA instruction support for stated acceleration.", "source_refs": ["spec"]}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "findings": []},
+  "implementations": [
+    {"name": "Reference_Implementation", "language": "C", "platform": "portable C / submitted x86 test environment", "path": "KeyEncapsulation/NTRE/Implementations/Reference_Implementation"},
+    {"name": "Optimized_Implementation", "language": "C and x86 assembly", "platform": "x86-64 with AVX2/AVX-VNNI/FMA3/SHA", "path": "KeyEncapsulation/NTRE/Implementations/Optimized_Implementation"}
+  ],
+  "submission_completeness": {"basic_information": true, "specification": true, "implementation": true, "test_vectors": true},
+  "sources": [
+    {"source_id": "basic", "type": "basic_information", "path": "KeyEncapsulation/NTRE/Basic information/NTRE.KEM-Basic Algorithm Information.pdf", "priority": 1, "notes": "Submitter contacts were deliberately excluded."},
+    {"source_id": "spec", "type": "specification", "path": "KeyEncapsulation/NTRE/Algorithm specifications/NTRE.KEM-Documentation.pdf", "priority": 2, "notes": null},
+    {"source_id": "params-128", "type": "api_header", "path": "KeyEncapsulation/NTRE/Implementations/Reference_Implementation/NTRE-128/src/params.h", "priority": 3, "notes": null},
+    {"source_id": "params-256", "type": "api_header", "path": "KeyEncapsulation/NTRE/Implementations/Reference_Implementation/NTRE-256/src/params.h", "priority": 3, "notes": null},
+    {"source_id": "params-512", "type": "api_header", "path": "KeyEncapsulation/NTRE/Implementations/Reference_Implementation/NTRE-512/src/params.h", "priority": 3, "notes": null}
+  ],
+  "evidence": [
+    {"field": "name, function, submitters, affiliations", "source_id": "basic", "locator": "PDF pp.1-3", "summary": "Basic information form names the KEM and lists ten submitters, affiliations, and contact role.", "confidence": "high"},
+    {"field": "overview_classification, technical_classification", "source_id": "spec", "locator": "PDF pp.1,20-29", "summary": "Specification defines the NTRU/RLWE assumptions, NTRE.CPAPKE, FOAC' conversion, IND-CCA2 model, ROM and QROM reductions.", "confidence": "high"},
+    {"field": "common_parameters", "source_id": "spec", "locator": "PDF pp.1,7-8", "summary": "Ring, CBD psi_1, NTT representation and symmetric primitive instantiations are specified.", "confidence": "high"},
+    {"field": "parameter_sets", "source_id": "spec", "locator": "PDF pp.6-7 (Table 1), pp.36-37 (Tables 4-5)", "summary": "Formal names, n, q, failure probabilities, security estimates and byte sizes are tabulated.", "confidence": "high"},
+    {"field": "parameter_sets[*].sizes.shared_secret", "source_id": "params-128", "locator": "line defining NTRE_SSBYTES", "summary": "Implementation defines the shared-secret size as 64 bytes for each parameter set.", "confidence": "high"},
+    {"field": "submission_claims", "source_id": "spec", "locator": "PDF pp.36-40", "summary": "Performance analysis, comparison scope, implementation features, caveats and stated key features.", "confidence": "high"}
+  ],
+  "review": {"extraction_status": "complete", "confidence": "high", "cross_reviewed": true, "review_notes": ["NTRE baseline manually checked against basic-information form, specification tables and all three reference params.h files.", "D=3/4 is recorded only as an unresolved implementation parameter; no semantic interpretation was inferred."]},
+  "issues": [
+    {"severity": "warning", "code": "unresolved_implementation_parameter", "message": "NTRE_D values 3/4 lack an explicit semantic definition in reviewed material.", "field": "parameter_sets[*].core_parameters.implementation_D"},
+    {"severity": "missing", "code": "version_not_stated", "message": "No explicit algorithm version string was located in prioritized material.", "field": "version"}
+  ]
+}

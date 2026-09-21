@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "sigurd",
+  "name": "Sigurd",
+  "full_name": "Sigurd",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Sigurd",
+  "aliases": [],
+  "overview_classification": {
+    "family": "code_based",
+    "subcategory": "syndrome_decoding_based",
+    "family_label_en": "Code-based",
+    "family_label_zh": "编码密码",
+    "subcategory_label_en": "Syndrome-decoding signature",
+    "subcategory_label_zh": "综合译码型签名",
+    "summary_label_zh": "编码密码 / 综合译码型签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "mpc_in_the_head",
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "Regular Syndrome Decoding (RSD)",
+        "role": "key recovery and unforgeability",
+        "details": "Binary block-regular syndrome decoding"
+      },
+      {
+        "name": "hash collision resistance",
+        "role": "Merkle/vector-commitment binding",
+        "details": null
+      }
+    ],
+    "mathematical_structures": [
+      "binary linear codes",
+      "Reed-Solomon codes",
+      "VOLE-in-the-Head",
+      "DEEP-quotient relation proofs",
+      "extension fields"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": false,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "School of Cryptology, Xidian University",
+      "name_zh": "西安电子科技大学密码学院",
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "State Key Laboratory of Cyberspace Security Defense, Institute of Information Engineering, Chinese Academy of Sciences",
+      "name_zh": "中国科学院信息工程研究所网络空间安全防御全国重点实验室",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Yi Deng",
+      "name_zh": "邓燚",
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yuanju Wei",
+      "name_zh": "尉远炬",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Xinxuan Zhang",
+      "name_zh": "张心轩",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhuo Wu",
+      "name_zh": "吴卓",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Zhongliang Zhang",
+      "name_zh": "张众良",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Lang Qin",
+      "name_zh": "覃朗",
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_2 with tower extensions",
+    "block_size": 6,
+    "hash_xof_prg": [
+      "SM3-256",
+      "pseudoXOF",
+      "pseudohash-512",
+      "pseudohash-1024"
+    ],
+    "encoding": "fixed API transcript serialization"
+  },
+  "parameter_sets": [
+    {
+      "name": "NGCC-128",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "m": 1302,
+        "k": 738,
+        "w": 217,
+        "block_size": 6
+      },
+      "sizes": {
+        "public_key": {
+          "value": 112,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 80,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 25108,
+          "minimum": 25108,
+          "maximum": 25108,
+          "average": 25108,
+          "unit": "byte",
+          "notes": "Specification labels this as sample encoded length; implementation-specific transcript components should be cross-checked."
+        }
+      }
+    },
+    {
+      "name": "NGCC-256",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "m": 2748,
+        "k": 1564,
+        "w": 458,
+        "block_size": 6
+      },
+      "sizes": {
+        "public_key": {
+          "value": 212,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 128,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 74756,
+          "minimum": 74756,
+          "maximum": 74756,
+          "average": 74756,
+          "unit": "byte",
+          "notes": "Specification labels this as sample encoded length; implementation-specific transcript components should be cross-checked."
+        }
+      }
+    },
+    {
+      "name": "NGCC-512",
+      "implementation_aliases": [],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "m": 5676,
+        "k": 3230,
+        "w": 946,
+        "block_size": 6
+      },
+      "sizes": {
+        "public_key": {
+          "value": 435,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 256,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 282692,
+          "minimum": 282692,
+          "maximum": 282692,
+          "average": 282692,
+          "unit": "byte",
+          "notes": "Specification labels this as sample encoded length; implementation-specific transcript components should be cross-checked."
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": false,
+    "expected_repetitions": 1,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Key-level signing is stateless and samples fresh prover randomness."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission claims EUF-CMA from RSD hardness and collision resistance of the commitment hash in the ROM.",
+      "estimates": [
+        {
+          "parameter_set": "NGCC-128",
+          "classical_bits": 128,
+          "quantum_target_bits": 80
+        },
+        {
+          "parameter_set": "NGCC-256",
+          "classical_bits": 256,
+          "quantum_target_bits": 128
+        },
+        {
+          "parameter_set": "NGCC-512",
+          "classical_bits": 512,
+          "quantum_target_bits": 256
+        }
+      ]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "performance",
+        "summary": "Prioritizes signing throughput and symmetric/extension-field kernels.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "simplicity",
+        "summary": "Removes GGM-tree and SoftSpokenOT layers from the VOLE-in-the-Head construction.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "security",
+        "summary": "Uses RSD as the only structured hardness assumption.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "signature_size",
+        "summary": "Sample encoded signatures are approximately 25 KB, 75 KB and 283 KB.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "application_scope",
+        "summary": "Submission positions the scheme for server/infrastructure settings with moderate bandwidth tolerance.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "size_status",
+        "summary": "Sizes are described as sample encoded lengths rather than normative maxima.",
+        "basis": "explicit_caveat"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/Sigurd/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "x86",
+      "path": "DigitalSignature/Sigurd/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "sigurd-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Sigurd/Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "sigurd-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/Sigurd/Basic information.pdf",
+      "extraction_method": "ocr",
+      "notes": null
+    },
+    {
+      "source_id": "sigurd-ip",
+      "type": "intellectual_property",
+      "path": "DigitalSignature/Sigurd/Intellectual property",
+      "extraction_method": "manual_visual",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters",
+      "source_id": "sigurd-spec",
+      "locator": "p. 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "sigurd-spec",
+      "locator": "pp. 29-30, Table 2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "sigurd-spec",
+      "locator": "Section 8",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "Signature byte counts are marked approximate/sample in the specification and need API-level cross-review."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

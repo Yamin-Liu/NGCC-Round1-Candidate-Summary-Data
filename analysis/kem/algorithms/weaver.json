@@ -1,0 +1,424 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "weaver",
+  "name": "Weaver",
+  "full_name": "Weaver",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Weaver",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Shifted-MLWR / MLWR",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "module lattice Core-SVP estimates",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "module polynomial ring R_q=Z_q[X]/(X^n+1) with learning-with-rounding",
+    "underlying_pke": "Weaver.CPAPKE",
+    "kem_construction": "FO variant with public-key binding and implicit rejection",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "iscas",
+      "name_en": "Institute of Software, Chinese Academy of Sciences",
+      "name_zh": "中国科学院软件研究所"
+    },
+    {
+      "affiliation_id": "pap",
+      "name_en": "Engineering University of PAP",
+      "name_zh": "武警工程大学"
+    },
+    {
+      "affiliation_id": "ieu",
+      "name_en": "Information Engineering University",
+      "name_zh": "信息工程大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Long Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Zidi Zhuang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Tanping Zhou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pap"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jianhua Hou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Si Gao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yuyang Xiao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yingjie Hao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Shuo Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pap"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Ruiqi Mi",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iscas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^n+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "CBD_eta1 and CBD_eta2 plus shifted rounding noise",
+    "modulus": "3329 or 7681",
+    "dimensions": {
+      "n": [
+        128,
+        256,
+        512
+      ],
+      "module_rank": [
+        5,
+        4,
+        4
+      ]
+    },
+    "weights": null,
+    "error_correction": "BCH plus repetition coding",
+    "symmetric_primitives": [
+      "normative idealized XOF/XOFpub/PRF/H/G/J interfaces"
+    ],
+    "representation": "compressed ring elements; cached pk/hash in secret key",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "Weaver-640",
+      "implementation_aliases": [
+        "Weaver-640"
+      ],
+      "submission_security_label": "NGCC level 1",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 128,
+        "module_rank_k": 5,
+        "q": 3329,
+        "eta1": 3,
+        "eta2": 2
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 752,
+          "raw": "752 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 1776,
+          "raw": "1776 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 816,
+          "raw": "816 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Weaver-1024",
+      "implementation_aliases": [
+        "Weaver-1024"
+      ],
+      "submission_security_label": "NGCC level 3",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 256,
+        "module_rank_k": 4,
+        "q": 7681,
+        "eta1": 7,
+        "eta2": 7
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 1312,
+          "raw": "1312 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 3072,
+          "raw": "3072 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1536,
+          "raw": "1536 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Weaver-2048",
+      "implementation_aliases": [
+        "Weaver-2048"
+      ],
+      "submission_security_label": "NGCC level 5",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 512,
+        "module_rank_k": 4,
+        "q": 7681,
+        "eta1": 9,
+        "eta2": 9
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 2880,
+          "raw": "2880 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 6400,
+          "raw": "6400 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 3392,
+          "raw": "3392 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Weaver-640 matches ML-KEM-512 pk+ct bytes and higher tiers are claimed smaller than compared ML-KEM rows.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Transmission table",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "implementation",
+        "summary": "AVX2 implementation claims 1.6x to 2.5x gains.",
+        "claim_strength": "quantified",
+        "comparison_scope": "reference versus AVX2",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_caveat",
+        "summary": "Specification says named concrete symmetric primitives are examples, not normative instantiations.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Weaver-640 pk+ct exceeds the 1500-byte Ethernet MTU and typically requires fragmentation.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "Submission states its concrete parameter sets are not rigorously reduced to worst-case module-lattice problems.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/Weaver/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Weaver/Basic information/KEM基本信息表英文.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Weaver/Algorithm specifications/Weaver算法设计说明书.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

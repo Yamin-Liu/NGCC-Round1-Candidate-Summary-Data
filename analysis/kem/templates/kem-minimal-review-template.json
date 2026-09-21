@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0-review-minimal",
+  "algorithm": {
+    "id": "",
+    "name": "",
+    "full_name": null,
+    "version": null
+  },
+  "classification": {
+    "family": null,
+    "subcategory": null
+  },
+  "technical": {
+    "hardness_problems": [],
+    "mathematical_structure": null,
+    "kem_construction": null,
+    "security_target": null,
+    "security_models": []
+  },
+  "submitters": [
+    {
+      "name": null,
+      "affiliation": null,
+      "role": "submitter"
+    }
+  ],
+  "parameter_sets": [
+    {
+      "name": "",
+      "security_label": null,
+      "classical_security_bits": null,
+      "quantum_security_bits": null,
+      "core_parameters": {},
+      "decapsulation_failure_probability": null,
+      "sizes_bytes": {
+        "public_key": null,
+        "secret_key": null,
+        "ciphertext": null,
+        "shared_secret": null
+      },
+      "source_refs": [],
+      "evidence_locator": null
+    }
+  ],
+  "claims": {
+    "advantages": [],
+    "limitations": []
+  },
+  "sources": [
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": ""
+    }
+  ]
+}

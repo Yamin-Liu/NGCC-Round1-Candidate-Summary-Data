@@ -1,0 +1,621 @@
+{
+    "schema_version": "1.0.0",
+    "algorithm_id": "dtru",
+    "name": "DTRU",
+    "full_name": "DTRU: A Versatile, Compact, Simple, and Robust NTRU KEM with Double E8 Encoding",
+    "version": "1.0",
+    "function": "key_encapsulation",
+    "submission_path": "KeyEncapsulation/DTRU",
+    "overview_classification": {
+        "family": "lattice_based",
+        "family_label_zh": "格密码",
+        "family_report_label": "格密码",
+        "subcategory": "ntru_based",
+        "subcategory_label_zh": "基于NTRU",
+        "subcategory_report_label": "基于NTRU"
+    },
+    "technical_classification": {
+        "hardness_problems": [
+            {
+                "name": "NTRU",
+                "role": "primary",
+                "notes": null
+            },
+            {
+                "name": "Ring-LWE",
+                "role": "primary",
+                "notes": null
+            }
+        ],
+        "mathematical_structure": "NTRU rings: tricyclotomic primary family, power-of-two DTRU-Light, and prime-degree LPPNF DTRU-Prime",
+        "underlying_pke": "DTRU PKE",
+        "kem_construction": "Fujisaki-Okamoto transform with prefix hashing and implicit rejection",
+        "claimed_security_target": "IND-CCA KEM",
+        "security_models": [
+            "ROM",
+            "QROM"
+        ]
+    },
+    "affiliations": [
+        {
+            "affiliation_id": "aff-fudan",
+            "name_en": "Fudan University",
+            "name_zh": "复旦大学"
+        },
+        {
+            "affiliation_id": "aff-aolian",
+            "name_en": "Shenzhen Aolian Information Security Technology Co., Ltd.",
+            "name_zh": "深圳市奥联信息安全技术有限公司"
+        },
+        {
+            "affiliation_id": "aff-amss",
+            "name_en": "Academy of Mathematics and Systems Science, Chinese Academy of Sciences",
+            "name_zh": "中国科学院数学与系统科学研究院"
+        }
+    ],
+    "submitters": [
+        {
+            "name_en": "Yunlei Zhao",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter",
+                "contact"
+            ]
+        },
+        {
+            "name_en": "Hengchuan Zou",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Songlin Li",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Jieyu Zheng",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Xiaowen Hu",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Hanyu Wei",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Weizhi Ao",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Zhaohui Cheng",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-aolian"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Yanbin Pan",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-amss"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        },
+        {
+            "name_en": "Wenbo Guo",
+            "name_zh": null,
+            "affiliation_ids": [
+                "aff-fudan"
+            ],
+            "roles": [
+                "submitter"
+            ]
+        }
+    ],
+    "common_parameters": {
+        "ring": "primary: Z_q[x]/(x^n-x^(n/2)+1); Light: Z_q[x]/(x^n+1); Prime: Z_q[x]/(x^n-x-1)",
+        "field": null,
+        "code_structure": "double E8: extended-Hamming-style [8,4,4] code followed by repetition to [16,4,8]",
+        "isogeny_structure": null,
+        "noise_or_error_distribution": "centered binomial distributions B_k; main profiles avoid very sparse noise",
+        "modulus": "q and ciphertext modulus q2 vary by profile",
+        "dimensions": {
+            "n": "512..2048"
+        },
+        "weights": null,
+        "error_correction": {
+            "code": "double E8",
+            "message_rate": "4 bits per 16 coefficients"
+        },
+        "symmetric_primitives": [
+            "SHAKE-256",
+            "SHA3 family"
+        ],
+        "representation": "NTT-domain public keys; coefficient-domain compressed ciphertexts; optional lossless public-key packing",
+        "other": {}
+    },
+    "parameter_sets": [
+        {
+            "name": "DTRU-648",
+            "implementation_aliases": [],
+            "submission_security_label": "128-bit quantum target",
+            "claimed_classical_security_bits": 164,
+            "claimed_quantum_security_bits": 144,
+            "core_parameters": {
+                "n": 648,
+                "q": 3457,
+                "q2": 512,
+                "kg": 9,
+                "kf": 2,
+                "kr": 2,
+                "ke": 2
+            },
+            "decapsulation_failure_probability": "2^-146.79",
+            "sizes": {
+                "public_key": {
+                    "bytes": 954,
+                    "raw": "972 B; 954 B lossless-packed",
+                    "basis": "spec Tables 2,6"
+                },
+                "secret_key": {
+                    "bytes": 1310,
+                    "raw": "1328 B; 1310 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 729,
+                    "raw": "729 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 32,
+                    "raw": "DTRU_Z_BYTES 32",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-Light",
+            "implementation_aliases": [],
+            "submission_security_label": "128-bit lightweight",
+            "claimed_classical_security_bits": 132,
+            "claimed_quantum_security_bits": 116,
+            "core_parameters": {
+                "n": 512,
+                "q": 769,
+                "q2": 256,
+                "kg": 2,
+                "kf": 1,
+                "kr": 1,
+                "ke": 2
+            },
+            "decapsulation_failure_probability": "2^-143.92",
+            "sizes": {
+                "public_key": {
+                    "bytes": 615,
+                    "raw": "640 B; 615 B packed",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 839,
+                    "raw": "864 B; 839 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 512,
+                    "raw": "512 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 32,
+                    "raw": "DTRU_Z_BYTES 32",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-768",
+            "implementation_aliases": [],
+            "submission_security_label": "192-bit classical",
+            "claimed_classical_security_bits": 195,
+            "claimed_quantum_security_bits": 171,
+            "core_parameters": {
+                "n": 768,
+                "q": 3457,
+                "q2": 1024,
+                "kg": 4,
+                "kf": 3,
+                "kr": 4,
+                "ke": 2
+            },
+            "decapsulation_failure_probability": "2^-185.56",
+            "sizes": {
+                "public_key": {
+                    "bytes": 1130,
+                    "raw": "1152 B; 1130 B packed",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 1546,
+                    "raw": "1568 B; 1546 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 960,
+                    "raw": "960 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 32,
+                    "raw": "32 B",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-1024",
+            "implementation_aliases": [],
+            "submission_security_label": "256-bit",
+            "claimed_classical_security_bits": 270,
+            "claimed_quantum_security_bits": 237,
+            "core_parameters": {
+                "n": 1024,
+                "q": 3457,
+                "q2": 1024,
+                "kg": 5,
+                "kf": 2,
+                "kr": 3,
+                "ke": 2
+            },
+            "decapsulation_failure_probability": "2^-190.48",
+            "sizes": {
+                "public_key": {
+                    "bytes": 1506,
+                    "raw": "1536 B; 1506 B packed",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 2050,
+                    "raw": "2080 B; 2050 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 1280,
+                    "raw": "1280 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 32,
+                    "raw": "32 B",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-Prime",
+            "implementation_aliases": [],
+            "submission_security_label": "256-bit conservative algebraic variant",
+            "claimed_classical_security_bits": 280,
+            "claimed_quantum_security_bits": 246,
+            "core_parameters": {
+                "n": 1087,
+                "q": 2017,
+                "q2": 1024,
+                "kg": 2,
+                "kf": 1,
+                "kr": 2,
+                "ke": 1
+            },
+            "decapsulation_failure_probability": "2^-180.72",
+            "sizes": {
+                "public_key": {
+                    "bytes": 1495,
+                    "raw": "1495 B",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 1935,
+                    "raw": "1935 B",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 1359,
+                    "raw": "1359 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 32,
+                    "raw": "32 B",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-1536",
+            "implementation_aliases": [],
+            "submission_security_label": "384-bit",
+            "claimed_classical_security_bits": 411,
+            "claimed_quantum_security_bits": 361,
+            "core_parameters": {
+                "n": 1536,
+                "q": 3457,
+                "q2": 1024,
+                "kg": 3,
+                "kf": 2,
+                "kr": 2,
+                "ke": 1
+            },
+            "decapsulation_failure_probability": "2^-195.50",
+            "sizes": {
+                "public_key": {
+                    "bytes": 2259,
+                    "raw": "2304 B; 2259 B packed",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 3091,
+                    "raw": "3136 B; 3091 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 1920,
+                    "raw": "1920 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 64,
+                    "raw": "64 B",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        },
+        {
+            "name": "DTRU-2048",
+            "implementation_aliases": [],
+            "submission_security_label": "512-bit",
+            "claimed_classical_security_bits": 567,
+            "claimed_quantum_security_bits": 498,
+            "core_parameters": {
+                "n": 2048,
+                "q": 3457,
+                "q2": 1024,
+                "kg": 5,
+                "kf": 1,
+                "kr": 2,
+                "ke": 1
+            },
+            "decapsulation_failure_probability": "2^-204.10",
+            "sizes": {
+                "public_key": {
+                    "bytes": 3012,
+                    "raw": "3072 B; 3012 B packed",
+                    "basis": "spec Table 6"
+                },
+                "secret_key": {
+                    "bytes": 3844,
+                    "raw": "3904 B; 3844 B packed",
+                    "basis": "spec Table 6"
+                },
+                "ciphertext": {
+                    "bytes": 2560,
+                    "raw": "2560 B",
+                    "basis": "spec Table 6"
+                },
+                "shared_secret": {
+                    "bytes": 64,
+                    "raw": "64 B",
+                    "basis": "params.h"
+                }
+            },
+            "source_refs": [
+                "spec",
+                "params"
+            ],
+            "issues": []
+        }
+    ],
+    "submission_claims": {
+        "claimed_advantages": [
+            {
+                "category": "flexibility",
+                "summary": "Three ring families are offered for balanced, lightweight, and conservative-algebraic deployment choices.",
+                "claim_strength": "qualitative",
+                "comparison_scope": null,
+                "source_refs": [
+                    "spec"
+                ]
+            },
+            {
+                "category": "compactness",
+                "summary": "Double E8 coding and optional lossless key packing are claimed to provide compact bandwidth across levels.",
+                "claim_strength": "qualitative",
+                "comparison_scope": "Selected lattice KEMs",
+                "source_refs": [
+                    "spec"
+                ]
+            }
+        ],
+        "limitations_and_constraints": [
+            {
+                "type": "explicit_in_submission",
+                "summary": "Decapsulation failures are nonzero for all proposed profiles.",
+                "source_refs": [
+                    "spec"
+                ]
+            },
+            {
+                "type": "explicit_caveat",
+                "summary": "Sparse-noise alternatives in the appendix are exploratory only; main-table parameters are the conservative recommendation.",
+                "source_refs": [
+                    "spec"
+                ]
+            }
+        ]
+    },
+    "independent_assessment": {
+        "status": "not_started",
+        "findings": []
+    },
+    "implementations": [
+        {
+            "name": "Reference_Implementation",
+            "language": "C",
+            "platform": "portable C",
+            "path": "KeyEncapsulation/DTRU/Implementations and Test_Vectors/Implementations/Reference_Implementation"
+        },
+        {
+            "name": "Optimized_Implementation",
+            "language": "C and assembly",
+            "platform": "x86-64 and Cortex-M4 variants",
+            "path": "KeyEncapsulation/DTRU/Implementations and Test_Vectors/Implementations/Optimized_Implementation"
+        },
+        {
+            "name": "Additional_Implementation",
+            "language": "C",
+            "platform": null,
+            "path": "KeyEncapsulation/DTRU/Implementations and Test_Vectors/Implementations/Additional_Implementation"
+        }
+    ],
+    "submission_completeness": {
+        "basic_information": true,
+        "specification": true,
+        "implementation": true,
+        "test_vectors": true
+    },
+    "sources": [
+        {
+            "source_id": "basic",
+            "type": "basic_information",
+            "path": "KeyEncapsulation/DTRU/Basic information/Basic Algorithm Information.pdf",
+            "priority": 1,
+            "notes": "Private contacts excluded."
+        },
+        {
+            "source_id": "spec",
+            "type": "specification",
+            "path": "KeyEncapsulation/DTRU/Algorithm specifications/Algorithm specifications.pdf",
+            "priority": 2,
+            "notes": null
+        },
+        {
+            "source_id": "params",
+            "type": "api_header",
+            "path": "KeyEncapsulation/DTRU/Implementations and Test_Vectors/Implementations/Reference_Implementation",
+            "priority": 3,
+            "notes": "Parameter-set subdirectories contain the params.h files used for shared-secret and packed-key constants."
+        }
+    ],
+    "evidence": [
+        {
+            "field": "submitters, affiliations",
+            "source_id": "basic",
+            "locator": "PDF pp.1-3",
+            "summary": "Submitter list and affiliations.",
+            "confidence": "high"
+        },
+        {
+            "field": "overview_classification, technical_classification",
+            "source_id": "spec",
+            "locator": "PDF pp.1,14-16",
+            "summary": "NTRU/RLWE assumptions, ring families and FO security.",
+            "confidence": "high"
+        },
+        {
+            "field": "parameter_sets",
+            "source_id": "spec",
+            "locator": "PDF pp.5-6 Tables 1-2; p.17 Table 6",
+            "summary": "All recommended parameters, security, DFR and sizes.",
+            "confidence": "high"
+        }
+    ],
+    "review": {
+        "extraction_status": "complete",
+        "confidence": "high",
+        "cross_reviewed": false,
+        "review_notes": [
+            "Packed key sizes were selected because submitted headers enable packing; raw alternatives preserved in raw fields."
+        ]
+    },
+    "issues": [
+        {
+            "severity": "conflict",
+            "code": "author_list_mismatch",
+            "message": "Specification title page includes Jian Weng while the basic-information submitter list instead includes Weizhi Ao; record follows higher-priority basic information and flags the discrepancy.",
+            "field": "submitters"
+        }
+    ]
+}

@@ -1,0 +1,465 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "mithril",
+  "name": "Mithril",
+  "full_name": "ARCANE-Mithril",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Mithril",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Radical Ring Learning With Rounding (RR-LWR)",
+        "role": "primary",
+        "notes": "Reduced in the submission to LWE-style hardness."
+      }
+    ],
+    "mathematical_structure": "Sq,n,k = Z_q[x,y]/(x^k-(y+2), y^n+1), q=2^13, n=128",
+    "underlying_pke": "Mithril.PKE",
+    "kem_construction": "HHK modular Fujisaki-Okamoto transform with implicit rejection",
+    "claimed_security_target": "IND-CCA KEM",
+    "security_models": [
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-pqshield",
+      "name_en": "PQShield Ltd",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-nxp",
+      "name_en": "NXP Semiconductors",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-iitk",
+      "name_en": "Indian Institute of Technology Kanpur",
+      "name_zh": "印度理工学院坎普尔分校"
+    },
+    {
+      "affiliation_id": "aff-tugraz",
+      "name_en": "Graz University of Technology",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-belfort",
+      "name_en": "Belfort Labs",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "aff-kuleuven",
+      "name_en": "KU Leuven",
+      "name_zh": "鲁汶大学"
+    },
+    {
+      "affiliation_id": "aff-ucas",
+      "name_en": "University of Chinese Academy of Sciences",
+      "name_zh": "中国科学院大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Jose Maria Bermudo Mera",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-pqshield"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Joppe W. Bos",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-nxp"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Angshuman Karmakar",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Joost Renes",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-nxp"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Sujoy Sinha Roy",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-tugraz"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Michiel Van Beirendonck",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-belfort"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Frederik Vercauteren",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Peng Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Yuewu Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Fangyu Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-ucas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Sq,n,k = Z_q[x,y]/(x^k-(y+2), y^n+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "uniform coefficients U2 for secrets; deterministic LWR rounding",
+    "modulus": 8192,
+    "dimensions": {
+      "n": 128,
+      "k": "5,9,17",
+      "message_components_l": "1,2,4"
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "ICCS pseudoXOF",
+      "optional SHAKE128/SHAKE256 benchmarking configuration"
+    ],
+    "representation": "little-endian packed coefficients",
+    "other": {
+      "q_bits": 13,
+      "p_bits": 11
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "Mithril-128",
+      "implementation_aliases": [
+        "Mithril-128"
+      ],
+      "submission_security_label": "128 classical / >=80 quantum",
+      "claimed_classical_security_bits": 129,
+      "claimed_quantum_security_bits": 117,
+      "core_parameters": {
+        "n": 128,
+        "k": 5,
+        "l": 1,
+        "logq": 13,
+        "logp": 11,
+        "logt": 3,
+        "eta": 2
+      },
+      "decapsulation_failure_probability": "2^-603",
+      "sizes": {
+        "public_key": {
+          "bytes": 944,
+          "raw": "944 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "secret_key": {
+          "bytes": 1136,
+          "raw": "1136 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "ciphertext": {
+          "bytes": 928,
+          "raw": "928 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mithril-256",
+      "implementation_aliases": [
+        "Mithril-256"
+      ],
+      "submission_security_label": "256 classical / >=128 quantum",
+      "claimed_classical_security_bits": 257,
+      "claimed_quantum_security_bits": 233,
+      "core_parameters": {
+        "n": 128,
+        "k": 9,
+        "l": 2,
+        "logq": 13,
+        "logp": 11,
+        "logt": 3,
+        "eta": 2
+      },
+      "decapsulation_failure_probability": "2^-280",
+      "sizes": {
+        "public_key": {
+          "bytes": 1648,
+          "raw": "1648 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "secret_key": {
+          "bytes": 2000,
+          "raw": "2000 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "ciphertext": {
+          "bytes": 1680,
+          "raw": "1680 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Mithril-512",
+      "implementation_aliases": [
+        "Mithril-512"
+      ],
+      "submission_security_label": "512 classical / >=256 quantum",
+      "claimed_classical_security_bits": 526,
+      "claimed_quantum_security_bits": 478,
+      "core_parameters": {
+        "n": 128,
+        "k": 17,
+        "l": 4,
+        "logq": 13,
+        "logp": 11,
+        "logt": 8,
+        "eta": 2
+      },
+      "decapsulation_failure_probability": "2^-230",
+      "sizes": {
+        "public_key": {
+          "bytes": 3056,
+          "raw": "3056 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "secret_key": {
+          "bytes": 3728,
+          "raw": "3728 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "ciphertext": {
+          "bytes": 3504,
+          "raw": "3504 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Table 2; reference parameters.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Radical-ring representation replaces a quadratic public matrix by k base-ring components.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "A unified n=128 construction scales through k and message subspace dimension.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "implementation",
+        "summary": "The ring remains compatible with optional NTT-style multiplication.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Lossy ciphertext compression increases failure probability; the three submitted probabilities vary substantially.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "SHAKE256 benchmarking configuration is not used for Mithril-512 because its capacity provides at most 256-bit classical security.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/Mithril/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C and assembly",
+      "platform": "x86 AVX2",
+      "path": "KeyEncapsulation/Mithril/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Mithril/Basic information/Basic information.pdf",
+      "priority": 1,
+      "notes": "Scanned; OCR used."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Mithril/Algorithm specifications/Mithril.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/Mithril/Implementations/Reference_Implementation/Mithril-128/parameters.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-4 (OCR)",
+      "summary": "Ten ARCANE submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.10-24",
+      "summary": "RR-LWR construction and HHK FO transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF p.17, Table 2",
+      "summary": "All profile parameters, sizes, DFR and Core-SVP estimates.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "high",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was found in prioritized material.",
+      "field": "version"
+    }
+  ]
+}

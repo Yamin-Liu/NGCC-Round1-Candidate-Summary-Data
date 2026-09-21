@@ -1,0 +1,643 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "sqisign2d2",
+  "name": "SQIsign2D2",
+  "full_name": "SQIsign2D2",
+  "version": "1.0",
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/SQIsign2D2",
+  "aliases": [
+    "SQIsign2D²"
+  ],
+  "overview_classification": {
+    "family": "isogeny_based",
+    "subcategory": "quaternion_isogeny_based",
+    "family_label_en": "Isogeny-based",
+    "family_label_zh": "同源密码",
+    "subcategory_label_en": "Quaternion/isogeny signature",
+    "subcategory_label_zh": "四元数-同源签名",
+    "summary_label_zh": "同源密码 / 四元数-同源签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir"
+    ],
+    "hardness_problems": [
+      {
+        "name": "supersingular isogeny path problem",
+        "role": "key recovery/forgery hardness",
+        "details": null
+      },
+      {
+        "name": "supersingular endomorphism ring problem",
+        "role": "secret relation",
+        "details": null
+      }
+    ],
+    "mathematical_structures": [
+      "supersingular elliptic curves",
+      "quaternion ideals",
+      "(2,2)-isogenies",
+      "3^b-isogenies",
+      "abelian surfaces"
+    ],
+    "claimed_security_targets": [
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "randomized",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "Hefei National Laboratory",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "Xingtang Telecommunications Technology Co., Ltd.",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "Beijing Key Laboratory of Post-Quantum Cryptography",
+      "name_zh": null,
+      "country_or_region": "China"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "University of Science and Technology of China",
+      "name_zh": "中国科学技术大学",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Zheng Xu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Keteng Huang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2",
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yi Ouyang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4",
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Jiankuo Dong",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Liang Bai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2",
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Yijing Ning",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Wei Wei",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Honggang Hu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "field": "F_{p^2}",
+    "prime_form": "p=f*2^a*3^b-1",
+    "hash_xof_prg": [
+      "SM3-512",
+      "SM3-1024"
+    ],
+    "encoding": "compressed and uncompressed modes"
+  },
+  "parameter_sets": [
+    {
+      "name": "Level1-eff",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level1-eff"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 64,
+        "category": null
+      },
+      "parameters": {
+        "p": "2^131*3^78-1",
+        "variant": "efficiency-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 65,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 240,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 168,
+          "minimum": 168,
+          "maximum": 168,
+          "average": 168,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level1-sec",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level1-sec"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 64,
+        "category": null
+      },
+      "parameters": {
+        "p": "2^137*3^84-1",
+        "variant": "security-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 69,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 257,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 178,
+          "minimum": 178,
+          "maximum": 178,
+          "average": 178,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level2-eff",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level2-eff"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "p": "61*2^161*3^96-1",
+        "variant": "efficiency-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 81,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 298,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 208,
+          "minimum": 208,
+          "maximum": 208,
+          "average": 208,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level2-sec",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level2-sec"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 80,
+        "category": null
+      },
+      "parameters": {
+        "p": "11*2^168*3^101-1",
+        "variant": "security-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 85,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 315,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 218,
+          "minimum": 218,
+          "maximum": 218,
+          "average": 218,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level3-eff",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level3-eff"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "p": "2^263*3^156-1",
+        "variant": "efficiency-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 129,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 468,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 326,
+          "minimum": 326,
+          "maximum": 326,
+          "average": 326,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level3-sec",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level3-sec"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "p": "2^264*3^163-1",
+        "variant": "security-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 133,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 489,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 338,
+          "minimum": 338,
+          "maximum": 338,
+          "average": 338,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level5-eff",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level5-eff"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "p": "11*2^514*3^319-1",
+        "variant": "efficiency-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 257,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 936,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 648,
+          "minimum": 648,
+          "maximum": 648,
+          "average": 648,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Level5-sec",
+      "implementation_aliases": [
+        "SQISign2Dsquare-Level5-sec"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "p": "17*2^536*3^334-1",
+        "variant": "security-oriented",
+        "mode": "compressed"
+      },
+      "sizes": {
+        "public_key": {
+          "value": 269,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 982,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 678,
+          "minimum": 678,
+          "maximum": 678,
+          "average": 678,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": null,
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Ideal/lattice subroutines and response sampling have heuristic failure cases; signing retries as specified."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "Submission claims EUF-CMA in the ROM under special soundness, zero knowledge, endomorphism-ring hardness and stated heuristic models.",
+      "estimates": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Compressed public keys and signatures range from 64/168 to 268/678 bytes.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "performance",
+        "summary": "Claims new 3^b-isogeny parameters reduce high-dimensional isogeny costs.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      },
+      {
+        "category": "flexibility",
+        "summary": "Provides efficiency- and security-oriented variants plus compressed/uncompressed encodings.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "heuristic_subroutines",
+        "summary": "Several lattice, ideal and isogeny subroutines rely on heuristics and have analyzed failure cases.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_dependency",
+        "summary": "Optimized implementation requires x86-64 BMI2 and ADX instructions.",
+        "basis": "derived_from_implementation_description"
+      },
+      {
+        "category": "hash_grinding",
+        "summary": "SM3 iteration/grinding is used to raise the Fiat-Shamir second-preimage work factor.",
+        "basis": "explicit_in_submission"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable",
+      "path": "DigitalSignature/SQIsign2D2/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/assembly",
+      "platform": "x86-64 BMI2/ADX",
+      "path": "DigitalSignature/SQIsign2D2/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "sqi2-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/SQIsign2D2/Algorithm specifications/SQISign2D2 Algorithm specifications.pdf",
+      "extraction_method": "text",
+      "notes": null
+    },
+    {
+      "source_id": "sqi2-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/SQIsign2D2/Basic information.pdf",
+      "extraction_method": "ocr",
+      "notes": "Scanned; specification title page used for author affiliations."
+    },
+    {
+      "source_id": "sqi2-add",
+      "type": "other",
+      "path": "DigitalSignature/SQIsign2D2/Algorithm specifications/SQISign Algorithm specifications Addition.pdf",
+      "extraction_method": "text",
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters",
+      "source_id": "sqi2-spec",
+      "locator": "p. 1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "sqi2-spec",
+      "locator": "pp. 58-61, Table 6.1",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "sqi2-spec",
+      "locator": "Chapter 9",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-3-agent",
+      "primary-agent"
+    ],
+    "cross_reviewed": true,
+    "issues": [
+      "Structured sizes record the compressed mode; uncompressed sizes remain available in source Table 6.1."
+    ],
+    "conflicts": [
+      "The main specification describes Level2 as 160/80-bit, while the supplementary statement maps Level2 to the required 128/80-bit NGCC category; target_security follows the supplementary mapping."
+    ],
+    "last_updated": "2026-09-20"
+  }
+}

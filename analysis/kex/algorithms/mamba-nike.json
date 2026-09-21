@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "mamba-nike",
+  "name": "MAMBA-NIKE",
+  "full_name": "MAMBA-NIKE: Non-Interactive Key Exchange from Ring Learning with Quantization",
+  "version": "2026-06-29 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/MAMBA-NIKE.zip",
+  "aliases": ["MAMBA-NIKE.KE"],
+  "overview_classification": {
+    "mathematical": {"family": "lattice_based", "subcategory": "ring_lattice", "label_en": "Ring-LWQ/RLWE-based lattice", "label_zh": "基于环上学习量化/RLWE 的格密码"},
+    "protocol": {"family": "non_interactive_key_exchange", "subcategory": "nike", "label_en": "One-pass non-interactive key exchange after public-key distribution", "label_zh": "公钥预分发后的单消息非交互式密钥交换"},
+    "summary_label_zh": "环格 RLWQ-Z、预分发响应方公钥的单消息未认证 NIKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "public_value_publication",
+    "message_flows": 1,
+    "round_trips": 0,
+    "authentication": {"type": "none", "authenticated_roles": [], "mechanism": null},
+    "roles": [
+      {"role": "public-key owner / responder", "long_term_key_required": true, "ephemeral_key_required": false, "key_details": "Publishes long-term pk_B=(rho,b), retains sk_B=s_B, and derives from the one-pass public value M1."},
+      {"role": "one-pass contributor / initiator", "long_term_key_required": false, "ephemeral_key_required": true, "key_details": "Uses pk_B, samples fresh short r and dither seed mu, publishes M1=(mu,u,h), and derives K_A locally; NGCC harness initiator keys are compatibility objects unused by the mathematical protocol."}
+    ],
+    "pre_distributed_material": ["Responder/public-key-owner public key pk_B = (rho,b)"],
+    "forward_secrecy": {"level": "none", "conditions": "Compromise of the responder's static secret s_B permits recomputation of past keys from recorded M1; no forward-secrecy claim is made."},
+    "key_confirmation": "None in the standalone one-pass interface.",
+    "transcript_binding": "K_A and K_B are derived as KDF(nu, pk_B, M1) using a fixed 16-byte domain separator and SHAKE256.",
+    "identity_binding": null
+  },
+  "technical_classification": {
+    "construction_paradigm": "Responder-static, initiator-ephemeral one-pass NIKE using public dithered split quantization and NewHope-style D4 reconciliation; the online message is a reconciliation transcript, not a ciphertext.",
+    "underlying_primitives": [
+      {"name": "RLWQ-Z split quantization", "role": "Compact public-key and one-pass response transport"},
+      {"name": "D4 reconciliation", "role": "Converts close ring products into a common raw reconciliation string"},
+      {"name": "SHAKE256", "role": "Transcript-bound final key derivation"},
+      {"name": "SHAKE128 / ChaCha20", "role": "Public/dither expansion and centered-binomial secret sampling"}
+    ],
+    "hard_problems": [
+      {"name": "Decisional split Ring Learning With Quantization (split-RLWQ-Z)", "role": "Direct passive real-or-random security of public-key and response layers"},
+      {"name": "Ring Learning With Errors (RLWE)", "role": "Normal-form hardness foundation used for concrete estimation"}
+    ],
+    "mathematical_structures": ["Rq = Z_q[X]/(X^n+1)", "power-of-two modulus q=8192", "public dithered coefficient-wise quantization", "centered-binomial secrets", "D4 reconciliation"],
+    "security_models": ["Passive real-or-random standalone key-exchange experiment", "Decisional split-RLWQ assumptions", "Reconciliation leakage epsilon_rec and key-rejection loss rho_key"]
+  },
+  "protocol_flow": [
+    {"flow": 1, "sender": "one-pass contributor", "receiver": "public-key owner", "message_id": "M1", "components": [{"name": "mu", "semantics": "32-byte public dither seed for response-side dithers."}, {"name": "u", "semantics": "p-packed split response quantization label."}, {"name": "h", "semantics": "Packed public D4 reconciliation helper vector."}], "semantics": "Using pre-distributed pk_B, the contributor samples ephemeral r, computes the close product and K_A, and publishes M1=(mu,u,h); the public-key owner reconstructs its close product and derives K_B."}
+  ],
+  "key_schedule": {
+    "static_contributions": ["Responder/public-key-owner secret polynomial s_B and public key pk_B=(rho,b) determine the responder-side close ring product."],
+    "ephemeral_contributions": ["Initiator/contributor short polynomial r and dither seed mu determine u, local v, helper h, and raw string nu_A."],
+    "transcript_hash": "The KDF input includes the complete public transcript T=(pk_B,M1)=((rho,b),(mu,u,h)).",
+    "session_key_derivation": "K_A = KDF(nu_A, pk_B, M1); K_B = KDF(nu_B, pk_B, M1), instantiated as SHAKE256 over a fixed 16-byte domain separator, raw reconciliation string, responder public key, and complete one-pass message.",
+    "domain_separation": "Fixed 16-byte KDF domain separator; separate labels for SHAKE128 public expansion and response dithers.",
+    "ephemeral_secret_erasure": "The specification directs implementations to clear ephemeral secrets and raw reconciliation strings after key derivation; the initiator API retains only the precomputed final shared secret in state."
+  },
+  "submitters": [
+    {"name_en": "Shanxiang Lyu", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": true},
+    {"name_en": "Hao Cheng", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Tang Zhou", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Ke Ma", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Chengjin Tian", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Junzuo Lai", "name_zh": null, "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zheng Wang", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Jinming Wen", "name_zh": null, "affiliation_ids": ["aff-3"], "is_contact": false},
+    {"name_en": "Tao Yang", "name_zh": null, "affiliation_ids": ["aff-4"], "is_contact": false},
+    {"name_en": "Zheng Qin", "name_zh": null, "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Zhengchun Zhou", "name_zh": null, "affiliation_ids": ["aff-6"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "College of Cyber Security, Jinan University", "name_zh": "暨南大学网络空间安全学院"},
+    {"affiliation_id": "aff-2", "name_en": "Southeast University", "name_zh": "东南大学"},
+    {"affiliation_id": "aff-3", "name_en": "Jilin University", "name_zh": "吉林大学"},
+    {"affiliation_id": "aff-4", "name_en": "Beihang University", "name_zh": "北京航空航天大学"},
+    {"affiliation_id": "aff-5", "name_en": "Shenzhen Beihang Emerging Industry Technology Research Institute", "name_zh": "深圳北航新兴产业技术研究院"},
+    {"affiliation_id": "aff-6", "name_en": "Southwest Jiaotong University", "name_zh": "西南交通大学"}
+  ],
+  "common_parameters": {"ring": "Rq = Z_q[X]/(X^n+1)", "q": 8192, "log2_q": 13, "quantization_moduli": "p_pk=2^t_pk, p_u=2^t_u, p_v=2^t_v", "secret_distribution": "Profile-specific centered binomial B_eta", "reconciliation": "NewHope-style D4, n/4 consumed blocks, packed two-bit helpers", "public_expansion": "SHAKE128", "secret_sampling": "ChaCha20", "kdf": "Transcript-bound SHAKE256"},
+  "parameter_sets": [
+    {"name": "MAMBA-NIKE-128", "implementation_aliases": ["128"], "target_security": {"classical_bits": 128, "quantum_bits": 251.1}, "ngcc_level": null, "core_parameters": {"n": 1024, "q": 8192, "t_pk": 9, "t_u": 10, "t_v": 6, "eta_s": 2, "eta_r": 2, "p_pk": 512, "p_u": 1024, "p_v": 64, "matzov_classical_bits": 272.1, "matzov_quantum_bits": 251.1}, "sizes_bytes": {"long_term_public_key": 1184, "long_term_secret_key": 3232, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [{"message_id": "M1", "bytes": 1568}], "total_communication": 1568, "initiator_session_state": 32, "responder_session_state": 0, "shared_secret": 32, "randomness": {"responder_public_seed": 32, "initiator_dither_seed": 32, "secret_sampling_seed": 32}}, "failure_probability": "current numerical key-rejection status 2^-42.44; not a certified upper bound", "issues": ["The ephemeral secret r is internal and has no canonical serialized key-object size in the API; ephemeral key sizes are null."]},
+    {"name": "MAMBA-NIKE-192", "implementation_aliases": ["192"], "target_security": {"classical_bits": 192, "quantum_bits": 258.4}, "ngcc_level": null, "core_parameters": {"n": 1024, "q": 8192, "t_pk": 10, "t_u": 10, "t_v": 6, "eta_s": 3, "eta_r": 3, "p_pk": 1024, "p_u": 1024, "p_v": 64, "matzov_classical_bits": 279.3, "matzov_quantum_bits": 258.4}, "sizes_bytes": {"long_term_public_key": 1312, "long_term_secret_key": 3360, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [{"message_id": "M1", "bytes": 1568}], "total_communication": 1568, "initiator_session_state": 32, "responder_session_state": 0, "shared_secret": 32, "randomness": {"responder_public_seed": 32, "initiator_dither_seed": 32, "secret_sampling_seed": 32}}, "failure_probability": "current numerical key-rejection status 2^-40.65; not a certified upper bound", "issues": ["The ephemeral secret r is internal and has no canonical serialized key-object size in the API; ephemeral key sizes are null."]},
+    {"name": "MAMBA-NIKE-256", "implementation_aliases": ["256"], "target_security": {"classical_bits": 256, "quantum_bits": 273.9}, "ngcc_level": null, "core_parameters": {"n": 1024, "q": 8192, "t_pk": 10, "t_u": 10, "t_v": 6, "eta_s": 7, "eta_r": 7, "p_pk": 1024, "p_u": 1024, "p_v": 64, "matzov_classical_bits": 294.3, "matzov_quantum_bits": 273.9}, "sizes_bytes": {"long_term_public_key": 1312, "long_term_secret_key": 3360, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [{"message_id": "M1", "bytes": 1568}], "total_communication": 1568, "initiator_session_state": 32, "responder_session_state": 0, "shared_secret": 32, "randomness": {"responder_public_seed": 32, "initiator_dither_seed": 32, "secret_sampling_seed": 32}}, "failure_probability": "current numerical key-rejection status 2^-39.97; not a certified upper bound", "issues": ["The ephemeral secret r is internal and has no canonical serialized key-object size in the API; ephemeral key sizes are null."]},
+    {"name": "MAMBA-NIKE-384", "implementation_aliases": ["384"], "target_security": {"classical_bits": 384, "quantum_bits": 512.5}, "ngcc_level": null, "core_parameters": {"n": 2048, "q": 8192, "t_pk": 11, "t_u": 11, "t_v": 6, "eta_s": 2, "eta_r": 2, "p_pk": 2048, "p_u": 2048, "p_v": 64, "matzov_classical_bits": 538.6, "matzov_quantum_bits": 512.5}, "sizes_bytes": {"long_term_public_key": 2848, "long_term_secret_key": 6944, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [{"message_id": "M1", "bytes": 3360}], "total_communication": 3360, "initiator_session_state": 48, "responder_session_state": 0, "shared_secret": 48, "randomness": {"responder_public_seed": 32, "initiator_dither_seed": 32, "secret_sampling_seed": 32}}, "failure_probability": "current numerical key-rejection status 2^-39.69; not a certified upper bound", "issues": ["The ephemeral secret r is internal and has no canonical serialized key-object size in the API; ephemeral key sizes are null."]},
+    {"name": "MAMBA-NIKE-512", "implementation_aliases": ["512"], "target_security": {"classical_bits": 512, "quantum_bits": 512.5}, "ngcc_level": null, "core_parameters": {"n": 2048, "q": 8192, "t_pk": 11, "t_u": 11, "t_v": 6, "eta_s": 5, "eta_r": 5, "p_pk": 2048, "p_u": 2048, "p_v": 64, "matzov_classical_bits": 590.2, "matzov_quantum_bits": 512.5}, "sizes_bytes": {"long_term_public_key": 2848, "long_term_secret_key": 6944, "ephemeral_public_key": null, "ephemeral_secret_key": null, "messages": [{"message_id": "M1", "bytes": 3360}], "total_communication": 3360, "initiator_session_state": 64, "responder_session_state": 0, "shared_secret": 64, "randomness": {"responder_public_seed": 32, "initiator_dither_seed": 32, "secret_sampling_seed": 32}}, "failure_probability": "current numerical key-rejection status 2^-37.81; not a certified upper bound", "issues": ["The ephemeral secret r is internal and has no canonical serialized key-object size in the API; ephemeral key sizes are null."]}
+  ],
+  "correctness": {"underlying_failure_probability": {"MAMBA-NIKE-128": "numerical status 2^-42.44", "MAMBA-NIKE-192": "numerical status 2^-40.65", "MAMBA-NIKE-256": "numerical status 2^-39.97", "MAMBA-NIKE-384": "numerical status 2^-39.69", "MAMBA-NIKE-512": "numerical status 2^-37.81"}, "session_failure_probability": {"MAMBA-NIKE-128": "same one-pass key-rejection event; current numerical status 2^-42.44", "MAMBA-NIKE-192": "same one-pass key-rejection event; current numerical status 2^-40.65", "MAMBA-NIKE-256": "same one-pass key-rejection event; current numerical status 2^-39.97", "MAMBA-NIKE-384": "same one-pass key-rejection event; current numerical status 2^-39.69", "MAMBA-NIKE-512": "same one-pass key-rejection event; current numerical status 2^-37.81"}, "relationship": "There is one D4 reconciliation/key-acceptance event per published M1, so the protocol disagreement event is exactly rho_key = Pr[Rec(w,h) != Rec(v_hat,h)].", "basis": "Algorithm specification Definition 6.2 and Appendix C.1, especially Table 11. The submission warns that the double-precision estimator truncates below 10^-13 and the reported exponents are not certified cryptographic upper bounds; 5,000/5,000 test agreements per profile had zero observed failures."},
+  "security_claims": [
+    {"category": "key_indistinguishability", "claim": "Passive real-or-random session-key security is reduced directly to two decisional split-RLWQ advantages, reconciliation leakage epsilon_rec, key-rejection rho_key, and transcript-bound SHAKE256.", "claim_strength": "formally_claimed", "comparison_scope": "Passive one-pass transcript only"},
+    {"category": "authentication", "claim": "No authentication is provided by the standalone NIKE interface.", "claim_strength": "stated", "comparison_scope": "Standalone primitive"},
+    {"category": "active_security", "claim": "Active attacks, replay protection, identity/channel binding, UKS/KCI resistance, and decapsulation-oracle security are outside the submitted security experiment.", "claim_strength": "stated", "comparison_scope": "Standalone primitive"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "communication", "claim": "Power-of-two public dithered quantization provides compact p-packed public keys and one-pass response messages.", "claim_strength": "measured", "comparison_scope": "Submitted profiles and byte tables"},
+      {"category": "simplicity", "claim": "Power-of-two arithmetic uses masking reduction and avoids prime-field roots of unity; one protocol syntax covers all five profiles.", "claim_strength": "stated", "comparison_scope": "Implementation architecture"},
+      {"category": "security_analysis", "claim": "Input-independent quantization error yields an explicit agreement-error expression and direct split-RLWQ proof route.", "claim_strength": "argued", "comparison_scope": "Quantization-based ring key exchange"},
+      {"category": "implementation", "claim": "Portable C and x86-64 AVX2 tracks share byte-identical layouts and KAT behavior, with measured AVX2 speedups across all profiles.", "claim_strength": "measured", "comparison_scope": "Submitted x86 implementations"},
+      {"category": "flexibility", "claim": "Five profiles from 128 through 512 classical-bit targets share a unified code base and API flow.", "claim_strength": "stated", "comparison_scope": "Submitted parameter family"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "authentication", "description": "The standalone construction is unauthenticated; replay, identity binding, channel binding, UKS/KCI resistance, and active-session protection must be supplied by a higher-level protocol.", "provenance": "explicit_caveat"},
+      {"category": "forward_secrecy", "description": "A recorded M1 can be recomputed after compromise of the responder's static secret; the submission makes no forward-secrecy claim.", "provenance": "derived_from_parameters"},
+      {"category": "correctness", "description": "Key acceptance is below one, and the current numerical exponents are not certified upper bounds because the supplied double-precision computation truncates probabilities below 10^-13.", "provenance": "explicit_caveat"},
+      {"category": "communication", "description": "The 384/512 profiles use n=2048 and incur 2848-byte public keys, 3360-byte one-pass messages, and larger RAM costs.", "provenance": "explicit_in_submission"},
+      {"category": "primitive_dependency", "description": "Security rests on RLWE/split-RLWQ-Z hardness and transcript-bound SHAKE256 assumptions.", "provenance": "explicit_in_submission"},
+      {"category": "hardware_scope", "description": "First-round performance covers reference C, x86-64 AVX2, and embedded-software portability; FPGA and ASIC performance are outside the claimed figures.", "provenance": "explicit_caveat"},
+      {"category": "test_scope", "description": "Performance measurements use one x86-64 AVX2 Linux/WSL environment; agreement tests report only 5,000 trials per profile and do not establish the tiny numerical rejection probabilities.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [{"type": "reference", "language": "C99", "platform": "portable coefficient-domain Toom-Cook-4"}, {"type": "optimized", "language": "C/AVX2", "platform": "x86-64 AVX2 with portable Toom-Cook fallback"}],
+  "submission_completeness": {"status": "complete", "present_components": ["basic information", "algorithm specification", "reference implementation", "optimized implementation", "test vectors", "reference self-evaluation", "optimized self-evaluation", "security and correctness analysis"], "missing_components": []},
+  "sources": [
+    {"source_id": "mamba-basic", "type": "basic_information", "path": "KeyExchange/MAMBA-NIKE.zip::Basic information/Appendix A-filled.pdf", "priority": 1, "notes": "Primary submitter source; private contact details intentionally excluded."},
+    {"source_id": "mamba-spec", "type": "algorithm_specification", "path": "KeyExchange/MAMBA-NIKE.zip::Algorithm specifications/MAMBA_NIKE.pdf", "priority": 2, "notes": "Primary protocol, parameter, security, and limitations source."},
+    {"source_id": "mamba-params", "type": "parameter_header", "path": "KeyExchange/MAMBA-NIKE.zip::API_PKC/API_PKC/Implementations/**/MAMBA-NIKE-*/params.h", "priority": 3, "notes": "Cross-check of profile constants and API byte lengths."},
+    {"source_id": "mamba-api", "type": "api_header", "path": "KeyExchange/MAMBA-NIKE.zip::API_PKC/API_PKC/Implementations/**/MAMBA-NIKE-*/KEX_AlgorithmInstance.c", "priority": 3, "notes": "Cross-check of one-pass count, state sizes, and initiator compatibility keys."},
+    {"source_id": "mamba-selfeval-ref", "type": "self_evaluation", "path": "KeyExchange/MAMBA-NIKE.zip::Algorithm specifications/MAMBA-NIKE-Reference-x86-Self-Evaluation.pdf", "priority": 6, "notes": "Reference implementation conformance and benchmark scope."},
+    {"source_id": "mamba-selfeval-opt", "type": "self_evaluation", "path": "KeyExchange/MAMBA-NIKE.zip::Algorithm specifications/MAMBA-NIKE-Optimized-x86-Self-Evaluation.pdf", "priority": 6, "notes": "Optimized implementation conformance and benchmark scope."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "mamba-basic", "locator": "pp. 1-3", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "mamba-spec", "locator": "title/abstract and Sections 1-2, pp. 1, 4-9", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "mamba-spec", "locator": "Algorithms 1-3, pp. 7-9; Sections 8.3-8.5, pp. 21-22", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "mamba-spec", "locator": "Tables 3-4, pp. 9-10; Table 9, p. 14", "confidence": "high", "extraction_status": "verified"},
+    {"field": "session_state_sizes", "source_id": "mamba-api", "locator": "STA_BYTES=SS_BYTES, STB_BYTES=0 and length-query functions", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "mamba-spec", "locator": "Section 3.3, p. 10; Definition 6.2, p. 16; Appendix C.1 and Table 11, pp. 29-31", "confidence": "high", "extraction_status": "verified"},
+    {"field": "security_claims", "source_id": "mamba-spec", "locator": "Section 6 and Appendix B.3, pp. 14-17, 28-29", "confidence": "high", "extraction_status": "verified"},
+    {"field": "claimed_advantages_and_limitations", "source_id": "mamba-spec", "locator": "Section 7, pp. 18-20", "confidence": "high", "extraction_status": "verified"}
+  ],
+  "review": {"status": "cross_checked", "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "one-pass publication flow", "communication sizes", "correctness relation"], "review_notes": ["M1 is treated as the only online transmitted message; pre-distributed pk_B is recorded separately and excluded from total_communication.", "Table 4 sizes were cross-checked against all five params.h files and the NGCC KEX length-query implementation.", "Initiator long-term API key objects are not treated as protocol requirements because the implementation states they exist only for harness compatibility.", "independent cross-review by group_3"], "conflicts": ["Section 7.1 contains stale MAMBA-NIKE-128 figures (1568-byte public key and 1824-byte message); authoritative Table 4, Table 9, params.h, and both self-evaluations agree on 1184 and 1568 bytes.", "The specification title page spells Chengjing Tian, while the higher-priority basic-information form spells Chengjin Tian; the basic-information spelling is retained."]},
+  "issues": [
+    {"field": "parameter_sets.ngcc_level", "severity": "warning", "description": "No explicit mapping from the five named classical targets to NGCC level integers was found; stored as null rather than inferred."},
+    {"field": "parameter_sets.target_security.quantum_bits", "severity": "info", "description": "Values are the submission's MATZOV-Q concrete estimator results, not separately stated target quantum-security levels."},
+    {"field": "parameter_sets.sizes_bytes.ephemeral_secret_key", "severity": "warning", "description": "The sampled contributor polynomial r is internal and not exposed as a canonical serialized key object, so its byte size is null."},
+    {"field": "correctness", "severity": "warning", "description": "Reported rejection exponents are explicitly not certified upper bounds; zero failures in 5,000 trials cannot validate those tail probabilities."},
+    {"field": "submitters.name_zh", "severity": "info", "description": "Chinese name forms were not present in the basic-information/specification text; stored as null."}
+  ]
+}

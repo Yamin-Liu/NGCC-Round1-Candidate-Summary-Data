@@ -1,0 +1,571 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "octarine",
+  "name": "Octarine",
+  "full_name": "ARCANE-Octarine",
+  "version": null,
+  "function": "digital_signature",
+  "submission_path": "DigitalSignature/Octarine",
+  "aliases": [
+    "ARCANE-Octarine"
+  ],
+  "overview_classification": {
+    "family": "lattice_based",
+    "subcategory": "other_lattice_based",
+    "family_label_en": "Lattice-based",
+    "family_label_zh": "格密码",
+    "subcategory_label_en": "Other lattice signature",
+    "subcategory_label_zh": "其他格签名",
+    "summary_label_zh": "格密码 / 其他格签名"
+  },
+  "technical_classification": {
+    "construction_paradigm": [
+      "identification_to_signature",
+      "fiat_shamir_with_aborts"
+    ],
+    "hardness_problems": [
+      {
+        "name": "RR-LWR",
+        "role": "key recovery",
+        "details": "Radical Ring Learning With Rounding"
+      },
+      {
+        "name": "RR-MSIS",
+        "role": "SUF-CMA unforgeability",
+        "details": "Homogeneous radical-ring short-integer-solution relation"
+      },
+      {
+        "name": "Self-target RR-MSIS",
+        "role": "EUF-CMA unforgeability",
+        "details": "Inhomogeneous self-targeted relation"
+      }
+    ],
+    "mathematical_structures": [
+      "radical ring S=(Z_q[y]/(y^n+1))[x]/(x^k-y-2)",
+      "transported monomial basis",
+      "power-of-two modulus"
+    ],
+    "claimed_security_targets": [
+      "SUF-CMA",
+      "EUF-CMA"
+    ],
+    "claimed_security_models": [
+      "ROM"
+    ]
+  },
+  "signature_characteristics": {
+    "statefulness": "stateless",
+    "signing_randomness": "configurable",
+    "signature_length": "fixed",
+    "message_recovery": false,
+    "rejection_sampling": true,
+    "prehash_mode": null,
+    "context_support": null,
+    "batch_verification": null
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-1",
+      "name_en": "PQShield",
+      "name_zh": null,
+      "country_or_region": "Belgium"
+    },
+    {
+      "affiliation_id": "aff-2",
+      "name_en": "NXP Semiconductors",
+      "name_zh": null,
+      "country_or_region": "Belgium/United States"
+    },
+    {
+      "affiliation_id": "aff-3",
+      "name_en": "Indian Institute of Technology Kanpur",
+      "name_zh": null,
+      "country_or_region": "India"
+    },
+    {
+      "affiliation_id": "aff-4",
+      "name_en": "Graz University of Technology",
+      "name_zh": null,
+      "country_or_region": "Austria"
+    },
+    {
+      "affiliation_id": "aff-5",
+      "name_en": "Belfort Labs",
+      "name_zh": null,
+      "country_or_region": "Belgium"
+    },
+    {
+      "affiliation_id": "aff-6",
+      "name_en": "KU Leuven",
+      "name_zh": null,
+      "country_or_region": "Belgium"
+    },
+    {
+      "affiliation_id": "aff-7",
+      "name_en": "School of Cryptology, University of Chinese Academy of Sciences",
+      "name_zh": "中国科学院大学密码学院",
+      "country_or_region": "China"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Jose Maria Bermudo Mera",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-1"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Joppe W. Bos",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Angshuman Karmakar",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-3"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Joost Renes",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-2"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Sujoy Sinha Roy",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-4"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Michiel Van Beirendonck",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-5"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Frederik Vercauteren",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-6"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Peng Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-7"
+      ],
+      "roles": [
+        "author",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Yuewu Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-7"
+      ],
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "name_en": "Fangyu Zheng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-7"
+      ],
+      "roles": [
+        "author"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "S_{q,n,k}=(Z_q[y]/(y^n+1))[x]/(x^k-y-2)",
+    "n": 1024,
+    "q": "2^24",
+    "secret_distribution": "uniform bounded coefficients",
+    "challenge_space": "signed sparse polynomial of weight tau",
+    "hash_xof_prg": [
+      "pseudoXOF",
+      "SHA3/SHAKE"
+    ],
+    "encoding": "little-endian packed coefficients and canonical fixed-size hint indices",
+    "signature_components": [
+      "c_tilde",
+      "z",
+      "h"
+    ]
+  },
+  "parameter_sets": [
+    {
+      "name": "Octarine-128",
+      "implementation_aliases": [
+        "Octarine-128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 64,
+        "category": null
+      },
+      "parameters": {
+        "n": 1024,
+        "k": 1,
+        "q": "2^24",
+        "p": "2^21",
+        "eta": 4,
+        "d": 11,
+        "tau": 16,
+        "lambda": 128,
+        "gamma1": "2^18",
+        "gamma2": "2^17",
+        "beta": 64,
+        "omega": 79,
+        "challenge_entropy_bits": 131
+      },
+      "sizes": {
+        "public_key": {
+          "value": 1344,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 2432,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 2564,
+          "minimum": 2564,
+          "maximum": 2564,
+          "average": 2564,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Octarine-256",
+      "implementation_aliases": [
+        "Octarine-256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 128,
+        "category": null
+      },
+      "parameters": {
+        "n": 1024,
+        "k": 2,
+        "q": "2^24",
+        "p": "2^22",
+        "eta": 2,
+        "d": 13,
+        "tau": 36,
+        "lambda": 256,
+        "gamma1": "2^19",
+        "gamma2": "2^18",
+        "beta": 72,
+        "omega": 210,
+        "challenge_entropy_bits": 257
+      },
+      "sizes": {
+        "public_key": {
+          "value": 2368,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 4608,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 5449,
+          "minimum": 5449,
+          "maximum": 5449,
+          "average": 5449,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    },
+    {
+      "name": "Octarine-512",
+      "implementation_aliases": [
+        "Octarine-512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 256,
+        "category": null
+      },
+      "parameters": {
+        "n": 1024,
+        "k": 5,
+        "q": "2^24",
+        "p": "2^22",
+        "eta": 2,
+        "d": 14,
+        "tau": 87,
+        "lambda": 512,
+        "gamma1": "2^21",
+        "gamma2": "2^20",
+        "beta": 174,
+        "omega": 399,
+        "challenge_entropy_bits": 512
+      },
+      "sizes": {
+        "public_key": {
+          "value": 5184,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "secret_key": {
+          "value": 11776,
+          "unit": "byte",
+          "status": "reported",
+          "notes": null
+        },
+        "signature": {
+          "encoding": "fixed",
+          "reported": 14713,
+          "minimum": 14713,
+          "maximum": 14713,
+          "average": 14713,
+          "unit": "byte",
+          "notes": null
+        }
+      }
+    }
+  ],
+  "signing_behavior": {
+    "rejection_sampling": true,
+    "expected_repetitions": {
+      "Octarine-128": 2.1,
+      "Octarine-256": 2.3,
+      "Octarine-512": 3.6
+    },
+    "signing_failure_probability": null,
+    "retry_limit": null,
+    "state_update": null,
+    "notes": "Hedged interface supports randomized or deterministic coins; randomized mode is recommended for physical side-channel settings."
+  },
+  "security_claims": [
+    {
+      "target": "EUF-CMA",
+      "model": "ROM",
+      "claim": "EUF-CMA in ROM under RR-LWR and self-target RR-MSIS.",
+      "estimates": [
+        {
+          "parameter_set": "Octarine-128",
+          "classical_bits": 128,
+          "quantum_bits": 116
+        },
+        {
+          "parameter_set": "Octarine-256",
+          "classical_bits": 266,
+          "quantum_bits": 241
+        },
+        {
+          "parameter_set": "Octarine-512",
+          "classical_bits": 683,
+          "quantum_bits": 620
+        }
+      ]
+    },
+    {
+      "target": "SUF-CMA",
+      "model": "ROM",
+      "claim": "SUF-CMA in ROM under RR-LWR and RR-MSIS; the submission explicitly does not claim a QROM proof.",
+      "estimates": [
+        {
+          "parameter_set": "Octarine-128",
+          "classical_bits": 122,
+          "quantum_bits": 111
+        },
+        {
+          "parameter_set": "Octarine-256",
+          "classical_bits": 267,
+          "quantum_bits": 242
+        },
+        {
+          "parameter_set": "Octarine-512",
+          "classical_bits": 683,
+          "quantum_bits": 620
+        }
+      ]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "simplicity",
+        "summary": "Claims simpler sampling and decomposition from a power-of-two modulus and radical-ring structure.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "module-lattice and prior LWR designs"
+      },
+      {
+        "category": "performance",
+        "summary": "Reports fewer expected signing rounds than Dilithium2 for the 128-bit set.",
+        "claim_strength": "comparative",
+        "comparison_scope": "submission benchmark comparison"
+      },
+      {
+        "category": "side_channel_protection",
+        "summary": "Claims power-of-two arithmetic and no-rejection coefficient sampling are favorable for masking.",
+        "claim_strength": "qualitative",
+        "comparison_scope": "implementation design"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "rejection_sampling",
+        "summary": "Whole-signature Fiat-Shamir-with-aborts loop averages about 2.1, 2.3 and 3.6 rounds.",
+        "basis": "explicit_in_submission"
+      },
+      {
+        "category": "qrom_gap",
+        "summary": "The specification explicitly does not claim a QROM proof.",
+        "basis": "explicit_caveat"
+      },
+      {
+        "category": "platform_benchmark_scope",
+        "summary": "Performance measurements are limited to the stated Intel Xeon, Ubuntu, GCC and AVX2 configurations.",
+        "basis": "derived_from_test_setup"
+      },
+      {
+        "category": "arithmetic_complexity",
+        "summary": "Large radical-ring products use two auxiliary NTT primes and CRT in the described implementation.",
+        "basis": "derived_from_implementation_description"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable/x86",
+      "path": "DigitalSignature/Octarine/Implementations/Reference_Implementation"
+    },
+    {
+      "type": "optimized",
+      "language": "C/intrinsics",
+      "platform": "AVX2",
+      "path": "DigitalSignature/Octarine/Implementations/Additional_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "algorithm_specification": true,
+    "intellectual_property": true,
+    "reference_implementation": true,
+    "optimized_implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "oct-spec",
+      "type": "algorithm_specification",
+      "path": "DigitalSignature/Octarine/Algorithm Specifications/Octarine.pdf",
+      "extraction_method": "text",
+      "notes": "53 pages"
+    },
+    {
+      "source_id": "oct-basic",
+      "type": "basic_information",
+      "path": "DigitalSignature/Octarine/Basic information/Basic information.pdf",
+      "extraction_method": "ocr",
+      "notes": "Scanned form; spellings and affiliations cross-checked with the specification title page."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "overview_classification",
+      "source_id": "oct-spec",
+      "locator": "pp. 1-7",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "submitters",
+      "source_id": "oct-spec",
+      "locator": "title page",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "oct-spec",
+      "locator": "Table 2, p. 17",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": null
+    },
+    {
+      "field": "security_claims",
+      "source_id": "oct-spec",
+      "locator": "Section 6.1.2",
+      "confidence": "high",
+      "extraction_status": "verified",
+      "note": "QROM proof is expressly not claimed."
+    }
+  ],
+  "review": {
+    "status": "extracted",
+    "data_quality": "B",
+    "reviewers": [
+      "sig-group-2-agent"
+    ],
+    "cross_reviewed": false,
+    "issues": [
+      "No Chinese personal names are printed in the English author list; name_zh is null."
+    ],
+    "conflicts": [],
+    "last_updated": "2026-09-20"
+  }
+}

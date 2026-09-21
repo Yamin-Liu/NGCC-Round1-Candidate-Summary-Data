@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "qctm",
+  "name": "QCTM",
+  "full_name": "Quasi-Cyclic Twisted McEliece Key Encapsulation Mechanism",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/QCTM",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Syndrome Decoding",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Public-key indistinguishability for quasi-cyclic twisted Goppa codes",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Twisted Goppa structure recovery",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "quasi-cyclic twisted Goppa codes with affine translation and hybrid systematic public matrix",
+    "underlying_pke": "Niederreiter-type syndrome encryption",
+    "kem_construction": "implicit-rejection KEM derived from Niederreiter encryption",
+    "claimed_security_target": "chosen-ciphertext secure KEM",
+    "security_models": [
+      "ROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-nuaa",
+      "name_en": "Nanjing University of Aeronautics and Astronautics",
+      "name_zh": "南京航空航天大学"
+    },
+    {
+      "affiliation_id": "aff-njupt",
+      "name_en": "Nanjing University of Posts and Telecommunications",
+      "name_zh": "南京邮电大学"
+    },
+    {
+      "affiliation_id": "aff-bit",
+      "name_en": "Beijing Institute of Technology",
+      "name_zh": "北京理工大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Qin Yue",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-nuaa"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Fuwei Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-njupt"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Licheng Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bit"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Huan Sun",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-njupt"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yuteng Song",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-nuaa"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yiwei Jiang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bit"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jingjing Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-bit"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F_(2^18)",
+    "code_structure": "quasi-cyclic twisted Goppa code; local block-circulant main matrix plus ordinary tail rows",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "uniform fixed-weight binary error vector",
+    "modulus": null,
+    "dimensions": {
+      "m": 18,
+      "l": 19,
+      "n": "10070,19000,38000"
+    },
+    "weights": {
+      "w": "142,256,503"
+    },
+    "error_correction": "twisted Goppa decoding",
+    "symmetric_primitives": [
+      "SHAKE256 (libkeccak wrapper)"
+    ],
+    "representation": "compressed block-circulant T1 plus row-wise T2; syndrome ciphertext",
+    "other": {
+      "ciphertext_type": "Niederreiter syndrome"
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "QCTM128",
+      "implementation_aliases": [
+        "QCTM128"
+      ],
+      "submission_security_label": "128-bit target",
+      "claimed_classical_security_bits": 150.87,
+      "claimed_quantum_security_bits": null,
+      "core_parameters": {
+        "m": 18,
+        "n": 10070,
+        "l": 19,
+        "t0": 15,
+        "t": 285,
+        "k": 4957,
+        "w": 142,
+        "f": "z^18+z^3+1",
+        "F": "y^15+y^7+z^7"
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 167987,
+          "raw": "167987 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "secret_key": {
+          "bytes": 192545,
+          "raw": "192545 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "ciphertext": {
+          "bytes": 640,
+          "raw": "640 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 8.2 / final API"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QCTM256",
+      "implementation_aliases": [
+        "QCTM256"
+      ],
+      "submission_security_label": "256-bit target",
+      "claimed_classical_security_bits": 272.9,
+      "claimed_quantum_security_bits": null,
+      "core_parameters": {
+        "m": 18,
+        "n": 19000,
+        "l": 19,
+        "t0": 27,
+        "t": 513,
+        "k": 9783,
+        "w": 256,
+        "f": "z^18+z^7+1",
+        "F": "y^27+z"
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 595662,
+          "raw": "595662 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "secret_key": {
+          "bytes": 641942,
+          "raw": "641942 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "ciphertext": {
+          "bytes": 1153,
+          "raw": "1153 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 8.2 / final API"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "QCTM512",
+      "implementation_aliases": [
+        "QCTM512"
+      ],
+      "submission_security_label": "512-bit target",
+      "claimed_classical_security_bits": 530.3,
+      "claimed_quantum_security_bits": null,
+      "core_parameters": {
+        "m": 18,
+        "n": 38000,
+        "l": 19,
+        "t0": 53,
+        "t": 1007,
+        "k": 19891,
+        "w": 503,
+        "f": "z^18+z^3+1",
+        "F": "y^53+y^6+z"
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 2374727,
+          "raw": "2374727 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "secret_key": {
+          "bytes": 2467243,
+          "raw": "2467243 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "ciphertext": {
+          "bytes": 2264,
+          "raw": "2264 bytes",
+          "basis": "specification Table 8.2 / final API"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Table 8.2 / final API"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Local quasi-cyclicity is claimed to reduce the public key relative to Classic McEliece.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Classic McEliece",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Twisted terms are claimed to break conditions needed by known folding attacks.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "simplicity",
+        "summary": "Niederreiter syndrome ciphertexts and an explicit twisted-Goppa decoder are specified.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Key generation is much more expensive than encapsulation in the reported benchmarks.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Benchmarks use one Intel i7-11800H system under WSL2, SUPERCOP and GCC 13.3.0.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "Security depends on the relatively specialized quasi-cyclic twisted-Goppa indistinguishability and structure-recovery assumptions.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable/SUPERCOP-style",
+      "path": "KeyEncapsulation/QCTM/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C",
+      "platform": "x86-64",
+      "path": "KeyEncapsulation/QCTM/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/QCTM/Basic information/Algorithm_Basic_Information_en.pdf",
+      "priority": 1,
+      "notes": "Scanned; OCR used; some names/affiliations have medium confidence."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/QCTM/Algorithm specifications/Algorithm_Text_en.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "sizes",
+      "type": "api_header",
+      "path": "KeyEncapsulation/QCTM/Implementations/Reference_Implementation/QCTM128/sizes.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-4 (OCR)",
+      "summary": "Seven submitters and contact; OCR-normalized spellings retained with medium confidence.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.1,4-6,15-20",
+      "summary": "Twisted Goppa construction and security assumptions.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets.core_parameters",
+      "source_id": "spec",
+      "locator": "PDF p.6, Sections 3.2.1-3.2.3",
+      "summary": "Three core parameter sets.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets[*].sizes",
+      "source_id": "spec",
+      "locator": "PDF p.22, Table 8.2",
+      "summary": "Final API sizes including embedded public-key material in the private key.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "PDF pp.22-23, Section 9",
+      "summary": "Innovation claims and benchmark scope.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": [
+    {
+      "severity": "conflict",
+      "code": "size_tables_conflict",
+      "message": "Section 3.2 lists smaller public/private-key lengths than final API Table 8.2; final API sizes are recorded because they match the submitted serialization contract.",
+      "field": "parameter_sets[*].sizes"
+    },
+    {
+      "severity": "warning",
+      "code": "ocr_identity_uncertainty",
+      "message": "Basic-information PDF is scanned; Fuwei Li and Huan Sun affiliation/name spellings are OCR-normalized and should be manually checked.",
+      "field": "submitters"
+    },
+    {
+      "severity": "missing",
+      "code": "quantum_security_not_stated",
+      "message": "A claimed quantum-bit estimate was not located; retained as null.",
+      "field": "parameter_sets[*].claimed_quantum_security_bits"
+    },
+    {
+      "severity": "missing",
+      "code": "dfr_not_stated",
+      "message": "No nonzero DFR value was located; decoder failure leads to implicit rejection but probability is left null.",
+      "field": "parameter_sets[*].decapsulation_failure_probability"
+    },
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was found.",
+      "field": "version"
+    }
+  ]
+}

@@ -1,0 +1,868 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-20T13:36:26.952547+00:00",
+  "scope": "Nine NICCS R1 KeyExchange candidates",
+  "expected_algorithm_count": 9,
+  "observed_algorithm_count": 9,
+  "summary": {
+    "schema_passed": 9,
+    "schema_failed": 0,
+    "errors": 0,
+    "warnings": 53,
+    "info": 8,
+    "missing_items": 20,
+    "source_conflicts": 9
+  },
+  "passed": [
+    "adkex",
+    "afs-kex",
+    "cretake",
+    "dkex",
+    "loom",
+    "mamba-nike",
+    "nev-ake",
+    "niike",
+    "triq-kex"
+  ],
+  "warnings": [
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No single explicit target quantum-bit value was found in the principal parameter summary; stored as null rather than inferred.",
+      "path": "parameter_sets.target_security.quantum_bits"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Chinese author names were not provided in the extracted official materials; stored as null rather than transliterated or guessed.",
+      "path": "submitters.name_zh"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support.",
+      "path": "submitters[Jian Weng].affiliation_ids"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null.",
+      "path": "parameter_sets.ngcc_level"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The basic-information PDF was a scan whose normalized OCR text was empty; author and affiliation fields were taken from the specification title page.",
+      "path": "identity_and_submitters"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Chinese author names were not present in the usable extracted material; stored as null.",
+      "path": "submitters.name_zh"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No explicit NGCC level mapping was found; all 25 values remain null.",
+      "path": "parameter_sets.ngcc_level"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Code uses secure_bzero, but the specification did not provide a complete normative erasure schedule for every framework.",
+      "path": "key_schedule.ephemeral_secret_erasure"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The submission states inheritance for non-compact instances but does not tabulate a distinct composed AKE-session bound; no bound was invented.",
+      "path": "correctness.session_failure_probability.other_instances"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "No numeric message-size conflicts were found between reference and AVX2 tables."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The basic-information PDF did not yield usable OCR text; title-page identity data from the specification was used as fallback."
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No explicit target quantum-bit values were found; stored as null.",
+      "path": "parameter_sets.target_security.quantum_bits"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The submission explicitly states that ML-DSA-87 gives only about 256 classical bits for DKEX-512 and is provisional.",
+      "path": "parameter_sets[2].authentication_strength"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Chinese author-name forms were not present in the specification and the scanned basic-information form yielded no usable OCR; name_zh is null.",
+      "path": "submitters.name_zh"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The contact designation could not be recovered from the scanned basic-information PDF; all is_contact values are conservatively false.",
+      "path": "submitters.is_contact"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Table 2 reports cryptographic-payload bandwidth 3870/7522/15986 bytes, while the later normative serialized-message Table 15 reports 4038/7706/16170 bytes; sizes_bytes uses Table 15."
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-128: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-192: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-256: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-384: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-512: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "cross_review",
+      "message": "Required independent workflow review is incomplete or not fully recorded."
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No explicit mapping from the five named classical targets to NGCC level integers was found; stored as null rather than inferred.",
+      "path": "parameter_sets.ngcc_level"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The sampled contributor polynomial r is internal and not exposed as a canonical serialized key object, so its byte size is null.",
+      "path": "parameter_sets.sizes_bytes.ephemeral_secret_key"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Reported rejection exponents are explicitly not certified upper bounds; zero failures in 5,000 trials cannot validate those tail probabilities.",
+      "path": "correctness"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Section 7.1 contains stale MAMBA-NIKE-128 figures (1568-byte public key and 1824-byte message); authoritative Table 4, Table 9, params.h, and both self-evaluations agree on 1184 and 1568 bytes."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The specification title page spells Chengjing Tian, while the higher-priority basic-information form spells Chengjin Tian; the basic-information spelling is retained."
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The basic-information PDF yielded no extractable text and appears scanned; submitters/affiliations were taken from specification p. 1 and unavailable Chinese names were left null.",
+      "path": "basic_information"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The specification gives component DFRs but not an explicit session-level formula; <=3*delta is derived by union bound from the two PKE decryptions and one KEM decapsulation.",
+      "path": "correctness.session_failure_probability"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Specification prose names compressed variants C1*/C2*/C3*, while implementation directories/comments use -C and PARAMS=1..3; aliases preserve both forms."
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv128: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv256: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv512: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The basic-information PDF yielded no extractable text and appears scanned; names/affiliations were taken from the specification, with unavailable Chinese names left null.",
+      "path": "basic_information"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "Specification Table 7.1 and implementation encode_sizes.h disagree; the higher-priority specification values are stored and the conflicts are listed per parameter set.",
+      "path": "parameter_sets.sizes_bytes"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "No single explicit quantum-bit target was assigned to each named parameter set; stored as null.",
+      "path": "target_security.quantum_bits"
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Table 7.1 sizes differ from encode_sizes.h for all three implementations, most materially for lv512 shared secret (2049 versus 4100 bytes)."
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred.",
+      "path": "submitters.affiliation_ids"
+    },
+    {
+      "severity": "warning",
+      "check": "record_issue",
+      "message": "The specification names 128/256/384/512-bit instances but does not explicitly assign NGCC level integers; all values are null rather than inferred from project convention.",
+      "path": "ngcc_level"
+    }
+  ],
+  "missing": [
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-PolarLAC-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "K2S-ZEN-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-PolarLAC-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "S2K-BiT-ZEN-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-128: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-192: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-256: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-384: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "MAMBA-NIKE-512: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv128: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv256: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    },
+    {
+      "severity": "warning",
+      "check": "size_values_missing",
+      "message": "NIIKE-lv512: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+    }
+  ],
+  "conflicts": [
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "No numeric message-size conflicts were found between reference and AVX2 tables."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The basic-information PDF did not yield usable OCR text; title-page identity data from the specification was used as fallback."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Table 2 reports cryptographic-payload bandwidth 3870/7522/15986 bytes, while the later normative serialized-message Table 15 reports 4038/7706/16170 bytes; sizes_bytes uses Table 15."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Section 7.1 contains stale MAMBA-NIKE-128 figures (1568-byte public key and 1824-byte message); authoritative Table 4, Table 9, params.h, and both self-evaluations agree on 1184 and 1568 bytes."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "The specification title page spells Chengjing Tian, while the higher-priority basic-information form spells Chengjin Tian; the basic-information spelling is retained."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Specification prose names compressed variants C1*/C2*/C3*, while implementation directories/comments use -C and PARAMS=1..3; aliases preserve both forms."
+    },
+    {
+      "severity": "warning",
+      "check": "source_conflict",
+      "message": "Table 7.1 sizes differ from encode_sizes.h for all three implementations, most materially for lv512 shared secret (2049 versus 4100 bytes)."
+    }
+  ],
+  "global_findings": [],
+  "algorithms": [
+    {
+      "file": "adkex.json",
+      "algorithm_id": "adkex",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No single explicit target quantum-bit value was found in the principal parameter summary; stored as null rather than inferred.",
+          "path": "parameter_sets.target_security.quantum_bits"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "No semantic version string was found; the dated submission label is used.",
+          "path": "version"
+        }
+      ]
+    },
+    {
+      "file": "afs-kex.json",
+      "algorithm_id": "afs-kex",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Chinese author names were not provided in the extracted official materials; stored as null rather than transliterated or guessed.",
+          "path": "submitters.name_zh"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Jian Weng appears on the specification title page but not in the basic-information submitter list; no affiliation is assigned without source support.",
+          "path": "submitters[Jian Weng].affiliation_ids"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No explicit NGCC level number was located for the three implemented sets; security bits are recorded and ngcc_level remains null.",
+          "path": "parameter_sets.ngcc_level"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "Long-term key sizes use the doubled NGCC interface buffers (combined key plus certified static key), as reported by Table 6 and the kex_get_pk/sk_len_bytes getters; underlying single BW-KEM object sizes remain in core_parameters.",
+          "path": "parameter_sets.sizes_bytes"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "Top-level flow follows the byte-accounted NGCC evaluated profile; generic post-ID pMAKE message differences are explicitly documented in flow semantics and review conflicts.",
+          "path": "protocol_flow"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "The generic pMAKE description sends combined keys and identities in four messages, while the NGCC evaluation profile assumes key material is pre-supplied and reports only two ciphertexts plus two protected seeds online."
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "The title-page author list includes Jian Weng, but the basic-information submitter table does not; his affiliation is left unresolved."
+        }
+      ]
+    },
+    {
+      "file": "cretake.json",
+      "algorithm_id": "cretake",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-PolarLAC-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-ZEN-BiT-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-PolarLAC-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-ZEN-128: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-PolarLAC-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-ZEN-BiT-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-PolarLAC-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-ZEN-256: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-PolarLAC-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "K2S-ZEN-BiT-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-PolarLAC-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "S2K-BiT-ZEN-512: null values for ['long_term_public_key', 'long_term_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The basic-information PDF was a scan whose normalized OCR text was empty; author and affiliation fields were taken from the specification title page.",
+          "path": "identity_and_submitters"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Chinese author names were not present in the usable extracted material; stored as null.",
+          "path": "submitters.name_zh"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No explicit NGCC level mapping was found; all 25 values remain null.",
+          "path": "parameter_sets.ngcc_level"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Code uses secure_bzero, but the specification did not provide a complete normative erasure schedule for every framework.",
+          "path": "key_schedule.ephemeral_secret_erasure"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The submission states inheritance for non-compact instances but does not tabulate a distinct composed AKE-session bound; no bound was invented.",
+          "path": "correctness.session_failure_probability.other_instances"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "No numeric message-size conflicts were found between reference and AVX2 tables."
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "The basic-information PDF did not yield usable OCR text; title-page identity data from the specification was used as fallback."
+        }
+      ]
+    },
+    {
+      "file": "dkex.json",
+      "algorithm_id": "dkex",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No explicit target quantum-bit values were found; stored as null.",
+          "path": "parameter_sets.target_security.quantum_bits"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The submission explicitly states that ML-DSA-87 gives only about 256 classical bits for DKEX-512 and is provisional.",
+          "path": "parameter_sets[2].authentication_strength"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "The specification denotes signature key-generation randomness abstractly; byte counts are not fixed in the principal tables.",
+          "path": "parameter_sets.sizes_bytes.randomness.signature_keygen_seed"
+        }
+      ]
+    },
+    {
+      "file": "loom.json",
+      "algorithm_id": "loom",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Chinese author-name forms were not present in the specification and the scanned basic-information form yielded no usable OCR; name_zh is null.",
+          "path": "submitters.name_zh"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The contact designation could not be recovered from the scanned basic-information PDF; all is_contact values are conservatively false.",
+          "path": "submitters.is_contact"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "Shuttle key-generation randomness is specified abstractly as a lambda-bit seed; a fixed serialized byte count was not tabulated.",
+          "path": "parameter_sets.sizes_bytes.randomness.signature_keygen_seed"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "Table 2 reports cryptographic-payload bandwidth 3870/7522/15986 bytes, while the later normative serialized-message Table 15 reports 4038/7706/16170 bytes; sizes_bytes uses Table 15."
+        }
+      ]
+    },
+    {
+      "file": "mamba-nike.json",
+      "algorithm_id": "mamba-nike",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "MAMBA-NIKE-128: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "MAMBA-NIKE-192: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "MAMBA-NIKE-256: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "MAMBA-NIKE-384: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "MAMBA-NIKE-512: null values for ['ephemeral_public_key', 'ephemeral_secret_key']"
+        },
+        {
+          "severity": "warning",
+          "check": "cross_review",
+          "message": "Required independent workflow review is incomplete or not fully recorded."
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No explicit mapping from the five named classical targets to NGCC level integers was found; stored as null rather than inferred.",
+          "path": "parameter_sets.ngcc_level"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "Values are the submission's MATZOV-Q concrete estimator results, not separately stated target quantum-security levels.",
+          "path": "parameter_sets.target_security.quantum_bits"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The sampled contributor polynomial r is internal and not exposed as a canonical serialized key object, so its byte size is null.",
+          "path": "parameter_sets.sizes_bytes.ephemeral_secret_key"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Reported rejection exponents are explicitly not certified upper bounds; zero failures in 5,000 trials cannot validate those tail probabilities.",
+          "path": "correctness"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "Chinese name forms were not present in the basic-information/specification text; stored as null.",
+          "path": "submitters.name_zh"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "Section 7.1 contains stale MAMBA-NIKE-128 figures (1568-byte public key and 1824-byte message); authoritative Table 4, Table 9, params.h, and both self-evaluations agree on 1184 and 1568 bytes."
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "The specification title page spells Chengjing Tian, while the higher-priority basic-information form spells Chengjin Tian; the basic-information spelling is retained."
+        }
+      ]
+    },
+    {
+      "file": "nev-ake.json",
+      "algorithm_id": "nev-ake",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The basic-information PDF yielded no extractable text and appears scanned; submitters/affiliations were taken from specification p. 1 and unavailable Chinese names were left null.",
+          "path": "basic_information"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The specification gives component DFRs but not an explicit session-level formula; <=3*delta is derived by union bound from the two PKE decryptions and one KEM decapsulation.",
+          "path": "correctness.session_failure_probability"
+        },
+        {
+          "severity": "info",
+          "check": "record_issue",
+          "message": "No explicit erasure step was found in the protocol pseudocode.",
+          "path": "key_schedule.ephemeral_secret_erasure"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "Specification prose names compressed variants C1*/C2*/C3*, while implementation directories/comments use -C and PARAMS=1..3; aliases preserve both forms."
+        }
+      ]
+    },
+    {
+      "file": "niike.json",
+      "algorithm_id": "niike",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "NIIKE-lv128: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "NIIKE-lv256: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+        },
+        {
+          "severity": "warning",
+          "check": "size_values_missing",
+          "message": "NIIKE-lv512: null values for ['ephemeral_public_key', 'ephemeral_secret_key', 'initiator_session_state', 'responder_session_state']"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The basic-information PDF yielded no extractable text and appears scanned; names/affiliations were taken from the specification, with unavailable Chinese names left null.",
+          "path": "basic_information"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "Specification Table 7.1 and implementation encode_sizes.h disagree; the higher-priority specification values are stored and the conflicts are listed per parameter set.",
+          "path": "parameter_sets.sizes_bytes"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "No single explicit quantum-bit target was assigned to each named parameter set; stored as null.",
+          "path": "target_security.quantum_bits"
+        },
+        {
+          "severity": "warning",
+          "check": "source_conflict",
+          "message": "Table 7.1 sizes differ from encode_sizes.h for all three implementations, most materially for lv512 shared secret (2049 versus 4100 bytes)."
+        }
+      ]
+    },
+    {
+      "file": "triq-kex.json",
+      "algorithm_id": "triq-kex",
+      "schema_valid": true,
+      "findings": [
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred.",
+          "path": "submitters.affiliation_ids"
+        },
+        {
+          "severity": "warning",
+          "check": "record_issue",
+          "message": "The specification names 128/256/384/512-bit instances but does not explicitly assign NGCC level integers; all values are null rather than inferred from project convention.",
+          "path": "ngcc_level"
+        }
+      ]
+    }
+  ]
+}

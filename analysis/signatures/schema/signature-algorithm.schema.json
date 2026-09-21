@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://niccs.example/schema/signature-algorithm.schema.json",
+  "title": "NICCS R1 digital-signature candidate record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "algorithm_id", "name", "full_name", "version", "function",
+    "submission_path", "aliases", "overview_classification", "technical_classification",
+    "signature_characteristics", "affiliations", "submitters", "common_parameters",
+    "parameter_sets", "signing_behavior", "security_claims", "submission_claims",
+    "independent_assessment", "implementations", "submission_completeness", "sources",
+    "evidence", "review"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "algorithm_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1},
+    "full_name": {"type": ["string", "null"]},
+    "version": {"type": ["string", "null"]},
+    "function": {"const": "digital_signature"},
+    "submission_path": {"type": "string", "pattern": "^DigitalSignature/"},
+    "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "overview_classification": {"$ref": "#/$defs/overview"},
+    "technical_classification": {"$ref": "#/$defs/technical"},
+    "signature_characteristics": {"$ref": "#/$defs/characteristics"},
+    "affiliations": {"type": "array", "items": {"$ref": "#/$defs/affiliation"}},
+    "submitters": {"type": "array", "items": {"$ref": "#/$defs/submitter"}},
+    "common_parameters": {"type": "object", "additionalProperties": true},
+    "parameter_sets": {"type": "array", "items": {"$ref": "#/$defs/parameterSet"}},
+    "signing_behavior": {"$ref": "#/$defs/signingBehavior"},
+    "security_claims": {"type": "array", "items": {"$ref": "#/$defs/securityClaim"}},
+    "submission_claims": {"$ref": "#/$defs/submissionClaims"},
+    "independent_assessment": {"$ref": "#/$defs/independentAssessment"},
+    "implementations": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "submission_completeness": {"type": "object", "additionalProperties": true},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "review": {"$ref": "#/$defs/review"}
+  },
+  "$defs": {
+    "nullableString": {"type": ["string", "null"]},
+    "overview": {
+      "type": "object", "additionalProperties": false,
+      "required": ["family", "subcategory", "family_label_en", "family_label_zh", "subcategory_label_en", "subcategory_label_zh", "summary_label_zh"],
+      "properties": {
+        "family": {"enum": ["lattice_based", "multivariate_based", "isogeny_based", "hash_based", "mpc_in_the_head_based", "code_based", "symmetric_based", "group_based", "other"]},
+        "subcategory": {"type": "string", "minLength": 1},
+        "family_label_en": {"type": "string"}, "family_label_zh": {"type": "string"},
+        "subcategory_label_en": {"type": "string"}, "subcategory_label_zh": {"type": "string"},
+        "summary_label_zh": {"type": "string", "minLength": 1}
+      }
+    },
+    "technical": {
+      "type": "object", "additionalProperties": false,
+      "required": ["construction_paradigm", "hardness_problems", "mathematical_structures", "claimed_security_targets", "claimed_security_models"],
+      "properties": {
+        "construction_paradigm": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "hardness_problems": {"type": "array", "items": {"type": "object", "required": ["name", "role"], "properties": {"name": {"type": "string"}, "role": {"type": "string"}, "details": {"$ref": "#/$defs/nullableString"}}, "additionalProperties": true}},
+        "mathematical_structures": {"type": "array", "items": {"type": "string"}},
+        "claimed_security_targets": {"type": "array", "items": {"enum": ["EUF-CMA", "SUF-CMA", "UF-CMA", "UF-NMA", "other"]}, "uniqueItems": true},
+        "claimed_security_models": {"type": "array", "items": {"enum": ["ROM", "QROM", "standard_model", "ideal_cipher_model", "other"]}, "uniqueItems": true}
+      }
+    },
+    "characteristics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["statefulness", "signing_randomness", "signature_length", "message_recovery", "rejection_sampling", "prehash_mode", "context_support", "batch_verification"],
+      "properties": {
+        "statefulness": {"enum": ["stateless", "stateful", "hybrid", null]},
+        "signing_randomness": {"enum": ["deterministic", "randomized", "hedged", "configurable", null]},
+        "signature_length": {"enum": ["fixed", "variable", null]},
+        "message_recovery": {"type": ["boolean", "null"]},
+        "rejection_sampling": {"type": ["boolean", "null"]},
+        "prehash_mode": {"type": ["string", "null"]},
+        "context_support": {"type": ["boolean", "null"]},
+        "batch_verification": {"type": ["boolean", "null"]}
+      }
+    },
+    "affiliation": {
+      "type": "object", "additionalProperties": false, "required": ["affiliation_id", "name_en", "name_zh"],
+      "properties": {"affiliation_id": {"type": "string"}, "name_en": {"$ref": "#/$defs/nullableString"}, "name_zh": {"$ref": "#/$defs/nullableString"}, "country_or_region": {"$ref": "#/$defs/nullableString"}}
+    },
+    "submitter": {
+      "type": "object", "additionalProperties": false, "required": ["name_en", "name_zh", "affiliation_ids", "roles"],
+      "properties": {"name_en": {"$ref": "#/$defs/nullableString"}, "name_zh": {"$ref": "#/$defs/nullableString"}, "affiliation_ids": {"type": "array", "items": {"type": "string"}}, "roles": {"type": "array", "items": {"enum": ["author", "submitter", "contact", "implementer", "other"]}}}
+    },
+    "size": {
+      "type": "object", "additionalProperties": false, "required": ["value", "unit", "status"],
+      "properties": {"value": {"type": ["number", "null"], "minimum": 0}, "unit": {"const": "byte"}, "status": {"enum": ["reported", "derived", "implementation", "unknown"]}, "notes": {"$ref": "#/$defs/nullableString"}}
+    },
+    "signatureSize": {
+      "type": "object", "additionalProperties": false, "required": ["encoding", "reported", "minimum", "maximum", "average", "unit"],
+      "properties": {"encoding": {"enum": ["fixed", "variable", "bounded_variable", "unknown"]}, "reported": {"type": ["number", "null"], "minimum": 0}, "minimum": {"type": ["number", "null"], "minimum": 0}, "maximum": {"type": ["number", "null"], "minimum": 0}, "average": {"type": ["number", "null"], "minimum": 0}, "unit": {"const": "byte"}, "notes": {"$ref": "#/$defs/nullableString"}}
+    },
+    "parameterSet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "implementation_aliases", "target_security", "parameters", "sizes"],
+      "properties": {
+        "name": {"type": "string"}, "implementation_aliases": {"type": "array", "items": {"type": "string"}},
+        "target_security": {"type": "object", "required": ["classical_bits", "quantum_bits"], "properties": {"classical_bits": {"type": ["number", "null"]}, "quantum_bits": {"type": ["number", "null"]}, "category": {"type": ["string", "null"]}}, "additionalProperties": true},
+        "parameters": {"type": "object", "additionalProperties": true},
+        "sizes": {"type": "object", "additionalProperties": false, "required": ["public_key", "secret_key", "signature"], "properties": {"public_key": {"$ref": "#/$defs/size"}, "secret_key": {"$ref": "#/$defs/size"}, "signature": {"$ref": "#/$defs/signatureSize"}}}
+      }
+    },
+    "signingBehavior": {
+      "type": "object", "additionalProperties": false, "required": ["rejection_sampling", "expected_repetitions", "signing_failure_probability", "retry_limit", "state_update"],
+      "properties": {"rejection_sampling": {"type": ["boolean", "null"]}, "expected_repetitions": {"type": ["number", "object", "null"]}, "signing_failure_probability": {"type": ["number", "string", "null"]}, "retry_limit": {"type": ["integer", "null"]}, "state_update": {"type": ["string", "null"]}, "notes": {"type": ["string", "null"]}}
+    },
+    "securityClaim": {
+      "type": "object", "additionalProperties": true, "required": ["target", "model", "claim", "estimates"],
+      "properties": {"target": {"enum": ["EUF-CMA", "SUF-CMA", "UF-CMA", "UF-NMA", "other"]}, "model": {"enum": ["ROM", "QROM", "standard_model", "ideal_cipher_model", "other"]}, "claim": {"type": "string"}, "estimates": {"type": "array", "items": {"type": "object"}}}
+    },
+    "claimItem": {
+      "type": "object", "additionalProperties": false, "required": ["category", "summary", "claim_strength", "comparison_scope"],
+      "properties": {"category": {"enum": ["compactness", "performance", "security", "simplicity", "flexibility", "scalability", "implementation", "side_channel_protection", "other"]}, "summary": {"type": "string"}, "claim_strength": {"enum": ["qualitative", "quantitative", "comparative", "formal"]}, "comparison_scope": {"type": ["string", "null"]}}
+    },
+    "limitationItem": {
+      "type": "object", "additionalProperties": false, "required": ["category", "summary", "basis"],
+      "properties": {"category": {"type": "string"}, "summary": {"type": "string"}, "basis": {"enum": ["explicit_in_submission", "explicit_caveat", "derived_from_parameters", "derived_from_test_setup", "derived_from_implementation_description"]}}
+    },
+    "submissionClaims": {
+      "type": "object", "additionalProperties": false, "required": ["claimed_advantages", "limitations_and_constraints"],
+      "properties": {"claimed_advantages": {"type": "array", "items": {"$ref": "#/$defs/claimItem"}}, "limitations_and_constraints": {"type": "array", "items": {"$ref": "#/$defs/limitationItem"}}}
+    },
+    "independentAssessment": {
+      "type": "object", "additionalProperties": false, "required": ["status", "advantages", "limitations"],
+      "properties": {"status": {"enum": ["not_started", "in_progress", "complete"]}, "advantages": {"type": "array"}, "limitations": {"type": "array"}}
+    },
+    "source": {
+      "type": "object", "additionalProperties": false, "required": ["source_id", "type", "path", "extraction_method"],
+      "properties": {"source_id": {"type": "string"}, "type": {"enum": ["basic_information", "algorithm_specification", "implementation", "readme", "self_assessment", "intellectual_property", "test_vector", "other"]}, "path": {"type": "string"}, "extraction_method": {"enum": ["text", "ocr", "code_inspection", "manual_visual", "not_read"]}, "notes": {"type": ["string", "null"]}}
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false, "required": ["field", "source_id", "locator", "confidence", "extraction_status"],
+      "properties": {"field": {"type": "string"}, "source_id": {"type": "string"}, "locator": {"type": ["string", "null"]}, "confidence": {"enum": ["high", "medium", "low"]}, "extraction_status": {"enum": ["verified", "extracted", "derived", "conflict", "unresolved"]}, "note": {"type": ["string", "null"]}}
+    },
+    "review": {
+      "type": "object", "additionalProperties": false, "required": ["status", "data_quality", "reviewers", "cross_reviewed", "issues", "conflicts", "last_updated"],
+      "properties": {"status": {"enum": ["draft", "extracted", "reviewed", "validated"]}, "data_quality": {"enum": ["A", "B", "C", "D"]}, "reviewers": {"type": "array", "items": {"type": "string"}}, "cross_reviewed": {"type": "boolean"}, "issues": {"type": "array", "items": {"type": "string"}}, "conflicts": {"type": "array", "items": {"type": "string"}}, "last_updated": {"type": "string", "format": "date"}}
+    }
+  }
+}

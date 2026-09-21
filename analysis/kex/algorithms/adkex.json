@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "adkex",
+  "name": "ADKEX",
+  "full_name": "Authenticated Ding Key Exchange",
+  "version": "2026-06 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/ADKEX.zip",
+  "aliases": [],
+  "overview_classification": {
+    "mathematical": {"family": "lattice_based", "subcategory": "mlwe_based", "label_en": "Module-LWE-based lattice", "label_zh": "基于 Module-LWE 的格密码"},
+    "protocol": {"family": "authenticated_key_exchange", "subcategory": "kem_based_unilateral_ake", "label_en": "KEM-based unilateral authenticated key exchange", "label_zh": "基于 KEM 的单向认证密钥交换"},
+    "summary_label_zh": "Module-LWE 格基、KEM 型单向认证两消息 AKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "interactive",
+    "message_flows": 2,
+    "round_trips": 1,
+    "authentication": {"type": "unilateral", "authenticated_roles": ["responder"], "mechanism": "The initiator encapsulates to the responder's certified long-term DKEM public key; only the holder of sk_B recovers ss_s."},
+    "roles": [
+      {"role": "initiator", "long_term_key_required": false, "ephemeral_key_required": true, "key_details": "Generates a fresh DKEM key pair (M1, sk_e) per session."},
+      {"role": "responder", "long_term_key_required": true, "ephemeral_key_required": false, "key_details": "Holds certified long-term DKEM pair (pk_B, sk_B)."}
+    ],
+    "pre_distributed_material": ["Certified responder long-term DKEM public key pk_B"],
+    "forward_secrecy": {"level": "weak_perfect_forward_secrecy", "conditions": "Claimed in the CK model when the responder static secret is later revealed but the test-session initiator ephemeral secret sk_e was not exposed during the session."},
+    "key_confirmation": "Implicit only; no separate explicit key-confirmation message is specified.",
+    "transcript_binding": "T = H(LABEL || pk_B || m1 || m2)",
+    "identity_binding": "The certified responder public key pk_B is included in T; the submission claims resistance to identity misbinding and UKS patterns."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Two-pass KEMTLS-PDK-style unilateral AKE using the same CCA-secure DKEM for static and ephemeral contributions.",
+    "underlying_primitives": [
+      {"name": "DKEM", "role": "CCA-secure KEM for responder-static and initiator-ephemeral contributions"},
+      {"name": "DKE", "role": "Reconciliation-based CPA core underlying DKEM"},
+      {"name": "SM3-256 / SM3 pseudo-XOF", "role": "Transcript hash and KDF"}
+    ],
+    "hard_problems": [{"name": "Module Learning With Errors (MLWE)", "role": "Hardness foundation of DKEM and ADKEX"}],
+    "mathematical_structures": ["Module lattice R_q^k", "seed-generated public matrix", "small secret/error distributions", "reconciliation"],
+    "security_models": ["Canetti-Krawczyk (CK)", "IND-CCA security of DKEM", "random-oracle model for KDF in the stated proof"]
+  },
+  "protocol_flow": [
+    {"flow": 1, "sender": "initiator", "receiver": "responder", "message_id": "m1", "components": [{"name": "M1", "semantics": "Fresh initiator ephemeral DKEM public key."}, {"name": "ct_S", "semantics": "DKEM ciphertext encapsulated to responder long-term pk_B, yielding static contribution ss_s."}], "semantics": "m1 = M1 || ct_S; initiator retains sk_e, ss_s and m1 as session state."},
+    {"flow": 2, "sender": "responder", "receiver": "initiator", "message_id": "m2", "components": [{"name": "M2", "semantics": "DKEM ciphertext encapsulated to initiator ephemeral M1, yielding ephemeral contribution ss_e."}], "semantics": "Responder decapsulates ct_S with sk_B, computes transcript T, and returns m2 = M2."}
+  ],
+  "key_schedule": {
+    "static_contributions": ["ss_s from DKEM.Encaps(pk_B) / DKEM.Decaps(sk_B, ct_S)"],
+    "ephemeral_contributions": ["ss_e from DKEM.Encaps(M1) / DKEM.Decaps(sk_e, m2)"],
+    "transcript_hash": "T = H(LABEL || pk_B || m1 || m2; N)",
+    "session_key_derivation": "ss = KDF(ss_e || ss_s || T; N)",
+    "domain_separation": "ASCII LABEL = ADKEX-KEMTLS-l, l in {128,256,512}.",
+    "ephemeral_secret_erasure": "The protocol figure directs the initiator to erase sk_e and m1 after deriving the session key; intermediate ephemeral computations should also be erased."
+  },
+  "submitters": [
+    {"name_en": "Liu Rui", "name_zh": "刘锐", "affiliation_ids": ["aff-1"], "is_contact": true},
+    {"name_en": "Kong Chen", "name_zh": "孔琛", "affiliation_ids": ["aff-1"], "is_contact": false},
+    {"name_en": "Zhang Wenbin", "name_zh": "张文彬", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Zeng Neng", "name_zh": "曾能", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Xia Han", "name_zh": "夏涵", "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Manoj Gyawali", "name_zh": null, "affiliation_ids": ["aff-2"], "is_contact": false},
+    {"name_en": "Samuel José García", "name_zh": null, "affiliation_ids": ["aff-3", "aff-4"], "is_contact": false},
+    {"name_en": "Alba Hernández Costoya", "name_zh": null, "affiliation_ids": ["aff-3", "aff-4"], "is_contact": false},
+    {"name_en": "Xue Haiyang", "name_zh": "薛海洋", "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Huang Junhao", "name_zh": "黄军浩", "affiliation_ids": ["aff-5"], "is_contact": false},
+    {"name_en": "Gong Boru", "name_zh": "巩博儒", "affiliation_ids": ["aff-6"], "is_contact": false},
+    {"name_en": "Jin Yi", "name_zh": "金易", "affiliation_ids": ["aff-6"], "is_contact": false}
+  ],
+  "affiliations": [
+    {"affiliation_id": "aff-1", "name_en": "Suzhou LangKong Post-Quantum Technology Co., Ltd. (LK Quantum)", "name_zh": "苏州朗空量子科技有限公司"},
+    {"affiliation_id": "aff-2", "name_en": "Xi'an Jiaotong-Liverpool University", "name_zh": "西交利物浦大学"},
+    {"affiliation_id": "aff-3", "name_en": "Basque Center for Applied Mathematics", "name_zh": "巴斯克应用数学中心"},
+    {"affiliation_id": "aff-4", "name_en": "University of the Basque Country", "name_zh": "巴斯克大学"},
+    {"affiliation_id": "aff-5", "name_en": "Singapore Management University", "name_zh": "新加坡管理大学"},
+    {"affiliation_id": "aff-6", "name_en": "China Construction Bank Corporation", "name_zh": "中国建设银行股份有限公司"}
+  ],
+  "common_parameters": {"ring_or_module": "R_q^k", "public_matrix": "Seed-generated", "underlying_primitive": "DKEM", "reconciliation": "Fine-grained signal processing", "hash_xof_kdf": "SM3-256 for ADKEX-128/256; SM3-based pseudo-XOF truncated to 512 bits for ADKEX-512", "secret_and_error_distribution": "Centered-binomial-style small distributions parameterized by eta; exact sampling follows DKEM"},
+  "parameter_sets": [
+    {"name": "ADKEX-128", "implementation_aliases": ["128"], "target_security": {"classical_bits": 128, "quantum_bits": null}, "ngcc_level": 1, "core_parameters": {"n": 256, "q": 3329, "k": 2, "eta": 3, "l": 4, "d": 10, "N_bits": 256}, "sizes_bytes": {"long_term_public_key": 800, "long_term_secret_key": 1600, "ephemeral_public_key": 800, "ephemeral_secret_key": 1600, "messages": [{"message_id": "m1", "bytes": 1600}, {"message_id": "m2", "bytes": 800}], "total_communication": 2400, "initiator_session_state": 3232, "responder_session_state": 96, "shared_secret": 32, "randomness": {"responder_setup": 64, "pass1_keygen": 64, "pass1_encaps": 32, "pass2_encaps": 32}}, "failure_probability": "session <= 2^-131.7 = 2*delta", "issues": []},
+    {"name": "ADKEX-256", "implementation_aliases": ["256"], "target_security": {"classical_bits": 256, "quantum_bits": null}, "ngcc_level": 2, "core_parameters": {"n": 256, "q": 3329, "k": 4, "eta": 2, "l": 5, "d": 11, "N_bits": 256}, "sizes_bytes": {"long_term_public_key": 1568, "long_term_secret_key": 3136, "ephemeral_public_key": 1568, "ephemeral_secret_key": 3136, "messages": [{"message_id": "m1", "bytes": 3168}, {"message_id": "m2", "bytes": 1600}], "total_communication": 4768, "initiator_session_state": 6336, "responder_session_state": 96, "shared_secret": 32, "randomness": {"responder_setup": 64, "pass1_keygen": 64, "pass1_encaps": 32, "pass2_encaps": 32}}, "failure_probability": "session <= 2^-180.2 = 2*delta", "issues": []},
+    {"name": "ADKEX-512", "implementation_aliases": ["512"], "target_security": {"classical_bits": 512, "quantum_bits": null}, "ngcc_level": 3, "core_parameters": {"n": 512, "q": 7681, "k": 4, "eta": 3, "l": 4, "d": 11, "N_bits": 512}, "sizes_bytes": {"long_term_public_key": 3392, "long_term_secret_key": 6784, "ephemeral_public_key": 3392, "ephemeral_secret_key": 6784, "messages": [{"message_id": "m1", "bytes": 6528}, {"message_id": "m2", "bytes": 3136}], "total_communication": 9664, "initiator_session_state": 13376, "responder_session_state": 192, "shared_secret": 64, "randomness": {"responder_setup": 128, "pass1_keygen": 128, "pass1_encaps": 64, "pass2_encaps": 64}}, "failure_probability": "session <= 2^-166.0 = 2*delta", "issues": []}
+  ],
+  "correctness": {"underlying_failure_probability": "delta per DKEM encapsulation/decapsulation pair", "session_failure_probability": {"ADKEX-128": "<=2^-131.7", "ADKEX-256": "<=2^-180.2", "ADKEX-512": "<=2^-166.0"}, "relationship": "The session uses two correctness-relevant DKEM pairs, so Pr[session failure] <= 2*delta by a union bound.", "basis": "Algorithm specification Section 3.3 and Table 2."},
+  "security_claims": [
+    {"category": "authentication", "claim": "Unilateral authentication of the responder through the certified long-term DKEM key.", "claim_strength": "formally_claimed", "comparison_scope": "Responder authentication only"},
+    {"category": "ake_model", "claim": "Security in the Canetti-Krawczyk model with weak perfect forward secrecy.", "claim_strength": "formally_claimed", "comparison_scope": "Subject to proof assumptions and exposure restrictions"},
+    {"category": "key_indistinguishability", "claim": "Session-key indistinguishability reduces to IND-CCA DKEM and random-oracle KDF assumptions.", "claim_strength": "formally_claimed", "comparison_scope": "Stated CK-model theorem"},
+    {"category": "uks_replay_reencapsulation", "claim": "Transcript and certified-key binding are claimed to prevent key misbinding/UKS and mitigate re-encapsulation attacks.", "claim_strength": "argued", "comparison_scope": "Even though DKEM has no independent key-binding guarantee"}
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {"category": "security", "claim": "Combines static and ephemeral DKEM contributions with transcript binding and claims CK-model wPFS.", "claim_strength": "formally_claimed", "comparison_scope": "KEM-based unilateral AKE"},
+      {"category": "simplicity", "claim": "A modular two-pass design using DKEM, a transcript hash, and a KDF.", "claim_strength": "stated", "comparison_scope": "Protocol structure"},
+      {"category": "compatibility", "claim": "Module-LWE arithmetic and interfaces align with the modern ML-KEM ecosystem and standardization evaluation.", "claim_strength": "argued", "comparison_scope": "Module-lattice implementation ecosystem"},
+      {"category": "implementation", "claim": "Portable, AVX2, AArch64 NEON, and Cortex-M4 implementations are supplied with unchanged wire format.", "claim_strength": "measured", "comparison_scope": "Submitted implementation set"}
+    ],
+    "limitations_and_constraints": [
+      {"category": "authentication", "description": "Only the responder is authenticated; the initiator has no long-term authentication key.", "provenance": "explicit_in_submission"},
+      {"category": "pre_distribution", "description": "The responder's certified long-term public key pk_B must be pre-distributed or otherwise authenticated.", "provenance": "explicit_in_submission"},
+      {"category": "forward_secrecy", "description": "The wPFS claim requires the test-session initiator ephemeral secret key not to have been exposed during the session.", "provenance": "explicit_caveat"},
+      {"category": "correctness", "description": "Reconciliation gives nonzero failure; a session has two failure opportunities and is bounded by 2*delta.", "provenance": "derived_from_parameters"},
+      {"category": "primitive_dependency", "description": "Security relies on the submitted DKEM primitive, IND-CCA assumptions, and a random-oracle treatment of the KDF.", "provenance": "explicit_in_submission"},
+      {"category": "key_binding", "description": "DKEM provides no independent key-binding guarantee; the AKE layer compensates by hashing pk_B and both messages into T.", "provenance": "explicit_caveat"},
+      {"category": "test_scope", "description": "Reported reference benchmarks use one Intel Core i9-10885H under Ubuntu 24.04/WSL2 and average 128 exchanges.", "provenance": "derived_from_test_setup"}
+    ]
+  },
+  "independent_assessment": {"status": "not_started", "advantages": [], "limitations": []},
+  "implementations": [
+    {"type": "reference", "language": "C", "platform": "portable scalar"},
+    {"type": "optimized", "language": "C/assembly", "platform": "x86-64 AVX2"},
+    {"type": "additional", "language": "C/assembly", "platform": "AArch64 NEON"},
+    {"type": "additional", "language": "C/assembly", "platform": "ARM Cortex-M4"}
+  ],
+  "submission_completeness": {"status": "complete", "present_components": ["basic information", "algorithm specification", "reference implementation", "optimized implementation", "additional implementations", "test vectors", "self-evaluation material"], "missing_components": []},
+  "sources": [
+    {"source_id": "adkex-basic", "type": "basic_information", "path": "KeyExchange/ADKEX.zip::Basic information/ADKEX-Appendix A - Basic Algorithm Information.pdf", "priority": 1, "notes": "Text-extracted; private contact details intentionally excluded."},
+    {"source_id": "adkex-spec", "type": "algorithm_specification", "path": "KeyExchange/ADKEX.zip::Algorithm specifications/ADKEX-Algorithm Specification.pdf", "priority": 2, "notes": "Primary technical source."},
+    {"source_id": "adkex-api", "type": "api_header", "path": "KeyExchange/ADKEX.zip::Implementations/**/KEX_AlgorithmInstance.h", "priority": 3, "notes": "Used to cross-check implementation variants and API presence."}
+  ],
+  "evidence": [
+    {"field": "identity_and_submitters", "source_id": "adkex-basic", "locator": "pp. 1-4", "confidence": "high", "extraction_status": "verified"},
+    {"field": "overview_classification", "source_id": "adkex-spec", "locator": "pp. 4-7, 26", "confidence": "high", "extraction_status": "verified"},
+    {"field": "protocol_flow_and_key_schedule", "source_id": "adkex-spec", "locator": "Algorithms 17-21 and Figure 1, pp. 22-24", "confidence": "high", "extraction_status": "verified"},
+    {"field": "parameter_sets_and_sizes", "source_id": "adkex-spec", "locator": "Tables 1-2, pp. 25-26; Table 4, p. 28", "confidence": "high", "extraction_status": "verified"},
+    {"field": "correctness", "source_id": "adkex-spec", "locator": "Section 3.3, pp. 26-27", "confidence": "high", "extraction_status": "verified"},
+    {"field": "security_claims", "source_id": "adkex-spec", "locator": "Sections 1.2-1.3 and security proof section, pp. 5-7, 33-39", "confidence": "high", "extraction_status": "verified"},
+    {"field": "limitations_and_constraints", "source_id": "adkex-spec", "locator": "pp. 6-7, 24, 27-28 and security proof exposure conditions", "confidence": "high", "extraction_status": "derived"}
+  ],
+  "review": {"status": "cross_checked", "reviewed_fields": ["mathematical classification", "protocol classification", "authentication model", "message flow", "communication sizes", "correctness relation"], "review_notes": ["Message totals were recomputed from m1 + m2 for all three parameter sets.", "Long-term and ephemeral DKEM sizes match because the same DKEM variant is used.", "independent cross-review by group_3"], "conflicts": []},
+  "issues": [
+    {"field": "parameter_sets.target_security.quantum_bits", "severity": "warning", "description": "No single explicit target quantum-bit value was found in the principal parameter summary; stored as null rather than inferred."},
+    {"field": "version", "severity": "info", "description": "No semantic version string was found; the dated submission label is used."}
+  ]
+}

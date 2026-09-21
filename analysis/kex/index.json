@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "function": "key_exchange",
+  "algorithm_count": 9,
+  "algorithms": [
+    {
+      "algorithm_id": "adkex",
+      "name": "ADKEX",
+      "file": "algorithms/adkex.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "mlwe_based",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "kem_based_unilateral_ake",
+      "summary_label_zh": "Module-LWE 格基、KEM 型单向认证两消息 AKE",
+      "parameter_set_count": 3,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "afs-kex",
+      "name": "AFS-KEX",
+      "file": "algorithms/afs-kex.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "mlwe_based",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "kem_based_mutual_ake",
+      "summary_label_zh": "MLWE/Barnes-Wall 格基、基于 KEM 的四消息双向认证 AKE（另含三消息单向认证变体）",
+      "parameter_set_count": 3,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "cretake",
+      "name": "CreTAKE",
+      "file": "algorithms/cretake.json",
+      "mathematical_family": "multi_family",
+      "mathematical_subcategory": "heterogeneous_suite",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "other_ake",
+      "summary_label_zh": "覆盖 KEM/签名四种有序凭据组合的两消息双向认证 AKE 套件",
+      "parameter_set_count": 25,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "dkex",
+      "name": "DKEX",
+      "file": "algorithms/dkex.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "mlwe_based",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "signature_authenticated_ake",
+      "summary_label_zh": "Module-LWE 格基、签名型双向认证三消息 AKE",
+      "parameter_set_count": 3,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "loom",
+      "name": "Loom",
+      "file": "algorithms/loom.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "module_lattice",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "signature_authenticated_ake",
+      "summary_label_zh": "模块格基、Loom-KEM 与 Shuttle 签名/MAC 组合的双向认证四消息 AKE",
+      "parameter_set_count": 3,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "mamba-nike",
+      "name": "MAMBA-NIKE",
+      "file": "algorithms/mamba-nike.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "ring_lattice",
+      "protocol_family": "non_interactive_key_exchange",
+      "protocol_subcategory": "nike",
+      "summary_label_zh": "环格 RLWQ-Z、预分发响应方公钥的单消息未认证 NIKE",
+      "parameter_set_count": 5,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "nev-ake",
+      "name": "NEV-AKE",
+      "file": "algorithms/nev-ake.json",
+      "mathematical_family": "lattice_based",
+      "mathematical_subcategory": "ntru_based",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "kem_based_mutual_ake",
+      "summary_label_zh": "NTRU/RLWE 格基、PKE/KEM 型双向认证两消息 AKE",
+      "parameter_set_count": 9,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "niike",
+      "name": "NIIKE",
+      "file": "algorithms/niike.json",
+      "mathematical_family": "isogeny_based",
+      "mathematical_subcategory": "commutative_group_action",
+      "protocol_family": "non_interactive_key_exchange",
+      "protocol_subcategory": "nike",
+      "summary_label_zh": "同源类群作用、静态公开值型非交互 NIKE",
+      "parameter_set_count": 3,
+      "review_status": "cross_checked"
+    },
+    {
+      "algorithm_id": "triq-kex",
+      "name": "TriQ-KEX",
+      "file": "algorithms/triq-kex.json",
+      "mathematical_family": "code_based",
+      "mathematical_subcategory": "other_code_based",
+      "protocol_family": "authenticated_key_exchange",
+      "protocol_subcategory": "kem_based_mutual_ake",
+      "summary_label_zh": "准循环码基、FSXY 型双向认证两消息 AKE",
+      "parameter_set_count": 4,
+      "review_status": "cross_checked"
+    }
+  ]
+}

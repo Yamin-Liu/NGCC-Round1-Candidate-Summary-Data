@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "rudraksh2",
+  "name": "Rudraksh2",
+  "full_name": "Rudraksh2",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/Rudraksh2",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Module-LWE",
+        "role": "primary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "module lattice over Z_q[x]/(x^n+1)",
+    "underlying_pke": "Rudraksh2.PKE",
+    "kem_construction": "Fujisaki-Okamoto variant with re-encryption and implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "iitk",
+      "name_en": "Indian Institute of Technology Kanpur",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "iisc",
+      "name_en": "Indian Institute of Science Bangalore",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "purdue",
+      "name_en": "Purdue University / independent researcher",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "surrey",
+      "name_en": "University of Surrey",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "qrypt",
+      "name_en": "Qryptshield Technologies Private Limited",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "kuleuven",
+      "name_en": "COSIC, KU Leuven",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "usp",
+      "name_en": "University of São Paulo",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "lnmiit",
+      "name_en": "The LNM Institute of Information Technology",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "qut",
+      "name_en": "Queensland University of Technology",
+      "name_zh": null
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Supriya Adhikary",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Debayan Das",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Abhinava De",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Anindya Ganguly",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Archisman Ghosh",
+      "name_zh": null,
+      "affiliation_ids": [
+        "purdue"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Harry Hart",
+      "name_zh": null,
+      "affiliation_ids": [
+        "surrey"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Angshuman Karmakar",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iitk"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Suparna Kundu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Chaoyun Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "surrey"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Prajna Mahadev",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iisc"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Puja Mondal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iitk"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Quinten Norga",
+      "name_zh": null,
+      "affiliation_ids": [
+        "kuleuven"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Thales B. Paiva",
+      "name_zh": null,
+      "affiliation_ids": [
+        "usp"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Debranjan Pal",
+      "name_zh": null,
+      "affiliation_ids": [
+        "lnmiit"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Subhradip Palchaudhuri",
+      "name_zh": null,
+      "affiliation_ids": [
+        "qut"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[x]/(x^n+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "centered binomial CBD_eta",
+    "modulus": "3329, 4001, or 7681",
+    "dimensions": {
+      "n": [
+        64,
+        128,
+        256
+      ],
+      "module_rank": [
+        8,
+        9
+      ]
+    },
+    "weights": null,
+    "error_correction": "extended two-dimensional Minal codes",
+    "symmetric_primitives": [
+      "XOF",
+      "G",
+      "H"
+    ],
+    "representation": "NTT-domain module vectors with compressed ciphertext coefficients",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "Rudraksh2-128-I",
+      "implementation_aliases": [
+        "Rudraksh2-128-I"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "module_rank_l": 9,
+        "ring_degree_n": 64,
+        "q": 3329,
+        "eta": 2
+      },
+      "decapsulation_failure_probability": "2^-100",
+      "sizes": {
+        "public_key": {
+          "bytes": 880,
+          "raw": "880 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 1776,
+          "raw": "1776 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 912,
+          "raw": "912 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Rudraksh2-128-II",
+      "implementation_aliases": [
+        "Rudraksh2-128-II"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "module_rank_l": 9,
+        "ring_degree_n": 64,
+        "q": 4001,
+        "eta": 1
+      },
+      "decapsulation_failure_probability": "2^-100",
+      "sizes": {
+        "public_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "Specification gives serialized sizes only for variant I; variant-II sizes remain unresolved."
+      ]
+    },
+    {
+      "name": "Rudraksh2-256-I",
+      "implementation_aliases": [
+        "Rudraksh2-256-I"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "module_rank_l": 9,
+        "ring_degree_n": 128,
+        "q": 3329,
+        "eta": 1
+      },
+      "decapsulation_failure_probability": "2^-161",
+      "sizes": {
+        "public_key": {
+          "bytes": 1760,
+          "raw": "1760 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 3552,
+          "raw": "3552 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1728,
+          "raw": "1728 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Rudraksh2-256-II",
+      "implementation_aliases": [
+        "Rudraksh2-256-II"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "module_rank_l": 9,
+        "ring_degree_n": 128,
+        "q": 4001,
+        "eta": 1
+      },
+      "decapsulation_failure_probability": "2^-167",
+      "sizes": {
+        "public_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "Specification gives serialized sizes only for variant I; variant-II sizes remain unresolved."
+      ]
+    },
+    {
+      "name": "Rudraksh2-512-I",
+      "implementation_aliases": [
+        "Rudraksh2-512-I"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "module_rank_l": 8,
+        "ring_degree_n": 256,
+        "q": 7681,
+        "eta": 2
+      },
+      "decapsulation_failure_probability": "2^-160",
+      "sizes": {
+        "public_key": {
+          "bytes": 3392,
+          "raw": "3392 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 6848,
+          "raw": "6848 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 3552,
+          "raw": "3552 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "Rudraksh2-512-II",
+      "implementation_aliases": [
+        "Rudraksh2-512-II"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "module_rank_l": 9,
+        "ring_degree_n": 256,
+        "q": 4001,
+        "eta": 1
+      },
+      "decapsulation_failure_probability": "2^-160",
+      "sizes": {
+        "public_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "Specification gives serialized sizes only for variant I; variant-II sizes remain unresolved."
+      ]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "implementation",
+        "summary": "Submission targets small NTT engines and resource-constrained hardware.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "Two variants and three security tiers trade compression, error rate and implementation cost.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Nonzero decryption-failure probabilities range from about 2^-100 to 2^-167.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_implementation_description",
+        "summary": "Submitted byte-size table and implementations cover variant I; variant-II serialization sizes are not stated in the reviewed table.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/Rudraksh2/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/Rudraksh2/Basic information/basic_information.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/Rudraksh2/Algorithm specifications/rudraksh2.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "variant_ii_sizes_missing",
+      "message": "Serialized pk/sk/ct sizes for Rudraksh2-II rows were not stated in the reviewed size table.",
+      "field": "parameter_sets"
+    }
+  ]
+}

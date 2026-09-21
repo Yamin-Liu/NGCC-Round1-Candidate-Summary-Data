@@ -1,0 +1,374 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "oaep-ntru",
+  "name": "OAEP-NTRU",
+  "full_name": "OAEP-NTRU Key Encapsulation Mechanism",
+  "version": "PKCKEM-197296-V2",
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/OAEP-NTRU",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "ntru_based",
+    "subcategory_label_zh": "基于NTRU",
+    "subcategory_report_label": "基于NTRU"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "NTRU",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Ring-LWE",
+        "role": "secondary",
+        "notes": "Used in the NTRU-based all-but-one trapdoor/injective-function analysis."
+      }
+    ],
+    "mathematical_structure": "NTRU polynomial rings with n=648,1296,2592",
+    "underlying_pke": "NTRU-based ATIF plus symmetric one-time pad",
+    "kem_construction": "OAEP† transform without decapsulation re-encryption",
+    "claimed_security_target": "IND-CCA, ANO-CCA, PR-CCA and ROB-CCA",
+    "security_models": [
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-sjtu",
+      "name_en": "Shanghai Jiao Tong University",
+      "name_zh": "上海交通大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Shengli Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sjtu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "You Lyu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sjtu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Shuai Han",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sjtu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Bohang Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-sjtu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "NTRU quotient polynomial rings",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "NTRU small-polynomial sampling and OAEP† preimage distribution",
+    "modulus": "7129,17497,28513",
+    "dimensions": {
+      "n": "648,1296,2592"
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "hash/XOF through ICCS APIs"
+    ],
+    "representation": "packed polynomial plus OAEP† key-confirmation material",
+    "other": {
+      "transform": "OAEP†",
+      "partial_message_recovery": true
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "OAEP-NTRU-648",
+      "implementation_aliases": [
+        "OAEP-NTRU-648"
+      ],
+      "submission_security_label": ">=128 classical / >=80 quantum",
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 648,
+        "q": 7129,
+        "key_bytes": 32,
+        "ntt_d": 3,
+        "L3": 3,
+        "L2": 2
+      },
+      "decapsulation_failure_probability": "2^-159",
+      "sizes": {
+        "public_key": {
+          "bytes": 1053,
+          "raw": "1053 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "secret_key": {
+          "bytes": 2138,
+          "raw": "2138 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "ciphertext": {
+          "bytes": 1085,
+          "raw": "1085 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 1; reference params.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "OAEP-NTRU-1296",
+      "implementation_aliases": [
+        "OAEP-NTRU-1296"
+      ],
+      "submission_security_label": ">=256 classical / >=128 quantum",
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1296,
+        "q": 17497,
+        "key_bytes": 32,
+        "ntt_d": 2,
+        "L3": 4,
+        "L2": 2
+      },
+      "decapsulation_failure_probability": "2^-978",
+      "sizes": {
+        "public_key": {
+          "bytes": 2430,
+          "raw": "2430 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "secret_key": {
+          "bytes": 4924,
+          "raw": "4924 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "ciphertext": {
+          "bytes": 2494,
+          "raw": "2494 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Table 1; reference params.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "OAEP-NTRU-2592",
+      "implementation_aliases": [
+        "OAEP-NTRU-2592"
+      ],
+      "submission_security_label": ">=512 classical / >=256 quantum",
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2592,
+        "q": 28513,
+        "key_bytes": 64,
+        "ntt_d": 3,
+        "L3": 3,
+        "L2": 4
+      },
+      "decapsulation_failure_probability": "2^-652",
+      "sizes": {
+        "public_key": {
+          "bytes": 4860,
+          "raw": "4860 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "secret_key": {
+          "bytes": 9848,
+          "raw": "9848 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "ciphertext": {
+          "bytes": 4988,
+          "raw": "4988 bytes",
+          "basis": "specification Table 1; reference params.h"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Table 1; reference params.h"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "OAEP† is claimed to provide anonymity, ciphertext pseudorandomness and robustness in addition to IND-CCA.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "performance",
+        "summary": "Decapsulation omits FO-style re-encryption and is claimed more efficient and easier to protect from related side channels.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "The transform supports partial message recovery and is presented as instantiable beyond NTRU.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "OAEP† security and additional properties rely on quantum-random-oracle proofs and the stated NTRU/Ring-LWE assumptions.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "The partial-message-recovery mode has parameter-specific maximum plaintext lengths.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable",
+      "path": "KeyEncapsulation/OAEP-NTRU/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C",
+      "platform": "optimized desktop",
+      "path": "KeyEncapsulation/OAEP-NTRU/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/OAEP-NTRU/Basic information/1 Basic Algorithm Information (OAEP-NTRU)-英文签名版本.pdf",
+      "priority": 1,
+      "notes": null
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/OAEP-NTRU/Algorithm specifications/2算法文本（OAEP-NTRU）.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "params",
+      "type": "api_header",
+      "path": "KeyEncapsulation/OAEP-NTRU/Implementations/Reference_Implementation/OAEP-NTRU-648/params.h",
+      "priority": 3,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-2",
+      "summary": "Four submitters and contact.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.2-4,16-27",
+      "summary": "NTRU instantiation, OAEP† and security properties.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF p.15, Table 1",
+      "summary": "n, q, key size, NTT layers, DFR and security targets.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets[*].sizes",
+      "source_id": "params",
+      "locator": "NTRUOAEP_*BYTES macros",
+      "summary": "Final serialized object sizes.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "high",
+    "cross_reviewed": false,
+    "review_notes": []
+  },
+  "issues": []
+}

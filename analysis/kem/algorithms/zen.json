@@ -1,0 +1,647 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "zen",
+  "name": "ZEN",
+  "full_name": "ZEN: Zero Encoding on NTRU Encryption",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/ZEN",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "ntru_based",
+    "subcategory_label_zh": "基于NTRU",
+    "subcategory_report_label": "基于NTRU"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "decisional NTRU",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "Ring-LWE-style ciphertext distribution",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "NTRU over power-of-two cyclotomic ring with zero encoding",
+    "underlying_pke": "ZEN.PKE",
+    "kem_construction": "FO-style re-encryption transform with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM",
+      "QROM-oriented multi-user discussion"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "iie",
+      "name_en": "State Key Laboratory of Cyberspace Security Defense, Institute of Information Engineering, CAS",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "ucas",
+      "name_en": "University of Chinese Academy of Sciences",
+      "name_zh": "中国科学院大学"
+    },
+    {
+      "affiliation_id": "zju",
+      "name_en": "Zhejiang University",
+      "name_zh": "浙江大学"
+    },
+    {
+      "affiliation_id": "smu",
+      "name_en": "Singapore Management University",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "nuaa",
+      "name_en": "Nanjing University of Aeronautics and Astronautics",
+      "name_zh": "南京航空航天大学"
+    },
+    {
+      "affiliation_id": "pqctech",
+      "name_en": "Hangzhou Post-quantum Cryptography Technology Co., Ltd",
+      "name_zh": null
+    },
+    {
+      "affiliation_id": "cepri",
+      "name_en": "China Electric Power Research Institute Co., Ltd",
+      "name_zh": null
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Xianhui Lu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yijian Lin",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yu Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Dongshu Cai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Dingding Jia",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Zhe Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "zju"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Junhao Huang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "smu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Lu Zhou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "nuaa"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Liming Fang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "pqctech"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Lei Bi",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jingnan He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Sihan He",
+      "name_zh": null,
+      "affiliation_ids": [
+        "nuaa"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Tianhao Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "zju"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Lutan Zhao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Xueqian Bao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "iie"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Meng Xu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "cepri"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_769[x]/(x^n+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "named submission distributions B1/B2/S1/S3",
+    "modulus": 769,
+    "dimensions": {
+      "n": [
+        512,
+        1024,
+        2048
+      ]
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "hash/XOF functions with level-dependent output"
+    ],
+    "representation": "packed NTRU public key and coefficient-compressed ciphertext",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "ZEN-light",
+      "implementation_aliases": [
+        "ZEN-light"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 118,
+      "claimed_quantum_security_bits": null,
+      "core_parameters": {
+        "n": 512,
+        "q": 769,
+        "ciphertext_compression_modulus": 128
+      },
+      "decapsulation_failure_probability": "2^-135",
+      "sizes": {
+        "public_key": {
+          "bytes": 615,
+          "raw": "615 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 448,
+          "raw": "448 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "No matching submitted API implementation/secret-key size was located for this alternative row."
+      ]
+    },
+    {
+      "name": "ZEN-128",
+      "implementation_aliases": [
+        "ZEN-128"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n": 512,
+        "q": 769,
+        "ciphertext_compression_modulus": 256
+      },
+      "decapsulation_failure_probability": "2^-128",
+      "sizes": {
+        "public_key": {
+          "bytes": 615,
+          "raw": "615 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 1303,
+          "raw": "1303 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 512,
+          "raw": "512 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "ZEN-256",
+      "implementation_aliases": [
+        "ZEN-256"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1024,
+        "q": 769,
+        "ciphertext_compression_modulus": 256
+      },
+      "decapsulation_failure_probability": "2^-175",
+      "sizes": {
+        "public_key": {
+          "bytes": 1229,
+          "raw": "1229 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 2605,
+          "raw": "2605 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1024,
+          "raw": "1024 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "ZEN-256-backup",
+      "implementation_aliases": [
+        "ZEN-256-backup"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n": 1024,
+        "q": 769,
+        "ciphertext_compression_modulus": 769
+      },
+      "decapsulation_failure_probability": "2^-256",
+      "sizes": {
+        "public_key": {
+          "bytes": 1229,
+          "raw": "1229 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1229,
+          "raw": "1229 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "No matching submitted API implementation/secret-key size was located for this alternative row."
+      ]
+    },
+    {
+      "name": "ZEN-512",
+      "implementation_aliases": [
+        "ZEN-512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2048,
+        "q": 769,
+        "ciphertext_compression_modulus": 256
+      },
+      "decapsulation_failure_probability": "2^-179",
+      "sizes": {
+        "public_key": {
+          "bytes": 2458,
+          "raw": "2458 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 5210,
+          "raw": "5210 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 2048,
+          "raw": "2048 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "ZEN-512-backup",
+      "implementation_aliases": [
+        "ZEN-512-backup"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n": 2048,
+        "q": 769,
+        "ciphertext_compression_modulus": 769
+      },
+      "decapsulation_failure_probability": "2^-339",
+      "sizes": {
+        "public_key": {
+          "bytes": 2458,
+          "raw": "2458 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": null,
+          "raw": null,
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 2458,
+          "raw": "2458 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": [
+        "No matching submitted API implementation/secret-key size was located for this alternative row."
+      ]
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Submission claims compact NTRU payloads; ZEN-light targets a 448-byte ciphertext.",
+        "claim_strength": "quantified",
+        "comparison_scope": "parameter table",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "implementation",
+        "summary": "Reference plus x86 AVX2 and ARMv7 implementations are provided.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_caveat",
+        "summary": "ZEN-light has only 118-bit CoreSVP and is explicitly not the main claimed 128-bit row.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "Power-of-two ring structure makes natural 192- and 384-bit parameter sets difficult, so they are unsupported.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_in_submission",
+        "summary": "SM3-based performance is provided only through 256 bits; no 512-bit SM3 result is reported.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "explicit_caveat",
+        "summary": "Salted FO is discussed for multi-ciphertext security but not adopted in this version.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/ZEN/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/ZEN/Basic information/Appendix_A_Basic_Information.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/ZEN/Algorithm specifications/Algorithm_specifications.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "medium",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "alternative_row_sk_sizes",
+      "message": "Secret-key sizes for ZEN-light and backup rows were not located in submitted API implementations.",
+      "field": "parameter_sets"
+    }
+  ]
+}

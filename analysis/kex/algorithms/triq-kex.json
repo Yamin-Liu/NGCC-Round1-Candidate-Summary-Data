@@ -1,0 +1,642 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "triq-kex",
+  "name": "TriQ-KEX",
+  "full_name": "TriQ Key Exchange",
+  "version": "2026 submission",
+  "function": "key_exchange",
+  "submission_path": "KeyExchange/TriQ-KEX.zip",
+  "aliases": [],
+  "overview_classification": {
+    "mathematical": {
+      "family": "code_based",
+      "subcategory": "other_code_based",
+      "label_en": "Quasi-cyclic code-based",
+      "label_zh": "基于准循环码的密码"
+    },
+    "protocol": {
+      "family": "authenticated_key_exchange",
+      "subcategory": "kem_based_mutual_ake",
+      "label_en": "KEM-based mutual authenticated key exchange",
+      "label_zh": "基于 KEM 的双向认证密钥交换"
+    },
+    "summary_label_zh": "准循环码基、FSXY 型双向认证两消息 AKE"
+  },
+  "protocol_characteristics": {
+    "interaction_type": "interactive",
+    "message_flows": 2,
+    "round_trips": 1,
+    "authentication": {
+      "type": "mutual",
+      "authenticated_roles": [
+        "initiator",
+        "responder"
+      ],
+      "mechanism": "Each direction contains a static TriQ-KEM encapsulation to the peer's registered long-term KEM public key; the FSXY derivation combines both static secrets with an ephemeral wKEM secret and the identity-bound transcript."
+    },
+    "roles": [
+      {
+        "role": "initiator",
+        "long_term_key_required": true,
+        "ephemeral_key_required": true,
+        "key_details": "Holds static TriQ-KEM key plus sigma/sigma'; generates the per-session TriQ-wKEM pair."
+      },
+      {
+        "role": "responder",
+        "long_term_key_required": true,
+        "ephemeral_key_required": false,
+        "key_details": "Holds static TriQ-KEM key plus sigma/sigma'; encapsulates to the initiator's static key and to the received ephemeral key."
+      }
+    ],
+    "pre_distributed_material": [
+      "Authenticated static TriQ-KEX public keys for both parties",
+      "Common PRFs F, F', G_FSXY, KDF and non-secret salt s"
+    ],
+    "forward_secrecy": {
+      "level": "forward_secrecy",
+      "conditions": "Under CK+ freshness and erasure of non-public per-session values after completion, later disclosure of static secret keys alone does not compromise past session keys."
+    },
+    "key_confirmation": "Implicit mutual key confirmation through possession of the three KEM secrets and matching transcript; no third explicit confirmation message.",
+    "transcript_binding": "ST=(U_A,U_B,ek_KEM_A,ek_KEM_B,CT_A,ek_KEM_T,CT_B,CT_T) is input to all three final PRF evaluations.",
+    "identity_binding": "Both ordered identities U_A,U_B occur in M1, M2 and ST together with both static public keys."
+  },
+  "technical_classification": {
+    "construction_paradigm": "Two-message FSXY transform using two static IND-CCA2 KEM contributions and one ephemeral weakened IND-CPA KEM contribution.",
+    "underlying_primitives": [
+      {
+        "name": "TriQ-KEM",
+        "role": "IND-CCA2 static KEM in both directions"
+      },
+      {
+        "name": "TriQ-wKEM",
+        "role": "Ephemeral IND-CPA weakened KEM"
+      },
+      {
+        "name": "F and F'",
+        "role": "FSXY PRFs deriving deterministic static encapsulation randomness"
+      },
+      {
+        "name": "KDF and G_FSXY",
+        "role": "Per-contribution extraction and transcript-dependent final session-key derivation"
+      }
+    ],
+    "hard_problems": [
+      {
+        "name": "2-CW-QCSD",
+        "role": "Public-key recovery hardness"
+      },
+      {
+        "name": "Bounded-density-conditioned 3-CW-QCSD",
+        "role": "Ciphertext-randomness recovery hardness"
+      }
+    ],
+    "mathematical_structures": [
+      "Quasi-cyclic binary codes",
+      "Concatenated Reed-Solomon/repeated Reed-Muller decoding",
+      "Fixed-weight error distributions"
+    ],
+    "security_models": [
+      "CK+ model under FSXY freshness",
+      "Standard-model FSXY reduction",
+      "IND-CCA2 static KEM",
+      "IND-CPA ephemeral weakened KEM"
+    ]
+  },
+  "protocol_flow": [
+    {
+      "flow": 1,
+      "sender": "initiator",
+      "receiver": "responder",
+      "message_id": "M1",
+      "components": [
+        {
+          "name": "U_A,U_B",
+          "semantics": "Ordered party identifiers."
+        },
+        {
+          "name": "CT_A",
+          "semantics": "Static TriQ-KEM ciphertext under responder ek_KEM_B, yielding K_A."
+        },
+        {
+          "name": "ek_KEM_T",
+          "semantics": "Fresh initiator TriQ-wKEM encapsulation key."
+        }
+      ],
+      "semantics": "M1=(U_A,U_B,CT_A,ek_KEM_T); initiator retains state_A=(CT_A,ek_KEM_T,dk_KEM_T,K_A)."
+    },
+    {
+      "flow": 2,
+      "sender": "responder",
+      "receiver": "initiator",
+      "message_id": "M2",
+      "components": [
+        {
+          "name": "U_A,U_B",
+          "semantics": "Ordered party identifiers repeated in the response."
+        },
+        {
+          "name": "CT_B",
+          "semantics": "Static TriQ-KEM ciphertext under initiator ek_KEM_A, yielding K_B."
+        },
+        {
+          "name": "CT_T",
+          "semantics": "Ephemeral TriQ-wKEM ciphertext under ek_KEM_T, yielding K_T."
+        }
+      ],
+      "semantics": "M2=(U_A,U_B,CT_B,CT_T); both sides then derive the final session key from K_A,K_B,K_T and ST."
+    }
+  ],
+  "key_schedule": {
+    "static_contributions": [
+      "K_A from CT_A under responder static key",
+      "K_B from CT_B under initiator static key"
+    ],
+    "ephemeral_contributions": [
+      "K_T from CT_T under the initiator's fresh TriQ-wKEM key"
+    ],
+    "transcript_hash": "No separate hash: the ordered transcript ST is directly input to G_FSXY under three derived keys.",
+    "session_key_derivation": "K'_A=KDF(s,K_A), K'_B=KDF(s,K_B), K'_T=KDF(s,K_T); SK=G_FSXY,K'_A(ST) XOR G_FSXY,K'_B(ST) XOR G_FSXY,K'_T(ST).",
+    "domain_separation": "Submitted code realizes FSXY PRF and KDF interfaces with domain-separated pseudo-XOF calls; TriQ-KEM functions use distinct named domains.",
+    "ephemeral_secret_erasure": "Both parties erase local state and intermediate values used only for final derivation after outputting SK."
+  },
+  "submitters": [
+    {
+      "name_en": "Lan Luo",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "is_contact": true
+    },
+    {
+      "name_en": "Chaofeng Guan",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "is_contact": false
+    },
+    {
+      "name_en": "Yunlei Zhao",
+      "name_zh": "赵运磊",
+      "affiliation_ids": [],
+      "is_contact": false
+    },
+    {
+      "name_en": "Hong Wang",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "is_contact": false
+    },
+    {
+      "name_en": "Jianhua Hou",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "is_contact": false
+    },
+    {
+      "name_en": "Tong Yu",
+      "name_zh": null,
+      "affiliation_ids": [],
+      "is_contact": false
+    }
+  ],
+  "affiliations": [],
+  "common_parameters": {
+    "underlying_primitive": "TriQ-PKE/TriQ-KEM",
+    "static_kem_security": "IND-CCA2 with kappa-min-entropy",
+    "ephemeral_kem_security": "IND-CPA weakened KEM with kappa-min-entropy",
+    "ciphertext_salt_bytes": 32,
+    "identity_encoding_bytes_each": 4,
+    "key_generation_randomness": "{0,1}^kappa",
+    "session_key_bytes": "kappa/8",
+    "hash_xof_kdf": "Domain-separated pseudo-XOF implementation of FSXY PRFs and KDF"
+  },
+  "parameter_sets": [
+    {
+      "name": "TriQ-KEX-128",
+      "implementation_aliases": [
+        "128"
+      ],
+      "target_security": {
+        "classical_bits": 128,
+        "quantum_bits": 95.18
+      },
+      "ngcc_level": null,
+      "core_parameters": {
+        "n": 16301,
+        "n1": 42,
+        "n2": 384,
+        "k": 128,
+        "wx": 67,
+        "wy": 67,
+        "wr": 67,
+        "we": 106,
+        "min_classical_isd_bits": 146.67
+      },
+      "sizes_bytes": {
+        "long_term_public_key": 2054,
+        "long_term_secret_key": 2134,
+        "ephemeral_public_key": 2054,
+        "ephemeral_secret_key": 2102,
+        "messages": [
+          {
+            "message_id": "M1",
+            "bytes": 6148
+          },
+          {
+            "message_id": "M2",
+            "bytes": 8180
+          }
+        ],
+        "total_communication": 14328,
+        "initiator_session_state": 8258,
+        "responder_session_state": 8220,
+        "shared_secret": 16,
+        "randomness": {
+          "kem_keygen_seed": 16
+        }
+      },
+      "failure_probability": "session <= 3 * 2^-121.90",
+      "issues": [
+        "Session-state sizes are derived from the explicit state tuples and component sizes, not listed directly in Table 3."
+      ]
+    },
+    {
+      "name": "TriQ-KEX-256",
+      "implementation_aliases": [
+        "256"
+      ],
+      "target_security": {
+        "classical_bits": 256,
+        "quantum_bits": 163.49
+      },
+      "ngcc_level": null,
+      "core_parameters": {
+        "n": 50363,
+        "n1": 64,
+        "n2": 768,
+        "k": 256,
+        "wx": 132,
+        "wy": 132,
+        "wr": 132,
+        "we": 234,
+        "min_classical_isd_bits": 277.04
+      },
+      "sizes_bytes": {
+        "long_term_public_key": 6328,
+        "long_term_secret_key": 6488,
+        "ephemeral_public_key": 6328,
+        "ephemeral_secret_key": 6424,
+        "messages": [
+          {
+            "message_id": "M1",
+            "bytes": 18808
+          },
+          {
+            "message_id": "M2",
+            "bytes": 24952
+          }
+        ],
+        "total_communication": 43760,
+        "initiator_session_state": 25256,
+        "responder_session_state": 25040,
+        "shared_secret": 32,
+        "randomness": {
+          "kem_keygen_seed": 32
+        }
+      },
+      "failure_probability": "session <= 3 * 2^-173.35",
+      "issues": [
+        "Session-state sizes are derived from the explicit state tuples and component sizes, not listed directly in Table 3."
+      ]
+    },
+    {
+      "name": "TriQ-KEX-384",
+      "implementation_aliases": [
+        "384"
+      ],
+      "target_security": {
+        "classical_bits": 384,
+        "quantum_bits": 229.43
+      },
+      "ngcc_level": null,
+      "core_parameters": {
+        "n": 97651,
+        "n1": 108,
+        "n2": 896,
+        "k": 384,
+        "wx": 196,
+        "wy": 196,
+        "wr": 196,
+        "we": 350,
+        "min_classical_isd_bits": 404.13
+      },
+      "sizes_bytes": {
+        "long_term_public_key": 12255,
+        "long_term_secret_key": 12495,
+        "ephemeral_public_key": 12255,
+        "ephemeral_secret_key": 12399,
+        "messages": [
+          {
+            "message_id": "M1",
+            "bytes": 36598
+          },
+          {
+            "message_id": "M2",
+            "bytes": 48678
+          }
+        ],
+        "total_communication": 85276,
+        "initiator_session_state": 49037,
+        "responder_session_state": 48814,
+        "shared_secret": 48,
+        "randomness": {
+          "kem_keygen_seed": 48
+        }
+      },
+      "failure_probability": "session <= 3 * 2^-209.57",
+      "issues": [
+        "Session-state sizes are derived from the explicit state tuples and component sizes, not listed directly in Table 3."
+      ]
+    },
+    {
+      "name": "TriQ-KEX-512",
+      "implementation_aliases": [
+        "512"
+      ],
+      "target_security": {
+        "classical_bits": 512,
+        "quantum_bits": 294.84
+      },
+      "ngcc_level": null,
+      "core_parameters": {
+        "n": 157627,
+        "n1": 136,
+        "n2": 1152,
+        "k": 512,
+        "wx": 260,
+        "wy": 260,
+        "wr": 260,
+        "we": 475,
+        "min_classical_isd_bits": 532.06
+      },
+      "sizes_bytes": {
+        "long_term_public_key": 19768,
+        "long_term_secret_key": 20088,
+        "ephemeral_public_key": 19768,
+        "ephemeral_secret_key": 19960,
+        "messages": [
+          {
+            "message_id": "M1",
+            "bytes": 59096
+          },
+          {
+            "message_id": "M2",
+            "bytes": 78648
+          }
+        ],
+        "total_communication": 137744,
+        "initiator_session_state": 79112,
+        "responder_session_state": 78832,
+        "shared_secret": 64,
+        "randomness": {
+          "kem_keygen_seed": 64
+        }
+      },
+      "failure_probability": "session <= 3 * 2^-230.00",
+      "issues": [
+        "Session-state sizes are derived from the explicit state tuples and component sizes, not listed directly in Table 3."
+      ]
+    }
+  ],
+  "correctness": {
+    "underlying_failure_probability": {
+      "TriQ-KEX-128": "natural DFR <=2^-121.90",
+      "TriQ-KEX-256": "natural DFR <=2^-173.35",
+      "TriQ-KEX-384": "natural DFR <=2^-209.57",
+      "TriQ-KEX-512": "natural DFR <=2^-230.00"
+    },
+    "session_failure_probability": {
+      "TriQ-KEX-128": "<=3*2^-121.90",
+      "TriQ-KEX-256": "<=3*2^-173.35",
+      "TriQ-KEX-384": "<=3*2^-209.57",
+      "TriQ-KEX-512": "<=3*2^-230.00"
+    },
+    "relationship": "A completed session depends on two static TriQ-KEM decapsulations and one ephemeral TriQ-wKEM decapsulation; the session bound is their sum (three times the component natural DFR when the same parameter set is used).",
+    "basis": "Algorithm specification pp. 9 and 12, correctness-accounting paragraph and Table 4."
+  },
+  "security_claims": [
+    {
+      "category": "authentication",
+      "claim": "Mutual authenticated key exchange via two static KEM contributions bound to ordered identities and transcript.",
+      "claim_strength": "formally_claimed",
+      "comparison_scope": "Registered/authenticated static public keys"
+    },
+    {
+      "category": "ake_model",
+      "claim": "CK+ security under the FSXY freshness definition and component assumptions.",
+      "claim_strength": "formally_claimed",
+      "comparison_scope": "FSXY Theorem 1 instantiation"
+    },
+    {
+      "category": "forward_secrecy",
+      "claim": "Later static-secret disclosure alone does not reveal completed session keys under freshness and erasure conditions.",
+      "claim_strength": "formally_claimed",
+      "comparison_scope": "Completed fresh sessions"
+    },
+    {
+      "category": "hardness",
+      "claim": "Concrete component security rests on 2-CW-QCSD and bounded-density-conditioned 3-CW-QCSD estimates.",
+      "claim_strength": "argued",
+      "comparison_scope": "Submitted TriQ parameter sets"
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "claim": "Instantiates the standard FSXY transform with traceable KEM, PRF, KDF and min-entropy assumptions.",
+        "claim_strength": "formally_claimed",
+        "comparison_scope": "Two-message KEM-based AKE"
+      },
+      {
+        "category": "simplicity",
+        "claim": "Uses two messages, three KEM shared secrets and a single transcript-dependent final derivation while reusing TriQ encodings and parameters.",
+        "claim_strength": "stated",
+        "comparison_scope": "Protocol structure"
+      },
+      {
+        "category": "scalability",
+        "claim": "Provides four consistently encoded instances from 128 through 512 classical security bits.",
+        "claim_strength": "stated",
+        "comparison_scope": "Submitted parameter family"
+      },
+      {
+        "category": "implementation",
+        "claim": "Reference and optimized implementations and KATs use the same wire formats.",
+        "claim_strength": "measured",
+        "comparison_scope": "Submitted code"
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "category": "pre_distribution",
+        "description": "Both parties require authenticated long-term static public keys before the exchange.",
+        "provenance": "explicit_in_submission"
+      },
+      {
+        "category": "correctness",
+        "description": "The protocol has nonzero correctness loss from three decoding/decapsulation events.",
+        "provenance": "derived_from_parameters"
+      },
+      {
+        "category": "primitive_dependency",
+        "description": "CK+ security depends on static IND-CCA2 TriQ-KEM, ephemeral IND-CPA TriQ-wKEM, min-entropy, two PRFs and the FSXY KDF/PRF assumptions.",
+        "provenance": "explicit_in_submission"
+      },
+      {
+        "category": "forward_secrecy",
+        "description": "The forward-secrecy statement requires CK+ freshness and erasure of non-public per-session values.",
+        "provenance": "explicit_caveat"
+      },
+      {
+        "category": "communication",
+        "description": "Messages grow to 59,096 and 78,648 bytes for TriQ-KEX-512.",
+        "provenance": "derived_from_parameters"
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "advantages": [],
+    "limitations": []
+  },
+  "implementations": [
+    {
+      "type": "reference",
+      "language": "C",
+      "platform": "portable"
+    },
+    {
+      "type": "optimized",
+      "language": "C",
+      "platform": "optimized code-based arithmetic"
+    }
+  ],
+  "submission_completeness": {
+    "status": "partial",
+    "present_components": [
+      "basic information",
+      "algorithm specification",
+      "reference implementation",
+      "optimized implementation",
+      "test vectors",
+      "security statement"
+    ],
+    "missing_components": [
+      "separate companion TriQ-KEM specification inside the TriQ-KEX archive"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "triq-basic",
+      "type": "basic_information",
+      "path": "KeyExchange/TriQ-KEX.zip::TriQ-KEX/Basic information/Basic information.pdf",
+      "priority": 1,
+      "notes": "Scanned/empty text extraction; affiliations unavailable."
+    },
+    {
+      "source_id": "triq-spec",
+      "type": "algorithm_specification",
+      "path": "KeyExchange/TriQ-KEX.zip::TriQ-KEX/Algorithm specifications/Algorithm specifications.pdf",
+      "priority": 2,
+      "notes": "Primary technical source."
+    },
+    {
+      "source_id": "triq-impl",
+      "type": "implementation",
+      "path": "KeyExchange/TriQ-KEX.zip::TriQ-KEX/Implementations/",
+      "priority": 3,
+      "notes": "Used to confirm available implementation variants."
+    }
+  ],
+  "evidence": [
+    {
+      "field": "identity_and_submitters",
+      "source_id": "triq-spec",
+      "locator": "PDF p. 1",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "overview_classification",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 1, 3, 11-12",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "protocol_flow_and_key_schedule",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 5-9, Figure 1 and Sections III-E to III-G",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "parameter_sets_and_sizes",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 10-11, Tables 1-3",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "correctness",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 9 and 12, correctness accounting and Table 4",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "security_claims",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 3, 11-12",
+      "confidence": "high",
+      "extraction_status": "verified"
+    },
+    {
+      "field": "session_state_sizes",
+      "source_id": "triq-spec",
+      "locator": "PDF pp. 7-8 state_A/state_B definitions combined with Tables 2-3",
+      "confidence": "high",
+      "extraction_status": "derived"
+    }
+  ],
+  "review": {
+    "status": "cross_checked",
+    "reviewed_fields": [
+      "mathematical classification",
+      "protocol classification",
+      "authentication model",
+      "message flow",
+      "communication sizes",
+      "correctness relation"
+    ],
+    "review_notes": [
+      "For each instance total_communication was recomputed as M1+M2.",
+      "M1 and M2 were independently recomputed from two 4-byte identities and Table 2 KEM object sizes.",
+      "Session-state sizes were recomputed from the explicit state tuples.",
+      "Independent review against Sections III-IV confirmed the two-message/one-round-trip FSXY mutual AKE construction and all Table 3 communication sizes.",
+      "No explicit NGCC category assignment appears in the supplied TriQ-KEX specification or extractable basic-information text; all ngcc_level values are therefore null."
+    ],
+    "conflicts": []
+  },
+  "issues": [
+    {
+      "field": "submitters.affiliation_ids",
+      "severity": "warning",
+      "description": "The scanned basic-information PDF yielded no text and the specification lists names but no affiliations; affiliations are left empty rather than inferred."
+    },
+    {
+      "field": "ngcc_level",
+      "severity": "warning",
+      "description": "The specification names 128/256/384/512-bit instances but does not explicitly assign NGCC level integers; all values are null rather than inferred from project convention."
+    }
+  ]
+}

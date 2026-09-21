@@ -1,0 +1,422 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "triq-kem",
+  "name": "TriQ-KEM",
+  "full_name": "TriQ-KEM",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/TriQ-KEM",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "2-CW-QCSD",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "bounded-density-conditioned 3-CW-QCSD",
+        "role": "primary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "quasi-cyclic codes with constrained-weight vectors and RSRM concatenated code",
+    "underlying_pke": "TriQ-PKE",
+    "kem_construction": "Fujisaki-Okamoto transform with implicit rejection",
+    "claimed_security_target": "IND-CCA2",
+    "security_models": [
+      "ROM/QROM-oriented analysis"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "ieu",
+      "name_en": "Information Engineering University",
+      "name_zh": "信息工程大学"
+    },
+    {
+      "affiliation_id": "fudan",
+      "name_en": "Fudan University",
+      "name_zh": "复旦大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Lan Luo",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Chaofeng Guan",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Yunlei Zhao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "fudan"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Hong Wang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jianhua Hou",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Tong Yu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "ieu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F2 with GF(256) RS outer code",
+    "code_structure": "RSRM: Reed-Solomon outer plus repeated Reed-Muller inner code",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": null,
+    "modulus": null,
+    "dimensions": {
+      "ring_length": "smallest primitive prime above n1*n2"
+    },
+    "weights": {
+      "constrained_weight": true
+    },
+    "error_correction": "RSRM decoder plus bounded-density rejection",
+    "symmetric_primitives": [
+      "hash/XOF interfaces"
+    ],
+    "representation": "seeded regenerable material and packed vectors",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "TriQ-KEM-128",
+      "implementation_aliases": [
+        "TriQ-KEM-128"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "n1": 42,
+        "n2": 384,
+        "ring_length_n": 16301,
+        "k": 128,
+        "wx_wy_wr": 67,
+        "we": 106
+      },
+      "decapsulation_failure_probability": "<=2^-121.90",
+      "sizes": {
+        "public_key": {
+          "bytes": 2054,
+          "raw": "2054 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 2102,
+          "raw": "2102 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 4086,
+          "raw": "4086 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "TriQ-KEM-256",
+      "implementation_aliases": [
+        "TriQ-KEM-256"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "n1": 64,
+        "n2": 768,
+        "ring_length_n": 50363,
+        "k": 256,
+        "wx_wy_wr": 132,
+        "we": 234
+      },
+      "decapsulation_failure_probability": "<=2^-173.35",
+      "sizes": {
+        "public_key": {
+          "bytes": 6328,
+          "raw": "6328 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 6424,
+          "raw": "6424 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 12472,
+          "raw": "12472 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "TriQ-KEM-384",
+      "implementation_aliases": [
+        "TriQ-KEM-384"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 384,
+      "claimed_quantum_security_bits": 192,
+      "core_parameters": {
+        "n1": 108,
+        "n2": 896,
+        "ring_length_n": 97651,
+        "k": 384,
+        "wx_wy_wr": 196,
+        "we": 350
+      },
+      "decapsulation_failure_probability": "<=2^-209.57",
+      "sizes": {
+        "public_key": {
+          "bytes": 12255,
+          "raw": "12255 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 12399,
+          "raw": "12399 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 24335,
+          "raw": "24335 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 48,
+          "raw": "48 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "TriQ-KEM-512",
+      "implementation_aliases": [
+        "TriQ-KEM-512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "n1": 136,
+        "n2": 1152,
+        "ring_length_n": 157627,
+        "k": 512,
+        "wx_wy_wr": 260,
+        "we": 475
+      },
+      "decapsulation_failure_probability": "<=2^-230.00",
+      "sizes": {
+        "public_key": {
+          "bytes": 19768,
+          "raw": "19768 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 19960,
+          "raw": "19960 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 39320,
+          "raw": "39320 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Attack-aware cumulative failure analysis includes density-interval amplification and bounded-query rejection.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "flexibility",
+        "summary": "Four security tiers from 128 to 512 bits.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Natural DFR and cumulative failure bounds are nonzero; post-rejection CDFR is the selection metric.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_implementation_description",
+        "summary": "Bounded-density sampling permits up to 256 trials and adds rejection overhead.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/TriQ-KEM/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/TriQ-KEM/Basic information/Basic information.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/TriQ-KEM/Algorithm specifications/Algorithm specifications.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

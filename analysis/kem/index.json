@@ -1,0 +1,417 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_count": 41,
+  "function": "key_encapsulation",
+  "algorithms": [
+    {
+      "algorithm_id": "aigis-enc-plus",
+      "name": "Aigis-Enc+",
+      "path": "algorithms/aigis-enc-plus.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "amoeba",
+      "name": "Amoeba",
+      "path": "algorithms/amoeba.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 5,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "bag-loong",
+      "name": "BAG-Loong",
+      "path": "algorithms/bag-loong.json",
+      "family": "code_based",
+      "subcategory": "rank_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "bag-piglet",
+      "name": "BAG-Piglet",
+      "path": "algorithms/bag-piglet.json",
+      "family": "code_based",
+      "subcategory": "rank_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "bike-mlthre",
+      "name": "BIKE_MLThre",
+      "path": "algorithms/bike-mlthre.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "bra",
+      "name": "BRA",
+      "path": "algorithms/bra.json",
+      "family": "code_based",
+      "subcategory": "rank_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "brqc",
+      "name": "BRQC",
+      "path": "algorithms/brqc.json",
+      "family": "code_based",
+      "subcategory": "rank_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "bw-kem",
+      "name": "BW-KEM",
+      "path": "algorithms/bw-kem.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 8,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "c-multi-ur-ag",
+      "name": "C-Multi-UR-AG",
+      "path": "algorithms/c-multi-ur-ag.json",
+      "family": "code_based",
+      "subcategory": "rank_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "cheetahkem",
+      "name": "CheetahKEM",
+      "path": "algorithms/cheetahkem.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 4,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "compass-kem",
+      "name": "COMPASS-KEM",
+      "path": "algorithms/compass-kem.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 4,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "ctl",
+      "name": "CTL",
+      "path": "algorithms/ctl.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 3,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "dkem",
+      "name": "DKEM",
+      "path": "algorithms/dkem.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "dtru",
+      "name": "DTRU",
+      "path": "algorithms/dtru.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 7,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "flit",
+      "name": "FLIT",
+      "path": "algorithms/flit.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 3,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "hare",
+      "name": "HARE",
+      "path": "algorithms/hare.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "hep-qc",
+      "name": "HEP-QC",
+      "path": "algorithms/hep-qc.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "loongkem",
+      "name": "LoongKEM",
+      "path": "algorithms/loongkem.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 4,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "lore",
+      "name": "Lore",
+      "path": "algorithms/lore.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 4,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "mamba-frost",
+      "name": "MAMBA-Frost",
+      "path": "algorithms/mamba-frost.json",
+      "family": "lattice_based",
+      "subcategory": "unstructured_lattice",
+      "parameter_set_count": 7,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "mamba-viper",
+      "name": "MAMBA-Viper",
+      "path": "algorithms/mamba-viper.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 5,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "mithril",
+      "name": "Mithril",
+      "path": "algorithms/mithril.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 3,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "mito",
+      "name": "Mito",
+      "path": "algorithms/mito.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 9,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "morning-scabbard",
+      "name": "MORNING-Scabbard",
+      "path": "algorithms/morning-scabbard.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "nev",
+      "name": "NEV",
+      "path": "algorithms/nev.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 9,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "nss-hqc",
+      "name": "NSS-HQC",
+      "path": "algorithms/nss-hqc.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "partial",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "ntre",
+      "name": "NTRE",
+      "path": "algorithms/ntre.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "oaep-ntru",
+      "name": "OAEP-NTRU",
+      "path": "algorithms/oaep-ntru.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "polar-kem",
+      "name": "Polar-KEM",
+      "path": "algorithms/polar-kem.json",
+      "family": "lattice_based",
+      "subcategory": "other_lattice",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "polarlac",
+      "name": "PolarLAC",
+      "path": "algorithms/polarlac.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 5,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "qctm",
+      "name": "QCTM",
+      "path": "algorithms/qctm.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "qimen-pike",
+      "name": "QIMEN-PIKE",
+      "path": "algorithms/qimen-pike.json",
+      "family": "isogeny_based",
+      "subcategory": "supersingular_isogeny",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "high"
+    },
+    {
+      "algorithm_id": "qube",
+      "name": "QUBE",
+      "path": "algorithms/qube.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 5,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "rudraksh2",
+      "name": "Rudraksh2",
+      "path": "algorithms/rudraksh2.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 6,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "scloud-plus",
+      "name": "Scloud+",
+      "path": "algorithms/scloud-plus.json",
+      "family": "lattice_based",
+      "subcategory": "unstructured_lattice",
+      "parameter_set_count": 5,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "trike",
+      "name": "TRIKE",
+      "path": "algorithms/trike.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 6,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "triq-kem",
+      "name": "TriQ-KEM",
+      "path": "algorithms/triq-kem.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 4,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "uvw-kem",
+      "name": "UVW-KEM",
+      "path": "algorithms/uvw-kem.json",
+      "family": "code_based",
+      "subcategory": "hamming_metric",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "weaver",
+      "name": "Weaver",
+      "path": "algorithms/weaver.json",
+      "family": "lattice_based",
+      "subcategory": "lwe_rlwe_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "yuanyang-kem",
+      "name": "YuanYang.KEM",
+      "path": "algorithms/yuanyang-kem.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 3,
+      "extraction_status": "complete",
+      "confidence": "medium"
+    },
+    {
+      "algorithm_id": "zen",
+      "name": "ZEN",
+      "path": "algorithms/zen.json",
+      "family": "lattice_based",
+      "subcategory": "ntru_based",
+      "parameter_set_count": 6,
+      "extraction_status": "partial",
+      "confidence": "medium"
+    }
+  ]
+}

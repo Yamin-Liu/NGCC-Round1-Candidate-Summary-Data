@@ -1,0 +1,508 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "mamba-viper",
+  "name": "MAMBA-Viper",
+  "full_name": "MAMBA-Viper Key Encapsulation Mechanism",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/MAMBA-Viper",
+  "overview_classification": {
+    "family": "lattice_based",
+    "family_label_zh": "格密码",
+    "family_report_label": "格密码",
+    "subcategory": "lwe_rlwe_based",
+    "subcategory_label_zh": "基于MLWE/RLWE",
+    "subcategory_report_label": "基于MLWE/RLWE"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "Module Learning with Quantization (MLWQ)",
+        "role": "primary",
+        "notes": "Public-dithered coefficient-wise quantization defines the error distribution."
+      }
+    ],
+    "mathematical_structure": "Rq = Z_q[X]/(X^256+1), module rank k varies by profile",
+    "underlying_pke": "Viper.PKE",
+    "kem_construction": "Deterministic re-encryption Fujisaki-Okamoto style transform with implicit rejection",
+    "claimed_security_target": "IND-CCA KEM",
+    "security_models": [
+      "ROM",
+      "QROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "aff-jnu",
+      "name_en": "Jinan University",
+      "name_zh": "暨南大学"
+    },
+    {
+      "affiliation_id": "aff-xidian-gz",
+      "name_en": "Guangzhou Institute of Technology, Xidian University",
+      "name_zh": "西安电子科技大学广州研究院"
+    },
+    {
+      "affiliation_id": "aff-iie-cas",
+      "name_en": "Institute of Information Engineering, Chinese Academy of Sciences",
+      "name_zh": "中国科学院信息工程研究所"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Shanxiang Lyu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-jnu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Ke Ma",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-jnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Jiarui Deng",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-jnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Junzuo Lai",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-jnu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Ling Liu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-xidian-gz"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Xianhui Lu",
+      "name_zh": null,
+      "affiliation_ids": [
+        "aff-iie-cas"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": "Z_q[X]/(X^256+1)",
+    "field": null,
+    "code_structure": null,
+    "isogeny_structure": null,
+    "noise_or_error_distribution": "CBD_eta secrets; public dither induces bounded, input-independent quantization error",
+    "modulus": "q=4096 or 8192",
+    "dimensions": {
+      "n": 256,
+      "module_rank": "2,3,4,7,9"
+    },
+    "weights": null,
+    "error_correction": null,
+    "symmetric_primitives": [
+      "submitted pseudoXOF / SHAKE-family implementation"
+    ],
+    "representation": "power-of-two coefficient packing with public 32-byte seeds; E8 codec enabled",
+    "other": {
+      "quantization": "public dithered coefficient-wise quantization"
+    }
+  },
+  "parameter_sets": [
+    {
+      "name": "MAMBA-Viper-128",
+      "implementation_aliases": [
+        "Viper-128"
+      ],
+      "submission_security_label": "target 128-bit",
+      "claimed_classical_security_bits": 118.6,
+      "claimed_quantum_security_bits": 108.7,
+      "core_parameters": {
+        "n": 256,
+        "q": 4096,
+        "k": 2,
+        "eta_s": 2,
+        "eta_r": 2,
+        "t_pk": 9,
+        "t_u": 9,
+        "t_v": 4
+      },
+      "decapsulation_failure_probability": "2^-177.91",
+      "sizes": {
+        "public_key": {
+          "bytes": 608,
+          "raw": "608 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "secret_key": {
+          "bytes": 1424,
+          "raw": "1424 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "ciphertext": {
+          "bytes": 736,
+          "raw": "736 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "shared_secret": {
+          "bytes": 16,
+          "raw": "16 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "MAMBA-Viper-192",
+      "implementation_aliases": [
+        "Viper-192"
+      ],
+      "submission_security_label": "target 192-bit",
+      "claimed_classical_security_bits": 177.5,
+      "claimed_quantum_security_bits": 162.1,
+      "core_parameters": {
+        "n": 256,
+        "q": 4096,
+        "k": 3,
+        "eta_s": 3,
+        "eta_r": 3,
+        "t_pk": 10,
+        "t_u": 9,
+        "t_v": 6
+      },
+      "decapsulation_failure_probability": "2^-172.22",
+      "sizes": {
+        "public_key": {
+          "bytes": 992,
+          "raw": "992 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "secret_key": {
+          "bytes": 2200,
+          "raw": "2200 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "ciphertext": {
+          "bytes": 1088,
+          "raw": "1088 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "shared_secret": {
+          "bytes": 24,
+          "raw": "24 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "MAMBA-Viper-256",
+      "implementation_aliases": [
+        "Viper-256"
+      ],
+      "submission_security_label": "target 256-bit",
+      "claimed_classical_security_bits": 246.2,
+      "claimed_quantum_security_bits": 225.3,
+      "core_parameters": {
+        "n": 256,
+        "q": 4096,
+        "k": 4,
+        "eta_s": 3,
+        "eta_r": 3,
+        "t_pk": 10,
+        "t_u": 10,
+        "t_v": 5
+      },
+      "decapsulation_failure_probability": "2^-272.99",
+      "sizes": {
+        "public_key": {
+          "bytes": 1312,
+          "raw": "1312 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "secret_key": {
+          "bytes": 2912,
+          "raw": "2912 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "ciphertext": {
+          "bytes": 1472,
+          "raw": "1472 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "shared_secret": {
+          "bytes": 32,
+          "raw": "32 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "MAMBA-Viper-384",
+      "implementation_aliases": [
+        "Viper-384"
+      ],
+      "submission_security_label": "target 384-bit",
+      "claimed_classical_security_bits": 393.7,
+      "claimed_quantum_security_bits": 361.1,
+      "core_parameters": {
+        "n": 256,
+        "q": 8192,
+        "k": 7,
+        "eta_s": 1,
+        "eta_r": 1,
+        "t_pk": 11,
+        "t_u": 11,
+        "t_v": 5
+      },
+      "decapsulation_failure_probability": "2^-351.83",
+      "sizes": {
+        "public_key": {
+          "bytes": 2496,
+          "raw": "2496 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "secret_key": {
+          "bytes": 5488,
+          "raw": "5488 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "ciphertext": {
+          "bytes": 2656,
+          "raw": "2656 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "shared_secret": {
+          "bytes": 48,
+          "raw": "48 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "MAMBA-Viper-512",
+      "implementation_aliases": [
+        "Viper-512"
+      ],
+      "submission_security_label": "target 512-bit",
+      "claimed_classical_security_bits": 549.5,
+      "claimed_quantum_security_bits": 521,
+      "core_parameters": {
+        "n": 256,
+        "q": 8192,
+        "k": 9,
+        "eta_s": 1,
+        "eta_r": 1,
+        "t_pk": 11,
+        "t_u": 11,
+        "t_v": 8
+      },
+      "decapsulation_failure_probability": "2^-421.06",
+      "sizes": {
+        "public_key": {
+          "bytes": 3200,
+          "raw": "3200 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "secret_key": {
+          "bytes": 7040,
+          "raw": "7040 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "ciphertext": {
+          "bytes": 3456,
+          "raw": "3456 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification Tables 3-5 and self-evaluation size table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "security",
+        "summary": "Public dithering is claimed to make quantization noise input-independent and security analysis transparent.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "compactness",
+        "summary": "Quantization is native to the construction and is claimed to keep keys and ciphertexts compact.",
+        "claim_strength": "comparative",
+        "comparison_scope": "Compared with MLWE/MLWR KEMs",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "implementation",
+        "summary": "Power-of-two arithmetic avoids rejection sampling, Gaussian sampling and prime-modulus reduction.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "All profiles have nonzero, profile-specific decryption-failure probabilities.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_implementation_description",
+        "summary": "Optimized x86 path requires AVX2; portable reference C is separate.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "Reference_Implementation",
+      "language": "C",
+      "platform": "portable C99",
+      "path": "KeyEncapsulation/MAMBA-Viper/API_PKC/API_PKC/Implementations/Reference_Implementation"
+    },
+    {
+      "name": "Optimized_Implementation",
+      "language": "C and assembly",
+      "platform": "x86-64 AVX2",
+      "path": "KeyEncapsulation/MAMBA-Viper/API_PKC/API_PKC/Implementations/Optimized_Implementation"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/MAMBA-Viper/Basic information/Appendix A.pdf",
+      "priority": 1,
+      "notes": null
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/MAMBA-Viper/Algorithm specifications/MAMBA_Viper_Doc.pdf",
+      "priority": 2,
+      "notes": null
+    },
+    {
+      "source_id": "selfeval",
+      "type": "self_assessment",
+      "path": "KeyEncapsulation/MAMBA-Viper/Algorithm specifications/MAMBA_Viper_SelfEval_Report.pdf",
+      "priority": 5,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF pp.1-3",
+      "summary": "Six submitters and two contacts are listed.",
+      "confidence": "high"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "PDF pp.1,4-10,17-20",
+      "summary": "Abstract and security sections identify MLWQ, ring, PKE and CCA transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets",
+      "source_id": "spec",
+      "locator": "PDF pp.10-12, Tables 3-5",
+      "summary": "Profiles, mathematical parameters, sizes, security and DFR are tabulated.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "PDF pp.21-23",
+      "summary": "Advantages and limitations are explicitly discussed.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "partial",
+    "confidence": "high",
+    "cross_reviewed": true,
+    "review_notes": [
+      "Cross-checked specification parameter tables against submitted reference headers/API sizes."
+    ]
+  },
+  "issues": [
+    {
+      "severity": "missing",
+      "code": "version_not_stated",
+      "message": "No explicit version string was located.",
+      "field": "version"
+    }
+  ]
+}

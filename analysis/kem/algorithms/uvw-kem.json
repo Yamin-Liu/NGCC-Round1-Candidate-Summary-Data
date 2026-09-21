@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0.0",
+  "algorithm_id": "uvw-kem",
+  "name": "UVW-KEM",
+  "full_name": "UVW-KEM",
+  "version": null,
+  "function": "key_encapsulation",
+  "submission_path": "KeyEncapsulation/UVW-KEM",
+  "overview_classification": {
+    "family": "code_based",
+    "family_label_zh": "编码密码",
+    "family_report_label": "编码密码",
+    "subcategory": "hamming_metric",
+    "subcategory_label_zh": "基于汉明距离",
+    "subcategory_report_label": "基于汉明距离"
+  },
+  "technical_classification": {
+    "hardness_problems": [
+      {
+        "name": "general decoding / syndrome decoding over random linear codes",
+        "role": "primary",
+        "notes": null
+      },
+      {
+        "name": "generalized (U+V,U+W) code distinguishing",
+        "role": "secondary",
+        "notes": null
+      }
+    ],
+    "mathematical_structure": "generalized (U+V,U+W) linear codes over finite fields",
+    "underlying_pke": "UVW.PKE",
+    "kem_construction": "FO-style re-encryption conversion",
+    "claimed_security_target": "IND-CCA",
+    "security_models": [
+      "ROM"
+    ]
+  },
+  "affiliations": [
+    {
+      "affiliation_id": "sysu",
+      "name_en": "Sun Yat-sen University",
+      "name_zh": "中山大学"
+    },
+    {
+      "affiliation_id": "jxnu",
+      "name_en": "Jiangxi Normal University",
+      "name_zh": "江西师范大学"
+    },
+    {
+      "affiliation_id": "xidian",
+      "name_en": "Xidian University",
+      "name_zh": "西安电子科技大学"
+    }
+  ],
+  "submitters": [
+    {
+      "name_en": "Fangguo Zhang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sysu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Yang Yang",
+      "name_zh": null,
+      "affiliation_ids": [
+        "jxnu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Kuojie Xiao",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sysu"
+      ],
+      "roles": [
+        "submitter",
+        "contact"
+      ]
+    },
+    {
+      "name_en": "Xiaofeng Chen",
+      "name_zh": null,
+      "affiliation_ids": [
+        "xidian"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Chen Li",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sysu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    },
+    {
+      "name_en": "Haibo Tian",
+      "name_zh": null,
+      "affiliation_ids": [
+        "sysu"
+      ],
+      "roles": [
+        "submitter"
+      ]
+    }
+  ],
+  "common_parameters": {
+    "ring": null,
+    "field": "F_q",
+    "code_structure": "generalized (U+V,U+W) code",
+    "isogeny_structure": null,
+    "noise_or_error_distribution": null,
+    "modulus": null,
+    "dimensions": {
+      "n_k": "parameter-specific"
+    },
+    "weights": {
+      "error_weight_w": "parameter-specific"
+    },
+    "error_correction": null,
+    "symmetric_primitives": [
+      "SM3-based extendable-output functions"
+    ],
+    "representation": "large public generator matrix plus compact seeded private key",
+    "other": {}
+  },
+  "parameter_sets": [
+    {
+      "name": "UVW128",
+      "implementation_aliases": [
+        "UVW128"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 128,
+      "claimed_quantum_security_bits": 80,
+      "core_parameters": {
+        "field_q": 433,
+        "code_length_n": 860,
+        "dimension_k": 430,
+        "error_weight_w": 116
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 208013,
+          "raw": "208013 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 35,
+          "raw": "35 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 1032,
+          "raw": "1032 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "UVW256",
+      "implementation_aliases": [
+        "UVW256"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 256,
+      "claimed_quantum_security_bits": 128,
+      "core_parameters": {
+        "field_q": 857,
+        "code_length_n": 1708,
+        "dimension_k": 854,
+        "error_weight_w": 232
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 911645,
+          "raw": "911645 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 35,
+          "raw": "35 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 2199,
+          "raw": "2199 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    },
+    {
+      "name": "UVW512",
+      "implementation_aliases": [
+        "UVW512"
+      ],
+      "submission_security_label": null,
+      "claimed_classical_security_bits": 512,
+      "claimed_quantum_security_bits": 256,
+      "core_parameters": {
+        "field_q": 1709,
+        "code_length_n": 3412,
+        "dimension_k": 1706,
+        "error_weight_w": 463
+      },
+      "decapsulation_failure_probability": null,
+      "sizes": {
+        "public_key": {
+          "bytes": 4001850,
+          "raw": "4001850 bytes",
+          "basis": "specification table"
+        },
+        "secret_key": {
+          "bytes": 67,
+          "raw": "67 bytes",
+          "basis": "specification table"
+        },
+        "ciphertext": {
+          "bytes": 4820,
+          "raw": "4820 bytes",
+          "basis": "specification table"
+        },
+        "shared_secret": {
+          "bytes": 64,
+          "raw": "64 bytes",
+          "basis": "specification table"
+        }
+      },
+      "source_refs": [
+        "spec"
+      ],
+      "issues": []
+    }
+  ],
+  "submission_claims": {
+    "claimed_advantages": [
+      {
+        "category": "compactness",
+        "summary": "Submission emphasizes very small private keys and ciphertexts relative to its public matrix.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "category": "security",
+        "summary": "Security is split between decoding and structured-code distinguishing assumptions.",
+        "claim_strength": "qualitative",
+        "comparison_scope": null,
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ],
+    "limitations_and_constraints": [
+      {
+        "type": "explicit_in_submission",
+        "summary": "Public keys are very large: about 208 KB to 4.0 MB.",
+        "source_refs": [
+          "spec"
+        ]
+      },
+      {
+        "type": "derived_from_test_setup",
+        "summary": "Optimized results use C99/AVX2 on an Intel i9-14900K Windows/MinGW environment.",
+        "source_refs": [
+          "spec"
+        ]
+      }
+    ]
+  },
+  "independent_assessment": {
+    "status": "not_started",
+    "findings": []
+  },
+  "implementations": [
+    {
+      "name": "submitted reference and optimized implementations",
+      "language": "C",
+      "platform": null,
+      "path": "KeyEncapsulation/UVW-KEM/Implementations"
+    }
+  ],
+  "submission_completeness": {
+    "basic_information": true,
+    "specification": true,
+    "implementation": true,
+    "test_vectors": true
+  },
+  "sources": [
+    {
+      "source_id": "basic",
+      "type": "basic_information",
+      "path": "KeyEncapsulation/UVW-KEM/Basic information/Basic Algorithm Information.pdf",
+      "priority": 1,
+      "notes": "Scanned form was OCR-assisted; phone, email and street address were excluded."
+    },
+    {
+      "source_id": "spec",
+      "type": "specification",
+      "path": "KeyEncapsulation/UVW-KEM/Algorithm specifications/UVW-KEM.pdf",
+      "priority": 2,
+      "notes": null
+    }
+  ],
+  "evidence": [
+    {
+      "field": "name, function, submitters, affiliations",
+      "source_id": "basic",
+      "locator": "PDF form pages containing Appendix A / submitter entries",
+      "summary": "Basic-information form identifies the algorithm, submitters, affiliations and contact role.",
+      "confidence": "medium"
+    },
+    {
+      "field": "overview_classification, technical_classification",
+      "source_id": "spec",
+      "locator": "Introduction, construction and security-analysis sections",
+      "summary": "Specification states the mathematical family, hardness assumptions, underlying PKE and KEM transform.",
+      "confidence": "high"
+    },
+    {
+      "field": "parameter_sets, sizes",
+      "source_id": "spec",
+      "locator": "Parameter-set and key/ciphertext-size tables",
+      "summary": "Specification tables provide formal instances, mathematical parameters, failure bounds and serialized sizes.",
+      "confidence": "high"
+    },
+    {
+      "field": "submission_claims",
+      "source_id": "spec",
+      "locator": "Design rationale, performance and limitations sections",
+      "summary": "Claims and constraints are separated and attributed to the submission.",
+      "confidence": "high"
+    }
+  ],
+  "review": {
+    "extraction_status": "complete",
+    "confidence": "medium",
+    "cross_reviewed": false,
+    "review_notes": [
+      "Checked against specification tables and implementation layout where available."
+    ]
+  },
+  "issues": []
+}

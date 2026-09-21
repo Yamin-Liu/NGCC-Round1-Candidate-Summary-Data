@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://niccs.example/schema/kex-algorithm.schema.json",
+  "title": "NICCS R1 Key Exchange Algorithm Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "algorithm_id", "name", "full_name", "version", "function",
+    "submission_path", "aliases", "overview_classification", "protocol_characteristics",
+    "technical_classification", "protocol_flow", "key_schedule", "submitters",
+    "affiliations", "common_parameters", "parameter_sets", "correctness",
+    "security_claims", "submission_claims", "independent_assessment", "implementations",
+    "submission_completeness", "sources", "evidence", "review", "issues"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "algorithm_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1},
+    "full_name": {"type": ["string", "null"]},
+    "version": {"type": ["string", "null"]},
+    "function": {"const": "key_exchange"},
+    "submission_path": {"type": "string", "pattern": "^KeyExchange/"},
+    "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "overview_classification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mathematical", "protocol", "summary_label_zh"],
+      "properties": {
+        "mathematical": {"$ref": "#/$defs/classification"},
+        "protocol": {"$ref": "#/$defs/classification"},
+        "summary_label_zh": {"type": "string"}
+      }
+    },
+    "protocol_characteristics": {
+      "type": "object", "additionalProperties": true,
+      "required": ["interaction_type", "message_flows", "round_trips", "authentication", "roles", "pre_distributed_material", "forward_secrecy", "key_confirmation", "transcript_binding", "identity_binding"],
+      "properties": {
+        "interaction_type": {"enum": ["interactive", "non_interactive", "public_value_publication", "unknown"]},
+        "message_flows": {"type": ["integer", "null"], "minimum": 0},
+        "round_trips": {"type": ["number", "null"], "minimum": 0},
+        "authentication": {
+          "type": "object", "required": ["type", "authenticated_roles", "mechanism"],
+          "properties": {
+            "type": {"enum": ["none", "unilateral", "mutual"]},
+            "authenticated_roles": {"type": "array", "items": {"type": "string"}},
+            "mechanism": {"type": ["string", "null"]}
+          }
+        },
+        "roles": {"type": "array", "items": {"type": "object", "additionalProperties": true, "required": ["role", "long_term_key_required", "ephemeral_key_required"], "properties": {"role": {"type": "string"}, "long_term_key_required": {"type": ["boolean", "null"]}, "ephemeral_key_required": {"type": ["boolean", "null"]}}}},
+        "pre_distributed_material": {"type": "array", "items": {"type": "string"}},
+        "forward_secrecy": {"type": "object", "required": ["level", "conditions"], "properties": {"level": {"enum": ["none", "forward_secrecy", "weak_perfect_forward_secrecy", "perfect_forward_secrecy", "unknown"]}, "conditions": {"type": ["string", "null"]}}},
+        "key_confirmation": {"type": ["string", "null"]},
+        "transcript_binding": {"type": ["string", "null"]},
+        "identity_binding": {"type": ["string", "null"]}
+      }
+    },
+    "technical_classification": {"type": "object", "additionalProperties": true, "required": ["construction_paradigm", "underlying_primitives", "hard_problems", "mathematical_structures", "security_models"], "properties": {"construction_paradigm": {"type": ["string", "null"]}, "underlying_primitives": {"type": "array", "items": {"$ref": "#/$defs/namedRole"}}, "hard_problems": {"type": "array", "items": {"$ref": "#/$defs/namedRole"}}, "mathematical_structures": {"type": "array", "items": {"type": "string"}}, "security_models": {"type": "array", "items": {"type": "string"}}}},
+    "protocol_flow": {"type": "array", "items": {"type": "object", "additionalProperties": true, "required": ["flow", "sender", "receiver", "message_id", "components", "semantics"], "properties": {"flow": {"type": "integer", "minimum": 1}, "sender": {"type": "string"}, "receiver": {"type": "string"}, "message_id": {"type": "string"}, "components": {"type": "array", "items": {"type": "object", "required": ["name", "semantics"], "properties": {"name": {"type": "string"}, "semantics": {"type": "string"}}}}, "semantics": {"type": "string"}}}},
+    "key_schedule": {"type": "object", "additionalProperties": true, "required": ["static_contributions", "ephemeral_contributions", "transcript_hash", "session_key_derivation", "domain_separation", "ephemeral_secret_erasure"], "properties": {"static_contributions": {"type": "array", "items": {"type": "string"}}, "ephemeral_contributions": {"type": "array", "items": {"type": "string"}}, "transcript_hash": {"type": ["string", "null"]}, "session_key_derivation": {"type": ["string", "null"]}, "domain_separation": {"type": ["string", "null"]}, "ephemeral_secret_erasure": {"type": ["string", "null"]}}},
+    "submitters": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["name_en", "name_zh", "affiliation_ids", "is_contact"], "properties": {"name_en": {"type": ["string", "null"]}, "name_zh": {"type": ["string", "null"]}, "affiliation_ids": {"type": "array", "items": {"type": "string"}}, "is_contact": {"type": "boolean"}}}},
+    "affiliations": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["affiliation_id", "name_en", "name_zh"], "properties": {"affiliation_id": {"type": "string"}, "name_en": {"type": ["string", "null"]}, "name_zh": {"type": ["string", "null"]}}}},
+    "common_parameters": {"type": "object", "additionalProperties": true},
+    "parameter_sets": {"type": "array", "items": {"$ref": "#/$defs/parameterSet"}},
+    "correctness": {"type": "object", "additionalProperties": true, "required": ["underlying_failure_probability", "session_failure_probability", "relationship", "basis"], "properties": {"underlying_failure_probability": {}, "session_failure_probability": {}, "relationship": {"type": ["string", "null"]}, "basis": {"type": ["string", "null"]}}},
+    "security_claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "submission_claims": {"type": "object", "additionalProperties": false, "required": ["claimed_advantages", "limitations_and_constraints"], "properties": {"claimed_advantages": {"type": "array", "items": {"$ref": "#/$defs/claim"}}, "limitations_and_constraints": {"type": "array", "items": {"$ref": "#/$defs/limitation"}}}},
+    "independent_assessment": {"type": "object", "additionalProperties": false, "required": ["status", "advantages", "limitations"], "properties": {"status": {"const": "not_started"}, "advantages": {"type": "array", "maxItems": 0}, "limitations": {"type": "array", "maxItems": 0}}},
+    "implementations": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "submission_completeness": {"type": "object", "additionalProperties": true, "required": ["status", "present_components", "missing_components"], "properties": {"status": {"enum": ["complete", "partial", "minimal", "unknown"]}, "present_components": {"type": "array", "items": {"type": "string"}}, "missing_components": {"type": "array", "items": {"type": "string"}}}},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["field", "source_id", "locator", "confidence", "extraction_status"], "properties": {"field": {"type": "string"}, "source_id": {"type": "string"}, "locator": {"type": "string"}, "confidence": {"enum": ["high", "medium", "low"]}, "extraction_status": {"enum": ["verified", "extracted", "derived", "ocr", "unresolved"]}}}},
+    "review": {"type": "object", "additionalProperties": true, "required": ["status", "reviewed_fields", "review_notes", "conflicts"], "properties": {"status": {"enum": ["not_reviewed", "cross_checked", "needs_follow_up"]}, "reviewed_fields": {"type": "array", "items": {"type": "string"}}, "review_notes": {"type": "array", "items": {"type": "string"}}, "conflicts": {"type": "array", "items": {"type": "string"}}}},
+    "issues": {"type": "array", "items": {"type": "object", "required": ["field", "severity", "description"], "properties": {"field": {"type": "string"}, "severity": {"enum": ["info", "warning", "error"]}, "description": {"type": "string"}}}}
+  },
+  "$defs": {
+    "classification": {"type": "object", "additionalProperties": false, "required": ["family", "subcategory", "label_en", "label_zh"], "properties": {"family": {"type": "string"}, "subcategory": {"type": ["string", "null"]}, "label_en": {"type": "string"}, "label_zh": {"type": "string"}}},
+    "namedRole": {"type": "object", "additionalProperties": true, "required": ["name", "role"], "properties": {"name": {"type": "string"}, "role": {"type": "string"}}},
+    "byteValue": {"type": ["integer", "null"], "minimum": 0},
+    "parameterSet": {"type": "object", "additionalProperties": true, "required": ["name", "implementation_aliases", "target_security", "ngcc_level", "core_parameters", "sizes_bytes", "failure_probability", "issues"], "properties": {"name": {"type": "string"}, "implementation_aliases": {"type": "array", "items": {"type": "string"}}, "target_security": {"type": "object", "required": ["classical_bits", "quantum_bits"], "properties": {"classical_bits": {"type": ["number", "null"]}, "quantum_bits": {"type": ["number", "null"]}}}, "ngcc_level": {"type": ["integer", "null"], "minimum": 1, "maximum": 5}, "core_parameters": {"type": "object", "additionalProperties": true}, "sizes_bytes": {"type": "object", "additionalProperties": true, "required": ["long_term_public_key", "long_term_secret_key", "ephemeral_public_key", "ephemeral_secret_key", "messages", "total_communication", "initiator_session_state", "responder_session_state", "shared_secret", "randomness"], "properties": {"long_term_public_key": {"$ref": "#/$defs/byteValue"}, "long_term_secret_key": {"$ref": "#/$defs/byteValue"}, "ephemeral_public_key": {"$ref": "#/$defs/byteValue"}, "ephemeral_secret_key": {"$ref": "#/$defs/byteValue"}, "messages": {"type": "array", "items": {"type": "object", "required": ["message_id", "bytes"], "properties": {"message_id": {"type": "string"}, "bytes": {"$ref": "#/$defs/byteValue"}}}, "total_communication": {"$ref": "#/$defs/byteValue"}, "initiator_session_state": {"$ref": "#/$defs/byteValue"}, "responder_session_state": {"$ref": "#/$defs/byteValue"}, "shared_secret": {"$ref": "#/$defs/byteValue"}, "randomness": {"type": "object", "additionalProperties": {"$ref": "#/$defs/byteValue"}}}}, "failure_probability": {"type": ["string", "number", "null"]}, "issues": {"type": "array", "items": {"type": "string"}}}}},
+    "claim": {"type": "object", "additionalProperties": true, "required": ["category", "claim", "claim_strength", "comparison_scope"], "properties": {"category": {"type": "string"}, "claim": {"type": "string"}, "claim_strength": {"enum": ["stated", "argued", "formally_claimed", "measured"]}, "comparison_scope": {"type": ["string", "null"]}}},
+    "limitation": {"type": "object", "additionalProperties": true, "required": ["category", "description", "provenance"], "properties": {"category": {"type": "string"}, "description": {"type": "string"}, "provenance": {"enum": ["explicit_in_submission", "explicit_caveat", "derived_from_parameters", "derived_from_test_setup", "derived_from_implementation_description"]}}},
+    "source": {"type": "object", "additionalProperties": false, "required": ["source_id", "type", "path", "priority", "notes"], "properties": {"source_id": {"type": "string"}, "type": {"enum": ["basic_information", "algorithm_specification", "parameter_header", "api_header", "readme", "self_evaluation", "implementation", "other"]}, "path": {"type": "string"}, "priority": {"type": "integer", "minimum": 1}, "notes": {"type": ["string", "null"]}}}
+  }
+}
