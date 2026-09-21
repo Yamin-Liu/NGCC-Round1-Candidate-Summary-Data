@@ -190,7 +190,7 @@
       "family": "lattice_based",
       "subcategory": "lwe_rlwe_based",
       "parameter_set_count": 4,
-      "extraction_status": "partial",
+      "extraction_status": "complete",
       "confidence": "high"
     },
     {

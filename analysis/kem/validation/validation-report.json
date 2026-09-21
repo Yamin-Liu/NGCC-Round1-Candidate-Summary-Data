@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-20T13:22:20.497085+00:00",
+  "generated_at": "2026-09-21T08:29:53.991527+00:00",
   "expected_algorithm_count": 41,
   "file_count": 41,
   "parsed_record_count": 41,
@@ -390,13 +390,6 @@
       "code": "quantum_bits_not_tabulated",
       "message": "Per-profile quantum security bits were not located in the principal tables.",
       "field": "parameter_sets[*].claimed_quantum_security_bits"
-    },
-    {
-      "algorithm_id": "lore",
-      "severity": "missing",
-      "code": "affiliations_unreadable",
-      "message": "Author affiliations were not recoverable from the scanned basic-information PDF.",
-      "field": "affiliations"
     },
     {
       "algorithm_id": "mamba-viper",
